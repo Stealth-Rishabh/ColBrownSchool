@@ -7,12 +7,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "../../components/ui/carousel";
-
+import img1 from "../../assets/landing/Hero1.png";
 import { DownloadIcon } from "lucide-react";
 
 const SlideContent = memo(({ img }) => {
   return (
-    <div className="size-full sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[15%] left-[10%] sm:left-[8%] z-20 space-y-6">
+    <div className="size-full sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[10%] left-[10%] sm:left-[8%] z-20 space-y-6">
       {/* <div className="mx-0 rounded-md">
         <p className="text-sm sm:text-xl text-white">
           🔔 Enroll now
@@ -66,7 +66,7 @@ const SlideImage = memo(({ img }) => (
     <img
       src={img.image}
       alt={img.tagline}
-      className="object-cover w-screen h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] sm:blur-sm blur-[2px]"
+      className="object-cover scale-110 w-screen h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] "
       loading="lazy"
     />
     <div className="absolute inset-0 z-20 bg-black opacity-50" />
@@ -108,7 +108,7 @@ const HeroSlider = () => {
 
   const imgSlider = [
     {
-      image: "https://v0.dev/placeholder.svg",
+      image: img1,
       tagline: "Give your Dreams wings to fly",
       highlight:
         "World-class curriculum, experienced faculty, and state-of-the-art classrooms.",
@@ -119,7 +119,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: "https://v0.dev/placeholder.svg",
+      image: img1,
       tagline: "Celebrate Every Special Moment",
       highlight: "Cultural festivals, workshops, and leadership opportunities.",
       highlights: [
@@ -129,7 +129,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: "https://v0.dev/placeholder.svg", 
+      image: img1,
       tagline: "Fuel Your Passion Daily",
       highlight:
         "Top-notch facilities, diverse sports options, and vibrant athletic culture.",
@@ -140,7 +140,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: "https://v0.dev/placeholder.svg",
+      image: img1,
       tagline: "Innovate, Learn, Discover Together ",
       highlight:
         "Cutting-edge labs for practical learning, research, and discovery.",
@@ -151,7 +151,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: "https://v0.dev/placeholder.svg",
+      image: img1,
       tagline: "Inspire, Engage, Create Together",
       highlight:
         "Modern auditorium for events, seminars, and cultural programs.",
@@ -162,7 +162,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: "https://v0.dev/placeholder.svg",
+      image: img1,
       tagline: "Launch Your Career Successfully",
       highlight: "Strong industry connections and 100% placement assistance.",
       highlights: [

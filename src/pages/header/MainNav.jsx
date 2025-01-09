@@ -39,7 +39,7 @@ const menuItems = [
 
 export const MainNav = () => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden sm:block">
       <NavigationMenuList className="flex space-x-4">
         {menuItems.map((menu) => (
           <NavigationMenuItem key={menu.trigger} className="relative">
