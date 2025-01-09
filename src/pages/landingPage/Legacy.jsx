@@ -6,7 +6,7 @@ export default function Legacy() {
   return (
     <section className="bg-green-950">
       <Container>
-        <div className="flex gap-8 lg:gap-24">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-24">
           <div className="flex-1 space-y-8">
             <div className="space-y-4 sm:space-y-6">
               <p className="sm:text-lg font-medium text-white">Legacy</p>

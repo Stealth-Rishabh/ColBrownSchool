@@ -66,7 +66,7 @@ const SlideImage = memo(({ img }) => (
     <img
       src={img.image}
       alt={img.tagline}
-      className="object-cover scale-110 w-screen h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] "
+      className="object-cover  w-screen h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] "
       loading="lazy"
     />
     <div className="absolute inset-0 z-20 bg-black opacity-50" />
