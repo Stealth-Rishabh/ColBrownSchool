@@ -2,6 +2,7 @@ import HeroSlider from "./HeroSlider";
 import Legacy from "./Legacy";
 import FeatureImage from "./FeatureImage";
 import AboutCB from "./AboutCB";
+import VirtualTour from "./VirtualTour";
 const Landing = () => {
   return (
     <>
@@ -9,6 +10,7 @@ const Landing = () => {
       <FeatureImage />
       <Legacy />
       <AboutCB />
+      <VirtualTour />
     </>
   );
 };
