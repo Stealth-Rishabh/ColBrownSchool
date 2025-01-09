@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "../../components/ui/carousel";
-import img1 from "../../assets/landing/hero1.png";
+import img1 from "../../assets/landing/bg1.png"
 import { DownloadIcon } from "lucide-react";
 
 const SlideContent = memo(({ img }) => {

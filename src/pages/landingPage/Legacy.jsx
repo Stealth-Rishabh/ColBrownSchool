@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
-import img1 from "../../assets/landing/Hero1.png";
+import img1 from "../../assets/landing/bg1.png"
 import Container from "../../components/wrappers/Container";
 export default function Legacy() {
   return (
