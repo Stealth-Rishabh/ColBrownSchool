@@ -2,6 +2,7 @@ import HeroSlider from "./HeroSlider";
 import Legacy from "./Legacy";
 import FeatureImage from "./FeatureImage";
 import AboutCB from "./AboutCB";
+import AboutCBB from "./AboutCBB";
 import VirtualTour from "./VirtualTour";
 import Testimonials from "./Testimonials";
 import SchoolEvents from "./SchoolEvents";
@@ -12,7 +13,8 @@ const Landing = () => {
       <HeroSlider />
       <FeatureImage />
       <Legacy />
-      <AboutCB />
+      {/* <AboutCB /> */}
+      <AboutCBB />
       <VirtualTour />
       <Testimonials />
       <Spotlight />
