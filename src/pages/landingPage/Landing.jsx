@@ -3,6 +3,8 @@ import Legacy from "./Legacy";
 import FeatureImage from "./FeatureImage";
 import AboutCB from "./AboutCB";
 import VirtualTour from "./VirtualTour";
+import Testimonials from "./Testimonials";
+import SchoolEvents from "./SchoolEvents";
 const Landing = () => {
   return (
     <>
@@ -11,6 +13,8 @@ const Landing = () => {
       <Legacy />
       <AboutCB />
       <VirtualTour />
+      <Testimonials />
+      <SchoolEvents />
     </>
   );
 };

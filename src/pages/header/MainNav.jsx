@@ -40,10 +40,10 @@ const menuItems = [
 export const MainNav = () => {
   return (
     <NavigationMenu className="hidden sm:block">
-      <NavigationMenuList className="flex space-x-4">
+      <NavigationMenuList className="flex space-x-">
         {menuItems.map((menu) => (
           <NavigationMenuItem key={menu.trigger} className="relative">
-            <NavigationMenuTrigger className="font-medium text-sm hover:text-yellow-600">
+            <NavigationMenuTrigger className="font-medium text-xs hover:text-yellow-600">
               {menu.trigger}
             </NavigationMenuTrigger>
             <NavigationMenuContent className="absolute left-0">
