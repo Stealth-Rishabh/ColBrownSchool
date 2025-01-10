@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import SocialLinks from "./SocialLinks";
 import WhatsAppButton from "./WhatsAppButton";
 import LinkSection from "./LinkSection";
-import logo from "../../assets/logo.webp";
+import logo from "../../assets/logo.png";
 
 export default function Footer() {
   const { scrollYProgress } = useScroll();
