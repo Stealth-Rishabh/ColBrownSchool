@@ -1,6 +1,7 @@
 import TopBar from "./TopBar"
 import  MainNav  from "./MainNav"
 import logo from "../../assets/logo.png"
+import Drawer from "./Drawer"
 export function Header() {
   return (
     <header className="border-b shadow-sm">
@@ -12,6 +13,7 @@ export function Header() {
            
           </a>
           <MainNav />
+          <Drawer/>
         </div>
       </div>
     </header>

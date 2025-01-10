@@ -101,7 +101,7 @@ const Testimonials = () => {
 			<ShapeOne />
 			<ShapeTwo />
 
-			<div className="container px-4 mx-auto">
+			<div className="sm:container md:max-w-6xl lg:max-w-7xl  px-4 mx-auto">
 				<div className="grid grid-cols-12 gap-6 items-start justify-between mb-6 md:mb-12">
 					<div className="col-span-12 md:col-span-6 lg:col-span-4">
 						<h2 className="sm:text-4xl text-3xl text-center sm:text-left font-bold leading-normal">

@@ -6,6 +6,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
+
 const menuItems = [
   {
     trigger: "ABOUT",
