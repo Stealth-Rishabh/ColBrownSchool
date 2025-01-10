@@ -5,6 +5,7 @@ import AboutCB from "./AboutCB";
 import VirtualTour from "./VirtualTour";
 import Testimonials from "./Testimonials";
 import SchoolEvents from "./SchoolEvents";
+import Spotlight from "./Spotlight";
 const Landing = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Landing = () => {
       <AboutCB />
       <VirtualTour />
       <Testimonials />
+      <Spotlight />
       <SchoolEvents />
     </>
   );

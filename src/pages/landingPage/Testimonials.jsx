@@ -52,7 +52,7 @@ const testimonialList = [
 function ShapeOne() {
 	return (
 		<svg
-			className="absolute bottom-0 left-0 -z-[1]"
+			className="absolute bottom-5 left-0 -z-[1]"
 			width="404"
 			height="572"
 			viewBox="0 0 404 572"
@@ -74,7 +74,7 @@ function ShapeOne() {
 function ShapeTwo() {
 	return (
 		<svg
-			className="absolute top-0 right-0 -z-[1]"
+			className="absolute top-5 right-0 -z-[1]"
 			width="269"
 			height="479"
 			viewBox="0 0 269 479"
@@ -104,13 +104,13 @@ const Testimonials = () => {
 			<div className="container px-4 mx-auto">
 				<div className="grid grid-cols-12 gap-6 items-start justify-between mb-6 md:mb-12">
 					<div className="col-span-12 md:col-span-6 lg:col-span-4">
-						<h2 className="text-4xl font-bold leading-normal">
-							What Our Alumni Say
+						<h2 className="sm:text-4xl text-3xl text-center sm:text-left font-bold leading-normal">
+							What Our Students Say
 						</h2>
 					</div>
 					<div className="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8">
-						<p className="text-lg leading-[1.7] opacity-80">
-							Our alumni have shared their experiences, emphasizing the importance of both paid and unpaid roles in shaping their careers.
+						<p className="text-lg leading-[1.7] opacity-80 text-center sm:text-left">
+							Our students have shared their experiences, emphasizing the importance of both paid and unpaid roles in shaping their careers.
 						</p>
 					</div>
 				</div>
