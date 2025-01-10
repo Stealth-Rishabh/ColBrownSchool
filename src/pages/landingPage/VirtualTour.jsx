@@ -1,8 +1,8 @@
 import Container from "../../components/wrappers/Container";
-import hostel from "../../assets/landing/hostel.png";
-import atheletics from "../../assets/landing/atheletics.png";
-import student from "../../assets/landing/students.png";
-import student2 from "../../assets/landing/students2.png";
+import hostel from "../../assets/landing/hostel.webp";
+import atheletics from "../../assets/landing/atheletics.webp";
+import student from "../../assets/landing/students.webp";
+import student2 from "../../assets/landing/students2.webp";
 import logo from "../../assets/landing/360-view.gif";
 import { motion } from "framer-motion";
 

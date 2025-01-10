@@ -1,8 +1,8 @@
 import Container from "../../components/wrappers/Container";
-import boarding from "../../assets/landing/boarding.png";
-import academics from "../../assets/landing/academics.png";
-import sports from "../../assets/landing/sports.png";
-import coCurricular from "../../assets/landing/co-curricular.png";
+import boarding from "../../assets/landing/boarding.webp";
+import academics from "../../assets/landing/academics.webp";
+import sports from "../../assets/landing/sports.webp";
+import coCurricular from "../../assets/landing/co-curricular.webp";
 import { Button } from "../../components/ui/button";
 import { motion } from "framer-motion";
 

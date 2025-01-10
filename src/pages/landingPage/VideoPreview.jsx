@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { motion } from "framer-motion"
-import { Play } from 'lucide-react'
-import video from "../../assets/landing/events/video.png"
+import { motion } from "framer-motion";
+import { Play } from "lucide-react";
+import video from "../../assets/landing/events/video.webp";
 export function VideoPreview() {
   return (
     <motion.div
@@ -25,6 +25,5 @@ export function VideoPreview() {
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
-

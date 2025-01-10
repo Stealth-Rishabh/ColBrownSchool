@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "../../components/ui/carousel";
-import img1 from "../../assets/landing/bg1.png"
+import img1 from "../../assets/landing/bg1.webp";
 // import { DownloadIcon } from "lucide-react";
 
 const SlideContent = memo(({ img }) => {
@@ -24,7 +24,11 @@ const SlideContent = memo(({ img }) => {
           {img.tagline.split(" ").map((word, index) => (
             <span
               key={index}
-              className={index === 2 || index === 2 ? "text-black leading-relaxed bg-yellow-500 px-3" : ""}
+              className={
+                index === 2 || index === 2
+                  ? "text-black leading-relaxed bg-yellow-500 px-3"
+                  : ""
+              }
             >
               {word}
               {index === 2 ? <br /> : " "}

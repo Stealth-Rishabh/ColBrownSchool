@@ -6,8 +6,8 @@ import { NewsCard } from "./NewsCard";
 import { EventCard } from "./EventCard";
 import { motion } from "framer-motion";
 
-import news from "../../assets/landing/events/news.png";
-import wipro from "../../assets/landing/events/wipro.png";
+import news from "../../assets/landing/events/news.webp";
+import wipro from "../../assets/landing/events/wipro.webp";
 export default function SchoolEvents() {
   const newsItems = [
     {

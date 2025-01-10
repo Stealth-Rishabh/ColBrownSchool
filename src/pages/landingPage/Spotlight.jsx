@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import spotlight from "../../assets/landing/spotlight.png";
+import spotlight from "../../assets/landing/spotlight.webp";
 import Container from "../../components/wrappers/Container";
 
 export default function Spotlight() {
