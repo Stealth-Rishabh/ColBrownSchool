@@ -1,15 +1,17 @@
-'use client'
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar } from 'lucide-react'
-import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export function NewsCard({ item, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="flex items-center gap-3 grid rounded-lg hover:bg-gray-100 cursor-pointer"
     >
       <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
         <div className="p-4 flex gap-4">
@@ -33,6 +35,5 @@ export function NewsCard({ item, index }) {
         </div>
       </Card>
     </motion.div>
-  )
+  );
 }
-

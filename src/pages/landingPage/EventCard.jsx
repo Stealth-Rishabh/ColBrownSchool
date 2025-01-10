@@ -1,40 +1,39 @@
-'use client'
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar, Clock, MapPin } from 'lucide-react'
-import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import { Calendar, Clock, MapPin } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export function EventCard({ event, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="flex items-center p-6 space-x-4 border rounded-lg cursor-pointer hover:shadow-lg hover:bg-gray-100"
     >
-      <Card className="group hover:shadow-lg transition-shadow duration-300">
-        <div className="p-6 flex gap-4">
-          <div className="flex flex-col items-center justify-center min-w-[59px] h-[59px] bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition-colors">
-            <span className="text-2xl font-bold text-yellow-600">{event.date.day}</span>
-            <span className="text-sm text-yellow-500">{event.date.month}</span>
+      <div className="flex flex-col items-center justify-center min-w-[59px] h-[59px] bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition-colors">
+        <span className="text-2xl font-bold text-yellow-600">
+          {event.date.day}
+        </span>
+        <span className="text-sm text-yellow-500">{event.date.month}</span>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold transition-colors cursor-pointer group-hover:text-green-900 line-clamp-1">
+          {event.title}
+        </h3>
+        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Clock className="w-4 h-4" />
+            <span>{event.time}</span>
           </div>
-          <div className="space-y-2">
-            <h3 className="font-semibold text-lg group-hover:text-green-900 transition-colors line-clamp-1 cursor-pointer">
-              {event.title}
-            </h3>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                <span>{event.time}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
-                <span>{event.location}</span>
-              </div>
-            </div>
+          <div className="flex items-center gap-1">
+            <MapPin className="w-4 h-4" />
+            <span>{event.location}</span>
           </div>
         </div>
-      </Card>
+      </div>
     </motion.div>
-  )
+  );
 }
-

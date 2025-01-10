@@ -117,3 +117,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

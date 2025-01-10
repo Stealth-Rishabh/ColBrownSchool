@@ -4,9 +4,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VideoPreview } from "./VideoPreview";
 import { NewsCard } from "./NewsCard";
 import { EventCard } from "./EventCard";
+import { motion } from "framer-motion";
 
-import news from "../../assets/landing/events/news.png"
-import wipro from "../../assets/landing/events/wipro.png"
+import news from "../../assets/landing/events/news.png";
+import wipro from "../../assets/landing/events/wipro.png";
 export default function SchoolEvents() {
   const newsItems = [
     {
@@ -58,18 +59,36 @@ export default function SchoolEvents() {
   ];
 
   return (
-    <div className="h-min py-12 ">
+    <div className="h-min py-12">
       <div className="max-w-[90vw] mx-auto sm:p-6 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 space-y-8 sm:space-y-0 sm:gap-12">
           {/* Left Column - News Section */}
-          <div className="space-y-8 col-span-2">
-            <h2 className="text-3xl sm:text-5xl text-center sm:text-left font-bold bg-gradient-to-r from-gray-800 to-black/30 bg-clip-text text-transparent py-2">
+          <motion.div
+            className="space-y-8 col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.h2
+              className="text-3xl sm:text-5xl text-center sm:text-left font-bold bg-gradient-to-r from-gray-800 to-black/30 bg-clip-text text-transparent py-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               What&apos;s Coming Next ?
-            </h2>
+            </motion.h2>
             <div className="grid sm:grid-cols-3 space-y-5 sm:space-y-0 sm:gap-5">
-              <div className="col-span-2 grid h-[420px] overflow-hidden">
+              <motion.div
+                className="col-span-2 grid h-[420px] overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <VideoPreview />
-              </div>
+              </motion.div>
 
               <div className="space-y-4">
                 {newsItems.map((item, index) => (
@@ -77,17 +96,31 @@ export default function SchoolEvents() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Events Section */}
-          <div className="space-y-8 col-span-1">
-            <h2 className="text-3xl sm:text-5xl text-center sm:text-left font-bold bg-gradient-to-r from-gray-800 to-black/30 bg-clip-text text-transparent py-2">
+          <motion.div
+            className="space-y-8 col-span-1"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <motion.h2
+              className="text-3xl sm:text-5xl text-center sm:text-left font-bold bg-gradient-to-r from-gray-800 to-black/30 bg-clip-text text-transparent py-2"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
               School Events
-            </h2>
+            </motion.h2>
 
             <Tabs defaultValue="upcoming" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6 ">
-                <TabsTrigger value="upcoming" className=''>Upcoming</TabsTrigger>
+                <TabsTrigger value="upcoming" className="">
+                  Upcoming
+                </TabsTrigger>
                 <TabsTrigger value="past">Past Events</TabsTrigger>
               </TabsList>
               <TabsContent value="upcoming" className="space-y-4">
@@ -101,7 +134,7 @@ export default function SchoolEvents() {
                 </div>
               </TabsContent>
             </Tabs>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

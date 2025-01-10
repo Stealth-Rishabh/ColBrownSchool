@@ -52,7 +52,7 @@ const testimonialList = [
 function ShapeOne() {
 	return (
 		<svg
-			className="absolute bottom-5 left-0 -z-[1]"
+			className="absolute bottom-5 -left-10 -z-[1]"
 			width="404"
 			height="572"
 			viewBox="0 0 404 572"
