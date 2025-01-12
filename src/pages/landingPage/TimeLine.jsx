@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import thirties from "../../assets/landing/nineteen-thirties-2.jpg";
-import fifties from "../../assets/landing/fifty-sixties-2.jpg";
-import sixties from "../../assets/landing/1960.jpg";
-import seventies from "../../assets/landing/1973-1974.jpg";
-import nineties from "../../assets/landing/1990.jpg";
+import thirties from "../../assets/landing/nineteen-thirties-2.webp";
+import fifties from "../../assets/landing/fifty-sixties-2.webp";
+import sixties from "../../assets/landing/1960.webp";
+import seventies from "../../assets/landing/1973-1974.webp";
+import nineties from "../../assets/landing/1990.webp";
 
 const timelineData = {
   1920: {
