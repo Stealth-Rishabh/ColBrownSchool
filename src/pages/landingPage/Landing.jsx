@@ -7,6 +7,7 @@ import VirtualTour from "./VirtualTour";
 import Testimonials from "./Testimonials";
 import SchoolEvents from "./SchoolEvents";
 import Spotlight from "./Spotlight";
+import TimeLine from "./TimeLine";
 const Landing = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const Landing = () => {
       <Legacy />
       {/* <AboutCB /> */}
       <AboutCBB />
+      <TimeLine />
       <VirtualTour />
       <Testimonials />
       <Spotlight />

@@ -59,7 +59,7 @@ export default function SchoolEvents() {
   ];
 
   return (
-    <div className="h-min py-12">
+    <div className="h-min py-6 lg:py-12">
       <div className="max-w-[90vw] mx-auto sm:p-6 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 space-y-8 sm:space-y-0 sm:gap-12">
           {/* Left Column - News Section */}

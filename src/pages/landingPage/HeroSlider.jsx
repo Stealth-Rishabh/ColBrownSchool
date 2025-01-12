@@ -12,7 +12,7 @@ import img1 from "../../assets/landing/bg1.webp";
 
 const SlideContent = memo(({ img }) => {
   return (
-    <div className="size-full sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[10%] left-[10%] sm:left-[8%] z-20 space-y-6">
+    <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[10%] left-[10%] sm:left-[8%] z-20 space-y-6">
       {/* <div className="mx-0 rounded-md">
         <p className="text-sm sm:text-xl text-white">
           🔔 Enroll now
@@ -132,49 +132,49 @@ const HeroSlider = () => {
         "Leadership opportunities",
       ],
     },
-    {
-      image: img1,
-      tagline: "Fuel Your Passion Daily",
-      highlight:
-        "Top-notch facilities, diverse sports options, and vibrant athletic culture.",
-      highlights: [
-        "Top-notch facilities",
-        "Diverse sports options",
-        "Vibrant athletic culture",
-      ],
-    },
-    {
-      image: img1,
-      tagline: "Innovate, Learn, Discover Together ",
-      highlight:
-        "Cutting-edge labs for practical learning, research, and discovery.",
-      highlights: [
-        "Cutting-edge labs",
-        "Practical learning",
-        "Research and discovery",
-      ],
-    },
-    {
-      image: img1,
-      tagline: "Inspire, Engage, Create Together",
-      highlight:
-        "Modern auditorium for events, seminars, and cultural programs.",
-      highlights: [
-        "Modern auditorium",
-        "Events and seminars",
-        "Cultural programs",
-      ],
-    },
-    {
-      image: img1,
-      tagline: "Launch Your Career Successfully",
-      highlight: "Strong industry connections and 100% placement assistance.",
-      highlights: [
-        "Strong industry connections",
-        "100% placement assistance",
-        "Career launch support",
-      ],
-    },
+    // {
+    //   image: img1,
+    //   tagline: "Fuel Your Passion Daily",
+    //   highlight:
+    //     "Top-notch facilities, diverse sports options, and vibrant athletic culture.",
+    //   highlights: [
+    //     "Top-notch facilities",
+    //     "Diverse sports options",
+    //     "Vibrant athletic culture",
+    //   ],
+    // },
+    // {
+    //   image: img1,
+    //   tagline: "Innovate, Learn, Discover Together ",
+    //   highlight:
+    //     "Cutting-edge labs for practical learning, research, and discovery.",
+    //   highlights: [
+    //     "Cutting-edge labs",
+    //     "Practical learning",
+    //     "Research and discovery",
+    //   ],
+    // },
+    // {
+    //   image: img1,
+    //   tagline: "Inspire, Engage, Create Together",
+    //   highlight:
+    //     "Modern auditorium for events, seminars, and cultural programs.",
+    //   highlights: [
+    //     "Modern auditorium",
+    //     "Events and seminars",
+    //     "Cultural programs",
+    //   ],
+    // },
+    // {
+    //   image: img1,
+    //   tagline: "Launch Your Career Successfully",
+    //   highlight: "Strong industry connections and 100% placement assistance.",
+    //   highlights: [
+    //     "Strong industry connections",
+    //     "100% placement assistance",
+    //     "Career launch support",
+    //   ],
+    // },
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -234,12 +234,12 @@ const HeroSlider = () => {
         </CarouselContent>
       </Carousel>
 
-      <div className="absolute justify-center hidden mt-4 space-x-2 -rotate-90 sm:flex -right-5 bottom-28">
+      <div className="absolute justify-center hidden mt-4 space-x-2 -rotate-90 sm:flex -right-0 bottom-28">
         {Array.from({ length: count }).map((_, index) => (
           <button
             key={index}
             className={`w-4 h-[2px] rounded-sm ${
-              index === current ? "bg-destructive/70" : "bg-gray-300"
+              index === current ? "bg-yellow-500" : "bg-gray-300"
             }`}
             onClick={() => api?.scrollTo(index)}
           />

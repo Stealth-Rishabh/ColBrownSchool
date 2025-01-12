@@ -97,7 +97,7 @@ const Testimonials = () => {
 	const handleSelect = (selectedIndex) => setIndex(selectedIndex);
 
 	return (
-		<section className="ezy__testimonial23 light py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white relative z-[1]">
+		<section className="ezy__testimonial23 light py-6  sm:py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white relative z-[1]">
 			<ShapeOne />
 			<ShapeTwo />
 
@@ -119,7 +119,7 @@ const Testimonials = () => {
 					<div className="grid grid-cols-3 gap-6">
 						{testimonialList[index].map((testimonial, i) => (
 							<div className="col-span-3 lg:col-span-1" key={i}>
-								<div className="bg-white dark:bg-[#0b1727] shadow-2xl h-full p-6 xl:p-10">
+								<div className="bg-white hover:scale-105 duration-300 transition-all hover:-translate-y-1 dark:bg-[#0b1727] shadow-2xl h-full p-6 xl:p-10">
 									<div className="flex items-center mb-6">
 										<div className="mr-3">
 											<img

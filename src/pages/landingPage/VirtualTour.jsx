@@ -20,7 +20,7 @@ const VirtualTour = () => {
   });
 
   return (
-    <Container>
+    <Container className="pb-0 lg:pb-0">
       <div className="grid sm:grid-cols-4">
         <motion.div
           className="overflow-hidden h-60 hover:scale-95 duration-200 transition-all"
@@ -85,7 +85,7 @@ const VirtualTour = () => {
         </motion.div>
 
         <motion.div
-          className="sm:col-span-2 overflow-hidden grid justify-center items-center"
+          className="sm:col-span-2 overflow-hidden  grid justify-center items-center"
           variants={cardVariants(1)}
           initial="initial"
           whileInView="animate"
@@ -93,9 +93,9 @@ const VirtualTour = () => {
         >
           <div className="flex flex-col items-center justify-center gap-3">
             <img src={logo} alt="" className="h-32" />
-            <p className="sm:text-2xl font-semibold font-mono p-6">
-              Take a Virtual Tour 360deg view
-            </p>
+            <p className="sm:text-2xl font-semibold text-center font-mon p-6">
+              Take a Virtual Tour 360° view
+              </p>
           </div>
         </motion.div>
 

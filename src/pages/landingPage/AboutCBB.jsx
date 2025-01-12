@@ -1,10 +1,12 @@
 import Container from "../../components/wrappers/Container";
 import { motion } from "framer-motion";
-
+import about from '../../assets/landing/about.png'
+import green from '../../assets/landing/green.jpg'
+import nineteen from '../../assets/landing/nineteen-thirties-2.jpg'
 export default function AboutCBB() {
   return (
     <>
-      <Container className="lg:py-12">
+      <Container className="lg:py-12 lg:pb-0">
         {/* <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white dark:bg-dark">
         <div className="container mx-auto"> */}
         <div className="flex flex-wrap items-center justify-between ">
@@ -17,7 +19,7 @@ export default function AboutCBB() {
           >
             <div className="flex items-center -mx-3 sm:-mx-4">
               <motion.div
-                className="w-full px-3 sm:px-4 xl:w-1/2"
+                className="w-full pr-3 sm:px-4 xl:w-1/2"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -31,9 +33,9 @@ export default function AboutCBB() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   <motion.img
-                    src="https://i.ibb.co/gFb3ns6/image-1.jpg"
+                    src={green}
                     alt=""
-                    className="w-full rounded-2xl aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -46,9 +48,9 @@ export default function AboutCBB() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
                   <motion.img
-                    src="https://i.ibb.co/rfHFq15/image-2.jpg"
+                    src={about}
                     alt=""
-                    className="w-full rounded-2xl aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl brightness-75 shadow-2xl aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -63,9 +65,9 @@ export default function AboutCBB() {
               >
                 <motion.div className="relative z-10 my-4">
                   <motion.img
-                    src="https://i.ibb.co/9y7nYCD/image-3.jpg"
+                    src={nineteen}
                     alt=""
-                    className="w-full rounded-2xl aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl  shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -75,7 +77,7 @@ export default function AboutCBB() {
           </motion.div>
 
           <motion.div
-            className="w-full px-4 lg:w-1/2 xl:w-5/12"
+            className="w-full sm:px-4 lg:w-1/2 xl:w-5/12"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -89,7 +91,7 @@ export default function AboutCBB() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <motion.span
-                className="block mb-2 text-lg font-semibold text-primary"
+                className="block mb-2 text-lg  font-semibold text-primary"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
