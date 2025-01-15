@@ -4,9 +4,10 @@ import img from "../../assets/landing/bg1.webp";
 import dick from "../../assets/about/dickhouse.webp";
 import logo from "../../assets/about/colbrown.webp";
 import Container from "../../components/wrappers/Container";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "../../lib/utils";
 import PropTypes from "prop-types";
+import { Button } from "../../components/ui/button";
 const LegacyCBS = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
@@ -32,6 +33,7 @@ const LegacyCBS = () => {
 export default LegacyCBS;
 
 const AboutUs1 = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <section className="ezy__about4 light py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
       <div className="container ">
@@ -49,7 +51,12 @@ const AboutUs1 = () => {
               }}
             ></div>
           </div>
-          <div className="px-2 sm:pr-7">
+          <div
+            className={cn(
+              "px-2 sm:pr-7 line-clamp-5 sm:line-clamp-none",
+              isExpanded ? "line-clamp-none" : "line-clamp-5"
+            )}
+          >
             <p className="mb-0 text-base leading-7 text-justify opacity-70">
               Colonel Brown Cambridge School for Indian Boys is an English
               Medium Residential School and is open to all boys irrespective of
@@ -72,6 +79,15 @@ const AboutUs1 = () => {
               the globe.
             </p>
           </div>
+
+          <Button
+            className="sm:hidden flex items-center gap-2 mt-4"
+            
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <span>{isExpanded ? "Show less" : "Learn more"}</span>
+            {isExpanded ? <ChevronUp /> : <ChevronDown />}
+          </Button>
         </div>
       </div>
     </section>
@@ -124,9 +140,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         )}
       >
         <div className="mb-6">
-          <span className="block text-4xl leading-none">
-            {feature.number}
-          </span>
+          <span className="block text-4xl leading-none">{feature.number}</span>
           <span className="block mt-1 text-base uppercase">
             {feature.title}
           </span>
