@@ -138,7 +138,7 @@ const LeadershipMessage = () => {
                       </DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4 pb-0 text-white/90">
-                      <p className=" text-justify max-h-[400px] overflow-y-auto scrollbar-hide scroll-smooth">
+                      <p className=" text-justify max-h-[500px] overflow-y-auto scrollbar-hide scroll-smooth">
                         {leader.message.split("\n").map((line, index) => (
                           <span key={index}>
                             {line}
