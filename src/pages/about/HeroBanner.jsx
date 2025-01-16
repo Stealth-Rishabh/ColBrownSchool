@@ -7,7 +7,7 @@ const HeroBanner = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative min-h-screen flex items-center justify-center text-center text-white"
+      className="relative h-[60vh] sm:min-h-screen flex items-center justify-center text-center text-white"
     >
       <div
         className="absolute inset-0 bg-cover bg-center"

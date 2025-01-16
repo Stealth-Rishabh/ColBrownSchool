@@ -13,7 +13,10 @@ const menuItems = [
     items: [
       { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
       { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
-      { name: "Message from the Management", path: "/about/message-from-the-management" },
+      {
+        name: "Message from the Management",
+        path: "/about/message-from-management",
+      },
       { name: "Mission & Vision", path: "/about/mission-vision" },
     ],
   },

@@ -4,6 +4,7 @@ import Landing from "./pages/landingPage/Landing";
 import Footer from "./pages/footer/Footer";
 import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
+import MessageFromManagement from "./pages/about/MessageFromManagement";
 export default function App() {
   return (
     <>
@@ -19,6 +20,10 @@ export default function App() {
           <Route
             path="/about/our-visionary-leaders"
             element={<OurVisionaryLeaders />}
+          />
+          <Route
+            path="/about/message-from-management"
+            element={<MessageFromManagement />}
           />
         </Routes>
         {/* Footer */}

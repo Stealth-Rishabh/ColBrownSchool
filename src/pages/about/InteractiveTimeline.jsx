@@ -30,15 +30,15 @@ const timelineData = [
 const TimelineItem = ({ item, isActive, onClick }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
-    className={`cursor-pointer ${
-      isActive ? "bg-primary text-primary-foreground" : "bg-background"
+    className={`cursor-pointer  ${
+      isActive ? "sm:bg-primary text-primary-foreground bg-gray-900" : "sm:bg-background"
     }`}
     onClick={onClick}
   >
-    <Card>
+    <Card className="h-full ">
       <CardContent className="p-4">
         <h3 className="text-lg font-semibold text-green-900">{item.year}</h3>
-        <p>{item.event}</p>
+        <p className="text-gray-900 line-clamp-">{item.event}</p>
       </CardContent>
     </Card>
   </motion.div>
@@ -55,7 +55,7 @@ const InteractiveTimeline = () => {
         <div className="relative">
           <div
             ref={timelineRef}
-            className="grid sm:grid-cols-4 grid-cols-2 sm:space-x-4 pb-8"
+            className="grid sm:grid-cols-4 grid-cols-2 gap-4 sm:space-x-4 pb-8"
           >
             {timelineData.map((item, index) => (
               <TimelineItem
