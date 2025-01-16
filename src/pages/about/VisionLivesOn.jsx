@@ -1,0 +1,38 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Parallax } from "react-parallax";
+import img from "../../assets/landing/bg1.webp";
+const VisionLivesOn = () => {
+  return (
+    <Parallax
+      bgImage={img}
+      strength={500}
+      className="min-h-screen flex items-center justify-center"
+    >
+      <div className="bg-black bg-opacity-50 w-full h-full absolute" />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center text-white relative z-10 max-w-4xl mx-auto p-6"
+      >
+        <h2 className="text-4xl md:text-5xl   mb-4">The Vision Lives On</h2>
+        <p className="text-xl mb-8">
+          CBS continues to uphold the values and principles of its founders,
+          adapting to modern educational needs while preserving its rich
+          heritage.
+        </p>
+        <Button
+          size="lg"
+          onClick={() => {
+            // Add logic to navigate to the modern CBS page
+          }}
+        >
+          Discover CBS Today
+        </Button>
+      </motion.div>
+    </Parallax>
+  );
+};
+
+export default VisionLivesOn;

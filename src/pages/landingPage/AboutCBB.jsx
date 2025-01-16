@@ -6,7 +6,7 @@ import nineteen from '../../assets/landing/nineteen-thirties-2.webp'
 export default function AboutCBB() {
   return (
     <>
-      <Container className="lg:py-12 lg:pb-0">
+      <Container className="lg:py-10">
         {/* <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white dark:bg-dark">
         <div className="container mx-auto"> */}
         <div className="flex flex-wrap items-center justify-between ">

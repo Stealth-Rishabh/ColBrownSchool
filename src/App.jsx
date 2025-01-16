@@ -1,23 +1,29 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header } from "./pages/header/Header"
-import Landing from "./pages/landingPage/Landing"
-import Footer from "./pages/footer/Footer"
-import LegacyCBS from './pages/about/LegacyCBS';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Header } from "./pages/header/Header";
+import Landing from "./pages/landingPage/Landing";
+import Footer from "./pages/footer/Footer";
+import LegacyCBS from "./pages/about/LegacyCBS";
+import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 export default function App() {
   return (
     <>
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/about/legacy-cbs" element={<LegacyCBS />} />
-      </Routes>
-      <Footer />
-    </Router>
+      <Router>
+        {/* Header */}
+        <Header />
+        <Routes>
+          {/* Landing */}
+          <Route path="/" element={<Landing />} />
+
+          {/* About */}
+          <Route path="/about/legacy-of-cbs" element={<LegacyCBS />} />
+          <Route
+            path="/about/our-visionary-leaders"
+            element={<OurVisionaryLeaders />}
+          />
+        </Routes>
+        {/* Footer */}
+        <Footer />
+      </Router>
     </>
-  )
+  );
 }
-
-  
-
-

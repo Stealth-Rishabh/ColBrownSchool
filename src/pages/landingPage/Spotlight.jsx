@@ -55,7 +55,7 @@ export default function Spotlight() {
                   A Spotlight on
                 </motion.span>
                 <motion.span
-                  className="block sm:text-4xl text-3xl font-serif font-bold text-red-800"
+                  className="block sm:text-4xl text-3xl   font-bold text-red-800"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

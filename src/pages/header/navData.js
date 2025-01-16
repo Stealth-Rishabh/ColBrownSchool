@@ -4,10 +4,10 @@ export const navlinks = [
     name: "About",
     path: "/",
     submenu: [
-      { name: "Overview", path: "/about/overview" },
-      { name: "History", path: "/about/history" },
-      { name: "Vision & Mission", path: "/about/vision-mission" },
-      { name: "Leadership", path: "/about/leadership" },
+      { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
+      { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
+      { name: "Message from the Management", path: "/about/message-from-the-management" },
+      { name: "Mission & Vision", path: "/about/mission-vision" },
     ],
   },
   {
