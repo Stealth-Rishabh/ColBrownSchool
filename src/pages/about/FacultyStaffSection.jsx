@@ -61,7 +61,7 @@ export default function FacultyStaffSection() {
   }
 
   return (
-    <div className="container mx-auto px-4 pb-8 ">
+    <div className="container mx-auto sm:px-4 px-5 ">
       <Heading
         title="Faculty & Staff"
         titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
@@ -72,17 +72,20 @@ export default function FacultyStaffSection() {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-8">
-          <TabsTrigger value="faculty" className="flex items-center justify-center">
+          <TabsTrigger value="faculty" className="flex text-sm sm:text-base items-center justify-center">
             <Users className="mr-2" />
-            Faculty
+            <span className="hidden sm:block">Faculty Staff</span>
+            <span className="block sm:hidden">Faculty</span>
           </TabsTrigger>
-          <TabsTrigger value="medical" className="flex items-center justify-center">
+          <TabsTrigger value="medical" className="flex text-sm sm:text-base items-center justify-center">
             <Stethoscope className="mr-2" />
-            Medical Staff
+            <span className="hidden sm:block">Medical Staff</span>
+            <span className="block sm:hidden">Medical</span>
           </TabsTrigger>
-          <TabsTrigger value="support" className="flex items-center justify-center">
+          <TabsTrigger value="support" className="flex text-sm sm:text-base items-center justify-center">
             <UserCog className="mr-2" />
-            Support Staff
+            <span className="hidden sm:block">Support Staff</span>
+            <span className="block sm:hidden">Support</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="faculty">
@@ -90,7 +93,7 @@ export default function FacultyStaffSection() {
             <BookOpen className="mr-2 mt-1" />
             Outstanding Teachers
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {facultyList.map((name, index) => (
               <MotionCard
                 key={index}
@@ -101,7 +104,7 @@ export default function FacultyStaffSection() {
                 className="bg-white hover:bg-gray-100 transition-colors border border-gray-200"
               >
                 <CardContent className="p-4">
-                  <p className="text-gray-800 font-light">{name}</p>
+                  <p className="text-gray-800 font-light text-sm sm:text-base">{name}</p>
                 </CardContent>
               </MotionCard>
             ))}
@@ -112,7 +115,7 @@ export default function FacultyStaffSection() {
             <Stethoscope className="mr-2" />
             Outstanding Medical Staff
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {medicalStaffList.map((name, index) => (
               <MotionCard
                 key={index}
@@ -123,7 +126,7 @@ export default function FacultyStaffSection() {
                 className="bg-white hover:bg-gray-100 transition-colors border border-gray-200"
               >
                 <CardContent className="p-4">
-                  <p className="text-gray-800 font-light">{name}</p>
+                  <p className="text-gray-800 font-light text-sm sm:text-base">{name}</p>
                 </CardContent>
               </MotionCard>
             ))}

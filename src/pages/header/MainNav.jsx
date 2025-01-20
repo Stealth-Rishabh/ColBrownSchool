@@ -21,12 +21,11 @@ const menuItems = [
     ],
   },
   {
-    trigger: "ADMISSIONS",
+    trigger: "ACADEMICS",
     items: [
-      { name: "Process", path: "/admissions/process" },
-      { name: "Fee Structure", path: "/admissions/fee-structure" },
-      { name: "Scholarships", path: "/admissions/scholarships" },
-      { name: "FAQs", path: "/admissions/faqs" },
+      { name: "Curriculum", path: "/academics/curriculum" },
+      { name: "Advanced Pedagogy", path: "/academics/advanced-pedagogy" },
+      { name: "Career Counselling", path: "/academics/career-counselling" },
     ],
   },
   {
