@@ -17,6 +17,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import FacultyStaffSection from "./FacultyStaffSection";
 // import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 const MissionVision = () => {
   const breadcrumbItems = [
@@ -43,6 +44,9 @@ const MissionVision = () => {
           />
           <LeadershipMessage />
         </Container>
+        <div className="mx-auto bg-gray-50 py-12">
+          <FacultyStaffSection />
+        </div>
         {/* <InteractiveGridPattern
           className={cn(
             "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"
