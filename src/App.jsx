@@ -6,6 +6,7 @@ import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
 import MissionVision from "./pages/about/MissionVision";
+import Curriculum from "./pages/academics/curriculum/Curriculum";
 export default function App() {
   return (
     <>
@@ -27,6 +28,9 @@ export default function App() {
             element={<MessageFromManagement />}
           />
           <Route path="/about/mission-vision" element={<MissionVision />} />
+
+          {/* Academics */}
+          <Route path="/academics/curriculum" element={<Curriculum />} />
         </Routes>
         {/* Footer */}
         <Footer />
