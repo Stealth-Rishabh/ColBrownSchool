@@ -46,7 +46,7 @@ const AdvancedPedagogy = () => {
         objectPosition: "center",
       }}
         strength={200}
-        bgImage="https://images.unsplash.com/photo-1567342529842-69ee377cdf7d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        bgImage="https://www.colbrownschool.com/cbs/wp-content/uploads/2022/11/a-feast-of-greenry-at-cbs-2.jpg"
       >
         <div className="relative h-[90vh] sm:h-[80vh]">
           {/* <img
