@@ -7,6 +7,7 @@ import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
 import MissionVision from "./pages/about/MissionVision";
 import Curriculum from "./pages/academics/curriculum/Curriculum";
+import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
 export default function App() {
   return (
     <>
@@ -31,6 +32,7 @@ export default function App() {
 
           {/* Academics */}
           <Route path="/academics/curriculum" element={<Curriculum />} />
+          <Route path="/academics/advanced-pedagogy" element={<AdvancedPedagogy />} />
         </Routes>
         {/* Footer */}
         <Footer />
