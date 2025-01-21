@@ -1,9 +1,17 @@
-
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { GraduationCap, Laptop, Users, School, Volleyball, BookOpen,FlaskConical } from "lucide-react";
+import {
+  GraduationCap,
+  Laptop,
+  Users,
+  School,
+  Volleyball,
+  BookOpen,
+  FlaskConical,
+} from "lucide-react";
 import Heading from "../../components/Heading"; // Adjust the import path as necessary
 import { Button } from "../../components/ui/button";
+import { Parallax } from "react-parallax";
 
 const AdvancedPedagogy = () => {
   const [legacyRef, legacyInView] = useInView({
@@ -32,31 +40,44 @@ const AdvancedPedagogy = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Banner */}
-      <div className="relative h-[60vh] sm:h-[80vh]">
-        <img
+      <Parallax
+      bgImageStyle={{
+        objectFit: "cover",
+        objectPosition: "center",
+      }}
+        strength={200}
+        bgImage="https://images.unsplash.com/photo-1567342529842-69ee377cdf7d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      >
+        <div className="relative h-[90vh] sm:h-[80vh]">
+          {/* <img
           src="https://images.unsplash.com/photo-1567342529842-69ee377cdf7d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Col Brown School Banner"
           className="object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 flex items-center justify-center bg-green-950 bg-opacity-70">
-          <div className="p-10 text-center rounded bg-black/50">
-            <h1 className="mb-4 text-5xl font-bold text-white">
-              Col Brown School
-            </h1>
-            <p className="text-2xl text-gray-50">
-              Nurturing Young Minds, Shaping Future Leaders
-            </p>
-            <a href="#legacy">
-              <Button className="mt-12 animate-bounce bg-white text-green-950 hover:bg-gray-200">
-                Explore More
-              </Button>
-            </a>
+        /> */}
+          <div className="absolute inset-0 flex items-center justify-center bg-green-950 bg-opacity-70">
+            <div className="p-10 text-center rounded bg-black/50">
+              <h1 className="mb-4 text-4xl sm:text-5xl font-bold text-white">
+                Col Brown School
+              </h1>
+              <p className="text-lg sm:text-2xl text-gray-50">
+                Nurturing Young Minds, Shaping Future Leaders
+              </p>
+              <a href="#legacy">
+                <Button className="mt-12 animate-bounce bg-white text-green-950 hover:bg-gray-200">
+                  Explore More
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </Parallax>
 
       {/* Legacy of Teaching */}
-      <section ref={legacyRef} className="px-4 py-10 sm:py-20 bg-white " id="legacy">
+      <section
+        ref={legacyRef}
+        className="px-4 py-10 sm:py-20 bg-white "
+        id="legacy"
+      >
         <div className="container mx-auto">
           <Heading
             title="Our Legacy of Teaching Excellence"
@@ -100,7 +121,10 @@ const AdvancedPedagogy = () => {
       </section>
 
       {/* Modern Teaching Methods */}
-      <section ref={modernRef} className="px-4 py-10 sm:py-20 bg-gradient-to-r from-green-950 via-green-900 to-green-950">
+      <section
+        ref={modernRef}
+        className="px-4 py-10 sm:py-20 bg-gradient-to-r from-green-950 via-green-900 to-green-950"
+      >
         <div className="container mx-auto">
           <Heading
             title="Embracing Modern Pedagogy"
@@ -204,7 +228,10 @@ const AdvancedPedagogy = () => {
       </section>
 
       {/* Image Gallery */}
-      <section ref={galleryRef} className="px-4 py-10 sm:py-20 bg-white bg-gradient-to-r from-slate-200 via-slate-50 to-slate-200">
+      <section
+        ref={galleryRef}
+        className="px-4 py-10 sm:py-20 bg-white bg-gradient-to-r from-slate-200 via-slate-50 to-slate-200"
+      >
         <div className="container mx-auto">
           <Heading
             title="Life at Col Brown School"
@@ -218,22 +245,22 @@ const AdvancedPedagogy = () => {
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_28.jpg",
                 alt: "Classroom",
-                icon: <School className="w-6 h-6" />
+                icon: <School className="w-6 h-6" />,
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_26.jpg",
                 alt: "Laboratory",
-                icon: <FlaskConical className="w-6 h-6" />
+                icon: <FlaskConical className="w-6 h-6" />,
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
                 alt: "Sports facilities",
-                icon: <Volleyball className="w-6 h-6" />
+                icon: <Volleyball className="w-6 h-6" />,
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
                 alt: "Library",
-                icon: <BookOpen className="w-6 h-6" />
+                icon: <BookOpen className="w-6 h-6" />,
               },
             ].map((item, index) => (
               <motion.div
@@ -250,10 +277,16 @@ const AdvancedPedagogy = () => {
                   className="object-cover w-full h-full"
                 />
                 <div className="absolute  flex sm:hidden items-center justify-center transition-opacity duration-300 bg-green-950 bg-opacity-70 hover:opacity-100 bottom-0 w-full p-4">
-                  <p className="text-lg font-semibold text-white flex items-center gap-2"> {item.icon} {item.alt}</p>
+                  <p className="text-lg font-semibold text-white flex items-center gap-2">
+                    {" "}
+                    {item.icon} {item.alt}
+                  </p>
                 </div>
                 <div className="hidden absolute inset-0 sm:flex items-center justify-center transition-opacity duration-300 opacity-0 bg-green-950 bg-opacity-70 hover:opacity-100">
-                  <p className="text-2xl font-semibold text-white flex items-center gap-2 animate-bounce mt-5"> {item.icon} {item.alt}</p>
+                  <p className="text-2xl font-semibold text-white flex items-center gap-2 animate-bounce mt-5">
+                    {" "}
+                    {item.icon} {item.alt}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -262,7 +295,10 @@ const AdvancedPedagogy = () => {
       </section>
 
       {/* Call to Action */}
-      <section ref={ctaRef} className="px-4 py-10 sm:py-20 text-white bg-gradient-to-r from-green-950 via-green-900 to-green-950">
+      <section
+        ref={ctaRef}
+        className="px-4 py-10 sm:py-20 text-white bg-gradient-to-r from-green-950 via-green-900 to-green-950"
+      >
         <div className="container mx-auto text-center">
           <Heading
             title="Ready to Join Our Community?"
