@@ -8,6 +8,7 @@ import MessageFromManagement from "./pages/about/MessageFromManagement";
 import MissionVision from "./pages/about/MissionVision";
 import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
+import CareerCounseling from "./pages/academics/career-counseling/CareerCounseling";
 export default function App() {
   return (
     <>
@@ -33,6 +34,7 @@ export default function App() {
           {/* Academics */}
           <Route path="/academics/curriculum" element={<Curriculum />} />
           <Route path="/academics/advanced-pedagogy" element={<AdvancedPedagogy />} />
+          <Route path="/academics/career-counselling" element={<CareerCounseling />} />
         </Routes>
         {/* Footer */}
         <Footer />

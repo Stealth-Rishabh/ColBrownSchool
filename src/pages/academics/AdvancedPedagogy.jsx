@@ -16,35 +16,55 @@ import { Parallax } from "react-parallax";
 const AdvancedPedagogy = () => {
   const [legacyRef, legacyInView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
+    rootMargin: "50px 0px",
   });
   const [modernRef, modernInView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
+    rootMargin: "50px 0px",
   });
   const [journeyRef, journeyInView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
+    rootMargin: "50px 0px",
   });
   const [galleryRef, galleryInView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
+    rootMargin: "50px 0px",
   });
-  const [ctaRef, ctaInView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [ctaRef, ctaInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "50px 0px",
+  });
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const initialStyle = {
+    opacity: 0,
+    y: 20,
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Banner */}
       <Parallax
-      bgImageStyle={{
-        objectFit: "cover",
-        objectPosition: "center",
-      }}
+        bgImageStyle={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
         strength={200}
         bgImage="https://www.colbrownschool.com/cbs/wp-content/uploads/2022/11/a-feast-of-greenry-at-cbs-2.jpg"
       >
@@ -88,7 +108,7 @@ const AdvancedPedagogy = () => {
           />
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
             <motion.div
-              initial="hidden"
+              initial={initialStyle}
               animate={legacyInView ? "visible" : "hidden"}
               variants={fadeIn}
               transition={{ duration: 0.3, delay: 0.1 }} // Reduced duration and delay
@@ -105,7 +125,7 @@ const AdvancedPedagogy = () => {
               </p>
             </motion.div>
             <motion.div
-              initial="hidden"
+              initial={initialStyle}
               animate={legacyInView ? "visible" : "hidden"}
               variants={fadeIn}
               transition={{ duration: 0.3, delay: 0.2 }} // Reduced duration and delay
@@ -157,7 +177,7 @@ const AdvancedPedagogy = () => {
               <motion.div
                 key={index}
                 className="p-8 bg-white rounded-lg shadow-xl"
-                initial="hidden"
+                initial={initialStyle}
                 animate={modernInView ? "visible" : "hidden"}
                 variants={fadeIn}
                 transition={{ duration: 0.3, delay: 0.1 * (index + 1) }} // Reduced duration and delay
@@ -209,7 +229,7 @@ const AdvancedPedagogy = () => {
               <motion.div
                 key={index}
                 className="flex flex-col items-center mb-8 md:mb-0"
-                initial="hidden"
+                initial={initialStyle}
                 animate={journeyInView ? "visible" : "hidden"}
                 variants={fadeIn}
                 transition={{ duration: 0.3, delay: 0.1 * (index + 1) }} // Reduced duration and delay
@@ -266,7 +286,7 @@ const AdvancedPedagogy = () => {
               <motion.div
                 key={index}
                 className="relative overflow-hidden sm:rounded rounded shadow-lg"
-                initial="hidden"
+                initial={initialStyle}
                 animate={galleryInView ? "visible" : "hidden"}
                 variants={fadeIn}
                 transition={{ duration: 0.3, delay: 0.05 * (index + 1) }} // Reduced duration and delay
@@ -309,7 +329,7 @@ const AdvancedPedagogy = () => {
           />
           <motion.p
             className="mb-8 text-xl"
-            initial="hidden"
+            initial={initialStyle}
             animate={ctaInView ? "visible" : "hidden"}
             variants={fadeIn}
             transition={{ duration: 0.3, delay: 0.1 }} // Reduced duration and delay
@@ -318,7 +338,7 @@ const AdvancedPedagogy = () => {
           </motion.p>
           <motion.button
             className="px-8 py-3 text-lg font-semibold transition-colors duration-300 bg-white rounded-full text-green-950 hover:bg-gray-200"
-            initial="hidden"
+            initial={initialStyle}
             animate={ctaInView ? "visible" : "hidden"}
             variants={fadeIn}
             transition={{ duration: 0.3, delay: 0.2 }} // Reduced duration and delay
