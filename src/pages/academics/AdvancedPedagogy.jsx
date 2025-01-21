@@ -48,7 +48,7 @@ const AdvancedPedagogy = () => {
             </p>
             <a href="#legacy">
               <Button className="mt-12 animate-bounce bg-white text-green-950 hover:bg-gray-200">
-                Explore Our Programs
+                Explore More
               </Button>
             </a>
           </div>
@@ -213,7 +213,7 @@ const AdvancedPedagogy = () => {
             inView={galleryInView}
             fadeIn={fadeIn}
           />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             {[
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_28.jpg",
@@ -238,19 +238,22 @@ const AdvancedPedagogy = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="relative overflow-hidden rounded-lg shadow-lg"
+                className="relative overflow-hidden sm:rounded rounded shadow-lg"
                 initial="hidden"
                 animate={galleryInView ? "visible" : "hidden"}
                 variants={fadeIn}
                 transition={{ duration: 0.3, delay: 0.05 * (index + 1) }} // Reduced duration and delay
               >
                 <img
-                  src={item.src || "/placeholder.svg"}
+                  src={item.src || "https://v0.dev/placeholder.svg"}
                   alt={item.alt}
                   className="object-cover w-full h-full"
                 />
-                <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 bg-green-950 bg-opacity-70 hover:opacity-100">
+                <div className="absolute  flex sm:hidden items-center justify-center transition-opacity duration-300 bg-green-950 bg-opacity-70 hover:opacity-100 bottom-0 w-full p-4">
                   <p className="text-lg font-semibold text-white flex items-center gap-2"> {item.icon} {item.alt}</p>
+                </div>
+                <div className="hidden absolute inset-0 sm:flex items-center justify-center transition-opacity duration-300 opacity-0 bg-green-950 bg-opacity-70 hover:opacity-100">
+                  <p className="text-2xl font-semibold text-white flex items-center gap-2 animate-bounce mt-5"> {item.icon} {item.alt}</p>
                 </div>
               </motion.div>
             ))}
