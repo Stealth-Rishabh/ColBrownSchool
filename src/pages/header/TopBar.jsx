@@ -3,7 +3,7 @@ import { Mail, Phone } from 'lucide-react'
 export default function TopBar() {
   return (
     <div className="bg-gray-900 text-white px-4 py-2 hidden sm:block">
-      <div className="sm:container md:max-w-6xl lg:max-w-7xl    mx-auto flex justify-between items-center text-sm">
+      <div className="sm:container md:max-w-6xl lg:max-w-[1400px]    mx-auto flex justify-between items-center text-sm">
         <div className="flex items-center space-x-4">
           <a href="mailto:principal@colbrownschool.com" className="flex items-center hover:text-yellow-400">
             <Mail className="h-4 w-4 mr-2" />

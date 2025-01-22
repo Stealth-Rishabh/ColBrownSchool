@@ -196,6 +196,11 @@ const menuItems = [
     ],
   },
   {
+    trigger: "Alma Mater",
+    path: "/alma-mater",
+    icon: <Contact className="w-4 h-4 mr-2" />,
+  },
+  {
     trigger: "Contact Us",
     path: "/contact-us",
     icon: <Contact className="w-4 h-4 mr-2" />,
@@ -243,7 +248,7 @@ const MainNav = () => {
           >
             {menu.items ? (
               <>
-                <button className="flex items-center text-foreground hover:text-primary focus:outline-none">
+                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md">
                   {menu.icon}
                   {menu.trigger}
                   <motion.div
@@ -263,7 +268,7 @@ const MainNav = () => {
                       className="absolute left-0 w-max min-w-48  "
                     >
                       <motion.ul
-                        className="z-20 py-2 mt-11 bg-white rounded shadow-lg border border-gray-200"
+                        className="z-20 py-2 mt-9 bg-white rounded shadow-lg border border-gray-200"
                         initial="closed"
                         animate="open"
                         exit="closed"
@@ -342,7 +347,7 @@ const MainNav = () => {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                  className="flex items-center text-sm hover:text-green-900 hover:font-semibold duration-100 transition-all cursor-pointer hover:-translate-y-1"
+                  className="flex items-center text-sm hover:text-green-900 hover:font-semibold duration-100 transition-all cursor-pointer hover:-translate-y-1 p-2 rounded-md hover:bg-gray-100"
                 >
                   {menu.icon}
                   {menu.trigger}
