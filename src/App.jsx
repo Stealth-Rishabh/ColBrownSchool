@@ -9,6 +9,7 @@ import MissionVision from "./pages/about/MissionVision";
 import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
 import CareerCounseling from "./pages/academics/career-counseling/CareerCounseling";
+import Overview from "./pages/boardingLife/Overview";
 export default function App() {
   return (
     <>
@@ -35,6 +36,9 @@ export default function App() {
           <Route path="/academics/curriculum" element={<Curriculum />} />
           <Route path="/academics/advanced-pedagogy" element={<AdvancedPedagogy />} />
           <Route path="/academics/career-counselling" element={<CareerCounseling />} />
+
+          {/* Boarding Life */}
+          <Route path="/boarding-life/overview" element={<Overview />} />
         </Routes>
         {/* Footer */}
         <Footer />

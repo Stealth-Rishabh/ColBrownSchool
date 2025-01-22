@@ -118,32 +118,32 @@ const menuItems = [
     items: [
       {
         name: "Overview",
-        path: "/boarding/overview",
+        path: "/boarding-life/overview",
         icon: <Building2 className="w-4 h-4 mr-2" />,
       },
       {
         name: "Pastoral Care",
-        path: "/boarding/pastoral-care",
+        path: "/boarding-life/pastoral-care",
         icon: <HeartHandshake className="w-4 h-4 mr-2" />,
       },
       {
         name: "Safety & Security",
-        path: "/boarding/safety-security",
+        path: "/boarding-life/safety-security",
         icon: <Shield className="w-4 h-4 mr-2" />,
       },
       {
         name: "Medical Facilities",
-        path: "/boarding/medical-facilities",
+        path: "/boarding-life/medical-facilities",
         icon: <Stethoscope className="w-4 h-4 mr-2" />,
       },
       {
         name: "Hostel",
-        path: "/boarding/hostel",
+        path: "/boarding-life/hostel",
         icon: <Building className="w-4 h-4 mr-2" />,
       },
       {
         name: "Dining",
-        path: "/boarding/dining",
+        path: "/boarding-life/dining",
         icon: <UtensilsCrossed className="w-4 h-4 mr-2" />,
       },
     ],
@@ -345,7 +345,7 @@ const MainNav = () => {
                 className="text-foreground hover:text-primary"
               >
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
+                 
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
                   className="flex items-center text-sm hover:text-green-900 hover:font-semibold duration-100 transition-all cursor-pointer hover:-translate-y-1 p-2 rounded-md hover:bg-gray-100"
                 >
