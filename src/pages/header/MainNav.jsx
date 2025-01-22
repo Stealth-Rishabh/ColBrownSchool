@@ -1,116 +1,361 @@
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom"; // Importing Link from react-router-dom
+  ChevronDown,
+  Home,
+  Building2,
+  GraduationCap,
+  BookOpen,
+  Hotel,
+  Sparkles,
+  UserPlus,
+  Contact,
+  History,
+  Users,
+  MessageSquare,
+  Target,
+  ScrollText,
+  Brain,
+  HeartHandshake,
+  Library,
+  Users2,
+  Shield,
+  Stethoscope,
+  Building,
+  UtensilsCrossed,
+  Trophy,
+  Club,
+  Newspaper,
+  ClipboardList,
+  Receipt,
+  FileCheck,
+  HelpCircle,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const menuItems = [
   {
-    trigger: "ABOUT",
+    trigger: "Home",
+    path: "/",
+    icon: <Home className="w-4 h-4 mr-2" />,
+  },
+  {
+    trigger: "About",
+    icon: <Building2 className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
-      { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
+      {
+        name: "Legacy of CBS",
+        path: "/about/legacy-of-cbs",
+        icon: <History className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Our Visionary Leaders",
+        path: "/about/our-visionary-leaders",
+        icon: <Users className="w-4 h-4 mr-2" />,
+      },
       {
         name: "Message from the Management",
         path: "/about/message-from-management",
+        icon: <MessageSquare className="w-4 h-4 mr-2" />,
       },
-      { name: "Mission & Vision", path: "/about/mission-vision" },
+      {
+        name: "Mission & Vision",
+        path: "/about/mission-vision",
+        icon: <Target className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "ACADEMICS",
+    trigger: "Academics",
+    icon: <GraduationCap className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Curriculum", path: "/academics/curriculum" },
-      { name: "Advanced Pedagogy", path: "/academics/advanced-pedagogy" },
-      { name: "Career Counselling", path: "/academics/career-counselling" },
+      {
+        name: "Curriculum",
+        path: "/academics/curriculum",
+        icon: <ScrollText className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Advanced Pedagogy",
+        path: "/academics/advanced-pedagogy",
+        icon: <Brain className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Career Counselling",
+        path: "/academics/career-counselling",
+        icon: <HeartHandshake className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "LEARNING",
+    trigger: "Learning",
+    icon: <BookOpen className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Curriculum", path: "/learning/curriculum" },
-      { name: "Academics", path: "/learning/academics" },
-      { name: "Faculty", path: "/learning/faculty" },
-      { name: "Library", path: "/learning/library" },
+      {
+        name: "Curriculum",
+        path: "/learning/curriculum",
+        icon: <ScrollText className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Academics",
+        path: "/learning/academics",
+        icon: <GraduationCap className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Faculty",
+        path: "/learning/faculty",
+        icon: <Users2 className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Library",
+        path: "/learning/library",
+        icon: <Library className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "BOARDING",
+    trigger: "Boarding Life",
+    icon: <Hotel className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Facilities", path: "/boarding/facilities" },
-      { name: "Life at Campus", path: "/boarding/campus-life" },
-      { name: "Rules & Regulations", path: "/boarding/rules" },
+      {
+        name: "Overview",
+        path: "/boarding/overview",
+        icon: <Building2 className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Pastoral Care",
+        path: "/boarding/pastoral-care",
+        icon: <HeartHandshake className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Safety & Security",
+        path: "/boarding/safety-security",
+        icon: <Shield className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Medical Facilities",
+        path: "/boarding/medical-facilities",
+        icon: <Stethoscope className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Hostel",
+        path: "/boarding/hostel",
+        icon: <Building className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Dining",
+        path: "/boarding/dining",
+        icon: <UtensilsCrossed className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "ENRICHMENT",
+    trigger: "Beyond Classroom",
+    icon: <Sparkles className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Sports", path: "/enrichment/sports" },
-      { name: "Arts", path: "/enrichment/arts" },
-      { name: "Clubs", path: "/enrichment/clubs" },
-      { name: "Activities", path: "/enrichment/activities" },
+      {
+        name: "Sports",
+        path: "/beyond-classroom/sports",
+        icon: <Trophy className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Clubs & Societies",
+        path: "/beyond-classroom/clubs-societies",
+        icon: <Club className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "News & Events",
+        path: "/beyond-classroom/news-events",
+        icon: <Newspaper className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "EXPLORE STONEHILL",
+    trigger: "Admissions",
+    icon: <UserPlus className="w-4 h-4 mr-2" />,
     items: [
-      { name: "Campus Tour", path: "/explore/campus-tour" },
-      { name: "Infrastructure", path: "/explore/infrastructure" },
-      { name: "Location", path: "/explore/location" },
+      {
+        name: "Admission Procedure",
+        path: "/admissions/admission-procedure",
+        icon: <ClipboardList className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Fee Details",
+        path: "/admissions/fee-details",
+        icon: <Receipt className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Transfer Certificate",
+        path: "/admissions/transfer-certificate",
+        icon: <FileCheck className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "FAQs",
+        path: "/admissions/faqs",
+        icon: <HelpCircle className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
-    trigger: "PLACEMENTS",
-    items: [
-      { name: "Overview", path: "/placements/overview" },
-      { name: "Statistics", path: "/placements/statistics" },
-      { name: "Success Stories", path: "/placements/success-stories" },
-    ],
+    trigger: "Contact Us",
+    path: "/contact-us",
+    icon: <Contact className="w-4 h-4 mr-2" />,
   },
 ];
 
-export const MainNav = () => {
+const MainNav = () => {
+  const [activeMenu, setActiveMenu] = useState(null);
+  const navRef = useRef();
+
+  const handleMouseEnter = (index) => {
+    setActiveMenu(index);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveMenu(null);
+  };
+
+  const handleLinkClick = () => {
+    setActiveMenu(null);
+  };
+
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setActiveMenu(null);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <NavigationMenu className="hidden sm:block">
-      <NavigationMenuList className="flex space-x-">
-        {menuItems.map((menu) => (
-          <NavigationMenuItem key={menu.trigger} className="relative">
-            <NavigationMenuTrigger className="font-medium text-xs hover:text-yellow-600">
-              {menu.trigger}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute left-0">
-              <ul className="grid w-[200px] gap-3 p-4 bg-white shadow-lg rounded-md">
-                {menu.items.map(({ name, path }) => (
-                  <li key={name}>
-                    <Link // Using Link from react-router-dom
-                      to={path} // Updated to use the path
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-green-700 focus:bg-gray-100 focus:text-green-700"
+    <nav className="hidden sm:block bg-background" ref={navRef}>
+      <ul className="relative z-20 flex space-x-6">
+        {menuItems.map((menu, index) => (
+          <li
+            key={menu.trigger}
+            className="relative group text-sm hover:text-green-900 hover:font-semibold duration-300 transition-all cursor-pointer hover:-translate-y-1 "
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+          >
+            {menu.items ? (
+              <>
+                <button className="flex items-center text-foreground hover:text-primary focus:outline-none">
+                  {menu.icon}
+                  {menu.trigger}
+                  <motion.div
+                    animate={{ rotate: activeMenu === index ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* <ChevronDown className="w-4 h-4 ml-1" /> */}
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {activeMenu === index && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 w-max min-w-48  "
                     >
-                      <div className="text-sm font-medium leading-none">
-                        {name} {/* Updated to use the name */}
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+                      <motion.ul
+                        className="z-20 py-2 mt-11 bg-white rounded shadow-lg border border-gray-200"
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        variants={{
+                          open: {
+                            clipPath: "inset(0% 0% 0% 0% round 10px)",
+                            transition: {
+                              type: "spring",
+                              bounce: 0,
+                              duration: 0.7,
+                              delayChildren: 0.3,
+                              staggerChildren: 0.05,
+                            },
+                          },
+                          closed: {
+                            clipPath: "inset(10% 50% 90% 50% round 10px)",
+                            transition: {
+                              type: "spring",
+                              bounce: 0,
+                              duration: 0.3,
+                            },
+                          },
+                        }}
+                      >
+                        {menu.items.map((item) => (
+                          <motion.li
+                            className="p-2 "
+                            key={item.name}
+                            variants={{
+                              open: {
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                  type: "spring",
+                                  stiffness: 300,
+                                  damping: 24,
+                                },
+                              },
+                              closed: {
+                                opacity: 0,
+                                y: 20,
+                                transition: { duration: 0.2 },
+                              },
+                            }}
+                          >
+                            <Link
+                              to={item.path}
+                              onClick={handleLinkClick}
+                              className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-sm hover:text-green-900"
+                            >
+                              <motion.div
+                                whileHover={{ x: 10 }}
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 300,
+                                  damping: 24,
+                                }}
+                                className="flex items-center"
+                              >
+                                {item.icon}
+                                {item.name}
+                              </motion.div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </>
+            ) : (
+              <Link
+                to={menu.path}
+                className="text-foreground hover:text-primary"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className="flex items-center text-sm hover:text-green-900 hover:font-semibold duration-100 transition-all cursor-pointer hover:-translate-y-1"
+                >
+                  {menu.icon}
+                  {menu.trigger}
+                </motion.div>
+              </Link>
+            )}
+          </li>
         ))}
-      </NavigationMenuList>
-    </NavigationMenu>
-    // <nav>
-    //   <ul className=" items-center gap-6 text-base hidden sm:flex">
-    //     {menuItems.map((menu) => (
-    //       <li key={menu.trigger} className="hover:text-green-900 cursor-pointer hover:after:content-[''] hover:after:block hover:after:w-full hover:after:h-[2px] hover:after:bg-green-900 duration-300 transition-all hover:after:transition-all hover:-translate-y-1">
-    //         {menu.trigger}
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </nav>
+      </ul>
+    </nav>
   );
 };
 
 export default MainNav;
+
+// text-foreground hover:text-primary text-sm hover:text-green-900 cursor-pointer hover:after:content-[''] hover:after:block hover:after:w-full hover:after:h-[2px] hover:after:bg-green-900 duration-300 transition-all hover:after:transition-all hover:-translate-y-1

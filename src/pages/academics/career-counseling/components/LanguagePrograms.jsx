@@ -1,4 +1,3 @@
-import { Parallax } from "react-scroll-parallax";
 import { Languages, BookOpen, GraduationCap } from "lucide-react";
 import Heading from "../../../../components/Heading";
 import img from "../../../../assets/landing/bg1.webp";
