@@ -10,6 +10,13 @@ import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
 import CareerCounseling from "./pages/academics/career-counseling/CareerCounseling";
 import Overview from "./pages/boardingLife/Overview";
+import Classroom from "./pages/boardingLife/Classroom";
+import PastoralCare from "./pages/boardingLife/PastoralCare";
+import SafetySecurity from "./pages/boardingLife/SafetySecurity";
+import MedicalFacilities from "./pages/boardingLife/MedicalFacilities";
+import Hostel from "./pages/boardingLife/Hostel";
+import Dining from "./pages/boardingLife/Dining";
+  
 export default function App() {
   return (
     <>
@@ -39,6 +46,12 @@ export default function App() {
 
           {/* Boarding Life */}
           <Route path="/boarding-life/overview" element={<Overview />} />
+          <Route path="/boarding-life/classrooms" element={<Classroom />} />
+          <Route path="/boarding-life/pastoral-care" element={<PastoralCare />} />
+          <Route path="/boarding-life/safety-security" element={<SafetySecurity />} />
+          <Route path="/boarding-life/medical-facilities" element={<MedicalFacilities />} />
+          <Route path="/boarding-life/hostel" element={<Hostel />} />
+          <Route path="/boarding-life/dining" element={<Dining />} />
         </Routes>
         {/* Footer */}
         <Footer />
