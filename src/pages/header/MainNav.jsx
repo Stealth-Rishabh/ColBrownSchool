@@ -86,32 +86,32 @@ const menuItems = [
       },
     ],
   },
-  {
-    trigger: "Learning",
-    icon: <BookOpen className="w-4 h-4 mr-2" />,
-    items: [
-      {
-        name: "Curriculum",
-        path: "/learning/curriculum",
-        icon: <ScrollText className="w-4 h-4 mr-2" />,
-      },
-      {
-        name: "Academics",
-        path: "/learning/academics",
-        icon: <GraduationCap className="w-4 h-4 mr-2" />,
-      },
-      {
-        name: "Faculty",
-        path: "/learning/faculty",
-        icon: <Users2 className="w-4 h-4 mr-2" />,
-      },
-      {
-        name: "Library",
-        path: "/learning/library",
-        icon: <Library className="w-4 h-4 mr-2" />,
-      },
-    ],
-  },
+  // {
+  //   trigger: "Learning",
+  //   icon: <BookOpen className="w-4 h-4 mr-2" />,
+  //   items: [
+  //     {
+  //       name: "Curriculum",
+  //       path: "/learning/curriculum",
+  //       icon: <ScrollText className="w-4 h-4 mr-2" />,
+  //     },
+  //     {
+  //       name: "Academics",
+  //       path: "/learning/academics",
+  //       icon: <GraduationCap className="w-4 h-4 mr-2" />,
+  //     },
+  //     {
+  //       name: "Faculty",
+  //       path: "/learning/faculty",
+  //       icon: <Users2 className="w-4 h-4 mr-2" />,
+  //     },
+  //     {
+  //       name: "Library",
+  //       path: "/learning/library",
+  //       icon: <Library className="w-4 h-4 mr-2" />,
+  //     },
+  //   ],
+  // },
   {
     trigger: "Boarding Life",
     icon: <Hotel className="w-4 h-4 mr-2" />,
