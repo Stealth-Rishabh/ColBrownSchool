@@ -2,13 +2,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "./pages/header/Header";
 import Landing from "./pages/landingPage/Landing";
 import Footer from "./pages/footer/Footer";
+// About 
 import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
 import MissionVision from "./pages/about/MissionVision";
+// Academics
 import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
 import CareerCounseling from "./pages/academics/career-counseling/CareerCounseling";
+// Boarding Life
 import Overview from "./pages/boardingLife/Overview";
 import Classroom from "./pages/boardingLife/Classroom";
 import PastoralCare from "./pages/boardingLife/PastoralCare";
@@ -16,7 +19,8 @@ import SafetySecurity from "./pages/boardingLife/SafetySecurity";
 import MedicalFacilities from "./pages/boardingLife/MedicalFacilities";
 import Hostel from "./pages/boardingLife/Hostel";
 import Dining from "./pages/boardingLife/Dining";
-  
+// Beyond Classroom
+import Sports from "./pages/beyondClassroom/Sports";
 export default function App() {
   return (
     <>
@@ -52,6 +56,10 @@ export default function App() {
           <Route path="/boarding-life/medical-facilities" element={<MedicalFacilities />} />
           <Route path="/boarding-life/hostel" element={<Hostel />} />
           <Route path="/boarding-life/dining" element={<Dining />} />
+
+
+          {/* Beyond Classroom */}
+          <Route path="/beyond-classroom/sports" element={<Sports />} />
         </Routes>
         {/* Footer */}
         <Footer />
