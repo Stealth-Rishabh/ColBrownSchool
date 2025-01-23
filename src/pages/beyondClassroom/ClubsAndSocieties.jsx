@@ -126,9 +126,9 @@ function EventGallery() {
   };
 
   return (
-    <div className="relative sm:min-h-[calc(100vh-200px)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:gap-4  gap-y-8">
-      <div className="self-start col-span-1 sidebar sm:h-max md:sticky md:top-12">
-        <div className="sticky top-0 flex flex-col h-full gap- transition-all duration-150 border shadow-sm border-slate-50 bg-green-950 hover:bg-green-900 hover:shadow-md rounded-xl sm:max-h-max max-h-60 overflow-y-auto scrollbar-hide scroll-smooth">
+    <div className="relative min-h-[calc(100vh-200px)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:gap-4  gap-y-8">
+      <div className="self-start col-span-1 sidebar h-max sticky top-2  rounded-xl sm:top-12 z-10">
+        <div className="sticky top-0 flex flex-col h-full  transition-all duration-150 border sm:shadow-sm border-slate-50 bg-green-950 hover:bg-green-900 hover:shadow-md rounded-xl sm:max-h-max max-h-60 overflow-y-auto scrollbar-hide scroll-smooth shadow-lg">
           <h3 className=" p-4  self-start sticky top-0 text-xl font-bold text-white border-b border-slate-200 bg-green-950 w-full">
             Clubs at CBS
           </h3>
