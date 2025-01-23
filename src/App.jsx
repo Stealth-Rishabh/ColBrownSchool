@@ -21,6 +21,7 @@ import Hostel from "./pages/boardingLife/Hostel";
 import Dining from "./pages/boardingLife/Dining";
 // Beyond Classroom
 import Sports from "./pages/beyondClassroom/Sports";
+import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
 export default function App() {
   return (
     <>
@@ -60,6 +61,7 @@ export default function App() {
 
           {/* Beyond Classroom */}
           <Route path="/beyond-classroom/sports" element={<Sports />} />
+          <Route path="/beyond-classroom/clubs-and-societies" element={<ClubsAndSocieties />} />
         </Routes>
         {/* Footer */}
         <Footer />

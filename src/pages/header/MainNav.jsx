@@ -159,7 +159,7 @@ const menuItems = [
       },
       {
         name: "Clubs & Societies",
-        path: "/beyond-classroom/clubs-societies",
+        path: "/beyond-classroom/clubs-and-societies",
         icon: <Club className="w-4 h-4 mr-2" />,
       },
       {
