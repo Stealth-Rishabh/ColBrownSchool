@@ -119,6 +119,7 @@ const EventSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="group w-full max-lg:max-w-xl border border-gray-300 rounded-2xl overflow-hidden shadow-lg"
+              whileHover={{ translateY: -5, transition: { duration: 0.2 } }} // Changed scale to translateY effect
             >
               <div className="flex items-center">
                 <img 
