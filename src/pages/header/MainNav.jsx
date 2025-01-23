@@ -164,7 +164,7 @@ const menuItems = [
       },
       {
         name: "News & Events",
-        path: "/beyond-classroom/news-events",
+        path: "/beyond-classroom/news-and-events",
         icon: <Newspaper className="w-4 h-4 mr-2" />,
       },
     ],

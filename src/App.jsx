@@ -22,6 +22,7 @@ import Dining from "./pages/boardingLife/Dining";
 // Beyond Classroom
 import Sports from "./pages/beyondClassroom/Sports";
 import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
+import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 export default function App() {
   return (
     <>
@@ -62,6 +63,7 @@ export default function App() {
           {/* Beyond Classroom */}
           <Route path="/beyond-classroom/sports" element={<Sports />} />
           <Route path="/beyond-classroom/clubs-and-societies" element={<ClubsAndSocieties />} />
+          <Route path="/beyond-classroom/news-and-events" element={<NewsAndEvents />} />
         </Routes>
         {/* Footer */}
         <Footer />
