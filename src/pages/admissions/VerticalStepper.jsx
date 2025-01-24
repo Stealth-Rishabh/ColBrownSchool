@@ -214,7 +214,7 @@ const StepperItem = ({
               {index > 0 && (
                 <Button
                   onClick={onPrevious}
-                  className="flex items-center px-4 py-2 ml-10 text-xs text-gray-700 transition-colors bg-gray-200 rounded hover:bg-gray-300 sm:text-sm"
+                  className="flex items-center px-4 py-2 ml-3 text-xs text-gray-700 transition-colors bg-gray-200 rounded hover:bg-gray-300 sm:text-sm"
                 >
                   <ChevronUp className="w-4 h-4 mt-" /> Back
                 </Button>
