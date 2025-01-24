@@ -144,7 +144,7 @@ const FeeStructure = () => {
   );
 
   return (
-    <div className="min-h-screen px-4">
+    <div className="min-h-screen sm:px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-6 gap-8">
         <motion.aside
           ref={sidebarRef}
