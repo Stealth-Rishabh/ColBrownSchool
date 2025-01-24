@@ -1,6 +1,12 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, CheckCircle, Circle,ClipboardList } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  CheckCircle,
+  Circle,
+  ClipboardList,
+} from "lucide-react";
 import useStepperState from "./useStepperState";
 import { Button } from "../../components/ui/button";
 import AdmissionsCriteria from "./AdmissionsCriteria";
@@ -28,7 +34,7 @@ const steps = [
           experienced staff members. Every big and small step leading to the
           child's development is looked upon as an achievement by the School.
         </p>
-        <Button className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors flex items-center">
+        <Button className="flex items-center px-4 py-2 mt-6 text-white transition-colors bg-gray-800 rounded hover:bg-gray-700">
           Register Now <ClipboardList className="w-4 h-4" />
         </Button>
       </>
@@ -38,7 +44,7 @@ const steps = [
     title: "Aims and Objectives",
     content: (
       <>
-        <ol className="list-decimal list-inside space-y-2 text-justify text-gray-600">
+        <ol className="space-y-2 text-justify text-gray-600 list-decimal list-inside">
           <li>
             To match the objectives of the School with the goals and abilities
             of the student.
@@ -77,7 +83,7 @@ const steps = [
           Once admission is granted, parents will need to deposit the fees and
           submit the following documents:
         </p>
-        <ol className="list-decimal list-inside space-y-2 mt-2 text-justify text-gray-600">
+        <ol className="mt-2 space-y-2 text-justify text-gray-600 list-decimal list-inside">
           <li>
             Transfer Certificate in original. (For foreign students the School
             will require a letter from the Principal of the last School attended
@@ -121,10 +127,10 @@ const VerticalStepper = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-screen">
+    <div className="p-6 mx-auto max-w-7xl">
+      <div className="grid min-h-screen grid-cols-1 gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="sm:pl-10 pl-8 bg-white rounded-lg shadow-lg py-6 sm:py-8 pr-6 sm:pr-8">
             {steps.map((step, index) => (
               <StepperItem
                 key={index}
@@ -159,29 +165,30 @@ const StepperItem = ({
 }) => {
   return (
     <div
-      className={`border-l-2 ${
+      className={`${index === steps.length - 1 ? "border-l-0" : "border-l-2"} ${
         isCompleted ? "border-green-800" : "border-gray-300"
       } pl-4 ${index === steps.length - 1 ? "pb-0" : "pb-8"}`}
     >
-      <div className="flex items-center mb-2">
+      <div className="flex items-center -ml-[34px]  mb-3">
         <div
-          className={`rounded-full p-1 mr-2 ${
-            isCompleted ? "bg-green-800" : "bg-white border-2 border-gray-300"
+          className={`rounded-full  p-1 mr-2 ${
+            isCompleted
+              ? "bg-green-800 drop-shadow-lg sm:drop-shadow-xl"
+              : "bg-white border-2 border-gray-300"
           }`}
         >
           {isCompleted ? (
             <CheckCircle className="w-6 h-6 text-white" />
-            
           ) : (
-            <div className="flex relative w-6 h-6 items-center">
-              <span className="absolute text-xs text-gray-500 font-bold top-0 left-0 w-6 h-6 flex items-center justify-center">
+            <div className="relative flex items-center w-6 h-6">
+              <span className="absolute top-0 left-0 flex items-center justify-center w-6 h-6 text-xs font-bold text-gray-500">
                 {index + 1}
               </span>
               <Circle
                 className={`w-6 absolute top-0 left-0 h-6 ${
                   isActive ? "text-green-800" : "text-gray-300"
                 }`}
-            />
+              />
             </div>
           )}
         </div>
@@ -202,12 +209,12 @@ const StepperItem = ({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="text-gray-700 pl-11 mb-4">{step.content}</div>
+            <div className="pl-3 mb-4 text-gray-700">{step.content}</div>
             <div className="flex justify-between mt-6 ">
               {index > 0 && (
                 <Button
                   onClick={onPrevious}
-                  className="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors text-xs sm:text-sm ml-10"
+                  className="flex items-center px-4 py-2 ml-10 text-xs text-gray-700 transition-colors bg-gray-200 rounded hover:bg-gray-300 sm:text-sm"
                 >
                   <ChevronUp className="w-4 h-4 mt-" /> Back
                 </Button>
@@ -215,7 +222,7 @@ const StepperItem = ({
               {!isLast && (
                 <Button
                   onClick={onNext}
-                  className="flex items-center px-4 py-2 bg-green-800 text-white text-xs sm:text-sm rounded hover:bg-green-700 transition-colors ml-auto"
+                  className="flex items-center px-4 py-2 ml-auto text-xs text-white transition-colors bg-green-800 rounded sm:text-sm hover:bg-green-700"
                 >
                   Continue <ChevronDown className="w-4 h-4 mt-1" />
                 </Button>

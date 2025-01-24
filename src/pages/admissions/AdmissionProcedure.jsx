@@ -29,7 +29,7 @@ const AdmissionProcedure = () => {
             titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
             subtitle="Learn about the steps and requirements for admission."
             subtitleClassName="text-gray-700"
-            className="pt-12 mx-auto sm:px-0 px-6"
+            className="pt-12 mx-auto sm:px-0 px-6 pb-1"
           />
          
           <VerticalStepper/>
