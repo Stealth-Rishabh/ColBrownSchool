@@ -1,5 +1,5 @@
-import React from "react"
-import { Book, Users, GraduationCap } from "lucide-react"
+
+import { Book, Users, GraduationCap, Bell } from "lucide-react"
 
 const AdmissionsCriteria = () => {
   const criteria = [
@@ -22,9 +22,12 @@ const AdmissionsCriteria = () => {
 
   return (
     <div className="mt-8 bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold text-green-950 mb-4">Admissions Criteria</h2>
+      <h2 className="text-2xl font-bold text-green-950 mb-4 flex items-center">
+        <Bell className="w-6 h-6 mr-2" />
+        Admissions Criteria
+      </h2>
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse rounded-t-lg overflow-hidden">
           <thead className="bg-green-800 text-white " >
             <tr className="bg-green-800 text-white ">
               <th className="p-2 text-left">Level</th>

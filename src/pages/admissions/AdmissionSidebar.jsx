@@ -52,12 +52,12 @@ const AdmissionSidebar = () => {
           </div>
         ))}
       </div>
-      {/* <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 flex items-start">
+      <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 flex items-start">
         <AlertCircle className="w-5 h-5 text-yellow-400 mr-2 flex-shrink-0 mt-0.5" />
         <p className="text-sm text-yellow-700">
           Please note that all dates are subject to change. Check the school website regularly for any updates.
         </p>
-      </div> */}
+      </div>
     </div>
   )
 }

@@ -25,7 +25,7 @@ import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
 import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 // Admissions
 import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
-
+import FeeDetails from "./pages/admissions/FeeDetails";
 export default function App() {
   return (
     <>
@@ -70,6 +70,7 @@ export default function App() {
 
           {/* Admissions  */}
           <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />
+          <Route path="/admissions/fee-details" element={<FeeDetails />} />
         </Routes>
         {/* Footer */}
         <Footer />

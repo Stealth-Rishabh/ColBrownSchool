@@ -127,7 +127,7 @@ const VerticalStepper = () => {
   );
 
   return (
-    <div className="p-6 mx-auto max-w-7xl">
+    <div className="sm:p-0 p-5 mx-auto max-w-7xl">
       <div className="grid min-h-screen grid-cols-1 gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
           <div className="sm:pl-10 pl-8 bg-white rounded-lg shadow-lg py-6 sm:py-8 pr-6 sm:pr-8">
@@ -146,7 +146,7 @@ const VerticalStepper = () => {
           </div>
           <AdmissionsCriteria />
         </div>
-        <div className="md:col-span-1 sm:self-start sm:sticky top-20">
+        <div className="md:col-span-1 sm:self-start sm:sticky top-5">
           <AdmissionSidebar />
         </div>
       </div>
