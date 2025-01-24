@@ -92,8 +92,8 @@ const AlmaMater = () => {
   }
 
   return (
-    <div className="max-w-2xl my-12 sm:my-20 mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Alumni Visit Registration</h2>
+    <div className="max-w-2xl my- sm:my-20 mx-auto p-6 bg-white rounded-lg sm:shadow-lg">
+      <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Alumni Registration</h2>
       
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

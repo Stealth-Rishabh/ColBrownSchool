@@ -2,70 +2,54 @@ export const navlinks = [
   { name: "Home", path: "/" },
   {
     name: "About",
-    path: "/",
+    path: "/about",
     submenu: [
       { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
       { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
-      { name: "Message from the Management", path: "/about/message-from-the-management" },
+      { name: "Message from the Management", path: "/about/message-from-management" },
       { name: "Mission & Vision", path: "/about/mission-vision" },
+    ],
+  },
+  {
+    name: "Academics",
+    path: "/academics",
+    submenu: [
+      { name: "Curriculum", path: "/academics/curriculum" },
+      { name: "Advanced Pedagogy", path: "/academics/advanced-pedagogy" },
+      { name: "Career Counselling", path: "/academics/career-counselling" },
+    ],
+  },
+  {
+    name: "Boarding Life",
+    path: "/boarding-life",
+    submenu: [
+      { name: "Overview", path: "/boarding-life/overview" },
+      { name: "Pastoral Care", path: "/boarding-life/pastoral-care" },
+      { name: "Safety & Security", path: "/boarding-life/safety-security" },
+      { name: "Medical Facilities", path: "/boarding-life/medical-facilities" },
+      { name: "Hostel", path: "/boarding-life/hostel" },
+      { name: "Dining", path: "/boarding-life/dining" },
+    ],
+  },
+  {
+    name: "Beyond Classroom",
+    path: "/beyond-classroom",
+    submenu: [
+      { name: "Sports", path: "/beyond-classroom/sports" },
+      { name: "Clubs & Societies", path: "/beyond-classroom/clubs-and-societies" },
+      { name: "News & Events", path: "/beyond-classroom/news-and-events" },
     ],
   },
   {
     name: "Admissions",
     path: "/admissions",
     submenu: [
-      { name: "Process", path: "/admissions/process" },
-      { name: "Fee Structure", path: "/admissions/fee-structure" },
-      { name: "Scholarships", path: "/admissions/scholarships" },
+      { name: "Admission Procedure", path: "/admissions/admission-procedure" },
+      { name: "Fee Details", path: "/admissions/fee-details" },
+      { name: "Transfer Certificate", path: "/admissions/transfer-certificate" },
       { name: "FAQs", path: "/admissions/faqs" },
     ],
   },
-  {
-    name: "Learning",
-    path: "/",
-    submenu: [
-      { name: "Curriculum", path: "/learning/curriculum" },
-      { name: "Academics", path: "/learning/academics" },
-      { name: "Faculty", path: "/learning/faculty" },
-      { name: "Library", path: "/learning/library" },
-    ],
-  },
-  {
-    name: "Boarding",
-    path: "/",
-    submenu: [
-      { name: "Facilities", path: "/boarding/facilities" },
-      { name: "Life at Campus", path: "/boarding/campus-life" },
-      { name: "Rules & Regulations", path: "/boarding/rules" },
-    ],
-  },
-  {
-    name: "Enrichment",
-    path: "/",
-    submenu: [
-      { name: "Sports", path: "/enrichment/sports" },
-      { name: "Arts", path: "/enrichment/arts" },
-      { name: "Clubs", path: "/enrichment/clubs" },
-      { name: "Activities", path: "/enrichment/activities" },
-    ],
-  },
-  {
-    name: "Explore Stonehill",
-    path: "/",
-    submenu: [
-      { name: "Campus Tour", path: "/explore/campus-tour" },
-      { name: "Infrastructure", path: "/explore/infrastructure" },
-      { name: "Location", path: "/explore/location" },
-    ],
-  },
-  {
-    name: "Placements",
-    path: "/",
-    submenu: [
-      { name: "Overview", path: "/placements/overview" },
-      { name: "Statistics", path: "/placements/statistics" },
-      { name: "Success Stories", path: "/placements/success-stories" },
-    ],
-  },
-  { name: "Contact Us", path: "/contact" },
+  { name: "Alma Mater", path: "/alma-mater" },
+  { name: "Contact Us", path: "/contact-us" },
 ];

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/collapsible";
 import { PanelLeft, ChevronDown, ChevronRight } from "lucide-react";
 import { navlinks } from "./navData";
+import { Link } from "react-router-dom";
 
 const Drawer = () => {
   const CollapsibleNavItem = ({ item }) => {
@@ -33,15 +34,15 @@ const Drawer = () => {
         </CollapsibleTrigger>
         <CollapsibleContent>
           <ul className="pl-4 space-y-1">
-            {item.dropdown.map((subItem, subIndex) => (
+            {item.submenu.map((subItem, subIndex) => (
               <li key={subIndex}>
                 <SheetClose asChild>
-                  <a
+                  <Link
                     to={subItem.path}
                     className="block py-2 px-4 w-fit text-sm text-slate-200 hover:bg-white/10 rounded transition-colors"
                   >
                     {subItem.name}
-                  </a>
+                  </Link>
                 </SheetClose>
               </li>
             ))}
@@ -80,16 +81,16 @@ const Drawer = () => {
               <ul className="space-y-1">
                 {navlinks.map((item, index) => (
                   <li key={index}>
-                    {item.dropdown && item.name !== "Courses" ? (
+                    {item.submenu ? (
                       <CollapsibleNavItem item={item} />
                     ) : (
                       <SheetClose asChild>
-                        <a
+                        <Link
                           to={item.path}
-                          className="block py-2 px-4 w-fit text-xl font-mono font-semibold text-slate-200 tracking-wider hover:bg-white/10 rounded transition-colors"
+                          className="block py-2 px-4 w-fit text- font-semibold text-slate-200 tracking-wider hover:bg-white/10 rounded transition-colors"
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       </SheetClose>
                     )}
                   </li>
