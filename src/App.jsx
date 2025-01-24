@@ -27,6 +27,9 @@ import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
 import FeeDetails from "./pages/admissions/FeeDetails";
 import FAQ from "./pages/admissions/FAQ";
+// Contact
+import ContactForm from "./pages/contact/ContactForm";
+
 export default function App() {
   return (
     <>
@@ -73,6 +76,9 @@ export default function App() {
           <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />
           <Route path="/admissions/fee-details" element={<FeeDetails />} />
           <Route path="/admissions/faqs" element={<FAQ />} />
+
+          {/* Contact */}
+          <Route path="/contact-us" element={<ContactForm />} />
         </Routes>
         {/* Footer */}
         <Footer />
