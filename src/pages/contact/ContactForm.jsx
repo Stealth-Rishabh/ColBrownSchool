@@ -151,20 +151,29 @@ const ContactSection = () => {
                 type="submit"
                 className="w-full h-12 group bg-green-800 rounded-lg hover:bg-green-700"
               >
-                Send Message <SendHorizonal className="mt-1 w-5 h-5 text-white group-hover:translate-x-2 transition-all duration-300" />
+                Send Message{" "}
+                <SendHorizonal className="mt-1 w-5 h-5 text-white group-hover:translate-x-2 transition-all duration-300" />
               </Button>
             </form>
-            
           </div>
         </div>
         <div className="mt-10 p-5 bg-gray-50 lg:p-11 lg:rounded-r-2xl rounded-2xl drop-shadow">
-                <h2 className="text-3xl font-semibold leading-10 text-green-800 font-manrope sm:text-4xl mb-11 flex items-center">
-                   <MapPin className="text-green-800 min-w-5 mt-1 sm:w-7 h-7 mr-2" /> Our Location
-                </h2>
-                <div className="mt-5 overflow-hidden rounded-2xl">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d423612.82089899003!2d78.056969!3d30.322328!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929b641fd13a5%3A0xf2f0dda3f2210a65!2sCol.%20Brown%20Cambridge%20School!5e1!3m2!1sen!2sus!4v1737722820602!5m2!1sen!2sus" width="100%" height="450" style={{border:0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+          <h2 className="text-3xl font-semibold leading-10 text-green-800 font-manrope sm:text-4xl mb-11 flex items-center">
+            <MapPin className="text-green-800 min-w-5 mt-1 sm:w-7 h-7 mr-2" />{" "}
+            Our Location
+          </h2>
+          <div className="mt-5 overflow-hidden rounded-2xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d423612.82089899003!2d78.056969!3d30.322328!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929b641fd13a5%3A0xf2f0dda3f2210a65!2sCol.%20Brown%20Cambridge%20School!5e1!3m2!1sen!2sus!4v1737722820602!5m2!1sen!2sus"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
   );
