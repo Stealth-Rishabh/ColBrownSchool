@@ -31,25 +31,59 @@ const FeeStructure = () => {
   }, [controls, inView]);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.1,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 100,
+      },
     },
   };
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 100,
+      },
+    },
+  };
+
+  const [sidebarRef, sidebarInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const [mainRef, mainInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   const bankDetails = [
     { label: "Beneficiary", value: "Col Brown Cambridge School" },
@@ -110,46 +144,58 @@ const FeeStructure = () => {
   );
 
   return (
-    <div className="min-h-screen px-0 sm:px-4 ">
+    <div className="min-h-screen px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-6 gap-8">
-        <aside className="lg:col-span-2">
-          <div className="sticky top-5 space-y-4">
-            <SidebarCard title="School Bank Account" icon={Bank}>
-              <dl className="space-y-3">
-                {bankDetails.map(({ label, value }) => (
-                  <div
-                    key={label}
-                    className="flex sm:items-center gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg"
-                  >
-                    <dt className="font-semibold text-base">{label}:</dt>
-                    <dd className="text-base">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </SidebarCard>
-            <SidebarCard
-              title="Contact Information"
-              icon={Phone}
-              className="bg-green-800 text-white"
-            >
-              <div className="flex flex-col gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg">
-                <p className="text-base">63951 14363 / 013 53535 93138</p>
-                <p className="text-base">(10:00am – 4:00pm) Monday to Saturday</p>
-              </div>
-            </SidebarCard>
+        <motion.aside
+          ref={sidebarRef}
+          initial="hidden"
+          animate={sidebarInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="lg:col-span-2"
+        >
+          <div className="sticky top-8 space-y-4">
+            <motion.div variants={cardVariants}>
+              <SidebarCard title="School Bank Account" icon={Bank}>
+                <dl className="space-y-3">
+                  {bankDetails.map(({ label, value }) => (
+                    <div
+                      key={label}
+                      className="flex sm:items-center gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg"
+                    >
+                      <dt className="font-semibold text-base">{label}:</dt>
+                      <dd className="text-base">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </SidebarCard>
+            </motion.div>
+            <motion.div variants={cardVariants}>
+              <SidebarCard
+                title="Contact Information"
+                icon={Phone}
+                className="bg-green-800 text-white"
+              >
+                <div className="flex flex-col gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg">
+                  <p className="text-base">63951 14363 / 013 53535 93138</p>
+                  <p className="text-base">
+                    (10:00am – 4:00pm) Monday to Saturday
+                  </p>
+                </div>
+              </SidebarCard>
+            </motion.div>
           </div>
-        </aside>
+        </motion.aside>
 
-        <main className="lg:col-span-4">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
-            className="space-y-8"
-          >
+        <motion.main
+          ref={mainRef}
+          initial="hidden"
+          animate={mainInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="lg:col-span-4"
+        >
+          <div className="space-y-8">
             <motion.section variants={itemVariants}>
-              <Card className="overflow-hidden bg-white hover:shadow-lg transition-shadow duration-300">
+              <Card className="overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
                 <CardHeader className="bg-green-800 text-white">
                   <CardTitle className="flex items-center">
                     <CreditCard className="mr-2 h-5 w-5" />
@@ -182,9 +228,13 @@ const FeeStructure = () => {
               </Card>
             </motion.section>
 
-            {feeStructures.map(({ title, icon: Icon, fees }) => (
-              <motion.section key={title} variants={itemVariants}>
-                <Card className="overflow-hidden bg-white hover:shadow-lg transition-shadow duration-300">
+            {feeStructures.map(({ title, icon: Icon, fees }, index) => (
+              <motion.section
+                key={title}
+                variants={itemVariants}
+                custom={index}
+              >
+                <Card className="overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
                   <CardHeader className="bg-green-800 text-white">
                     <CardTitle className="flex items-center">
                       <Icon className="mr-2 h-5 w-5" />
@@ -216,7 +266,7 @@ const FeeStructure = () => {
             ))}
 
             <motion.section variants={itemVariants}>
-              <Card className="bg-white hover:shadow-lg transition-shadow duration-300">
+              <Card className="bg-white hover:shadow-lg transition-all duration-300">
                 <CardContent>
                   <p className="text-sm text-green-800 flex  text-justify pt-5">
                     <Info className="mr-2 h-4 min-w-4 mt-2 sm:mt-1" />
@@ -227,8 +277,8 @@ const FeeStructure = () => {
                 </CardContent>
               </Card>
             </motion.section>
-          </motion.div>
-        </main>
+          </div>
+        </motion.main>
       </div>
     </div>
   );
