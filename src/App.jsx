@@ -23,6 +23,9 @@ import Dining from "./pages/boardingLife/Dining";
 import Sports from "./pages/beyondClassroom/Sports";
 import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
 import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
+// Admissions
+import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
+
 export default function App() {
   return (
     <>
@@ -64,6 +67,9 @@ export default function App() {
           <Route path="/beyond-classroom/sports" element={<Sports />} />
           <Route path="/beyond-classroom/clubs-and-societies" element={<ClubsAndSocieties />} />
           <Route path="/beyond-classroom/news-and-events" element={<NewsAndEvents />} />
+
+          {/* Admissions  */}
+          <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />
         </Routes>
         {/* Footer */}
         <Footer />
