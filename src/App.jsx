@@ -33,6 +33,12 @@ import AlmaMater from "./pages/almaMater/AlmaMater";
 // Contact
 import ContactForm from "./pages/contact/ContactForm";
 
+// Error
+import NotFound from "./pages/fallback/NotFound";
+
+
+
+
 export default function App() {
   return (
     <>
@@ -85,6 +91,7 @@ export default function App() {
 
           {/* Contact */}
           <Route path="/contact-us" element={<ContactForm />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {/* Footer */}
         <Footer />
