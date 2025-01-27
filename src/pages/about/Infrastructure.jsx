@@ -33,7 +33,7 @@ const infrastructureData = [
           description: "Quiet study spaces and group discussion rooms.",
         },
       ],
-      imageSrc: "https://example.com/library.jpg",
+      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
       imageAlt: "Col Brown School Library",
     },
   },
@@ -62,7 +62,7 @@ const infrastructureData = [
           description: "Professional support for emotional well-being.",
         },
       ],
-      imageSrc: "https://example.com/sports.jpg",
+      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
       imageAlt: "Col Brown School Sports Complex",
     },
   },
@@ -91,7 +91,7 @@ const infrastructureData = [
           description: "Spacious common areas for recreation and social interaction.",
         },
       ],
-      imageSrc: "https://example.com/dormitory.jpg",
+      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_14.jpg",
       imageAlt: "Col Brown School Dormitory",
     },
   },
@@ -119,7 +119,7 @@ const infrastructureData = [
           description: "Space for projects and experimental learning.",
         },
       ],
-      imageSrc: "https://example.com/culture.jpg",
+      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
       imageAlt: "Col Brown School Cultural Spaces",
     },
   },
@@ -200,9 +200,9 @@ const InfrastructureSection = ({
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-col items-center justify-start gap-4 lg:items-start"
               >
-                <h6 className="text-base font-normal leading-relaxed text-gray-400">
-                  Our Infrastructure
-                </h6>
+                    {/* <h6 className="text-base font-normal leading-relaxed text-gray-400">
+                    Our Infrastructure
+                    </h6> */}
                 <div className="flex flex-col items-center justify-start w-full gap-3 lg:items-start">
                   <h2 className="text-4xl font-bold leading-normal text-center text-green-800 font-manrope lg:text-start">
                     {title}
@@ -277,12 +277,12 @@ const InfrastructureSection = ({
               id % 2 === 0 ? "lg:order-2" : "lg:order-1"
             }`}
           >
-            <div className="sm:w-[564px] w-full sm:h-[546px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
+            <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="object-cover w-full h-full sm:mt-5 sm:ml-5 rounded-3xl"
-                src="https://v0.dev/placeholder.svg"
+                src={imageSrc}
                 alt={imageAlt}
               />
             </div>

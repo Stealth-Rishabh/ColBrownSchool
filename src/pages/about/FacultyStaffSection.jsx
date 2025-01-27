@@ -77,7 +77,7 @@ const FacultyStaffSection = () => {
   return (
     <div className="">
         <ImgAndBreadcrumb
-        title="Message"
+        title="Faculty & Staff"
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}

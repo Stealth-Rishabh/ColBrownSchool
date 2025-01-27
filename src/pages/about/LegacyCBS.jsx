@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/landing/bg1.webp";
+import img1 from '../../assets/about/colonel-william-brown.jpg'
 import dick from "../../assets/about/dickhouse.webp";
 import logo from "../../assets/about/colbrown.webp";
 import Container from "../../components/wrappers/Container";
@@ -45,9 +46,9 @@ const AboutUs1 = () => {
           </div>
           <div className="my-6 lg:px-4 lg:my-0">
             <div
-              className="min-h-[300px] md:h-full bg-center bg-cover"
+              className="min-h-[300px] md:h-full bg-center rounded bg-cover bg-no-repeat"
               style={{
-                backgroundImage: `url(${img})`,
+                backgroundImage: `url(${img1})`,
               }}
             ></div>
           </div>

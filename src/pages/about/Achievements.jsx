@@ -24,11 +24,11 @@ const Achievements = () => {
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
       />
-      <section className="bg-gray-100">
+      <section className="bg-gray-200">
         <Container>
           <Heading
             title="Our Achievements"
-            titleClassName="text-blue-950 lg:text-5xl text-3xl font-bold"
+            titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
             subtitle="A 98-year legacy of excellence in academics, sports, arts and community service, recognized nationally and internationally."
             subtitleClassName="text-gray-700"
             className="pt-12 mx-auto"
@@ -44,35 +44,35 @@ export default Achievements;
 
 const features = [
   {
-    img: img,
+    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_35.jpg",
     number: "Academic Excellence",
     title: "Consistently Outstanding Results",
     description:
       "Our students consistently achieve outstanding results in ICSE board examinations, with several top-ranked students each year. This recognition reflects our unwavering focus on academic rigor and a nurturing environment.",
   },
   {
-    img: dick,
+    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_40.jpg",
     number: "Sports Achievements",
     title: "Champions in Sports",
     description:
       "Col Brown Cambridge School is renowned for its strength in sports, particularly in hockey and athletics. Our teams have won multiple All India Championships and inter-school tournaments. Sportsmanship, discipline, and teamwork are cornerstones of our sports culture, and our athletes make us proud with each win.",
   },
   {
-    img: logo,
+    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_37.jpg",
     number: "Cultural & Co-Curricular Achievements",
     title: "Excellence Beyond Academics",
     description:
       "Our students shine not only in academics and sports but also in cultural and co-curricular events. The school has won awards in debating, theatre, music, and art competitions, showcasing the diverse talents of our students. These accolades highlight our dedication to nurturing creativity and self-expression.",
   },
   {
-    img: img,
+    img: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_11.jpg",
     number: "Social Impact & Community Service",
     title: "Making a Difference",
     description:
       "Community service is integral to our ethos. Our students regularly engage in initiatives that make a positive impact on society, from environmental projects to volunteer work. These efforts have earned recognition and awards from various civic organizations.",
   },
   {
-    img: dick,
+    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_38.jpg",
     number: "Recognition of Alumni",
     title: "Legacy of Excellence",
     description:
@@ -91,7 +91,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         <img
           src={feature.img}
           alt={feature.title}
-          className="object-cover w-full h-full min-h-[400px]  transition-all duration-300  grayscale hover:scale-110 hover:grayscale-0 -z-10"
+          className="object-cover w-full h-full min-h-[400px]  transition-all duration-300  sm:grayscale hover:scale-110 hover:grayscale-0 -z-10"
         />
       </div>
     </div>
