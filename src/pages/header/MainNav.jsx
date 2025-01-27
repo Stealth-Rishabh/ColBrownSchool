@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CalendarPdf from "../../assets/calendar-january-may-2024.pdf"
 import {
   ChevronDown,
   Home,
@@ -30,6 +31,8 @@ import {
   Receipt,
   FileCheck,
   HelpCircle,
+  Calendar,
+  
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -59,14 +62,19 @@ const menuItems = [
         icon: <MessageSquare className="w-4 h-4 mr-2" />,
       },
       {
+        name: "Achievements",
+        path: "/about/achievements",
+        icon: <Trophy className="w-4 h-4 mr-2" />,
+      },
+      {
         name: "Faculty & Staff",
         path: "/about/faculty-staff",
-        icon: <Target className="w-4 h-4 mr-2" />,
+        icon: <Users2 className="w-4 h-4 mr-2" />,
       },
       {
         name: "Infrastructure",
         path: "/about/infrastructure",
-        icon: <Target className="w-4 h-4 mr-2" />,
+        icon: <Building className="w-4 h-4 mr-2" />,
       },
     ],
   },
@@ -88,7 +96,11 @@ const menuItems = [
         name: "Career Counselling",
         path: "/academics/career-counselling",
         icon: <HeartHandshake className="w-4 h-4 mr-2" />,
-      },
+      },{
+        name: "Calendar",
+        pdf: CalendarPdf,
+        icon: <Calendar className="w-4 h-4 mr-2" />,
+      }
     ],
   },
  
@@ -275,7 +287,7 @@ const MainNav = () => {
                       >
                         {menu.items.map((item) => (
                           <motion.li
-                            className="p-2 "
+                            className="p-2"
                             key={item.name}
                             variants={{
                               open: {
@@ -294,24 +306,47 @@ const MainNav = () => {
                               },
                             }}
                           >
-                            <Link
-                              to={item.path}
-                              onClick={handleLinkClick}
-                              className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-sm hover:text-green-900"
-                            >
-                              <motion.div
-                                whileHover={{ x: 10 }}
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 300,
-                                  damping: 24,
-                                }}
-                                className="flex items-center"
+                            {item.pdf ? (
+                              <a 
+                                href={item.pdf} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-sm hover:text-green-900"
+                                onClick={handleLinkClick}
                               >
-                                {item.icon}
-                                {item.name}
-                              </motion.div>
-                            </Link>
+                                <motion.div
+                                  whileHover={{ x: 10 }}
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 24,
+                                  }}
+                                  className="flex items-center"
+                                >
+                                  {item.icon}
+                                  {item.name}
+                                </motion.div>
+                              </a>
+                            ) : (
+                              <Link
+                                to={item.path}
+                                onClick={handleLinkClick}
+                                className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-sm hover:text-green-900"
+                              >
+                                <motion.div
+                                  whileHover={{ x: 10 }}
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 24,
+                                  }}
+                                  className="flex items-center"
+                                >
+                                  {item.icon}
+                                  {item.name}
+                                </motion.div>
+                              </Link>
+                            )}
                           </motion.li>
                         ))}
                       </motion.ul>

@@ -6,6 +6,7 @@ import Footer from "./pages/footer/Footer";
 import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
+import Achievements from "./pages/about/Achievements";
 import Infrastructure from "./pages/about/Infrastructure";
 // import MissionVision from "./pages/about/MissionVision";
 import FacultyStaffSection from "./pages/about/FacultyStaffSection";
@@ -61,6 +62,7 @@ export default function App() {
             path="/about/message-from-management"
             element={<MessageFromManagement />}
           />
+          <Route path="/about/achievements" element={<Achievements />} />
           {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
           <Route path="/about/faculty-staff" element={<FacultyStaffSection />} />
           <Route path="/about/infrastructure" element={<Infrastructure />} />

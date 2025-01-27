@@ -1,3 +1,5 @@
+import CalendarPdf from "../../assets/calendar-january-may-2024.pdf"
+
 export const navlinks = [
   { name: "Home", path: "/" },
   {
@@ -7,7 +9,9 @@ export const navlinks = [
       { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
       { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
       { name: "Message from the Management", path: "/about/message-from-management" },
+      { name: "Achievements", path: "/about/achievements" },
       { name: "Faculty & Staff", path: "/about/faculty-staff" },
+      { name: "Infrastructure", path: "/about/infrastructure" },
     ],
   },
   {
@@ -17,6 +21,7 @@ export const navlinks = [
       { name: "Curriculum", path: "/academics/curriculum" },
       { name: "Advanced Pedagogy", path: "/academics/advanced-pedagogy" },
       { name: "Career Counselling", path: "/academics/career-counselling" },
+      { name: "Calendar", path: "/academics/calendar", pdf: CalendarPdf },
     ],
   },
   {

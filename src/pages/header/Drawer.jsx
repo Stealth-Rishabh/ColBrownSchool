@@ -37,12 +37,23 @@ const Drawer = () => {
             {item.submenu.map((subItem, subIndex) => (
               <li key={subIndex}>
                 <SheetClose asChild>
-                  <Link
-                    to={subItem.path}
-                    className="block py-2 px-4 w-fit text-sm text-slate-200 hover:bg-white/10 rounded transition-colors"
-                  >
-                    {subItem.name}
-                  </Link>
+                  {subItem.pdf ? (
+                    <a
+                      href={subItem.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer" 
+                      className="block py-2 px-4 w-fit text-sm text-slate-200 hover:bg-white/10 rounded transition-colors"
+                    >
+                      {subItem.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={subItem.path}
+                      className="block py-2 px-4 w-fit text-sm text-slate-200 hover:bg-white/10 rounded transition-colors"
+                    >
+                      {subItem.name}
+                    </Link>
+                  )}
                 </SheetClose>
               </li>
             ))}
