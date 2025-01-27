@@ -7,18 +7,18 @@ import { Home, Users, Wifi } from "lucide-react";
 const features = [
   {
     icon: Home,
-    title: "Modern Accommodation",
-    desc: "Comfortable and well-furnished rooms designed to provide a home-like environment for all our resident students.",
+    title: "Six Boarding Houses",
+    desc: "McIntosh House, India House, Ireland House, Colonel's House, Patel House and Patricia House - each providing a unique living experience.",
   },
   {
     icon: Users,
-    title: "Resident Wardens",
-    desc: "Experienced wardens provide supervision and support, ensuring a safe and nurturing living environment.",
+    title: "Dedicated House Masters",
+    desc: "Each house is under the personal supervision of a full-time resident House Master or House Mother ensuring student wellbeing.",
   },
   {
     icon: Wifi,
-    title: "Modern Amenities",
-    desc: "Access to Wi-Fi, study areas, recreation rooms, and other facilities for a comfortable boarding experience.",
+    title: "Modern Facilities",
+    desc: "Dormitories with attached western-style bathrooms, common rooms for recreation, and essential amenities for comfortable living.",
   },
 ];
 
@@ -31,9 +31,9 @@ const Hostel = () => {
   return (
     <section>
       <ImgAndBreadcrumb
-        title="Hostel Facilities"
+        title="Boarding Houses"
         imageSrc={img}
-        imageAlt="Description of the image"
+        imageAlt="Col. Brown's Boarding Houses"
         breadcrumbItems={breadcrumbItems}
       />
       <section className="bg-white pt-12">
@@ -72,12 +72,11 @@ const Feature = () => {
         <div className="flex max-w-5xl justify-center mx-auto">
           <div className="px-6 mb-12 lg:mb-16 text-center">
             <h1 className="text-3xl font-bold leading-tight md:text-5xl text-green-950 mb-4">
-              Residential Facilities
+              Our Boarding Houses
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Our hostel facilities provide a comfortable and nurturing
-              environment where students can thrive. We ensure every aspect of
-              residential life supports academic success and personal growth.
+              Six distinguished boarding houses, each with its unique character and tradition,
+              provide a nurturing home away from home for our students under the care of dedicated house masters.
             </p>
           </div>
         </div>
@@ -105,16 +104,16 @@ const Feature = () => {
 const Stats = () => {
   const stats = [
     {
-      data: "500+",
-      title: "Resident Students",
+      data: "6",
+      title: "Boarding Houses",
     },
     {
       data: "24/7",
-      title: "Warden Support",
+      title: "House Master Support",
     },
     {
       data: "100%",
-      title: "Room Occupancy",
+      title: "Modern Facilities",
     },
   ];
 
@@ -123,11 +122,11 @@ const Stats = () => {
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
           <h3 className="text-white text-3xl md:text-5xl font-semibold sm:text-4xl">
-            Hostel Life
+            Boarding Life
           </h3>
           <p className="mt-3 text-gray-300">
-            Experience comfortable living with modern amenities and
-            round-the-clock support in our residential facilities.
+            Experience the tradition of excellence in our historic boarding houses,
+            each offering modern amenities and dedicated supervision.
           </p>
         </div>
         <div className="mt-12">
@@ -157,27 +156,27 @@ const Gallery = () => {
   const images = [
     {
       src: "https://pagedone.io/asset/uploads/1713942989.png",
-      alt: "Student dormitory",
+      alt: "McIntosh House",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
       src: "https://pagedone.io/asset/uploads/1713943004.png",
-      alt: "Common room", 
+      alt: "India House", 
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
       src: "https://pagedone.io/asset/uploads/1713943024.png",
-      alt: "Study area",
+      alt: "Ireland House",
       className: "h-[277px]",
     },
     {
       src: "https://pagedone.io/asset/uploads/1713943039.png",
-      alt: "Recreation room",
+      alt: "Colonel's House",
       className: "h-[277px]",
     },
     {
       src: "https://pagedone.io/asset/uploads/1713943054.png",
-      alt: "Hostel facilities",
+      alt: "Patel House",
       className: "h-[277px]",
     },
   ];
@@ -197,10 +196,10 @@ const Gallery = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-2.5 lg:pb-16 pb-10">
           <h2 className="w-full text-center text-gray-900 text-5xl font-bold font-sans leading-normal">
-            Hostel Facilities
+            Our Houses
           </h2>
           <div className="w-full text-center text-gray-600 text-lg font-light leading-8">
-            Take a look at our modern hostel facilities and accommodation areas.
+            Explore our six distinguished boarding houses, each offering comfortable dormitories with modern amenities.
           </div>
         </div>
 

@@ -11,88 +11,26 @@ const infrastructureData = [
   {
     id: 1,
     section: {
-      title: "Residential Life",
-      subtitle: "Experience comfort and care in our boarding facilities",
-      achievements: [
-        {
-          title: "Heritage Dormitory",
-          description:
-            "A place where she will foster a SECOND FAMILY. Our Victorian-style dormitories blend heritage with modern comfort.",
-        },
-        {
-          title: "Modern Washrooms",
-          description:
-            "24/7 hot water facility with modern fittings and daily maintenance.",
-        },
-        {
-          title: "Common Rooms",
-          description:
-            "Spacious common areas for recreation and social interaction.",
-        },
-        {
-          title: "Laundry Services",
-          description:
-            "Professional laundry and maintenance services available.",
-        },
-      ],
-      imageSrc: "https://example.com/dormitory.jpg",
-      imageAlt: "Col Brown School Dormitory",
-    },
-  },
-  {
-    id: 2,
-    section: {
-      title: "Dining Experience",
-      subtitle: "Nutritious and delicious meals prepared with care",
-      achievements: [
-        {
-          title: "Modern Kitchen",
-          description:
-            "She will never be able to guess if it was her mother or our kitchen staff.",
-        },
-        {
-          title: "Dining Hall",
-          description:
-            "Spacious dining area serving nutritious vegetarian and non-vegetarian meals.",
-        },
-        {
-          title: "Dietary Care",
-          description:
-            "Special attention to dietary requirements and restrictions.",
-        },
-        {
-          title: "Hygiene Standards",
-          description:
-            "Regular health inspections and highest hygiene standards maintained.",
-        },
-      ],
-      imageSrc: "https://example.com/kitchen.jpg",
-      imageAlt: "Col Brown School Kitchen",
-    },
-  },
-  {
-    id: 3,
-    section: {
       title: "Academic Facilities",
       subtitle: "State-of-the-art learning environments",
       achievements: [
         {
-          title: "Heritage Library",
+          title: "Spacious Classrooms",
           description:
-            "Her private garden of PENMANSHIP, housing over 50,000 books.",
+            "Our classrooms are spacious, well-ventilated, and equipped with smart technology to enhance learning.",
         },
         {
-          title: "Digital Resources",
+          title: "State-of-the-Art Library",
           description:
-            "Access to online databases and digital learning materials.",
+            "The school boasts a state-of-the-art library, rich in resources, to nurture a love for reading and research.",
+        },
+        {
+          title: "Dedicated Science Labs",
+          description: "Dedicated science and computer labs are equipped with advanced tools, fostering curiosity and practical learning.",
         },
         {
           title: "Study Areas",
           description: "Quiet study spaces and group discussion rooms.",
-        },
-        {
-          title: "Research Center",
-          description: "Advanced research facilities for senior students.",
         },
       ],
       imageSrc: "https://example.com/library.jpg",
@@ -100,48 +38,20 @@ const infrastructureData = [
     },
   },
   {
-    id: 4,
+    id: 2,
     section: {
-      title: "Scientific Exploration",
-      subtitle: "Modern laboratories for practical learning",
+      title: "Sports and Recreation",
+      subtitle: "Integral to our philosophy of all-around development",
       achievements: [
         {
-          title: "Science Labs",
+          title: "Expansive Playgrounds",
           description:
-            "Where sometimes a few mistakes lead to the creation of something NEW.",
+            "We provide expansive playgrounds, courts, and facilities for games like hockey, football, basketball, cricket, karate, army drill & athletics.",
         },
         {
-          title: "Computer Lab",
-          description: "Latest technology and software for digital literacy.",
-        },
-        {
-          title: "Innovation Hub",
-          description: "Space for projects and experimental learning.",
-        },
-        {
-          title: "Smart Classrooms",
-          description: "Interactive learning with modern teaching aids.",
-        },
-      ],
-      imageSrc: "https://example.com/laboratory.jpg",
-      imageAlt: "Col Brown School Laboratory",
-    },
-  },
-  {
-    id: 5,
-    section: {
-      title: "Health & Recreation",
-      subtitle: "Complete care for physical and mental well-being",
-      achievements: [
-        {
-          title: "Medical Center",
+          title: "Indoor Game Areas",
           description:
-            "At MIS, She will never felt the absence of a mother's hand, even a single scratch is dealt with utmost care & attention.",
-        },
-        {
-          title: "Sports Complex",
-          description:
-            "A place designed with love care and compassion, where she rejuvenates herself.",
+            "Indoor game areas and a swimming pool cater to recreational and competitive activities.",
         },
         {
           title: "Fitness Center",
@@ -152,8 +62,65 @@ const infrastructureData = [
           description: "Professional support for emotional well-being.",
         },
       ],
-      imageSrc: "https://example.com/medical.jpg",
-      imageAlt: "Col Brown School Medical Center",
+      imageSrc: "https://example.com/sports.jpg",
+      imageAlt: "Col Brown School Sports Complex",
+    },
+  },
+  {
+    id: 3,
+    section: {
+      title: "Hostel and Residential Facilities",
+      subtitle: "Home-away-from-home experience",
+      achievements: [
+        {
+          title: "Comfortable Dormitories",
+          description:
+            "Our boarding facilities ensure a home-away-from-home experience.",
+        },
+        {
+          title: "Clean Dining Hall",
+          description:
+            "Comfortable dormitories, clean dining hall, and well-balanced meals contribute to the well-being of every student.",
+        },
+        {
+          title: "Laundry Services",
+          description: "Professional laundry and maintenance services available.",
+        },
+        {
+          title: "Common Rooms",
+          description: "Spacious common areas for recreation and social interaction.",
+        },
+      ],
+      imageSrc: "https://example.com/dormitory.jpg",
+      imageAlt: "Col Brown School Dormitory",
+    },
+  },
+  {
+    id: 4,
+    section: {
+      title: "Cultural and Creative Spaces",
+      subtitle: "Encouraging exploration of arts",
+      achievements: [
+        {
+          title: "Tamarind Theatre",
+          description:
+            "The Tamarind Theatre serves as a creative hub, encouraging students to explore performing and visual arts.",
+        },
+        {
+          title: "Music Rooms",
+          description: "Dedicated spaces for music education and practice.",
+        },
+        {
+          title: "Art Studios",
+          description: "Art studios that inspire creativity and artistic expression.",
+        },
+        {
+          title: "Innovation Hub",
+          description: "Space for projects and experimental learning.",
+        },
+      ],
+      imageSrc: "https://example.com/culture.jpg",
+      imageAlt: "Col Brown School Cultural Spaces",
     },
   },
 ];
@@ -315,7 +282,7 @@ const InfrastructureSection = ({
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="object-cover w-full h-full sm:mt-5 sm:ml-5 rounded-3xl"
-                src={imageSrc}
+                src="https://v0.dev/placeholder.svg"
                 alt={imageAlt}
               />
             </div>
