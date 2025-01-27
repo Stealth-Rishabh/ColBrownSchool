@@ -7,6 +7,15 @@ import { motion } from "framer-motion"
 import { Users, Stethoscope, UserCog, BookOpen } from "lucide-react"
 import Heading from "../../components/Heading"
 
+import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
+import img from "../../assets/landing/bg1.webp";
+import Container from "../../components/wrappers/Container";
+import { Button } from "../../components/ui/button";
+
+import { MessageCircle, ChevronRight } from "lucide-react";
+
+
+
 const facultyList = [
   "Mr. Joshi",
   "Mr. Hasan Hussain",
@@ -52,7 +61,12 @@ const supportStaffList = [
 
 const MotionCard = motion(Card)
 
-export default function FacultyStaffSection() {
+const FacultyStaffSection = () => {
+  const breadcrumbItems = [
+    { href: "/", label: "Home" },
+    { href: "/about/faculty-staff", label: "About" },
+    { label: "Faculty & Staff" },
+  ];
   const [activeTab, setActiveTab] = useState("faculty")
 
   const cardVariants = {
@@ -61,13 +75,20 @@ export default function FacultyStaffSection() {
   }
 
   return (
-    <div className="container mx-auto sm:px-4 px-5 ">
+    <div className="">
+        <ImgAndBreadcrumb
+        title="Message"
+        imageSrc={img}
+        imageAlt="Description of the image"
+        breadcrumbItems={breadcrumbItems}
+      />
+      <Container>
       <Heading
         title="Faculty & Staff"
         titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
         subtitle="Our leadership team is dedicated to creating an empowering environment that nurtures your potential and drives collective success."
         subtitleClassName="text-gray-700"
-        className="pt-0 mx-auto"
+        className="pt-12 mx-auto "
       />
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -160,7 +181,9 @@ export default function FacultyStaffSection() {
           ))}
         </TabsContent>
       </Tabs>
+      </Container>
     </div>
   )
 }
 
+export default FacultyStaffSection;

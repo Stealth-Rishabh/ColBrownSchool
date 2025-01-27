@@ -12,6 +12,7 @@ import InteractiveTimeline from "./InteractiveTimeline";
 import CrestAndMotto from "./CrestAndMotto";
 import AchievementsSection from "./AchievementsSection";
 import VisionLivesOn from "./VisionLivesOn";
+import MissionVision from "./MissionVision";
 
 const OurVisionaryLeaders = () => {
   const breadcrumbItems = [
@@ -29,6 +30,7 @@ const OurVisionaryLeaders = () => {
       /> */}
       <HeroBanner />
       <VisionaryCouple />
+      <MissionVision/>
       <InteractiveTimeline />
       <CrestAndMotto />
       <AchievementsSection />

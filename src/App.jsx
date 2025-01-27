@@ -6,7 +6,9 @@ import Footer from "./pages/footer/Footer";
 import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
-import MissionVision from "./pages/about/MissionVision";
+import Infrastructure from "./pages/about/Infrastructure";
+// import MissionVision from "./pages/about/MissionVision";
+import FacultyStaffSection from "./pages/about/FacultyStaffSection";
 // Academics
 import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
@@ -59,8 +61,9 @@ export default function App() {
             path="/about/message-from-management"
             element={<MessageFromManagement />}
           />
-          <Route path="/about/mission-vision" element={<MissionVision />} />
-
+          {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
+          <Route path="/about/faculty-staff" element={<FacultyStaffSection />} />
+          <Route path="/about/infrastructure" element={<Infrastructure />} />
           {/* Academics */}
           <Route path="/academics/curriculum" element={<Curriculum />} />
           <Route path="/academics/advanced-pedagogy" element={<AdvancedPedagogy />} />

@@ -20,33 +20,33 @@ import {
 import FacultyStaffSection from "./FacultyStaffSection";
 // import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 const MissionVision = () => {
-  const breadcrumbItems = [
-    { href: "/", label: "Home" },
-    { href: "/about/mission-vision", label: "About" },
-    { label: "Mission Vision" },
-  ];
+  // const breadcrumbItems = [
+  //   { href: "/", label: "Home" },
+  //   { href: "/about/mission-vision", label: "About" },
+  //   { label: "Mission Vision" },
+  // ];
   return (
     <section>
-      <ImgAndBreadcrumb
+      {/* <ImgAndBreadcrumb
         title="Mission Vision"
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
-      />
+      /> */}
       <section className=" relative z-10">
-        <Container>
+        {/* <Container> */}
           <Heading
-            title="Mission & Vision"
-            titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
-            subtitle="Our leadership team is dedicated to creating an empowering environment that nurtures your potential and drives collective success."
-            subtitleClassName="text-gray-700"
-            className="pt-12 mx-auto"
+            title="Our Mission and Vision"
+            titleClassName="text-green-950 lg:text-5xl text-3xl lg:font-semibold font-bold"
+            // subtitle="We strive to foster an inclusive environment that empowers individuals and promotes shared success."
+            subtitleClassName="text-gray-600"
+            className="pt-12 mx-auto lg:pb-10"
           />
           <LeadershipMessage />
-        </Container>
-        <div className="mx-auto bg-gray-50 py-12">
+        {/* </Container> */}
+        {/* <div className="mx-auto bg-gray-50 py-12">
           <FacultyStaffSection />
-        </div>
+        </div> */}
         {/* <InteractiveGridPattern
           className={cn(
             "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"

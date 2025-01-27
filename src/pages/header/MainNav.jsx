@@ -59,8 +59,13 @@ const menuItems = [
         icon: <MessageSquare className="w-4 h-4 mr-2" />,
       },
       {
-        name: "Mission & Vision",
-        path: "/about/mission-vision",
+        name: "Faculty & Staff",
+        path: "/about/faculty-staff",
+        icon: <Target className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Infrastructure",
+        path: "/about/infrastructure",
         icon: <Target className="w-4 h-4 mr-2" />,
       },
     ],
