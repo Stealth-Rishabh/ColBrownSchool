@@ -3,22 +3,65 @@ import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/landing/bg1.webp";
 import PropTypes from "prop-types";
 import { Utensils, Coffee, Clock } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const features = [
   {
     icon: Utensils,
-    title: "Quality Dining",
-    desc: "Our dining facilities provide nutritious and delicious meals prepared by experienced chefs.",
+    title: "Nutritious Meals",
+    desc: "Our menu is carefully crafted with emphasis on nutrition and care, featuring balanced meals prepared by experienced chefs.",
   },
   {
-    icon: Coffee, 
-    title: "Modern Facilities",
-    desc: "State-of-the-art kitchen and dining areas ensure hygienic food preparation and comfortable dining experience.",
+    icon: Coffee,
+    title: "Balanced Diet",
+    desc: "From whole grain cereals to lean proteins, we ensure a perfect blend of nutrients essential for growing students.",
   },
   {
     icon: Clock,
-    title: "Flexible Hours",
-    desc: "Multiple meal times accommodate different schedules and dietary requirements of our students.",
+    title: "Regular Meal Times",
+    desc: "Structured meal schedule including Chota Haziri, breakfast, lunch, evening snacks, and dinner to maintain healthy eating habits.",
+  },
+];
+
+const mealSchedule = [
+  {
+    time: "Early Morning (After PT)",
+    meal: "Chota Haziri",
+    items: ["Milk with brown bread and honey"],
+  },
+  {
+    time: "Breakfast",
+    meal: "Balanced Breakfast",
+    items: [
+      "Whole grain cereals",
+      "Protein rich grains and dairy",
+      "Fresh Fruit",
+    ],
+  },
+  {
+    time: "Lunch/Dinner",
+    meal: "Wholesome Main Meals",
+    items: [
+      "Lentil, rice and vegetable combination",
+      "Lean proteins like chicken, mutton and Paneer",
+      "Healthy fats from nuts and seeds",
+    ],
+  },
+  {
+    time: "Evening",
+    meal: "Nourishing Snacks",
+    items: [
+      "Fresh fruits and vegetable snacks",
+      "Whole grain sandwiches and pastries",
+    ],
   },
 ];
 
@@ -33,12 +76,24 @@ const Dining = () => {
       <ImgAndBreadcrumb
         title="Dining Facilities"
         imageSrc={img}
-        imageAlt="Description of the image"
+        imageAlt="Our Modern Dining Facilities"
         breadcrumbItems={breadcrumbItems}
       />
       <section className="bg-white pt-12">
+        {/* <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold mb-4">Nutrition and Care</h2>
+            <p className="text-gray-600">
+              At our boarding school, we prioritize student's health and
+              wellbeing through nutritious meals. Our menu is carefully crafted
+              to provide balanced nutrition while ensuring delicious taste that
+              our students love.
+            </p>
+          </div>
+        </div> */}
         <Feature />
         <Stats />
+        <MealTable />
         <Gallery />
       </section>
     </section>
@@ -75,8 +130,9 @@ const Feature = () => {
               Dining Experience
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Our dining facilities provide nutritious and delicious meals in a comfortable environment.
-              We cater to various dietary requirements and ensure the highest standards of food quality.
+              Our dining facilities provide nutritious and delicious meals in a
+              comfortable environment. We cater to various dietary requirements
+              and ensure the highest standards of food quality.
             </p>
           </div>
         </div>
@@ -101,15 +157,67 @@ const Feature = () => {
   );
 };
 
+const MealTable = () => {
+  return (
+    <div className="py-12 sm:py-20 bg-gray-100">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto text-center mb-12">
+          <h3 className="text-green-950 text-3xl  md:text-5xl font-semibold sm:text-4xl">
+            Daily Meal Schedule
+          </h3>
+          <p className="mt-3 text-gray-600">
+            Our dining facilities provide high-quality meals prepared by
+            professional chefs
+          </p>
+        </div>
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <Table>
+            {/* <TableCaption className="text-green-800 py-2">Our nutritious daily meal plan for students</TableCaption> */}
+            <TableHeader>
+              <TableRow className="bg-green-800">
+                <TableHead className="text-white">Time</TableHead>
+                <TableHead className="text-white">Meal</TableHead>
+                <TableHead className="text-white">Menu Items</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {mealSchedule.map((schedule, index) => (
+                <TableRow
+                  key={index}
+                  className={index % 2 === 0 ? "bg-green-50" : "bg-white"}
+                >
+                  <TableCell className="font-medium text-green-950">
+                    {schedule.time}
+                  </TableCell>
+                  <TableCell className="text-green-800">
+                    {schedule.meal}
+                  </TableCell>
+                  <TableCell>
+                    <ul className="list-decimal list-inside text-black">
+                      {schedule.items.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Stats = () => {
   const stats = [
     {
-      data: "3",
+      data: "5",
       title: "Meals Daily",
     },
     {
       data: "100%",
-      title: "Quality Food",
+      title: "Fresh Ingredients",
     },
     {
       data: "24/7",
@@ -125,7 +233,8 @@ const Stats = () => {
             Dining Excellence
           </h3>
           <p className="mt-3 text-gray-300">
-            Our dining facilities provide high-quality meals prepared by professional chefs
+            Our dining facilities provide high-quality meals prepared by
+            professional chefs
           </p>
         </div>
         <div className="mt-12">

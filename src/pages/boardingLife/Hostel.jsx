@@ -15,10 +15,30 @@ const features = [
     title: "Dedicated House Masters",
     desc: "Each house is under the personal supervision of a full-time resident House Master or House Mother ensuring student wellbeing.",
   },
+  // {
+  //   icon: Wifi,
+  //   title: "Modern Facilities",
+  //   desc: "Dormitories with attached western-style bathrooms, common rooms for recreation, and essential amenities for comfortable living.",
+  // },
+  {
+    icon: Home,
+    title: "Comfortable Living Spaces",
+    desc: "Our spacious and well-maintained hostel rooms are thoughtfully arranged to ensure a balance of privacy and interaction, fostering a sense of responsibility and orderliness.",
+  },
+  {
+    icon: Users,
+    title: "Nutritious Meals",
+    desc: "The school dining hall serves a variety of wholesome and nutritious meals, carefully planned to cater to growing children's dietary needs with a focus on hygiene.",
+  },
   {
     icon: Wifi,
-    title: "Modern Facilities",
-    desc: "Dormitories with attached western-style bathrooms, common rooms for recreation, and essential amenities for comfortable living.",
+    title: "Holistic Development",
+    desc: "Hostel life encourages participation in cultural, academic, and recreational activities, helping students develop well-rounded personalities.",
+  },
+  {
+    icon: Home,
+    title: "Round-the-Clock Care",
+    desc: "Our hostel staff and wardens ensure that every student feels supported and cared for, with 24/7 monitoring for a safe environment.",
   },
 ];
 
@@ -75,8 +95,9 @@ const Feature = () => {
               Our Boarding Houses
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Six distinguished boarding houses, each with its unique character and tradition,
-              provide a nurturing home away from home for our students under the care of dedicated house masters.
+              Six distinguished boarding houses, each with its unique character
+              and tradition, provide a nurturing home away from home for our
+              students under the care of dedicated house masters.
             </p>
           </div>
         </div>
@@ -125,8 +146,8 @@ const Stats = () => {
             Boarding Life
           </h3>
           <p className="mt-3 text-gray-300">
-            Experience the tradition of excellence in our historic boarding houses,
-            each offering modern amenities and dedicated supervision.
+            Experience the tradition of excellence in our historic boarding
+            houses, each offering modern amenities and dedicated supervision.
           </p>
         </div>
         <div className="mt-12">
@@ -161,7 +182,7 @@ const Gallery = () => {
     },
     {
       src: "https://pagedone.io/asset/uploads/1713943004.png",
-      alt: "India House", 
+      alt: "India House",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
@@ -199,7 +220,8 @@ const Gallery = () => {
             Our Houses
           </h2>
           <div className="w-full text-center text-gray-600 text-lg font-light leading-8">
-            Explore our six distinguished boarding houses, each offering comfortable dormitories with modern amenities.
+            Explore our six distinguished boarding houses, each offering
+            comfortable dormitories with modern amenities.
           </div>
         </div>
 

@@ -34,7 +34,7 @@ const cards = [
     imageSrc:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
     buttonText: "Explore More",
-    path: "/boarding-life/sports-facilities",
+    path: "/beyond-classroom/sports",
   },
   {
     title: "Dining Hall",
@@ -43,7 +43,7 @@ const cards = [
     imageSrc:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_13.jpg",
     buttonText: "Explore More",
-    path: "/boarding-life/dining-hall",
+    path: "/boarding-life/dining",
   },
   {
     title: "Hostel Accommodation",
@@ -52,7 +52,7 @@ const cards = [
     imageSrc:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_17.png",
     buttonText: "Explore More",
-    path: "/boarding-life/hostel-accommodation",
+    path: "/boarding-life/hostel",
   },
   {
     title: "Medical Facilities",

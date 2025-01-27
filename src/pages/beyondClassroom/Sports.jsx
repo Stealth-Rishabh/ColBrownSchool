@@ -4,10 +4,18 @@ import img from "../../assets/landing/bg1.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
-import { MessageCircle, ChevronRight } from "lucide-react";
+import {
+  MessageCircle,
+  ChevronRight,
+  Shield,
+  Medal,
+  Target,
+  Trophy,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Sports = () => {
   const breadcrumbItems = [
@@ -35,6 +43,7 @@ const Sports = () => {
           <Features />
           <Feature2 />
           <Feature3 />
+          <Feature4 />
         </Container>
       </section>
     </section>
@@ -131,7 +140,7 @@ const Features = () => {
   );
 };
 
-import { Volleyball, Trophy, Dumbbell, Target } from "lucide-react";
+import { Volleyball, Dumbbell } from "lucide-react";
 
 const features2 = [
   {
@@ -362,6 +371,113 @@ const Feature3 = () => {
             onToggle={() => handleToggle(i)}
           />
         ))}
+      </div>
+    </section>
+  );
+};
+
+const Feature4 = () => {
+  const achievements = [
+    {
+      icon: Shield,
+      title: "Team Sports",
+      items: [
+        "Hockey - Building teamwork",
+        "Football - Developing coordination", 
+        "Cricket - Strategic thinking",
+        "Basketball - Agility training",
+        "Volleyball - Team dynamics",
+        "Tennis - Hand-eye coordination",
+        "Badminton - Quick reflexes"
+      ],
+    },
+    {
+      icon: Medal, 
+      title: "Indoor Games",
+      items: [
+        "Table Tennis - Precision skills",
+        "Carom - Strategic planning",
+        "Pool Table - Focus & accuracy",
+        "Chess - Critical thinking",
+        "Indoor activities - Creative expression",
+        "Strategic games - Problem solving",
+        "Mental sports - Cognitive development"
+      ],
+    },
+    {
+      icon: Target,
+      title: "Fitness & Discipline",
+      items: [
+        "Physical Training - Core strength",
+        "Swimming - Full body workout",
+        "Yoga - Mind-body balance",
+        "Karate - Self-discipline",
+        "Gymnastics - Flexibility",
+        "Skating - Balance control",
+        "Fitness routines - Overall health"
+      ],
+    },
+    {
+      icon: Trophy,
+      title: "Key Achievements",
+      items: [
+        "District Champions - Cricket",
+        "State Level - Basketball",
+        "Gold Medals - Swimming",
+        "Regional Winners - Athletics",
+        "Tournament Victory - Chess",
+        "Championship - Table Tennis",
+        "Excellence Awards - Sports"
+      ],
+    },
+  ];
+
+  return (
+    <section className="py-16 bg-green-50 rounded-md">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-5xl font-bold text-green-950 mb-4">
+            Sports Excellence
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Our comprehensive sports program is supported by world-class
+            infrastructure, professional coaching, and regular competitive
+            events to nurture sporting talent and promote physical excellence.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="h-full bg-white hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mb-6 mx-auto">
+                    <achievement.icon className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-green-950 mb-4 text-center">
+                    {achievement.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {achievement.items.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start text-gray-600 hover:text-green-700"
+                      >
+                        <span className="w-2 h-2 mt-2 bg-green-500 rounded-full mr-2"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
