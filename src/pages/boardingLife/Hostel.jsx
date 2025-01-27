@@ -67,7 +67,7 @@ const Hostel = () => {
 
 export default Hostel;
 
-const FeaturedItem = ({ feature }) => {
+const FeaturedItem = ({ feature, index }) => {
   return (
     <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
       <div className="text-center flex flex-col items-center p-6 lg:p-12 xl:p-20">
@@ -75,7 +75,9 @@ const FeaturedItem = ({ feature }) => {
           <feature.icon />
         </div>
         <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className="text-base font-light leading-snug">{feature.desc}</p>
+        <p className={`text-base font-light leading-snug ${index === 0 ? "text-green-800 animate-pulse font-medium underline" : ""}`}>
+          {feature.desc}
+        </p>
       </div>
     </div>
   );
@@ -113,7 +115,7 @@ const Feature = () => {
           </div>
           {features.map((feature, i) => (
             <div className="col-span-6 md:col-span-3 lg:col-span-2" key={i}>
-              <FeaturedItem feature={feature} />
+              <FeaturedItem feature={feature} index={i} />
             </div>
           ))}
         </div>

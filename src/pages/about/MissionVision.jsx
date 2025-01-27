@@ -35,13 +35,13 @@ const MissionVision = () => {
       /> */}
       <section className=" relative z-10">
         {/* <Container> */}
-          <Heading
+          {/* <Heading
             title="Our Mission and Vision"
             titleClassName="text-green-950 lg:text-5xl text-3xl lg:font-semibold font-bold"
             // subtitle="We strive to foster an inclusive environment that empowers individuals and promotes shared success."
             subtitleClassName="text-gray-600"
             className="pt-12 mx-auto lg:pb-10"
-          />
+          /> */}
           <LeadershipMessage />
         {/* </Container> */}
         {/* <div className="mx-auto bg-gray-50 py-12">
