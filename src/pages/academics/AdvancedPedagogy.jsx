@@ -12,6 +12,18 @@ import {
 import Heading from "../../components/Heading"; // Adjust the import path as necessary
 import { Button } from "../../components/ui/button";
 import { Parallax } from "react-parallax";
+import { useState } from "react";
+
+import dick from "../../assets/about/dickhouse.webp";
+import logo from "../../assets/about/colbrown.webp";
+import img from "../../assets/landing/bg1.webp";
+
+
+
+import { ArrowRight } from "lucide-react";
+import { cn } from "../../lib/utils";
+import PropTypes from "prop-types";
+
 
 const AdvancedPedagogy = () => {
   const [legacyRef, legacyInView] = useInView({
@@ -347,8 +359,134 @@ const AdvancedPedagogy = () => {
           </motion.button>
         </div>
       </section>
+      <Feature />
     </div>
   );
 };
 
 export default AdvancedPedagogy;
+
+
+
+
+const features = [
+  {
+    img: img,
+    number: "Artificial Intelligence",
+    title: "AI-Powered Learning",
+    description:
+      "Artificial Intelligence leverages advanced computational technologies to personalize learning, analyze data, and streamline educational processes. At our school, AI is not just a tool but a transformative force shaping the way students learn, engage, and grow.",
+  },
+  {
+    img: dick,
+    number: "Smart Classrooms", 
+    title: "Interactive Learning Environment",
+    description:
+      "Our classrooms are equipped with interactive smart boards and multimedia systems, bringing lessons to life through engaging visuals, videos, and simulations. These tools encourage active participation and make learning more dynamic and effective.",
+  },
+  {
+    img: logo,
+    number: "STEM Integration",
+    title: "Innovation & Problem Solving",
+    description:
+      "Our school integrates Science, Technology, Engineering, and Mathematics (STEM) into the curriculum, encouraging students to develop innovative solutions to real-world problems. Robotics and coding workshops further enrich their technological knowledge.",
+  },
+  {
+    img: img,
+    number: "Computer Labs",
+    title: "Digital Skills Development",
+    description:
+      "We have modern computer labs with high-speed internet and updated software to help students develop essential digital skills. From coding to graphic design and data analysis, students gain hands-on experience that complements their academic pursuits.",
+  },
+  {
+    img: dick,
+    number: "e-Learning Platforms",
+    title: "Global Learning Access",
+    description:
+      "We provide access to e-learning tools, online resources, and educational portals that support self-paced learning and global collaboration, ensuring students stay ahead in a competitive world. At Col. Brown School, technology is not just a subject—it's a bridge to creativity, problem-solving, and global citizenship. We strive to ensure every student is equipped for a future driven by innovation.",
+  },
+];
+
+const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
+  <div className="grid grid-cols-12 mx-0 mb-6 md:mb-0">
+    <div
+      className={cn("col-span-12 md:col-span-6 relative z-20 p-0", {
+        "md:order-2": index % 2,
+      })}
+    >
+      <div className="relative z-20 p-0 overflow-hidden">
+        <img
+          src={feature.img}
+          alt={feature.title}
+          className="object-cover w-full h-full min-h-[400px]  transition-all duration-300  grayscale hover:scale-110 hover:grayscale-0 -z-10"
+        />
+      </div>
+    </div>
+    <div className="relative z-20 col-span-12 p-0 md:col-span-6">
+      <div
+        className={cn(
+          "bg-white dark:bg-slate-800 h-full flex flex-col justify-center p-6 lg:p-12"
+        )}
+      >
+        <div className="mb-6">
+          <span className="block text-4xl leading-none">{feature.number}</span>
+          <span className="block mt-1 text-base uppercase">
+            {feature.title}
+          </span>
+        </div>
+        <p
+          className={`mb-6 text-justify lg:mb-12 ${
+            isExpanded ? "line-clamp-none" : "line-clamp-3"
+          }`}
+        >
+          {feature.description}
+        </p>
+        <div>
+          <button
+            onClick={onToggle}
+            className="flex items-center text-sm font-bold uppercase bg-transparent border-0 hover:text-green-900 group"
+          >
+            {isExpanded ? "Show less" : "Learn more"}{" "}
+            <ArrowRight
+              className={cn(
+                "ml-2 group-hover:translate-x-1 transition-all duration-300",
+                isExpanded ? "group-hover:-rotate-90" : "group-hover:rotate-90"
+              )}
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+FeatureItem.propTypes = {
+  feature: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  isExpanded: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
+
+const Feature = () => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+  return (
+    <section className="sm:py-14   dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
+      <div className="container mx-auto">
+        {features.map((feature, i) => (
+          <FeatureItem
+            feature={feature}
+            index={i + 1}
+            key={i}
+            isExpanded={expandedIndex === i}
+            onToggle={() => handleToggle(i)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
