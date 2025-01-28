@@ -1,6 +1,6 @@
 import { Languages, BookOpen, GraduationCap } from "lucide-react";
 import Heading from "../../../../components/Heading";
-import img from "../../../../assets/landing/bg1.webp";
+import img from "../../../../assets/academics/Campus1.webp";
 
 const features = [
   {
