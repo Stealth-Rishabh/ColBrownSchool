@@ -34,6 +34,7 @@ export const navlinks = [
       { name: "Medical Facilities", path: "/boarding-life/medical-facilities" },
       { name: "Hostel", path: "/boarding-life/hostel" },
       { name: "Dining", path: "/boarding-life/dining" },
+      { name: "Library", path: "/boarding-life/library" },
     ],
   },
   {

@@ -22,6 +22,7 @@ import SafetySecurity from "./pages/boardingLife/SafetySecurity";
 import MedicalFacilities from "./pages/boardingLife/MedicalFacilities";
 import Hostel from "./pages/boardingLife/Hostel";
 import Dining from "./pages/boardingLife/Dining";
+import Library from "./pages/boardingLife/Library";
 // Beyond Classroom
 import Sports from "./pages/beyondClassroom/Sports";
 import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
@@ -79,7 +80,7 @@ export default function App() {
           <Route path="/boarding-life/medical-facilities" element={<MedicalFacilities />} />
           <Route path="/boarding-life/hostel" element={<Hostel />} />
           <Route path="/boarding-life/dining" element={<Dining />} />
-
+          <Route path="/boarding-life/library" element={<Library />} />
 
           {/* Beyond Classroom */}
           <Route path="/beyond-classroom/sports" element={<Sports />} />

@@ -138,6 +138,11 @@ const menuItems = [
         path: "/boarding-life/dining",
         icon: <UtensilsCrossed className="w-4 h-4 mr-2" />,
       },
+      {
+        name: "Library",
+        path: "/boarding-life/library",
+        icon: <BookOpen className="w-4 h-4 mr-2" />,
+      },
     ],
   },
   {
