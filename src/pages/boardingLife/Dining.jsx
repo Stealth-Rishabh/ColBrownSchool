@@ -1,13 +1,13 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/landing/bg1.webp";
-import dining1 from "../../assets/boarding-life/Dinning (1).jpg";
-import dining2 from "../../assets/boarding-life/Dinning (2).jpg";
-import dining3 from "../../assets/boarding-life/Dinning (3).jpg";
-import dining4 from "../../assets/boarding-life/Dinning (4).jpg";
-import dining5 from "../../assets/boarding-life/Dinning (5).jpg";
-import dining6 from "../../assets/boarding-life/Dinning (6).jpg";
-import dining7 from "../../assets/boarding-life/Dinning (7).jpg";
+import dining1 from "../../assets/boarding-life/Dinning (1).JPG";
+import dining2 from "../../assets/boarding-life/Dinning (2).JPG";
+import dining3 from "../../assets/boarding-life/Dinning (3).JPG";
+import dining4 from "../../assets/boarding-life/Dinning (4).JPG";
+import dining5 from "../../assets/boarding-life/Dinning (5).JPG";
+import dining6 from "../../assets/boarding-life/Dinning (6).JPG";
+import dining7 from "../../assets/boarding-life/Dinning (7).JPG";
 
 import PropTypes from "prop-types";
 import { Utensils, Coffee, Clock } from "lucide-react";
