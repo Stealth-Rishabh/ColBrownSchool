@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/boarding-life/Library-banner.jpg";
+import library from "../../assets/boarding-life/Library.jpg";
 import PropTypes from "prop-types";
 import { BookOpen, Laptop, Users, BookMarked } from "lucide-react";
 
@@ -91,10 +92,9 @@ const Feature = () => {
         <div className="grid grid-cols-12">
           <div className="col-span-12 text-center">
             <div
-              className="bg-top bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
+              className="bg-top bg-no-repeat bg-cover max-w-3xl mx-auto rounded-xl h-full min-h-[400px]"
               style={{
-                backgroundImage:
-                  "url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)",
+                backgroundImage: `url(${library})`,
               }}
             />
           </div>

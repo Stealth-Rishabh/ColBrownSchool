@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import hostel1 from "../../assets/boarding-life/Hostel (1).webp";
+import hostel2 from "../../assets/boarding-life/Hostel (3).webp";
+import img from "../../assets/boarding-life/Hostel (2).webp";
 import PropTypes from "prop-types";
 import { Home, Users, Wifi } from "lucide-react";
 
@@ -105,12 +107,10 @@ const Feature = () => {
         </div>
         <div className="grid grid-cols-6">
           <div className="col-span-6 text-center">
-            <div
-              className="bg-top bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
-              style={{
-                backgroundImage:
-                  "url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)",
-              }}
+            <img
+              src={hostel1}
+              alt="Hostel Building"
+              className="object-cover w-full h-full max-w-3xl mx-auto rounded-xl max-h-[400px]"
             />
           </div>
           {features.map((feature, i) => (
@@ -178,17 +178,17 @@ const Gallery = () => {
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: hostel1,
       alt: "McIntosh House",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png",
+      src: img,
       alt: "India House",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: hostel2,
       alt: "Ireland House",
       className: "h-[277px]",
     },

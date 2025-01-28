@@ -1,12 +1,14 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/boarding-life/PastoralCare-banner.jpg";
+import care1 from "../../assets/boarding-life/Care1.jpg";
+import care2 from "../../assets/boarding-life/Care2.jpg";
+import care3 from "../../assets/boarding-life/Care3.jpg";
+import care4 from "../../assets/boarding-life/Care4.jpg";
+import care5 from "../../assets/boarding-life/Care5.jpg";
 import PropTypes from "prop-types";
-import {
-  GraduationCap,
-  BookOpen,
-  PenTool,
-} from "lucide-react";
+import { GraduationCap, BookOpen, PenTool } from "lucide-react";
+import pastoralCare from "../../assets/boarding-life/Pastoral Care.jpg";
 
 const features = [
   {
@@ -15,7 +17,7 @@ const features = [
     desc: "Our pastoral care team is dedicated to providing emotional support to students, ensuring they feel safe and valued in our community.",
   },
   {
-    icon: BookOpen, 
+    icon: BookOpen,
     title: "Holistic Development",
     desc: "We focus on the holistic development of each student, promoting not just academic success but also personal growth and well-being.",
   },
@@ -79,18 +81,18 @@ const Feature = () => {
               Comprehensive Pastoral Care
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Our pastoral care program is designed to support the emotional and social well-being of our students. 
-              We strive to create a nurturing environment that fosters personal growth and resilience.
+              Our pastoral care program is designed to support the emotional and
+              social well-being of our students. We strive to create a nurturing
+              environment that fosters personal growth and resilience.
             </p>
           </div>
         </div>
         <div className="grid grid-cols-6">
           <div className="col-span-6 text-center">
             <div
-              className="bg-top bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
+              className="bg-top max-w-3xl mx-auto bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
               style={{
-                backgroundImage:
-                  "url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)",
+                backgroundImage: `url(${pastoralCare})`,
               }}
             />
           </div>
@@ -109,15 +111,15 @@ const Stats = () => {
   const stats = [
     {
       data: "50+",
-      title: "Support Programs"
+      title: "Support Programs",
     },
     {
       data: "100%",
-      title: "Dedicated Staff"
+      title: "Dedicated Staff",
     },
     {
       data: "24/7",
-      title: "Available Support"
+      title: "Available Support",
     },
   ];
 
@@ -129,19 +131,23 @@ const Stats = () => {
             Our Commitment to Well-Being
           </h3>
           <p className="mt-3 text-gray-300">
-            We are committed to providing a supportive environment where every student can thrive emotionally and socially.
+            We are committed to providing a supportive environment where every
+            student can thrive emotionally and socially.
           </p>
         </div>
         <div className="mt-12">
           <ul className="flex flex-col gap-4 items-center justify-center sm:flex-row">
-            {
-              stats.map((item, idx) => (
-                <li key={idx} className="w-full text-center bg-green-900 px-12 py-4 rounded-lg sm:w-auto">
-                  <h4 className="text-4xl text-white font-semibold">{item.data}</h4>
-                  <p className="mt-3 text-gray-300 font-medium">{item.title}</p>
-                </li>
-              ))
-            }
+            {stats.map((item, idx) => (
+              <li
+                key={idx}
+                className="w-full text-center bg-green-900 px-12 py-4 rounded-lg sm:w-auto"
+              >
+                <h4 className="text-4xl text-white font-semibold">
+                  {item.data}
+                </h4>
+                <p className="mt-3 text-gray-300 font-medium">{item.title}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -150,35 +156,35 @@ const Stats = () => {
 };
 
 const Gallery = () => {
-  const [lightboxImage, setLightboxImage] = useState('');
+  const [lightboxImage, setLightboxImage] = useState("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: care1,
       alt: "Gallery image",
-      className: "md:col-span-4 md:h-[404px] h-[277px]"
+      className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png",
+      src: care2,
       alt: "Gallery image",
-      className: "md:col-span-8 md:h-[404px] h-[277px]"
+      className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: care3,
       alt: "Gallery image",
-      className: "h-[277px]"
+      className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: care4,
       alt: "Gallery image",
-      className: "h-[277px]"
+      className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: care5,
       alt: "Gallery image",
-      className: "h-[277px]"
-    }
+      className: "h-[277px]",
+    },
   ];
 
   const openLightbox = (imageSrc) => {
@@ -188,7 +194,7 @@ const Gallery = () => {
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
-    setLightboxImage('');
+    setLightboxImage("");
   };
 
   return (
@@ -207,24 +213,30 @@ const Gallery = () => {
           <div className="flex flex-col mb-10">
             <div className="grid md:grid-cols-12 gap-8 lg:mb-11 mb-7">
               {images.slice(0, 2).map((image, index) => (
-                <div key={index} className={`${image.className} w-full rounded-3xl`}>
+                <div
+                  key={index}
+                  className={`${image.className} w-full rounded-3xl`}
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
             </div>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
               {images.slice(2).map((image, index) => (
-                <div key={index} className={`${image.className} w-full rounded-3xl`}>
+                <div
+                  key={index}
+                  className={`${image.className} w-full rounded-3xl`}
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
@@ -233,11 +245,11 @@ const Gallery = () => {
         </div>
 
         {isLightboxOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center"
             onClick={closeLightbox}
           >
-            <span 
+            <span
               className="absolute top-5 right-8 text-white text-5xl cursor-pointer"
               onClick={closeLightbox}
             >

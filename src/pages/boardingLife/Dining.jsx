@@ -1,6 +1,14 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/landing/bg1.webp";
+import dining1 from "../../assets/boarding-life/Dinning (1).jpg";
+import dining2 from "../../assets/boarding-life/Dinning (2).jpg";
+import dining3 from "../../assets/boarding-life/Dinning (3).jpg";
+import dining4 from "../../assets/boarding-life/Dinning (4).jpg";
+import dining5 from "../../assets/boarding-life/Dinning (5).jpg";
+import dining6 from "../../assets/boarding-life/Dinning (6).jpg";
+import dining7 from "../../assets/boarding-life/Dinning (7).jpg";
+
 import PropTypes from "prop-types";
 import { Utensils, Coffee, Clock } from "lucide-react";
 import {
@@ -75,7 +83,7 @@ const Dining = () => {
     <section>
       <ImgAndBreadcrumb
         title="Dining Facilities"
-        imageSrc={img}
+        imageSrc={dining3}
         imageAlt="Our Modern Dining Facilities"
         breadcrumbItems={breadcrumbItems}
       />
@@ -138,12 +146,10 @@ const Feature = () => {
         </div>
         <div className="grid grid-cols-6">
           <div className="col-span-6 text-center">
-            <div
-              className="bg-top bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
-              style={{
-                backgroundImage:
-                  "url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)",
-              }}
+            <img
+              src={dining2}
+              alt="Dining Hall"
+              className="object-cover w-full h-full max-w-3xl mx-auto rounded-xl min-h-[400px]"
             />
           </div>
           {features.map((feature, i) => (
@@ -263,27 +269,27 @@ const Gallery = () => {
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: dining4,
       alt: "Modern dining hall",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png",
+      src: dining1,
       alt: "Kitchen facilities",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: dining5,
       alt: "Food preparation",
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: dining6,
       alt: "Dining experience",
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: dining7,
       alt: "Meal service",
       className: "h-[277px]",
     },
