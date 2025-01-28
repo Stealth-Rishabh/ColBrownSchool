@@ -14,9 +14,10 @@ import { Button } from "../../components/ui/button";
 import { Parallax } from "react-parallax";
 import { useState } from "react";
 
-import dick from "../../assets/about/dickhouse.webp";
+import dick from "../../assets/academics/Smart Classrooms.jpg";
 import logo from "../../assets/about/colbrown.webp";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/academics/Artificial Intelligence.jpg";
+import campus from "../../assets/academics/Campus.webp";
 
 
 
@@ -143,7 +144,7 @@ const AdvancedPedagogy = () => {
               transition={{ duration: 0.3, delay: 0.2 }} // Reduced duration and delay
             >
               <img
-                src="https://images.unsplash.com/photo-1567342529842-69ee377cdf7d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src={campus}
                 alt="Historical image of Col Brown School"
                 className="object-cover w-full rounded-lg shadow-xl h-52"
               />

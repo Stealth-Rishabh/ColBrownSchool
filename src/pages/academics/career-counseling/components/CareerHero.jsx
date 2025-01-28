@@ -1,6 +1,6 @@
 import { Parallax } from "react-scroll-parallax";
 import { motion } from "framer-motion";
-import img from "../../../../assets/landing/bg1.webp";
+import img from "../../../../assets/academics/Campus.webp";
 export default function CareerHero() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">

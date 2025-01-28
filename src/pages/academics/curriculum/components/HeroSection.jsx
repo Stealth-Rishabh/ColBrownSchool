@@ -1,17 +1,17 @@
 "use client";
-import img from "../../../../assets/landing/bg1.webp";
+import img from "../../../../assets/academics/academic-banner.jpg";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <img
         src={img}
         alt="CBS Campus"
         className="z-0 w-full h-full object-cover absolute top-0 left-0"
       />
-      <div className="absolute inset-0 bg-green-950 bg-opacity-50 z-"></div>
-      <div className="relative z-20 text-center text-white">
+      <div className="absolute inset-0 bg-green-950 bg-opacity-50"></div>
+      <div className="relative z-10 text-center text-white">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
