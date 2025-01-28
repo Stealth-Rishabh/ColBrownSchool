@@ -181,6 +181,11 @@ const menuItems = [
         icon: <Receipt className="w-4 h-4 mr-2" />,
       },
       {
+        name: "Registration",
+        path: "/admissions/registration",
+        icon: <FileCheck className="w-4 h-4 mr-2" />,
+      },
+      {
         name: "Transfer Certificate",
         path: "/admissions/transfer-certificate",
         icon: <FileCheck className="w-4 h-4 mr-2" />,

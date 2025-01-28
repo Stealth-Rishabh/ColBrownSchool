@@ -30,6 +30,7 @@ import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 // Admissions
 import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
 import FeeDetails from "./pages/admissions/FeeDetails";
+import Registration from "./pages/admissions/Registration";
 import FAQ from "./pages/admissions/FAQ";
 
 // Alma Mater
@@ -90,6 +91,7 @@ export default function App() {
           {/* Admissions  */}
           <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />
           <Route path="/admissions/fee-details" element={<FeeDetails />} />
+          <Route path="/admissions/registration" element={<Registration />} />
           <Route path="/admissions/faqs" element={<FAQ />} />
 
           {/* Alma Mater */}
