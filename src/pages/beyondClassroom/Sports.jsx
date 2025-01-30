@@ -1,6 +1,12 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/beyond-classroom/Sports-Banner.webp";
+import Athlete from "../../assets/beyond-classroom/Athlete.webp";
+import Achievements from "../../assets/beyond-classroom/Achievement.webp";
+import Character from "../../assets/beyond-classroom/Character.webp";
+import Cricket from "../../assets/beyond-classroom/Cricket.webp";
+import Faith from "../../assets/beyond-classroom/Faith.webp";
+import Growth from "../../assets/beyond-classroom/Growth.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
@@ -240,42 +246,42 @@ const Feature2 = () => {
 
 const features3 = [
   {
-    img: img,
+    img: Cricket,
     number: "Facilities",
     title: "State-of-the-Art Facilities",
     description:
       "Our sports facilities are designed to nurture talent and promote a healthy lifestyle. Students have access to well-maintained fields, courts, and activities like football, cricket, basketball, and athletics. We also have a dedicated indoor sports area for badminton, table tennis, and other indoor activities.",
   },
   {
-    img: img,
+    img: Athlete,
     number: "Coaching",
     title: "Expert Coaching & Competitions",
     description:
       "Our expert coaches provide guidance, skill-building sessions, and help students participate in local, regional, and national tournaments. We believe in developing the complete athlete by focusing not only on skills but also on sportsmanship, teamwork, and discipline.",
   },
   {
-    img: img,
+    img: Achievements,
     number: "Legacy",
     title: "Achievements & Legacy",
     description:
       "Col. Brown School has a rich history of sporting achievements, with students regularly winning accolades in district, state, and national level events. Our legacy of sporting excellence is a testament to the dedication of our students, faculty, and sports staff.",
   },
   {
-    img: img,
+    img: Character,
     number: "Character",
     title: "Sports & Character Development",
     description:
       "Our sports program goes beyond physical development; it fosters character-building attributes like perseverance, leadership, and collaboration. Whether participating in friendly matches or intense competitions, students learn valuable life skills that will serve them well beyond the playing field.",
   },
   {
-    img: img,
+    img: Faith,
     number: "Faith",
     title: "A Foundation of Faith",
     description:
       "Our school welcomes students from diverse backgrounds, and while we emphasize respect for all religions and beliefs, our foundation is rooted in spiritual values. Through regular chapel services, prayers, and reflection sessions, we provide an environment where students can connect with their inner selves and with a higher purpose.",
   },
   {
-    img: img,
+    img: Growth,
     number: "Growth",
     title: "Holistic Growth",
     description:
@@ -303,7 +309,7 @@ const FeatureItem3 = ({ feature, index, isExpanded, onToggle }) => (
         <img
           src={feature.img}
           alt={feature.title}
-          className="object-cover w-full h-full min-h-[400px]  transition-all duration-300  grayscale hover:scale-110 hover:grayscale-0 -z-10"
+          className="object-cover w-full h-full max-h-[400px]  transition-all duration-300  grayscale hover:scale-110 hover:grayscale-0 -z-10"
         />
       </div>
     </div>
