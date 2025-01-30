@@ -17,9 +17,10 @@ import { useState } from "react";
 import dick from "../../assets/academics/Smart Classrooms.jpg";
 import logo from "../../assets/about/colbrown.webp";
 import img from "../../assets/academics/Artificial Intelligence.jpg";
-import campus from "../../assets/academics/Campus.webp";
-
-
+import campus from "../../assets/academics/Career&Teaching.webp";
+import pedagogy6 from "../../assets/academics/pedagogy (6).webp";
+import pedagogy5 from "../../assets/academics/pedagogy (5).webp";
+import elearning from "../../assets/academics/elearning.webp";
 
 import { ArrowRight } from "lucide-react";
 import { cn } from "../../lib/utils";
@@ -79,7 +80,7 @@ const AdvancedPedagogy = () => {
           objectPosition: "center",
         }}
         strength={200}
-        bgImage="https://www.colbrownschool.com/cbs/wp-content/uploads/2022/11/a-feast-of-greenry-at-cbs-2.jpg"
+        bgImage={pedagogy6}
       >
         <div className="relative h-[90vh] sm:h-[80vh]">
           {/* <img
@@ -87,7 +88,7 @@ const AdvancedPedagogy = () => {
           alt="Col Brown School Banner"
           className="object-cover w-full h-full"
         /> */}
-          <div className="absolute inset-0 flex items-center justify-center bg-green-950 bg-opacity-70">
+          <div className="absolute inset-0 flex items-center justify-center bg-green-950 bg-opacity-50">
             <div className="p-10 text-center rounded bg-black/50">
               <h1 className="mb-4 text-4xl sm:text-5xl font-bold text-white">
                 Col Brown School
@@ -393,14 +394,14 @@ const features = [
       "Our school integrates Science, Technology, Engineering, and Mathematics (STEM) into the curriculum, encouraging students to develop innovative solutions to real-world problems. Robotics and coding workshops further enrich their technological knowledge.",
   },
   {
-    img: img,
+    img: pedagogy5,
     number: "Computer Labs",
     title: "Digital Skills Development",
     description:
       "We have modern computer labs with high-speed internet and updated software to help students develop essential digital skills. From coding to graphic design and data analysis, students gain hands-on experience that complements their academic pursuits.",
   },
   {
-    img: dick,
+    img: elearning,
     number: "e-Learning Platforms",
     title: "Global Learning Access",
     description:
