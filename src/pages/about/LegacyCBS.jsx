@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/academics/Campus.webp";
 import img1 from '../../assets/about/colonel-william-brown.jpg'
 import dick from "../../assets/about/dickhouse.webp";
 import logo from "../../assets/about/colbrown.webp";

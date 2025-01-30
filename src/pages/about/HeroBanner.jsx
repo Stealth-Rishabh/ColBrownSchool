@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/Banner-Image.webp";
 const HeroBanner = () => {
   return (
     <motion.div
@@ -13,7 +13,7 @@ const HeroBanner = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${img})`,
-          filter: "sepia(0.7) brightness(0.7)",
+          filter: "sepia(0.5) brightness(0.5)",
         }}
       ></div>
       <div className="relative z-10 max-w-4xl mx-auto px-4">

@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from "../../components/ui/carousel";
 import img1 from "../../assets/landing/bg1.webp";
+import img2 from "../../assets/landing/slider-3.webp";
 // import { DownloadIcon } from "lucide-react";
 
 const SlideContent = memo(({ img }) => {
@@ -123,7 +124,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: img1,
+      image: img2,
       tagline: "Celebrate Every Special Moment",
       highlight: "Cultural festivals, workshops, and leadership opportunities.",
       highlights: [
