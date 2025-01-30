@@ -87,7 +87,7 @@ const Feature = () => {
         <div className="grid grid-cols-6">
           <div className="col-span-6 text-center">
             <div
-              className="bg-top bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
+              className="bg-top bg-no-repeat mx-auto max-w-3xl bg-cover rounded-xl h-full min-h-[400px]"
               style={{
                 backgroundImage:
                   "url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)",
