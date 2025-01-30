@@ -212,7 +212,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
@@ -224,7 +224,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}

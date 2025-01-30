@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from "../../components/ui/carousel";
 import img1 from "../../assets/landing/bg1.webp";
-import img2 from "../../assets/landing/slider-3.webp";
+import img2 from "../../assets/boarding-life/PastoralCare-banner.jpg";
 // import { DownloadIcon } from "lucide-react";
 
 const SlideContent = memo(({ img }) => {

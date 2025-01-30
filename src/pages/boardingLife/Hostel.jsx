@@ -2,6 +2,8 @@ import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import hostel1 from "../../assets/boarding-life/Hostel (1).webp";
 import hostel2 from "../../assets/boarding-life/Hostel (3).webp";
+import hostel3 from "../../assets/boarding-life/Hostel (4).webp";
+import hostel4 from "../../assets/boarding-life/Hostel (5).webp";
 import img from "../../assets/boarding-life/Hostel (2).webp";
 import PropTypes from "prop-types";
 import { Home, Users, Wifi } from "lucide-react";
@@ -193,12 +195,12 @@ const Gallery = () => {
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: hostel3,
       alt: "Colonel's House",
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: hostel4,
       alt: "Patel House",
       className: "h-[277px]",
     },
@@ -239,7 +241,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
@@ -254,7 +256,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/boarding-life/Library-banner.jpg";
+import img from "../../assets/boarding-life/Library-Banner.webp";
 import library from "../../assets/boarding-life/Library.jpg";
+import library1 from "../../assets/academics/pedagogy (2).webp";
+import library2 from "../../assets/academics/pedagogy (3).webp";
+import library3 from "../../assets/academics/pedagogy (4).webp";
+import library4 from "../../assets/academics/pedagogy (8).webp";
 import PropTypes from "prop-types";
 import { BookOpen, Laptop, Users, BookMarked } from "lucide-react";
 
@@ -12,7 +16,7 @@ const features = [
     desc: "The library houses a vast array of books across genres, including academic textbooks, reference materials, fiction, non-fiction, biographies, and periodicals.",
   },
   {
-    icon: Laptop, 
+    icon: Laptop,
     title: "Digital Resources",
     desc: "In addition to traditional books, we provide access to e-books, online journals, and digital databases to meet the demands of modern learning.",
   },
@@ -25,7 +29,7 @@ const features = [
     icon: BookMarked,
     title: "Support for Research",
     desc: "Students can engage in research activities with the help of well-organized resources and guidance from our library staff.",
-  }
+  },
 ];
 
 const Library = () => {
@@ -61,9 +65,7 @@ const FeaturedItem = ({ feature, index }) => {
           <feature.icon />
         </div>
         <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className={`text-base font-light leading-snug`}>
-          {feature.desc}
-        </p>
+        <p className={`text-base font-light leading-snug`}>{feature.desc}</p>
       </div>
     </div>
   );
@@ -71,7 +73,7 @@ const FeaturedItem = ({ feature, index }) => {
 
 FeaturedItem.propTypes = {
   feature: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
 };
 
 const Feature = () => {
@@ -84,8 +86,9 @@ const Feature = () => {
               Our Library
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Our school takes pride in exceptional library featuring a vast and rare collection of Books, journals, Magazine, Encyclopedias. 
-              Our library fosters a love for reading in students.
+              Our school takes pride in exceptional library featuring a vast and
+              rare collection of Books, journals, Magazine, Encyclopedias. Our
+              library fosters a love for reading in students.
             </p>
           </div>
         </div>
@@ -133,8 +136,9 @@ const Stats = () => {
             Library Resources
           </h3>
           <p className="mt-3 text-gray-300">
-            We actively promote reading through book clubs, storytelling sessions, and literary competitions, 
-            fostering a culture of curiosity and creativity.
+            We actively promote reading through book clubs, storytelling
+            sessions, and literary competitions, fostering a culture of
+            curiosity and creativity.
           </p>
         </div>
         <div className="mt-12">
@@ -163,27 +167,27 @@ const Gallery = () => {
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: library4,
       alt: "Main Reading Area",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png", 
+      src: img,
       alt: "Digital Resource Center",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: library2,
       alt: "Reference Section",
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: library3,
       alt: "Study Area",
       className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: library1,
       alt: "Group Discussion Zone",
       className: "h-[277px]",
     },
@@ -207,8 +211,9 @@ const Gallery = () => {
             Library Spaces
           </h2>
           <div className="w-full text-center text-gray-600 text-lg font-light leading-8">
-            The library at Col. Brown School is a space where students can explore ideas, enhance their knowledge, 
-            and cultivate the skills essential for success in academics and beyond.
+            The library at Col. Brown School is a space where students can
+            explore ideas, enhance their knowledge, and cultivate the skills
+            essential for success in academics and beyond.
           </div>
         </div>
 
@@ -224,7 +229,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
@@ -239,7 +244,7 @@ const Gallery = () => {
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
