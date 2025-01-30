@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import img from "../../assets/about/Banner-Image.webp";
+import img from "../../assets/about/Visionary-Banner.webp";
 const HeroBanner = () => {
   return (
     <motion.div
