@@ -1,12 +1,12 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/academics/Classroom-Banner.webp";
+import img1 from "../../assets/academics/pedagogy (3).webp";
+import img2 from "../../assets/academics/Classroom (1).webp";
+import img3 from "../../assets/academics/Classroom (2).webp";
+import img4 from "../../assets/academics/Classroom (3).webp";
 import PropTypes from "prop-types";
-import {
-  GraduationCap,
-  BookOpen,
-  PenTool,
-} from "lucide-react";
+import { GraduationCap, BookOpen, PenTool } from "lucide-react";
 
 const features = [
   {
@@ -15,7 +15,7 @@ const features = [
     desc: "Our classrooms are equipped with modern teaching aids and technology to ensure comprehensive learning and academic growth.",
   },
   {
-    icon: BookOpen, 
+    icon: BookOpen,
     title: "Interactive Learning",
     desc: "We promote interactive learning through smart boards and multimedia resources to enhance student engagement and understanding.",
   },
@@ -79,8 +79,10 @@ const Feature = () => {
               Modern Learning Environment
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Our classrooms are designed to provide an optimal learning environment with modern amenities and teaching aids. 
-              We focus on creating spaces that inspire creativity, encourage collaboration, and facilitate effective learning.
+              Our classrooms are designed to provide an optimal learning
+              environment with modern amenities and teaching aids. We focus on
+              creating spaces that inspire creativity, encourage collaboration,
+              and facilitate effective learning.
             </p>
           </div>
         </div>
@@ -109,15 +111,15 @@ const Stats = () => {
   const stats = [
     {
       data: "30+",
-      title: "Classrooms"
+      title: "Classrooms",
     },
     {
       data: "25",
-      title: "Students per Class"
+      title: "Students per Class",
     },
     {
       data: "100%",
-      title: "Smart Classrooms"
+      title: "Smart Classrooms",
     },
   ];
 
@@ -129,19 +131,23 @@ const Stats = () => {
             State-of-the-Art Learning Facilities
           </h3>
           <p className="mt-3 text-gray-300">
-            Our classrooms are equipped with modern technology and designed to provide an optimal learning environment for our students.
+            Our classrooms are equipped with modern technology and designed to
+            provide an optimal learning environment for our students.
           </p>
         </div>
         <div className="mt-12">
           <ul className="flex flex-col gap-4 items-center justify-center sm:flex-row">
-            {
-              stats.map((item, idx) => (
-                <li key={idx} className="w-full text-center bg-green-900 px-12 py-4 rounded-lg sm:w-auto">
-                  <h4 className="text-4xl text-white font-semibold">{item.data}</h4>
-                  <p className="mt-3 text-gray-300 font-medium">{item.title}</p>
-                </li>
-              ))
-            }
+            {stats.map((item, idx) => (
+              <li
+                key={idx}
+                className="w-full text-center bg-green-900 px-12 py-4 rounded-lg sm:w-auto"
+              >
+                <h4 className="text-4xl text-white font-semibold">
+                  {item.data}
+                </h4>
+                <p className="mt-3 text-gray-300 font-medium">{item.title}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -150,35 +156,35 @@ const Stats = () => {
 };
 
 const Gallery = () => {
-  const [lightboxImage, setLightboxImage] = useState('');
+  const [lightboxImage, setLightboxImage] = useState("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: img1,
       alt: "Gallery image",
-      className: "md:col-span-4 md:h-[404px] h-[277px]"
+      className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png",
+      src: img,
       alt: "Gallery image",
-      className: "md:col-span-8 md:h-[404px] h-[277px]"
+      className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: img2,
       alt: "Gallery image",
-      className: "h-[277px]"
+      className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: img3,
       alt: "Gallery image",
-      className: "h-[277px]"
+      className: "h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: img4,
       alt: "Gallery image",
-      className: "h-[277px]"
-    }
+      className: "h-[277px]",
+    },
   ];
 
   const openLightbox = (imageSrc) => {
@@ -188,7 +194,7 @@ const Gallery = () => {
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
-    setLightboxImage('');
+    setLightboxImage("");
   };
 
   return (
@@ -207,24 +213,30 @@ const Gallery = () => {
           <div className="flex flex-col mb-10">
             <div className="grid md:grid-cols-12 gap-8 lg:mb-11 mb-7">
               {images.slice(0, 2).map((image, index) => (
-                <div key={index} className={`${image.className} w-full rounded-3xl`}>
+                <div
+                  key={index}
+                  className={`${image.className} w-full rounded-3xl`}
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
             </div>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
               {images.slice(2).map((image, index) => (
-                <div key={index} className={`${image.className} w-full rounded-3xl`}>
+                <div
+                  key={index}
+                  className={`${image.className} w-full rounded-3xl`}
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
                     onClick={() => openLightbox(image.src)}
-                    className="gallery-image object-cover rounded-3xl hover:grayscale transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
+                    className="gallery-image object-cover rounded-3xl hover:scale-105 hover:translate-y-[-10px] transition-all duration-700 ease-in-out mx-auto w-full h-full cursor-pointer"
                   />
                 </div>
               ))}
@@ -233,11 +245,11 @@ const Gallery = () => {
         </div>
 
         {isLightboxOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center"
             onClick={closeLightbox}
           >
-            <span 
+            <span
               className="absolute top-5 right-8 text-white text-5xl cursor-pointer"
               onClick={closeLightbox}
             >
