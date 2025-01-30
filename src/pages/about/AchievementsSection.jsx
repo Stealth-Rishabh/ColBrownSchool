@@ -13,8 +13,8 @@ import edu1 from "../../assets/academics/Smart Classrooms.jpg";
 import edu2 from "../../assets/about/Education.webp";
 import mili1 from "../../assets/about/military1.webp";
 import mili2 from "../../assets/about/military2.webp";
-import sports1 from "../../assets/about/sports (1).webp";
-import sports2 from "../../assets/about/sports (2).webp";
+import sports1 from "../../assets/about/Sports (1).webp";
+import sports2 from "../../assets/about/Sports (2).webp";
 const achievementsData = {
   education: {
     content:
