@@ -1,6 +1,6 @@
 import { Languages, BookOpen, GraduationCap } from "lucide-react";
 import Heading from "../../../../components/Heading";
-import img from "../../../../assets/academics/Campus1.webp";
+import img from "../../../../assets/academics/foriegn.webp";
 
 const features = [
   {
@@ -43,7 +43,7 @@ export default function LanguagePrograms() {
           <img
             src={img}
             alt="Language Programs"
-            className="text-lg text-center h-40 sm:h-72 w-full object-cover mx-auto hover:scale-125 transition-all duration-300"
+            className="text-lg text-center h-40 sm:h-[500px] w-full object-cover mx-auto hover:scale-125 transition-all duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
