@@ -3,9 +3,9 @@ import { ArrowRightIcon } from "lucide-react";
 import img1 from "../../assets/landing/bg1.webp";
 import Container from "../../components/wrappers/Container";
 import { motion } from "framer-motion";
-import about from "../../assets/landing/about.png";
-import green from "../../assets/landing/green.jpg";
-import nineteen from "../../assets/landing/nineteen-thirties-2.webp";
+import about from "../../assets/boarding-life/Care5.jpg";
+import green from "../../assets/landing/Integrity.jpg";
+import nineteen from "../../assets/landing/respect.webp";
 
 export default function Legacy() {
   return (
@@ -109,7 +109,7 @@ export default function Legacy() {
                   <motion.img
                     src={green}
                     alt=""
-                    className="w-full rounded-2xl shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl shadow-2xl aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -126,7 +126,7 @@ export default function Legacy() {
                   <motion.img
                     src={nineteen}
                     alt=""
-                    className="w-full rounded-2xl  shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl  shadow-2xl aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -141,7 +141,7 @@ export default function Legacy() {
                   <motion.img
                     src={about}
                     alt=""
-                    className="w-full rounded-2xl brightness-75 shadow-2xl aspect-square sm:h-[300px] object-cover"
+                    className="w-full rounded-2xl shadow-2xl aspect-square sm:h-[300px] object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />

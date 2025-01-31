@@ -1,7 +1,7 @@
 import Container from "../../components/wrappers/Container";
 import { motion } from "framer-motion";
 import about from '../../assets/landing/about.png'
-import green from '../../assets/landing/green.jpg'
+import green from '../../assets/academics/Campus Location.webp'
 import nineteen from '../../assets/landing/nineteen-thirties-2.webp'
 export default function AboutCBB() {
   return (
