@@ -8,8 +8,8 @@ const VisionaryCouple = () => {
   });
 
   return (
-    <section id="visionary-couple" ref={ref} className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
+    <section id="visionary-couple" ref={ref} className="py-16 bg-yellow-50">
+      <div className="container max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -18,7 +18,7 @@ const VisionaryCouple = () => {
           >
             <h2 className="text-4xl font-semibold mb-4">The Visionary Couple</h2>
             <p className="mb-4">
-              Colonel William Brown and Mrs. Brown embarked on a remarkable
+              Colonel William Brown embarked on a remarkable
               journey in 1926, founding the Colonel Brown Cambridge School.
               Their vision of providing quality education and shaping young
               minds has left an indelible mark on generations of students.
@@ -34,23 +34,15 @@ const VisionaryCouple = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={inView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 gap-4"
+            className="mx-auto"
           >
             <div className="text-center">
               <img
                 src={img1}
                 alt="Colonel William Brown"
-                className="w-full h-auto rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+                className="w-96 h-96 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
               />
               <p className="mt-2 font-semibold text-muted-foreground">Colonel William Brown</p>
-            </div>
-            <div className="text-center">
-              <img
-                src={img1}
-                alt="Mrs. Brown"
-                className="w-full h-auto rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
-              />
-              <p className="mt-2 font-semibold text-muted-foreground">Mrs. Brown</p>
             </div>
           </motion.div>
         </div>

@@ -16,7 +16,7 @@ const CrestElement = ({ title }) => {
         src={logo}
         alt="logo"
         style={{ filter: isHovered ? "drop-shadow(0 0 5px #ffd700)" : "drop-shadow(0 0 5px #006400)" }}
-        className="transition-transform duration-300 w-full h-[200px]"
+        className="transition-transform duration-300 w-full h-[300px]"
       />
       {isHovered && (
         <motion.div
@@ -38,8 +38,8 @@ CrestElement.propTypes = {
 
 const CrestAndMotto = () => {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-yellow-50">
+      <div className="container max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-4xl text-gray-800 font-semibold mb-4">The Crest and Motto</h2>
@@ -47,7 +47,7 @@ const CrestAndMotto = () => {
               The CBS crest is a symbol of our rich heritage and values. Each
               element represents a core aspect of our institution:
             </p>
-            <ul className="list- list-inside mb-4">
+            <ul className="list- list-inside mb-4 font-medium">
               <li>The Lion: Courage and strength</li>
               <li>The Shamrock: Good fortune and the Trinity</li>
               <li>The Torch: Knowledge and enlightenment</li>

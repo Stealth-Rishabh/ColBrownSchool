@@ -43,7 +43,7 @@ const AchievementsSection = () => {
           Achievements and Legacy
         </h2>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3 bg-gray-200">
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="preIMA">Pre-IMA</TabsTrigger>
             <TabsTrigger value="sports">Sports</TabsTrigger>

@@ -3,12 +3,15 @@ import { ArrowRightIcon } from "lucide-react";
 import img1 from "../../assets/landing/bg1.webp";
 import Container from "../../components/wrappers/Container";
 import { motion } from "framer-motion";
+import about from "../../assets/landing/about.png";
+import green from "../../assets/landing/green.jpg";
+import nineteen from "../../assets/landing/nineteen-thirties-2.webp";
 
 export default function Legacy() {
   return (
     <section className="bg-green-950">
       <Container>
-        <div className="flex flex-col md:flex-row gap-8 lg:gap-24">
+        <div className="flex flex-col md:flex-row items-center gap-8 lg:gap-24">
           <motion.div
             className="flex-1 space-y-8"
             initial={{ opacity: 0, x: -50 }}
@@ -82,6 +85,71 @@ export default function Legacy() {
             </motion.div>
           </motion.div>
           <motion.div
+            className="w-full px-4 lg:w-6/12"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center -mx-3 sm:-mx-4">
+              <motion.div
+                className="w-full pr-3 sm:px-4 xl:w-1/2"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <motion.div
+                  className="py-3 sm:py-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <motion.img
+                    src={green}
+                    alt=""
+                    className="w-full rounded-2xl shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              </motion.div>
+              <motion.div
+                className="w-full px-3 sm:px-4 xl:w-1/2"
+                initial={{ opacity: 0, y: -30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <motion.div className="relative z-10 my-4">
+                  <motion.img
+                    src={nineteen}
+                    alt=""
+                    className="w-full rounded-2xl  shadow-2xl brightness-50 aspect-square sm:h-[300px] object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+                <motion.div
+                  className="py-3 sm:py-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <motion.img
+                    src={about}
+                    alt=""
+                    className="w-full rounded-2xl brightness-75 shadow-2xl aspect-square sm:h-[300px] object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
+          {/* <motion.div
             className="flex-1 bg-gray-800 rounded-lg overflow-hidden drop-shadow-lg"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +163,7 @@ export default function Legacy() {
               whileHover={{ scale: 1.5 }}
               transition={{ duration: 0.3 }}
             />
-          </motion.div>
+          </motion.div> */}
         </div>
       </Container>
     </section>
