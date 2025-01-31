@@ -60,7 +60,7 @@ const FeatureImage = () => {
             <motion.img
               src={item.image}
               alt={item.title}
-              className="object-cover w-full h-full transition-all duration-300 grayscale hover:grayscale-0 hover:scale-105"
+              className="object-cover w-full h-full transition-all duration-300 hover:scale-110"
             />
             <div
               className={`absolute  transition-all bottom-0 left-0 right-0 h-1/3 duration-300 ${
