@@ -32,14 +32,15 @@ export default function AcademicExcellence() {
               <ul className="space-y-2">
                 <li className="flex items-center">
                   <span className="w-4 h-4 bg-green-900 rounded-full mr-2"></span>
-                  <span>Preparatory School: Classes II to VII</span>
+                  <span>Junior School: Classes IV to VIII</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-4 h-4 bg-green-900 rounded-full mr-2"></span>
-                  <span>Senior School: Classes VIII to XII</span>
+                  <span>Senior School: Classes IX to XII</span>
                 </li>
               </ul>
             </div>
+
           </motion.div>
         </div>
       </div>
