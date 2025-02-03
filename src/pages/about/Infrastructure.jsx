@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
 import { MessageCircle, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const infrastructureData = [
   {
@@ -26,16 +27,19 @@ const infrastructureData = [
         },
         {
           title: "Dedicated Science Labs",
-          description: "Dedicated science and computer labs are equipped with advanced tools, fostering curiosity and practical learning.",
+          description:
+            "Dedicated science and computer labs are equipped with advanced tools, fostering curiosity and practical learning.",
         },
         {
           title: "Study Areas",
           description: "Quiet study spaces and group discussion rooms.",
         },
       ],
-      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
       imageAlt: "Col Brown School Library",
     },
+    link: "/boarding-life/classrooms",
   },
   {
     id: 2,
@@ -55,16 +59,19 @@ const infrastructureData = [
         },
         {
           title: "Fitness Center",
-          description: "Modern gym equipment and trained instructors.",
+          description:
+            "Our students engage in thrilling outdoor activities like paragliding, rock climbing, and trekking - combining adventure with nature exploration.",
         },
         {
           title: "Counseling Center",
           description: "Professional support for emotional well-being.",
         },
       ],
-      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
       imageAlt: "Col Brown School Sports Complex",
     },
+    link: "/boarding-life/sports-at-cbs",
   },
   {
     id: 3,
@@ -84,16 +91,20 @@ const infrastructureData = [
         },
         {
           title: "Laundry Services",
-          description: "Professional laundry and maintenance services available.",
+          description:
+            "Professional laundry and maintenance services available.",
         },
         {
           title: "Common Rooms",
-          description: "Spacious common areas for recreation and social interaction.",
+          description:
+            "Spacious common areas for recreation and social interaction.",
         },
       ],
-      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_14.jpg",
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_14.jpg",
       imageAlt: "Col Brown School Dormitory",
     },
+    link: "/boarding-life/hostel",
   },
   {
     id: 4,
@@ -112,16 +123,114 @@ const infrastructureData = [
         },
         {
           title: "Art Studios",
-          description: "Art studios that inspire creativity and artistic expression.",
+          description:
+            "Art studios that inspire creativity and artistic expression.",
         },
         {
           title: "Innovation Hub",
           description: "Space for projects and experimental learning.",
         },
       ],
-      imageSrc: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
       imageAlt: "Col Brown School Cultural Spaces",
     },
+    link: "/beyond-classroom/clubs-at-cbs",
+  },
+  {
+    id: 5,
+    section: {
+      title: "Library & Resource Center",
+      subtitle: "A treasure trove of knowledge",
+      achievements: [
+        {
+          title: "Extensive Collection",
+          description:
+            "Our library has lots of books for everyone - from textbooks and study materials to storybooks and magazines.",
+        },
+        {
+          title: "Quiet Study Areas",
+          description: "Quiet study areas for students to read and study.",
+        },
+
+        {
+          title: "Research Materials",
+          description:
+            "We have many books and magazines for students to learn more about the world.",
+        },
+        {
+          title: "E-Books and Digital Resources",
+          description: "Along with regular books, we offer e-books, online articles, and digital resources to support today's learning needs.",
+        },
+      ],
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+      imageAlt: "Col Brown School Cultural Spaces",
+    },
+    link: "/boarding-life/library",
+  },
+  {
+    id: 6,
+    section: {
+      title: "Dining Hall",
+      subtitle: "A culinary delight for every palate",
+      achievements: [
+        {
+          title: "Clean Dining Hall",
+          description:
+            "Our dining hall is meticulously maintained, providing a hygienic and welcoming environment for students to enjoy their meals.",
+        },
+        {
+          title: "Nourishing Excellence",
+          description:
+            "Our dining hall offers a diverse menu crafted by nutritionists, ensuring every meal supports our students' academic and athletic performance.",
+        },
+        {
+          title: "Comfortable Dining Space",
+          description:
+            "Our dining hall is a cozy place where students can relax and enjoy their meals together.",
+        },
+        {
+          title: "Healthy Food Options",
+          description:
+            "We provide healthy food choices that help students stay active and focused in their studies.",
+        },
+      ],
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_13.jpg",
+      imageAlt: "Col Brown School Cultural Spaces",
+    },
+    link: "/boarding-life/dining",
+  },
+  {
+    id: 7,
+    section: {
+      title: "Medical Facilities",
+      subtitle: "Your health is our priority",
+      achievements: [
+        {
+          title: "24/7 Medical Facility",
+          description:
+            "Our on-campus medical facility ensures 24/7 healthcare support with experienced medical professionals, prioritizing student wellbeing.",
+        },
+        {
+          title: "Emergency Response Team",
+          description: "A dedicated team ready to respond to emergencies.",
+        },
+        {
+          title: "First Aid Training",
+          description: "Regular first aid training for students and staff.",
+        },
+        {
+          title: "Regular Health Checks",
+          description: "Regular health checks for students and staff.",
+        },
+      ],
+      imageSrc:
+        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_9.jpg",
+      imageAlt: "Col Brown School Cultural Spaces",
+    },
+    link: "/boarding-life/medical-facilities",
   },
 ];
 
@@ -154,6 +263,7 @@ const Infrastructure = () => {
                 key={item.id}
                 {...item.section}
                 id={item.id}
+                link={item.link}
               />
             ))}
           </div>
@@ -172,6 +282,7 @@ const InfrastructureSection = ({
   imageSrc,
   imageAlt,
   id,
+  link,
 }) => {
   return (
     <motion.section
@@ -200,7 +311,7 @@ const InfrastructureSection = ({
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-col items-center justify-start gap-4 lg:items-start"
               >
-                    {/* <h6 className="text-base font-normal leading-relaxed text-gray-400">
+                {/* <h6 className="text-base font-normal leading-relaxed text-gray-400">
                     Our Infrastructure
                     </h6> */}
                 <div className="flex flex-col items-center justify-start w-full gap-3 lg:items-start">
@@ -222,7 +333,7 @@ const InfrastructureSection = ({
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                      className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex"
+                      className="w-full h-full p-3.5 rounded-xl border-2 bg-yellow-50 border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex"
                     >
                       <h4 className="text-2xl font-bold leading-9 text-gray-900 font-manrope">
                         {achievement.title}
@@ -241,7 +352,7 @@ const InfrastructureSection = ({
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                      className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex"
+                      className="w-full p-3.5 rounded-xl bg-yellow-50 border-2 border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex"
                     >
                       <h4 className="text-2xl font-bold leading-9 text-gray-900 font-manrope">
                         {achievement.title}
@@ -254,18 +365,20 @@ const InfrastructureSection = ({
                 </div>
               </div>
             </div>
-            <motion.button
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="sm:w-fit w-full group px-3.5 py-2 bg-green-50 hover:bg-green-100 rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] transition-all duration-700 ease-in-out justify-center items-center flex"
-            >
-              <span className="px-1.5 text-green-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">
-                Read More
-              </span>
-              <ChevronRight className="w-4 h-4 mt-1 text-green-600" />
-            </motion.button>
+            <Link to={link}>
+              <motion.button
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="sm:w-fit w-full group px-3.5 py-2 bg-green-50 hover:bg-green-100 rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] transition-all duration-700 ease-in-out justify-center items-center flex"
+              >
+                <span className="px-1.5 text-green-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">
+                  Read More
+                </span>
+                <ChevronRight className="w-4 h-4 mt-1 text-green-600" />
+              </motion.button>
+            </Link>
           </motion.div>
 
           <motion.div
