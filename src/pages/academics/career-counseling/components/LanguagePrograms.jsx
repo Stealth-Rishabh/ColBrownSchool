@@ -6,12 +6,12 @@ const features = [
   {
     icon: Languages,
     title: "Multiple Language Options",
-    desc: "We offer French, German, and Sanskrit as part of our three-language formula, following the 'Common European Framework of Reference' from level A1 to C2.",
+    desc: "We offer French, Urdu, Sanskrit, and Punjabi as part of our three-language formula, following the 'Common European Framework of Reference' from level A1 to C2.",
   },
   {
     icon: BookOpen,
     title: "Flexible Learning Schedule",
-    desc: "Classes are held on weekends and free evenings, fostering a 'wanting to learn' environment. Certificates are issued by the Ministry of Education of each respective country.",
+    desc: "Classes are held on weekends and free evenings, fostering a 'wanting to learn' environment.",
   },
   {
     icon: GraduationCap,

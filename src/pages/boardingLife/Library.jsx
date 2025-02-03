@@ -15,11 +15,11 @@ const features = [
     title: "Extensive Collection",
     desc: "The library houses a vast array of books across genres, including academic textbooks, reference materials, fiction, non-fiction, biographies, and periodicals.",
   },
-  {
-    icon: Laptop,
-    title: "Digital Resources",
-    desc: "In addition to traditional books, we provide access to e-books, online journals, and digital databases to meet the demands of modern learning.",
-  },
+  // {
+  //   icon: Laptop,
+  //   title: "Digital Resources",
+  //   desc: "In addition to traditional books, we provide access to e-books, online journals, and digital databases to meet the demands of modern learning.",
+  // },
   {
     icon: Users,
     title: "Comfortable Environment",
@@ -57,15 +57,15 @@ const Library = () => {
 
 export default Library;
 
-const FeaturedItem = ({ feature, index }) => {
+const FeaturedItem = ({ feature }) => {
   return (
     <div className="col-span-6 md:col-span-3 lg:col-span-2 hover:scale-105 hover:translate-y-2 transition-all duration-300">
-      <div className="text-center flex flex-col items-center p-6 lg:p-12 !py-7 bg-green-50 mx-5 rounded-lg">
-        <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 rounded-lg text-lg mb-6">
+      <div className="text-center flex flex-col items-center p-6 lg:p-12 !py-7 bg-green-50 mx-5 rounded-lg h-full">
+        <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 max-h-12 rounded-lg text-lg mb-6 flex-grow">
           <feature.icon />
         </div>
         <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className={`text-base font-light leading-snug`}>{feature.desc}</p>
+        <p className="text-base font-normal leading-snug">{feature.desc}</p>
       </div>
     </div>
   );
@@ -73,7 +73,6 @@ const FeaturedItem = ({ feature, index }) => {
 
 FeaturedItem.propTypes = {
   feature: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 const Feature = () => {
@@ -81,7 +80,7 @@ const Feature = () => {
     <section className="py-12 md:pt-20 bg-dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
       <div className="container px-4 mx-auto">
         <div className="flex max-w-5xl justify-center mx-auto">
-          <div className="px-6 mb-12 lg:mb-16 text-center">
+        <div className="px-6 mb-12 lg:mb-16 text-center">
             <h1 className="text-3xl font-bold leading-tight md:text-5xl text-green-950 mb-4">
               Our Library
             </h1>
@@ -94,16 +93,16 @@ const Feature = () => {
         </div>
         <div className="max-w-7xl mx-auto grid grid-cols-6 sm:gap-y-16 gap-y-8">
           <div className="col-span-6 text-center">
-            <div
-              className="bg-top bg-no-repeat bg-cover max-w-3xl mx-auto rounded-xl h-full min-h-[400px]"
-              style={{
-                backgroundImage: `url(${library})`,
-              }}
+            <img
+              src={library}
+              alt="Library"
+              className="object-cover w-full h-full max-w-3xl mx-auto rounded-xl max-h-[400px]"
             />
+
           </div>
           {features.map((feature, i) => (
-            <div className="col-span-12 md:col-span-6 lg:col-span-3" key={i}>
-              <FeaturedItem feature={feature} index={i} />
+            <div className="col-span-6 md:col-span-3 lg:col-span-2 flex" key={i}>
+              <FeaturedItem feature={feature} />
             </div>
           ))}
         </div>
@@ -119,8 +118,8 @@ const Stats = () => {
       title: "Books Collection",
     },
     {
-      data: "24/7",
-      title: "Digital Access",
+      data: "School timing",
+      title: "Library Hours",
     },
     {
       data: "100%",

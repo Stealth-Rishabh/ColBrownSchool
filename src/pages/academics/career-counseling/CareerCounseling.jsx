@@ -16,7 +16,7 @@ export default function CareerCounseling() {
           <CareerHero />
           <Services />
           <Workshops />
-          <UniversityVisits />
+          {/* <UniversityVisits /> */}
           <LanguagePrograms />
           <ContactCTA />
         </main>

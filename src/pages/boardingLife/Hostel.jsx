@@ -11,8 +11,8 @@ import { Home, Users, Wifi } from "lucide-react";
 const features = [
   {
     icon: Home,
-    title: "Six Boarding Houses",
-    desc: "McIntosh House, India House, Ireland House, Colonel's House, Patel House and Patricia House - each providing a unique living experience.",
+    title: "Seven Boarding Houses",
+    desc: "McIntosh House, India House, Ireland House, Colonel's House, Longford House, Patel House and Patricia House - each providing a unique living experience.",
   },
   {
     icon: Users,
@@ -73,15 +73,17 @@ export default Hostel;
 
 const FeaturedItem = ({ feature, index }) => {
   return (
-    <div className="col-span-6 md:col-span-3 lg:col-span-2 hover:scale-105 hover:translate-y-2 transition-all duration-300">
-      <div className="text-center flex flex-col items-center p-6 lg:p-12 !py-7 bg-green-50 mx-5 rounded-lg">
-        <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 rounded-lg text-lg mb-6">
-          <feature.icon />
+    <div className="col-span-6 md:col-span-3 lg:col-span-2 h-full">
+      <div className="text-center flex flex-col h-full bg-green-50 mx-5 rounded-lg hover:scale-105 hover:translate-y-2 transition-all duration-300">
+        <div className="flex flex-col items-center p-6 lg:p-12 !py-7">
+          <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 rounded-lg text-lg mb-6">
+            <feature.icon />
+          </div>
+          <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
+          <p className={`text-base font-normal leading-snug ${index === 0 ? 'text-green-700 text-lg' : ''}`}>
+            {feature.desc}
+          </p>
         </div>
-        <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className={`text-base font-normal leading-snug`}>
-          {feature.desc}
-        </p>
       </div>
     </div>
   );
@@ -89,6 +91,7 @@ const FeaturedItem = ({ feature, index }) => {
 
 FeaturedItem.propTypes = {
   feature: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 const Feature = () => {
@@ -115,11 +118,11 @@ const Feature = () => {
               className="object-cover w-full h-full max-w-3xl mx-auto rounded-xl max-h-[400px]"
             />
           </div>
-          {features.map((feature, i) => (
-            <div className="col-span-6 md:col-span-3 lg:col-span-2" key={i}>
-              <FeaturedItem feature={feature} index={i} />
-            </div>
-          ))}
+          <div className="col-span-6 grid grid-cols-6 gap-y-8 sm:gap-y-16">
+            {features.map((feature, i) => (
+              <FeaturedItem feature={feature} index={i} key={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -129,7 +132,7 @@ const Feature = () => {
 const Stats = () => {
   const stats = [
     {
-      data: "6",
+      data: "7",
       title: "Boarding Houses",
     },
     {

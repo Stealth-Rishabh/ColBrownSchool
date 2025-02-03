@@ -10,7 +10,7 @@ const workshops = [
   { title: "Subject Streams and their Possibilities", icon: Compass },
   { title: "Parent Connect - Importance of parental support", icon: Heart },
   { title: "Overview of Careers and Career Pathways", icon: Users },
-  { title: "Applying abroad and in India", icon: GraduationCap },
+  // { title: "Applying abroad and in India", icon: GraduationCap },
 ];
 
 export default function Workshops() {
@@ -23,7 +23,7 @@ export default function Workshops() {
           className="fadeIn lg:pb-10"
         />
         {/* <Parallax translateY={[-10, 10]}> */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {workshops.map((workshop, index) => {
               const Icon = workshop.icon;
               return (
