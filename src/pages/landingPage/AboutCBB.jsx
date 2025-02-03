@@ -1,8 +1,9 @@
 import Container from "../../components/wrappers/Container";
 import { motion } from "framer-motion";
-import about from '../../assets/landing/about.png'
-import green from '../../assets/academics/Campus Location.webp'
-import nineteen from '../../assets/landing/nineteen-thirties-2.webp'
+import about from "../../assets/landing/about.png";
+import green from "../../assets/academics/Campus Location.webp";
+import nineteen from "../../assets/landing/nineteen-thirties-2.webp";
+import { Link } from "react-router-dom";
 export default function AboutCBB() {
   return (
     <>
@@ -116,9 +117,9 @@ export default function AboutCBB() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 Colonel Brown Cambridge School was established in March 1926 by
-                Col. William Brown for Indian boys. It is an
-                English medium residential school, welcoming all boys regardless
-                of caste, creed, or social status.
+                Col. William Brown for Indian boys. It is an English medium
+                residential school, welcoming all boys regardless of caste,
+                creed, or social status.
               </motion.p>
               <motion.p
                 className="mb-8 text-lg text-body-color dark:text-dark-6 text-justify"
@@ -132,17 +133,18 @@ export default function AboutCBB() {
                 schools in Dehradun. It attracts students not only from across
                 India but also from around the world.
               </motion.p>
-              <motion.a
-                href="javascript:void(0)"
-                className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-              >
-                Get Started
-              </motion.a>
+              <Link to="/about/our-visionary-leaders" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <motion.a
+                  className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  Get Started
+                </motion.a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

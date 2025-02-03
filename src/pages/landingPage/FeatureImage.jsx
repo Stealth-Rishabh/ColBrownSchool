@@ -6,31 +6,32 @@ import coCurricular from "../../assets/landing/co-curricular.webp";
 import { Button } from "../../components/ui/button";
 import { motion } from "framer-motion";
 import { School, BookOpen, Volleyball, ClipboardList } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FeatureImage = () => {
   const data = [
     {
       title: "Boarding Life",
       image: boarding,
-      path: "/boarding",
+      path: "/boarding-life/overview",
       icon: <School className="w-6 h-6 text-white" />,
     },
     {
       title: "Academics",
       image: academics,
-      path: "/academic",
+      path: "/academics/curriculum",
       icon: <BookOpen className="w-6 h-6 text-white" />,
     },
     {
       title: "Sports",
       image: sports,
-      path: "/sports",
+      path: "/boarding-life/sports-at-cbs",
       icon: <Volleyball className="w-6 h-6 text-white" />,
     },
     {
       title: "Co-Curricular",
       image: coCurricular,
-      path: "/co-curricular",
+      path: "/beyond-classroom/clubs-at-cbs",
       icon: <ClipboardList className="w-6 h-6 text-white" />,
     },
   ];
@@ -84,11 +85,13 @@ const FeatureImage = () => {
                 {item.icon} {item.title}
               </p>
 
-              <Button className="group">
-                <p className="text-base font-medium text-white sm:text-lg sm:font-bold">
-                  Learn More
-                </p>
-              </Button>
+              <Link to={item.path} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <Button className="group">
+                  <p className="text-base font-medium text-white sm:text-lg sm:font-bold">
+                    Learn More
+                  </p>
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         ))}

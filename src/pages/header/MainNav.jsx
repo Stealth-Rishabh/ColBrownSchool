@@ -193,11 +193,11 @@ const menuItems = [
         path: "/admissions/registration",
         icon: <FileCheck className="w-4 h-4 mr-2" />,
       },
-      {
-        name: "Transfer Certificate",
-        path: "/admissions/transfer-certificate",
-        icon: <FileCheck className="w-4 h-4 mr-2" />,
-      },
+      // {
+      //   name: "Transfer Certificate",
+      //   path: "/admissions/transfer-certificate",
+      //   icon: <FileCheck className="w-4 h-4 mr-2" />,
+      // },
       {
         name: "FAQs",
         path: "/admissions/faqs",

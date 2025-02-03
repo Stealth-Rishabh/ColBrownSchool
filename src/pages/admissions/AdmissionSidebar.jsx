@@ -15,12 +15,12 @@ const AdmissionSidebar = () => {
       description: "Entrance examination for all applicants from grade VI to XII.",
       isNew: false,
     },
-    {
-      title: "Interview Schedule",
-      date: "2023-09-25",
-      description: "Face-to-face interviews for shortlisted candidates.",
-      isNew: true,
-    },
+    // {
+    //   title: "Interview Schedule",
+    //   date: "2023-09-25",
+    //   description: "Face-to-face interviews for shortlisted candidates.",
+    //   isNew: true,
+    // },
     {
       title: "Results Declaration",
       date: "2023-10-10",

@@ -4,20 +4,17 @@ import { Book, Users, GraduationCap, Bell } from "lucide-react"
 const AdmissionsCriteria = () => {
   const criteria = [
     {
-      level: "Primary (I-V)",
-      icon: Book,
-      requirements: ["Age 5-10 years", "Basic reading and writing skills", "Interview with parents"],
-    },
-    {
-      level: "Secondary (VI-X)",
+      level: "Junior School (IV-VIII)",
       icon: Users,
       requirements: ["Age 11-15 years", "Passing grades in previous class", "Entrance exam", "Interview"],
     },
+
     {
-      level: "High School (XI-XII)",
+      level: "Senior School (IX-XII)",
       icon: GraduationCap,
       requirements: ["Age 16-18 years", "Minimum 60% in Class X", "Entrance exam", "Interview", "Subject selection"],
     },
+
   ]
 
   return (

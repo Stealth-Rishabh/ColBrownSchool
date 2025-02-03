@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import about from "../../assets/boarding-life/Care5.jpg";
 import green from "../../assets/landing/Integrity.jpg";
 import nineteen from "../../assets/landing/respect.webp";
+import { Link } from "react-router-dom";
 
 export default function Legacy() {
   return (
@@ -77,11 +78,14 @@ export default function Legacy() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <Button variant="outline">Learn More</Button>
-              <Button className="group border-white border">
+              <Link to="/about/legacy-of-cbs" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <Button variant="outline">Learn More</Button>
+              </Link>
+              {/* <Button className="group border-white border">
                 Sign Up{" "}
                 <ArrowRightIcon className="w-4 h-4 mt-1 group-hover:ml-2 duration-300 transition-all" />
-              </Button>
+              </Button> */}
+
             </motion.div>
           </motion.div>
           <motion.div
