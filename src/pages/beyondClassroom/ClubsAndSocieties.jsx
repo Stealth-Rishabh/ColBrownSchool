@@ -10,7 +10,7 @@ import { clubsData } from "./clubsData";
 import {
   Calendar,
   ImageIcon,
-  Laptop,
+  Speaker,
   Music,
   Coins,
   Users,
@@ -20,6 +20,10 @@ import {
   Globe,
   BookOpen,
   Trophy,
+  Drama,
+  Clapperboard,
+  PartyPopper,
+  Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,7 +62,6 @@ const ClubsAndSocieties = () => {
       label: "Beyond Classroom",
     },
     { label: "Clubs At CBS" },
-
   ];
   return (
     <div className="relative min-h-screen">
@@ -67,14 +70,13 @@ const ClubsAndSocieties = () => {
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
-
       />
       <Container className="container grid ">
         <Heading
           title="Clubs At CBS"
           titleClassName="text-green-950  lg:text-5xl"
           subtitleClassName="text-gray-500  m-0 lg:text-lg lg:font-normal lg:max-w-full lg:"
-          subtitle="Discover the vibrant clubs at IIM, where students can explore their interests, develop new skills, and connect with peers."
+          subtitle="Discover the vibrant clubs at CBS, where students can explore their interests, develop new skills, and connect with peers."
           className="pt-12"
 
         />
@@ -90,30 +92,22 @@ const ClubsAndSocieties = () => {
 export default ClubsAndSocieties;
 const clubs = [
   "All Clubs",
-  "IT Club",
-  "Maestros Club",
-  "Finance Club",
-  "HR Club",
-  "Operations Club",
-  "E-Cell Club",
+  "DJ Night Club",
+  "Expression Club",
+  "Media Club",
+  "Music Club",
+  "Party Club",
   "Soft Skills Club",
-  "Global Voices Club",
-  "Research Club",
-  "Sports Club",
 ];
 
 const clubIcons = {
   "All Clubs": Calendar,
-  "IT Club": Laptop,
-  "Maestros Club": Music,
-  "Finance Club": Coins,
-  "HR Club": Users,
-  "Operations Club": Box,
-  "E-Cell Club": Lightbulb,
-  "Soft Skills Club": MessageCircle,
-  "Global Voices Club": Globe,
-  "Research Club": BookOpen,
-  "Sports Club": Trophy,
+  "DJ Night Club": Speaker,
+  "Expression Club": Drama,
+  "Media Club": Clapperboard,
+  "Music Club": Music,
+  "Party Club": PartyPopper,
+  "Soft Skills Club": Handshake,
 };
 
 function EventGallery() {
@@ -136,24 +130,24 @@ function EventGallery() {
             Clubs at CBS
           </h3>
           <div className="flex flex-col gap-4 p-4">
-          {clubs.map((club) => {
-            const Icon = clubIcons[club];
-            return (
-              <div
-                key={club}
-                onClick={() => {
-                  setSelectedClub(club);
-                  setSelectedEvent(null);
-                }}
-                className={`w-full flex items-center gap-2 text-left text-sm cursor-pointer hover:text-green-950 hover:bg-slate-50 duration-300 transition-all rounded-md p-2 ${
-                  club === selectedClub
-                    ? "bg-slate-50 text-green-950 font-bold"
-                    : " text-white font-medium"
-                }`}
-              >
-                <Icon className="w-4 h-4" /> {club}
-              </div>
-            );
+            {clubs.map((club) => {
+              const Icon = clubIcons[club];
+              return (
+                <div
+                  key={club}
+                  onClick={() => {
+                    setSelectedClub(club);
+                    setSelectedEvent(null);
+                  }}
+                  className={`w-full flex items-center gap-2 text-left text-sm cursor-pointer hover:text-green-950 hover:bg-slate-50 duration-300 transition-all rounded-md p-2 ${
+                    club === selectedClub
+                      ? "bg-slate-50 text-green-950 font-bold"
+                      : " text-white font-medium"
+                  }`}
+                >
+                  <Icon className="w-4 h-4" /> {club}
+                </div>
+              );
             })}
           </div>
         </div>
