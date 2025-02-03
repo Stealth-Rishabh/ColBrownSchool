@@ -62,7 +62,7 @@ const AboutUs1 = () => {
               Colonel Brown Cambridge School for Indian Boys is an English
               Medium Residential School and is open to all boys irrespective of
               caste, creed or social status. The school was founded in the year
-              1926 by Col. and Mrs. W.Brown, for Indian boys.
+              1926 by Col. William Brown, for Indian boys.
             </p>
             <p className="mt-6 mb-0 text-base leading-7 text-justify opacity-70">
               Affiliated to the ICSE Board of Education, the school ranks high

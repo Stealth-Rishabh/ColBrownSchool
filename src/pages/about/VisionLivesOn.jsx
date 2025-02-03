@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Parallax } from "react-parallax";
 import img from "../../assets/landing/bg1.webp";
+import { Link } from "react-router-dom";
 const VisionLivesOn = () => {
   return (
     <Parallax
@@ -24,14 +25,9 @@ const VisionLivesOn = () => {
           adapting to modern educational needs while preserving its rich
           heritage.
         </p>
-        <Button
-          size="lg"
-          onClick={() => {
-            // Add logic to navigate to the modern CBS page
-          }}
-        >
-          Discover CBS Today
-        </Button>
+        <Link to="/contact-us" onClick={() => window.scrollTo(0, 0)}>
+          <Button size="lg">Discover CBS Today</Button>
+        </Link>
       </motion.div>
     </Parallax>
   );

@@ -116,7 +116,7 @@ export default function AboutCBB() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 Colonel Brown Cambridge School was established in March 1926 by
-                Col. William Brown and Mrs. Brown for Indian boys. It is an
+                Col. William Brown for Indian boys. It is an
                 English medium residential school, welcoming all boys regardless
                 of caste, creed, or social status.
               </motion.p>
