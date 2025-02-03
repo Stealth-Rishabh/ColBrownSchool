@@ -73,13 +73,13 @@ export default Hostel;
 
 const FeaturedItem = ({ feature, index }) => {
   return (
-    <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-      <div className="text-center flex flex-col items-center p-6 lg:p-12 xl:p-20">
+    <div className="col-span-6 md:col-span-3 lg:col-span-2 hover:scale-105 hover:translate-y-2 transition-all duration-300">
+      <div className="text-center flex flex-col items-center p-6 lg:p-12 !py-7 bg-green-50 mx-5 rounded-lg">
         <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 rounded-lg text-lg mb-6">
           <feature.icon />
         </div>
         <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className={`text-base font-light leading-snug ${index === 0 ? "text-green-800 animate-pulse font-medium underline" : ""}`}>
+        <p className={`text-base font-normal leading-snug`}>
           {feature.desc}
         </p>
       </div>
@@ -107,7 +107,7 @@ const Feature = () => {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-6 sm:gap-y-16 gap-y-8">
           <div className="col-span-6 text-center">
             <img
               src={hostel1}

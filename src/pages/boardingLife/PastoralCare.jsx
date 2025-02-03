@@ -55,13 +55,13 @@ export default PastoralCare;
 
 const FeaturedItem = ({ feature }) => {
   return (
-    <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-      <div className="text-center flex flex-col items-center p-6 lg:p-12 xl:p-20">
+    <div className="w-full h-full">
+      <div className="text-center flex flex-col items-center p-6 lg:p-12 !py-7 bg-green-50 rounded-lg h-full">
         <div className="flex justify-center items-center bg-green-800 text-white w-12 h-12 rounded-lg text-lg mb-6">
           <feature.icon />
         </div>
         <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-        <p className="text-base font-light leading-snug">{feature.desc}</p>
+        <p className="text-base font-normal leading-snug">{feature.desc}</p>
       </div>
     </div>
   );
@@ -73,11 +73,11 @@ FeaturedItem.propTypes = {
 
 const Feature = () => {
   return (
-    <section className="py-12 md:pt-20 bg-dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
+    <section className="py-16 md:py-24 bg-dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
       <div className="container px-4 mx-auto">
         <div className="flex max-w-5xl justify-center mx-auto">
-          <div className="px-6 mb-12 lg:mb-16 text-center">
-            <h1 className="text-3xl font-bold leading-tight md:text-5xl text-green-950 mb-4">
+          <div className="px-6 mb-16 lg:mb-20 text-center">
+            <h1 className="text-3xl font-bold leading-tight md:text-5xl text-green-950 mb-6">
               Comprehensive Pastoral Care
             </h1>
             <p className="text-lg opacity-80 leading-7">
@@ -87,20 +87,20 @@ const Feature = () => {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-6">
-          <div className="col-span-6 text-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="aspect-[16/9] max-w-3xl mx-auto mb-20">
             <div
-              className="bg-top max-w-3xl mx-auto bg-no-repeat bg-cover rounded-xl h-full min-h-[400px]"
+              className="w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
               style={{
                 backgroundImage: `url(${pastoralCare})`,
               }}
             />
           </div>
-          {features.map((feature, i) => (
-            <div className="col-span-6 md:col-span-3 lg:col-span-2" key={i}>
-              <FeaturedItem feature={feature} />
-            </div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+            {features.map((feature, i) => (
+              <FeaturedItem key={i} feature={feature} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
