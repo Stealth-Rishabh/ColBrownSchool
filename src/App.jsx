@@ -84,8 +84,8 @@ export default function App() {
           <Route path="/boarding-life/library" element={<Library />} />
 
           {/* Beyond Classroom */}
-          <Route path="/beyond-classroom/sports" element={<Sports />} />
-          <Route path="/beyond-classroom/clubs-and-societies" element={<ClubsAndSocieties />} />
+          <Route path="/beyond-classroom/adventure-and-excurssion" element={<Sports />} />
+          <Route path="/beyond-classroom/clubs-at-cbs" element={<ClubsAndSocieties />} />
           <Route path="/beyond-classroom/news-and-events" element={<NewsAndEvents />} />
 
           {/* Admissions  */}

@@ -54,26 +54,29 @@ const ClubsAndSocieties = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
     {
-      href: "/beyond-classroom/clubs-and-societies",
+      href: "/beyond-classroom/clubs-at-cbs",
       label: "Beyond Classroom",
     },
-    { label: "Clubs And Societies" },
+    { label: "Clubs At CBS" },
+
   ];
   return (
     <div className="relative min-h-screen">
       <ImgAndBreadcrumb
-        title="Clubs And Societies"
+        title="Clubs At CBS"
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
+
       />
       <Container className="container grid ">
         <Heading
-          title="Clubs And Societies"
+          title="Clubs At CBS"
           titleClassName="text-green-950  lg:text-5xl"
           subtitleClassName="text-gray-500  m-0 lg:text-lg lg:font-normal lg:max-w-full lg:"
           subtitle="Discover the vibrant clubs at IIM, where students can explore their interests, develop new skills, and connect with peers."
           className="pt-12"
+
         />
         <EventGallery />
       </Container>

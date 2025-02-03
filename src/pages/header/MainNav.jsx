@@ -150,15 +150,17 @@ const menuItems = [
     icon: <Sparkles className="w-4 h-4 mr-2" />,
     items: [
       {
-        name: "Sports",
-        path: "/beyond-classroom/sports",
+        name: "Adventure & Excurssion",
+        path: "/beyond-classroom/adventure-and-excurssion",
         icon: <Trophy className="w-4 h-4 mr-2" />,
+
       },
       {
-        name: "Clubs & Societies",
-        path: "/beyond-classroom/clubs-and-societies",
+        name: "Clubs at CBS",
+        path: "/beyond-classroom/clubs-at-cbs",
         icon: <Club className="w-4 h-4 mr-2" />,
       },
+
       {
         name: "News & Events",
         path: "/beyond-classroom/news-and-events",
