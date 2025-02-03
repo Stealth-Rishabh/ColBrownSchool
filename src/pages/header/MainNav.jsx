@@ -66,11 +66,11 @@ const menuItems = [
         path: "/about/achievements",
         icon: <Trophy className="w-4 h-4 mr-2" />,
       },
-      {
-        name: "Faculty & Staff",
-        path: "/about/faculty-staff",
-        icon: <Users2 className="w-4 h-4 mr-2" />,
-      },
+      // {
+      //   name: "Faculty & Staff",
+      //   path: "/about/faculty-staff",
+      //   icon: <Users2 className="w-4 h-4 mr-2" />,
+      // },
       {
         name: "Infrastructure",
         path: "/about/infrastructure",
@@ -123,6 +123,12 @@ const menuItems = [
         path: "/boarding-life/safety-security",
         icon: <Shield className="w-4 h-4 mr-2" />,
       },
+      {
+        name: "Sports at CBS",
+        path: "/boarding-life/sports-at-cbs",
+        icon: <Trophy className="w-4 h-4 mr-2" />,
+      },
+
       {
         name: "Medical Facilities",
         path: "/boarding-life/medical-facilities",

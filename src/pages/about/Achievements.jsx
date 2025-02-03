@@ -102,7 +102,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         )}
       >
         <div className="mb-6">
-          <span className="block text-4xl leading-none">{feature.number}</span>
+          <span className="block text-4xl text-red-600 font-bold leading-none">{feature.number}</span>
           <span className="block mt-1 text-base uppercase">
             {feature.title}
           </span>

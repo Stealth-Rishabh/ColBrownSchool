@@ -26,26 +26,27 @@ import { Card, CardContent } from "@/components/ui/card";
 const Sports = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
-    { href: "/beyond-classroom/adventure-and-excurssion", label: "Beyond Classroom" },
-    { label: "Adventure & Excurssion" },
+    { href: "/boarding-life/sports-at-cbs", label: "Boarding Life" },
+    { label: "Sports at CBS" },
+
 
   ];
   return (
     <section>
       <ImgAndBreadcrumb
-        title="Adventure & Excurssion"
+        title="Sports at CBS"
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
+
 
       />
       <section className="">
         <Container>
           <Heading
-            title="Adventure & Excurssion"
+            title="Sports at CBS"
             titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
             subtitle="At Col. Brown School, we believe that sports play a pivotal role in a student's overall development. Our campus is equipped with world-class facilities and offers a wide range of sports to ensure every student can find their passion and thrive. From individual sports to team events, our sports program encourages teamwork, leadership, discipline, and resilience."
-
             subtitleClassName="text-gray-700 max-w-6xl mx-auto sm:font-normal font-normal"
             className="pt-12 mx-auto"
           />

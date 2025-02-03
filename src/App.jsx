@@ -77,8 +77,10 @@ export default function App() {
           <Route path="/boarding-life/overview" element={<Overview />} />
           <Route path="/boarding-life/classrooms" element={<Classroom />} />
           <Route path="/boarding-life/pastoral-care" element={<PastoralCare />} />
+          <Route path="/boarding-life/sports-at-cbs" element={<Sports />} />
           <Route path="/boarding-life/safety-security" element={<SafetySecurity />} />
           <Route path="/boarding-life/medical-facilities" element={<MedicalFacilities />} />
+
           <Route path="/boarding-life/hostel" element={<Hostel />} />
           <Route path="/boarding-life/dining" element={<Dining />} />
           <Route path="/boarding-life/library" element={<Library />} />

@@ -52,7 +52,7 @@ export default MessageFromManagement;
 const leadershipData = [
   {
     id: 1,
-    name: "Ms. Rani Indubala Singh",
+    name: "Ms. Indubala Singh",
     position: "Proctor",
     image:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/rani-indubala-singh.jpg",
