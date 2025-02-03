@@ -34,7 +34,7 @@ const cards = [
     imageSrc:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
     buttonText: "Explore More",
-    path: "/beyond-classroom/sports",
+    path: "/beyond-classroom/adventure-and-excurssion",
   },
   {
     title: "Dining Hall",
