@@ -40,7 +40,7 @@ const AboutUs1 = () => {
       <div className="container ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
           <div>
-            <h2 className="mb-0 text-4xl font-light leading-tight md:text-end md:text-6xl md:leading-tight">
+            <h2 className="mb-0 text-4xl font-bold text-green-950 leading-tight md:text-end md:text-6xl md:leading-tight">
               The School: A Legacy of Excellence Since 1926
             </h2>
           </div>
