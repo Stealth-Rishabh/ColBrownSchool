@@ -57,13 +57,14 @@ const timelineData = {
 
 export default function Timeline() {
   const [selectedYear, setSelectedYear] = useState(1920);
+  const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef(null);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef);
   const years = Object.keys(timelineData).map(Number);
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !isHovered) {
       intervalRef.current = setInterval(() => {
         setSelectedYear((currentYear) => {
           const currentIndex = years.indexOf(currentYear);
@@ -75,28 +76,18 @@ export default function Timeline() {
       clearInterval(intervalRef.current);
     }
     return () => clearInterval(intervalRef.current);
-  }, [isInView]);
+  }, [isInView, isHovered]);
 
-  const handleMouseEnter = () => {
-    clearInterval(intervalRef.current);
-  };
-
-  const handleMouseLeave = () => {
-    intervalRef.current = setInterval(() => {
-      setSelectedYear((currentYear) => {
-        const currentIndex = years.indexOf(currentYear);
-        const nextIndex = (currentIndex + 1) % years.length;
-        return years[nextIndex];
-      });
-    }, 3000);
+  const handleTimelineClick = (year) => {
+    setSelectedYear(Number(year));
+    setIsHovered(true);
+    setTimeout(() => setIsHovered(false), 3000); // Resume autoplay after 3 seconds
   };
 
   return (
     <section
       ref={sectionRef}
       className="bg-gradient-to-r from-black via-gray-900/90 to-black"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="max-w-6xl mx-auto px-6 sm:py-20 py-8 pb-16">
         <div className="grid md:grid-cols-2 sm:gap-12 gap-8 mb-16">
@@ -117,14 +108,14 @@ export default function Timeline() {
             <p className="text-gray-300 text-lg">
               {timelineData[selectedYear].description}
             </p>
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               <button className="border border-white text-white px-6 py-2 hover:bg-white hover:text-black transition-colors">
                 Explore
               </button>
               <button className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
                 View <ArrowRight className="w-4 h-4" />
               </button>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div
@@ -149,7 +140,7 @@ export default function Timeline() {
             {Object.keys(timelineData).map((year) => (
               <button
                 key={year}
-                onClick={() => setSelectedYear(Number(year))}
+                onClick={() => handleTimelineClick(year)}
                 className="relative group"
               >
                 <div
