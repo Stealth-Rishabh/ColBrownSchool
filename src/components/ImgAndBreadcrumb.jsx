@@ -37,7 +37,7 @@ const ImgAndBreadcrumb = ({ imageSrc, imageAlt, breadcrumbItems, title }) => {
         alt={imageAlt || "Image"}
         className="absolute top-0 left-0 object-cover w-full h-full shadow-sm -z-10"
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black via-black/30 to-black/10"></div>
+      <div className="absolute top-0 left-0 w-full h-full "></div>
       <WordPullUp
         words={title}
         className="sm:text-6xl text-slate-200  absolute top-14 sm:top-[40%] leading-tight sm:leading-none sm:bg-black/50 sm:p-10 hover:bg-black/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105 px-2 font-extrabold tracking-wide text-center"

@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/about/message-banner.jpg";
 const HeroBanner = () => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative h-[60vh] sm:min-h-screen flex items-center justify-center text-center text-white"
+      className="relative h-[60vh] sm:h-[70vh] flex items-center justify-center text-center text-white"
     >
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${img})`,
-          filter: "sepia(0.5) brightness(0.5)",
         }}
       ></div>
-      <div className="relative z-10 max-w-4xl mx-auto px-4">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 bg-black/50 py-10">
         <motion.h1
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-4xl md:text-6xl font-semibold mb-4"
+
         >
           A Legacy of Vision: The Founders of CBS
         </motion.h1>
