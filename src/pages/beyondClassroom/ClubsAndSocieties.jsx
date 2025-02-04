@@ -1,7 +1,7 @@
 import Heading from "../../components/Heading";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import Container from "../../components/wrappers/Container";
-import img from "../../assets/beyond-classroom/clubs-banner.webp";
+import img from "../../assets/beyond-classroom/clubs/djnight/djnight (4).webp";
 import { useMemo } from "react";
 // import Stats from "../../components/Stats";
 // import Newsletter from "../../components/Newsletter";
