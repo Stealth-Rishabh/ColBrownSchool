@@ -1,7 +1,7 @@
 import Heading from "../../components/Heading";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import Container from "../../components/wrappers/Container";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/beyond-classroom/clubs-banner.webp";
 import { useMemo } from "react";
 // import Stats from "../../components/Stats";
 // import Newsletter from "../../components/Newsletter";
@@ -78,7 +78,6 @@ const ClubsAndSocieties = () => {
           subtitleClassName="text-gray-500  m-0 lg:text-lg lg:font-normal lg:max-w-full lg:"
           subtitle="Discover the vibrant clubs at CBS, where students can explore their interests, develop new skills, and connect with peers."
           className="pt-12"
-
         />
         <EventGallery />
       </Container>

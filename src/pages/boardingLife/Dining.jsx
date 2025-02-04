@@ -180,7 +180,7 @@ const MealTable = () => {
           <Table>
             {/* <TableCaption className="text-green-800 py-2">Our nutritious daily meal plan for students</TableCaption> */}
             <TableHeader>
-              <TableRow className="bg-green-800">
+              <TableRow className="bg-green-800 hover:bg-green-900">
                 <TableHead className="text-white">Time</TableHead>
                 <TableHead className="text-white">Meal</TableHead>
                 <TableHead className="text-white">Menu Items</TableHead>
