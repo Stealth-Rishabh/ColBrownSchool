@@ -19,7 +19,7 @@ export default function AboutCBB() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center -mx-3 sm:-mx-4">
-              <motion.div
+              {/* <motion.div
                 className="w-full pr-3 sm:px-4 xl:w-1/2"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,6 +73,21 @@ export default function AboutCBB() {
                     transition={{ duration: 0.3 }}
                   />
                 </motion.div>
+              </motion.div> */}
+              <motion.div
+                className="w-full px-3 sm:px-4"
+                initial={{ opacity: 0, y: -30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <iframe
+                  src="https://drive.google.com/file/d/1K0JydH5GbrfHI8AW2QXCUKZWNFolifiR/preview"
+                  width="640"
+                  height="400"
+                  allow="autoplay"
+                  className="rounded-2xl"
+                ></iframe>
               </motion.div>
             </div>
           </motion.div>
@@ -133,7 +148,10 @@ export default function AboutCBB() {
                 schools in Dehradun. It attracts students not only from across
                 India but also from around the world.
               </motion.p>
-              <Link to="/about/our-visionary-leaders" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <Link
+                to="/about/our-visionary-leaders"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
                 <motion.a
                   className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
                   initial={{ opacity: 0, y: 20 }}
