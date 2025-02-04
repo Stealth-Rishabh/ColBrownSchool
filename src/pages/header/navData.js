@@ -31,10 +31,12 @@ export const navlinks = [
       { name: "Overview", path: "/boarding-life/overview" },
       { name: "Pastoral Care", path: "/boarding-life/pastoral-care" },
       { name: "Safety & Security", path: "/boarding-life/safety-security" },
+      { name: "Sports at CBS", path: "/boarding-life/sports-at-cbs" },
       { name: "Medical Facilities", path: "/boarding-life/medical-facilities" },
       { name: "Hostel", path: "/boarding-life/hostel" },
       { name: "Dining", path: "/boarding-life/dining" },
       { name: "Library", path: "/boarding-life/library" },
+
     ],
   },
   {
@@ -54,7 +56,7 @@ export const navlinks = [
     submenu: [
       { name: "Admission Procedure", path: "/admissions/admission-procedure" },
       { name: "Fee Details", path: "/admissions/fee-details" },
-      { name: "Transfer Certificate", path: "/admissions/transfer-certificate" },
+      { name: "Registration", path: "/admissions/registration" },
       { name: "FAQs", path: "/admissions/faqs" },
     ],
   },

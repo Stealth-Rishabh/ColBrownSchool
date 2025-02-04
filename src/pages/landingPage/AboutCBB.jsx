@@ -113,7 +113,7 @@ export default function AboutCBB() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                About the Legacy of
+                About
               </motion.span>
               <motion.h2
                 className="mb-5 text-4xl font-bold text-dark dark:text-white sm:text-5xl"

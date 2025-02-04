@@ -155,12 +155,12 @@ const menuItems = [
     trigger: "Beyond Classroom",
     icon: <Sparkles className="w-4 h-4 mr-2" />,
     items: [
-      // {
-      //   name: "Adventure & Excurssion",
-      //   path: "/beyond-classroom/adventure-and-excurssion",
-      //   icon: <Trophy className="w-4 h-4 mr-2" />,
+      {
+        name: "Adventure & Excurssion",
+        path: "/beyond-classroom/adventure-and-excurssion",
+        icon: <Trophy className="w-4 h-4 mr-2" />,
 
-      // },
+      },
       {
         name: "Clubs at CBS",
         path: "/beyond-classroom/clubs-at-cbs",

@@ -25,11 +25,13 @@ import Dining from "./pages/boardingLife/Dining";
 import Library from "./pages/boardingLife/Library";
 // Beyond Classroom
 import Sports from "./pages/beyondClassroom/Sports";
+import AdventureExcursion from "./pages/beyondClassroom/AdventureExcursion";
 import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
 import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 // Admissions
 import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
 import FeeDetails from "./pages/admissions/FeeDetails";
+
 import Registration from "./pages/admissions/Registration";
 import FAQ from "./pages/admissions/FAQ";
 
@@ -86,9 +88,10 @@ export default function App() {
           <Route path="/boarding-life/library" element={<Library />} />
 
           {/* Beyond Classroom */}
-          <Route path="/beyond-classroom/adventure-and-excurssion" element={<Sports />} />
+          <Route path="/beyond-classroom/adventure-and-excurssion" element={<AdventureExcursion />} />
           <Route path="/beyond-classroom/clubs-at-cbs" element={<ClubsAndSocieties />} />
           <Route path="/beyond-classroom/news-and-events" element={<NewsAndEvents />} />
+
 
           {/* Admissions  */}
           <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />

@@ -2,6 +2,7 @@ import Container from "../../components/wrappers/Container";
 import hostel from "../../assets/boarding-life/Hostel (2).webp";
 import atheletics from "../../assets/landing/Athelete.webp";
 import student from "../../assets/landing/Alumni.jpg";
+import news from "../../assets/landing/news-events.jpg";
 import student2 from "../../assets/landing/Facility.webp";
 import logo from "../../assets/landing/360-view.gif";
 import { motion } from "framer-motion";
@@ -136,7 +137,7 @@ const VirtualTour = () => {
             viewport={{ once: true }}
           >
             <img
-              src={student}
+              src={news}
               alt=""
               className="object-cover w-full h-full scale-105"
             />
