@@ -210,11 +210,11 @@ const menuItems = [
     path: "/alma-mater",
     icon: <Contact className="w-4 h-4 mr-2" />,
   },
-  {
-    trigger: "Contact Us",
-    path: "/contact-us",
-    icon: <Contact className="w-4 h-4 mr-2" />,
-  },
+  // {
+  //   trigger: "Contact Us",
+  //   path: "/contact-us",
+  //   icon: <Contact className="w-4 h-4 mr-2" />,
+  // },
 ];
 
 const MainNav = () => {
@@ -252,13 +252,13 @@ const MainNav = () => {
         {menuItems.map((menu, index) => (
           <li
             key={menu.trigger}
-            className="relative group text-sm hover:text-green-900 hover:font-semibold duration-300 transition-all cursor-pointer hover:-translate-y-1 "
+            className="relative group text-sm hover:text-green-900 duration-300 transition-all cursor-pointer hover:-translate-y-1 "
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
           >
             {menu.items ? (
               <>
-                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md">
+                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md font-serif text-base">
                   {menu.icon}
                   {menu.trigger}
                   <motion.div
@@ -278,7 +278,7 @@ const MainNav = () => {
                       className="absolute left-0 w-max min-w-48  "
                     >
                       <motion.ul
-                        className="z-20 py-2 mt-9 bg-white rounded shadow-lg border border-gray-200"
+                        className="z-20 py-2 mt-9 bg-white rounded shadow-lg border font-serif text-base border-gray-200"
                         initial="closed"
                         animate="open"
                         exit="closed"
@@ -329,7 +329,7 @@ const MainNav = () => {
                                 href={item.pdf} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-sm hover:text-green-900"
+                                className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-base hover:text-green-900"
                                 onClick={handleLinkClick}
                               >
                                 <motion.div
@@ -380,7 +380,7 @@ const MainNav = () => {
                 <motion.div
                  
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                  className="flex items-center text-sm hover:text-green-900 hover:font-semibold duration-100 transition-all cursor-pointer hover:-translate-y-1 p-2 rounded-md hover:bg-gray-100"
+                  className="flex items-center hover:text-green-900 duration-100 transition-all cursor-pointer hover:-translate-y-1 p-2 rounded-md hover:bg-gray-100 font-serif text-base"
                 >
                   {menu.icon}
                   {menu.trigger}
