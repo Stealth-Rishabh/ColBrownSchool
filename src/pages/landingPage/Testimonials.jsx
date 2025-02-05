@@ -96,8 +96,9 @@ const Testimonials = () => {
           </div>
           <div className="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8">
             <p className="text-lg leading-[1.7] opacity-80 text-center sm:text-left">
-              Our students have shared their experiences, emphasizing the
-              importance of both paid and unpaid roles in shaping their careers.
+              Our students' parents have shared their experiences, emphasizing
+              the importance of both paid and unpaid roles in shaping their
+              children's careers.
             </p>
           </div>
         </div>
