@@ -8,6 +8,7 @@ import fifties from "../../assets/landing/fifty-sixties-2.webp";
 import sixties from "../../assets/landing/1960.webp";
 import seventies from "../../assets/landing/1973-1974.webp";
 import nineties from "../../assets/landing/1990.webp";
+import twenties from "../../assets/landing/teacher-day-2019.jpg";
 
 const timelineData = {
   1920: {
@@ -50,10 +51,10 @@ const timelineData = {
     title: "A New Millennium",
     description:
       "Entering the 2000s, we continued to strengthen our global connections and enhance our educational offerings for a diverse student body.",
-    image:
-      "https://www.colbrownschool.com/cbs/wp-content/uploads/2022/11/teacher-day-2019-1.jpg",
+    image: twenties,
   },
 };
+
 
 export default function Timeline() {
   const [selectedYear, setSelectedYear] = useState(1920);
@@ -124,7 +125,7 @@ export default function Timeline() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.5 }}
-            className="relative aspect-square bg-gray-800"
+            className="relative aspect-auto bg-gray-800"
           >
             <img
               src={timelineData[selectedYear].image}
