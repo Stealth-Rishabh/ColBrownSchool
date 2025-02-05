@@ -35,7 +35,7 @@ function ShapeOne() {
 function ShapeTwo() {
   return (
     <svg
-      className="absolute top-5 -right-[119px] -z-[1]"
+      className="absolute top-5 -right-6 sm:-right-[119px] h-[200px] w-[200px] sm:h-[479px] sm:w-[269px] -z-[1]"
       width="269"
       height="479"
       viewBox="0 0 269 479"
@@ -80,7 +80,7 @@ export default LegacyCBS;
 const AboutUs1 = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section className="ezy__about4 relative z-[1] light py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
+    <section className="ezy__about4 relative z-[1] light py-14 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
       <ShapeOne />
       <ShapeTwo />
       <div className="container ">

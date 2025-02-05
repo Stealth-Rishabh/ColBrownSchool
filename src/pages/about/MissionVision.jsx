@@ -33,7 +33,6 @@ const MissionVision = () => {
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
       /> */}
-      <section className=" relative z-10">
         {/* <Container> */}
           {/* <Heading
             title="Our Mission and Vision"
@@ -63,7 +62,6 @@ const MissionVision = () => {
             "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
           )}
         /> */}
-      </section>
     </section>
   );
 };
@@ -81,18 +79,18 @@ const leadershipData = [
 
     The Second World War (1939 to 1945) saw the alumni of the school in action in Africa, Europe and the South East. With the end of the war, the political climate of the country started changing rapidly with the partition in 1947. The school suffered its 1st major blow as friends were ripped apart, for approximately 40% of the boys left to become the citizens of the newly formed State of Pakistan. The school saw gradual changes both in the staff and the students; by 1960 Mrs. 0′ Donnell, Mr. McIntosh the Vice-Principal and Col. 0'Donnell passed away; and by 1965 none of the European staff was left.`,
   },
+  // {
+  //   id: 2,
+  //   name: "Subedar Bhagwat Singh",
+  //   position: "Bursar",
+  //   image:
+  //     "https://cbs.edustoke.com/wp-content/uploads/2024/11/subedar-bhagwat-singh.jpg",
+  //   message: `Great contribution to the school was made by Kenneth Henry McIntosh, the Vice-Principal and in-charge of senior classes. It is to his credit that he inculcated in his students a love and interest for most co-curricular activities. Besides teaching English, he was the soft side of discipline and was the major balancing factor in a highly regimented school.
+
+  //   After his death, his sister Dora McIntosh, Head Mistress of the Preparatory Department, migrated and settled down in Surrey. In 1958 Col. T.F. O'Donnell and the managing committee of the school appointed Mr. Narendra Singh as the Vice-Principal. Mr. Narendra Singh had joined the school in 1937. Earlier Subedar Bhagwat Singh had joined in 1935 as assistant to Cleave and became the Bursar in the forties after Major Cleave left, and remained so till his death in August 1960.`,
+  // },
   {
     id: 2,
-    name: "Subedar Bhagwat Singh",
-    position: "Bursar",
-    image:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/subedar-bhagwat-singh.jpg",
-    message: `Great contribution to the school was made by Kenneth Henry McIntosh, the Vice-Principal and in-charge of senior classes. It is to his credit that he inculcated in his students a love and interest for most co-curricular activities. Besides teaching English, he was the soft side of discipline and was the major balancing factor in a highly regimented school.
-
-    After his death, his sister Dora McIntosh, Head Mistress of the Preparatory Department, migrated and settled down in Surrey. In 1958 Col. T.F. O'Donnell and the managing committee of the school appointed Mr. Narendra Singh as the Vice-Principal. Mr. Narendra Singh had joined the school in 1937. Earlier Subedar Bhagwat Singh had joined in 1935 as assistant to Cleave and became the Bursar in the forties after Major Cleave left, and remained so till his death in August 1960.`,
-  },
-  {
-    id: 3,
     name: "Mr. Narendra Singh",
     position: "Principal",
     image:
@@ -102,7 +100,7 @@ const leadershipData = [
     An excellent player and an avid fan of hockey, he was known to promote the sport both in school and U.P. A stickler for discipline, he believed in the ancient adage- 'Spare the rod and spoil the child'. Many old students 'fondly' remember that.`,
   },
   {
-    id: 4,
+    id: 3,
     name: "Mr. Abhai Singh",
     position: "Principal",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/abhy-singh.jpg",
@@ -118,9 +116,9 @@ const LeadershipMessage = () => {
   const [openDrawer, setOpenDrawer] = useState(null);
 
   return (
-    <div className="container mx-auto px-4 py-8 relative z-1000">
+    <div className="container mx-auto max-w-7xl px-4 py-8 relative z-1000">
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-4 gap-8"
+        className="grid grid-cols-1 md:grid-cols-3 gap-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

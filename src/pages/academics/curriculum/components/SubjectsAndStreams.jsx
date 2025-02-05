@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const subjects = {
   preparatory: {
-    note: `<strong>Note:</strong> In class VI the students have the option to choose any one of the Indian languages:<ol type="1">
-    <li class="font-bold">Hindi</li>
+    note: `<strong>Note:</strong> In class VI the students have the option to choose any one of the following languages:<ol type="1">
     <li class="font-bold">Urdu</li>
     <li class="font-bold">Punjabi</li>
+    <li class="font-bold">Sanskrit</li>
+    <li class="font-bold">French</li>
   </ol>
 `,
+
     subjects: ["English", "Hindi", "Mathematics", "Science", "Social Sciences"],
   },
   seniorMiddleScience: {

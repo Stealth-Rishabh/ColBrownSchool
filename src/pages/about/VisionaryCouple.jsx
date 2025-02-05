@@ -16,7 +16,7 @@ const VisionaryCouple = () => {
             animate={inView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-semibold mb-4">The Visionary Couple</h2>
+            <h2 className="text-4xl font-semibold mb-4">The Visionary Leader</h2>
             <p className="mb-4">
               Colonel William Brown embarked on a remarkable
               journey in 1926, founding the Colonel Brown Cambridge School.

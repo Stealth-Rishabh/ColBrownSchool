@@ -16,7 +16,7 @@ import { useState } from "react";
 
 import dick from "../../assets/academics/Smart Classrooms.jpg";
 import logo from "../../assets/about/colbrown.webp";
-import img from "../../assets/academics/Artificial Intelligence.jpg";
+import img from "../../assets/academics/AI.webp";
 import campus from "../../assets/academics/Career&Teaching.webp";
 import pedagogy6 from "../../assets/academics/pedagogy (6).webp";
 import pedagogy5 from "../../assets/academics/pedagogy (5).webp";
@@ -109,10 +109,10 @@ const AdvancedPedagogy = () => {
       {/* Legacy of Teaching */}
       <section
         ref={legacyRef}
-        className="px-4 py-10 sm:py-20 bg-white "
+        className="px-4 py-10 sm:py-20 bg-yellow-50"
         id="legacy"
       >
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <Heading
             title="Our Legacy of Teaching Excellence"
             titleClassName="lg:text-5xl font-bold sm:mb-12 text-center text-green-900"
@@ -147,7 +147,7 @@ const AdvancedPedagogy = () => {
               <img
                 src={campus}
                 alt="Historical image of Col Brown School"
-                className="object-cover w-full rounded-lg shadow-xl h-52"
+                className="object-cover w-full rounded-lg shadow-xl h-52 sm:h-96"
               />
             </motion.div>
           </div>
@@ -420,7 +420,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         <img
           src={feature.img}
           alt={feature.title}
-          className="object-cover w-full h-full min-h-[400px]  transition-all duration-300 hover:scale-110 -z-10"
+          className="object-cover w-full h-full min-h-[400px] sm:min-h-[550px]  transition-all duration-300 hover:scale-110 -z-10"
         />
       </div>
     </div>
