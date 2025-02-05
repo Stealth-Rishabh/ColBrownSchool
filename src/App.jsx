@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "./pages/header/Header";
 import Landing from "./pages/landingPage/Landing";
+import StudentPortal from "./pages/login/StudentPortal";
 import Footer from "./pages/footer/Footer";
-// About 
+// About
 import LegacyCBS from "./pages/about/LegacyCBS";
 import OurVisionaryLeaders from "./pages/about/OurVisionaryLeaders";
 import MessageFromManagement from "./pages/about/MessageFromManagement";
 import Achievements from "./pages/about/Achievements";
+
 import Infrastructure from "./pages/about/Infrastructure";
 // import MissionVision from "./pages/about/MissionVision";
 import FacultyStaffSection from "./pages/about/FacultyStaffSection";
@@ -43,71 +45,108 @@ import ContactForm from "./pages/contact/ContactForm";
 // Error
 import NotFound from "./pages/fallback/NotFound";
 
-
-
-
 export default function App() {
   return (
     <>
       <Router>
-        {/* Header */}
-        <Header />
         <Routes>
-          {/* Landing */}
-          <Route path="/" element={<Landing />} />
-
-          {/* About */}
-          <Route path="/about/legacy-of-cbs" element={<LegacyCBS />} />
+          {/* Student Portal Route without Header/Footer */}
+          <Route path="/result" element={<StudentPortal />} />
+          
+          {/* All other routes with Header/Footer */}
           <Route
-            path="/about/our-visionary-leaders"
-            element={<OurVisionaryLeaders />}
+            path="/*"
+            element={
+              <>
+                <Header />
+                <Routes>
+                  {/* Landing */}
+                  <Route path="/" element={<Landing />} />
+                  {/* About */}
+                  <Route path="/about/legacy-of-cbs" element={<LegacyCBS />} />
+                  <Route
+                    path="/about/our-visionary-leaders"
+                    element={<OurVisionaryLeaders />}
+                  />
+                  <Route
+                    path="/about/message-from-management"
+                    element={<MessageFromManagement />}
+                  />
+                  <Route path="/about/achievements" element={<Achievements />} />
+                  {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
+                  <Route
+                    path="/about/faculty-staff"
+                    element={<FacultyStaffSection />}
+                  />
+                  <Route path="/about/infrastructure" element={<Infrastructure />} />
+                  {/* Academics */}
+                  <Route path="/academics/curriculum" element={<Curriculum />} />
+                  <Route
+                    path="/academics/advanced-pedagogy"
+                    element={<AdvancedPedagogy />}
+                  />
+                  <Route
+                    path="/academics/career-counselling"
+                    element={<CareerCounseling />}
+                  />
+
+                  {/* Boarding Life */}
+                  <Route path="/boarding-life/overview" element={<Overview />} />
+                  <Route path="/boarding-life/classrooms" element={<Classroom />} />
+                  <Route
+                    path="/boarding-life/pastoral-care"
+                    element={<PastoralCare />}
+                  />
+                  <Route path="/boarding-life/sports-at-cbs" element={<Sports />} />
+                  <Route
+                    path="/boarding-life/safety-security"
+                    element={<SafetySecurity />}
+                  />
+                  <Route
+                    path="/boarding-life/medical-facilities"
+                    element={<MedicalFacilities />}
+                  />
+
+                  <Route path="/boarding-life/hostel" element={<Hostel />} />
+                  <Route path="/boarding-life/dining" element={<Dining />} />
+                  <Route path="/boarding-life/library" element={<Library />} />
+
+                  {/* Beyond Classroom */}
+                  <Route
+                    path="/beyond-classroom/adventure-and-excurssion"
+                    element={<AdventureExcursion />}
+                  />
+                  <Route
+                    path="/beyond-classroom/clubs-at-cbs"
+                    element={<ClubsAndSocieties />}
+                  />
+                  <Route
+                    path="/beyond-classroom/news-and-events"
+                    element={<NewsAndEvents />}
+                  />
+
+                  {/* Admissions  */}
+                  <Route
+                    path="/admissions/admission-procedure"
+                    element={<AdmissionProcedure />}
+                  />
+                  <Route path="/admissions/fee-details" element={<FeeDetails />} />
+                  <Route path="/admissions/registration" element={<Registration />} />
+                  <Route path="/admissions/faqs" element={<FAQ />} />
+
+                  {/* Alma Mater */}
+                  <Route path="/alma-mater" element={<AlmaMater />} />
+
+                  {/* Contact */}
+                  <Route path="/contact-us" element={<ContactForm />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
+            }
           />
-          <Route
-            path="/about/message-from-management"
-            element={<MessageFromManagement />}
-          />
-          <Route path="/about/achievements" element={<Achievements />} />
-          {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
-          <Route path="/about/faculty-staff" element={<FacultyStaffSection />} />
-          <Route path="/about/infrastructure" element={<Infrastructure />} />
-          {/* Academics */}
-          <Route path="/academics/curriculum" element={<Curriculum />} />
-          <Route path="/academics/advanced-pedagogy" element={<AdvancedPedagogy />} />
-          <Route path="/academics/career-counselling" element={<CareerCounseling />} />
-
-          {/* Boarding Life */}
-          <Route path="/boarding-life/overview" element={<Overview />} />
-          <Route path="/boarding-life/classrooms" element={<Classroom />} />
-          <Route path="/boarding-life/pastoral-care" element={<PastoralCare />} />
-          <Route path="/boarding-life/sports-at-cbs" element={<Sports />} />
-          <Route path="/boarding-life/safety-security" element={<SafetySecurity />} />
-          <Route path="/boarding-life/medical-facilities" element={<MedicalFacilities />} />
-
-          <Route path="/boarding-life/hostel" element={<Hostel />} />
-          <Route path="/boarding-life/dining" element={<Dining />} />
-          <Route path="/boarding-life/library" element={<Library />} />
-
-          {/* Beyond Classroom */}
-          <Route path="/beyond-classroom/adventure-and-excurssion" element={<AdventureExcursion />} />
-          <Route path="/beyond-classroom/clubs-at-cbs" element={<ClubsAndSocieties />} />
-          <Route path="/beyond-classroom/news-and-events" element={<NewsAndEvents />} />
-
-
-          {/* Admissions  */}
-          <Route path="/admissions/admission-procedure" element={<AdmissionProcedure />} />
-          <Route path="/admissions/fee-details" element={<FeeDetails />} />
-          <Route path="/admissions/registration" element={<Registration />} />
-          <Route path="/admissions/faqs" element={<FAQ />} />
-
-          {/* Alma Mater */}
-          <Route path="/alma-mater" element={<AlmaMater />} />
-
-          {/* Contact */}
-          <Route path="/contact-us" element={<ContactForm />} />
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
-        {/* Footer */}
-        <Footer />
       </Router>
     </>
   );
