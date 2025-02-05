@@ -7,7 +7,9 @@ import Heading from "../../components/Heading";
 import classroom from "../../assets/academics/Classroom-Banner.webp";
 import library from "../../assets/boarding-life/Library-Banner.webp";
 import excursion from "../../assets/beyond-classroom/adventure-excurssion/adventure (2).webp";
-import medical from '../../assets/boarding-life/medical2.webp'
+import medical from "../../assets/boarding-life/medical2.webp";
+import hostel from "../../assets/boarding-life/Hostel-Banner.webp";
+import dining from "../../assets/boarding-life/Dinning (3).webp";
 // import { MessageCircle, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -36,14 +38,12 @@ const cards = [
     imageSrc: excursion,
     buttonText: "Explore More",
     path: "/beyond-classroom/adventure-and-excurssion",
-
   },
   {
     title: "Dining Hall",
     description:
       "We emphasize nutrition and care. At our boarding school, we prioritize students' health and wellbeing through nutritious meals. Our menu is carefully crafted and provided, including Chota Haziri (after morning PT) with milk, brown bread, and honey.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_13.jpg",
+    imageSrc: dining,
     buttonText: "Explore More",
     path: "/boarding-life/dining",
   },
@@ -51,8 +51,7 @@ const cards = [
     title: "Hostel Accommodation",
     description:
       "Our hostels are designed to provide a home-like atmosphere with spacious rooms, nutritious meals, and round-the-clock supervision. We ensure the safety and comfort of every student while fostering a sense of responsibility.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_17.png",
+    imageSrc: hostel,
     buttonText: "Explore More",
     path: "/boarding-life/hostel",
   },
@@ -63,7 +62,6 @@ const cards = [
     imageSrc: medical,
     buttonText: "Explore More",
     path: "/boarding-life/medical-facilities",
-
   },
 ];
 

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import hostel1 from "../../assets/boarding-life/Hostel (1).webp";
-import hostel2 from "../../assets/boarding-life/Hostel (3).webp";
-import hostel3 from "../../assets/boarding-life/Hostel (4).webp";
-import hostel4 from "../../assets/boarding-life/Hostel (5).webp";
+import hostel1 from "../../assets/boarding-life/Hostel1.webp";
+import hostel2 from "../../assets/boarding-life/Hostel2.webp";
+import hostel3 from "../../assets/boarding-life/Hostel3.webp";
+import hostel4 from "../../assets/boarding-life/Hostel4.webp";
+import hostel5 from "../../assets/boarding-life/Hostel5.webp";
 import img from "../../assets/boarding-life/Hostel (2).webp";
+import hostel from "../../assets/boarding-life/Hostel-Banner.webp";
 import PropTypes from "prop-types";
 import { Home, Users, Wifi } from "lucide-react";
 
@@ -56,10 +58,11 @@ const Hostel = () => {
     <section>
       <ImgAndBreadcrumb
         title="Boarding Houses"
-        imageSrc={img}
+        imageSrc={hostel}
         imageAlt="Col. Brown's Boarding Houses"
         breadcrumbItems={breadcrumbItems}
       />
+
       <section className="bg-white pt-12">
         <Feature />
         <Stats />
@@ -80,7 +83,11 @@ const FeaturedItem = ({ feature, index }) => {
             <feature.icon />
           </div>
           <h5 className="text-xl font-bold mb-4">{feature.title}</h5>
-          <p className={`text-base font-normal leading-snug ${index === 0 ? 'text-green-700 text-lg' : ''}`}>
+          <p
+            className={`text-base font-normal leading-snug ${
+              index === 0 ? "text-green-700 text-lg" : ""
+            }`}
+          >
             {feature.desc}
           </p>
         </div>
@@ -113,7 +120,7 @@ const Feature = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-6 sm:gap-y-16 gap-y-8">
           <div className="col-span-6 text-center">
             <img
-              src={hostel1}
+              src={img}
               alt="Hostel Building"
               className="object-cover w-full h-full max-w-3xl mx-auto rounded-xl max-h-[400px]"
             />
@@ -188,7 +195,7 @@ const Gallery = () => {
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: img,
+      src: hostel5,
       alt: "India House",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },

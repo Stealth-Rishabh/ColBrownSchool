@@ -9,7 +9,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import classrooom from "../../assets/academics/Classroom-Banner.webp";
 import medical from "../../assets/boarding-life/medical2.webp";
-
+import hostel from "../../assets/boarding-life/Hostel-Banner.webp";
+import library from "../../assets/boarding-life/Library-Banner.webp";
+import dining from "../../assets/boarding-life/Dinning (3).webp";
 
 const infrastructureData = [
   {
@@ -103,9 +105,9 @@ const infrastructureData = [
             "Spacious common areas for recreation and social interaction.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_14.jpg",
+      imageSrc: hostel,
       imageAlt: "Col Brown School Dormitory",
+
     },
     link: "/boarding-life/hostel",
   },
@@ -167,9 +169,9 @@ const infrastructureData = [
             "Along with regular books, we offer e-books, online articles, and digital resources to support today's learning needs.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+      imageSrc: library,
       imageAlt: "Col Brown School Cultural Spaces",
+
     },
     link: "/boarding-life/library",
   },
@@ -200,10 +202,10 @@ const infrastructureData = [
             "We provide healthy food choices that help students stay active and focused in their studies.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_13.jpg",
+      imageSrc: dining,
       imageAlt: "Col Brown School Cultural Spaces",
     },
+
     link: "/boarding-life/dining",
   },
   {
@@ -368,7 +370,7 @@ const InfrastructureSection = ({
                 </div>
               </div>
             </div>
-            <Link to={link}>
+            <Link to={link} onClick={() => window.scrollTo(0, 0)}>
               <motion.button
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
