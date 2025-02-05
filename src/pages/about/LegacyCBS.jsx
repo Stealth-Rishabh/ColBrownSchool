@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/academics/Campus.webp";
-import img1 from '../../assets/about/colonel-william-brown.jpg'
+import img1 from "../../assets/about/colonel-william-brown.jpg";
 import dick from "../../assets/about/dickhouse.webp";
 import logo from "../../assets/about/colbrown.webp";
 import Container from "../../components/wrappers/Container";
@@ -9,6 +9,50 @@ import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "../../lib/utils";
 import PropTypes from "prop-types";
 import { Button } from "../../components/ui/button";
+
+function ShapeOne() {
+  return (
+    <svg
+      className="absolute bottom-5 -left-40 -z-[1]"
+      width="404"
+      height="572"
+      viewBox="0 0 404 572"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="118"
+        cy="286"
+        r="265.5"
+        stroke="#3B823A"
+        strokeOpacity="0.2"
+        strokeWidth="41"
+      />
+    </svg>
+  );
+}
+
+function ShapeTwo() {
+  return (
+    <svg
+      className="absolute top-5 -right-[119px] -z-[1]"
+      width="269"
+      height="479"
+      viewBox="0 0 269 479"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="239.5"
+        cy="239.5"
+        r="239.5"
+        fill="#B91C1C"
+        fillOpacity="0.2"
+      />
+    </svg>
+  );
+}
+
 const LegacyCBS = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
@@ -36,8 +80,11 @@ export default LegacyCBS;
 const AboutUs1 = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section className="ezy__about4 light py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
+    <section className="ezy__about4 relative z-[1] light py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
+      <ShapeOne />
+      <ShapeTwo />
       <div className="container ">
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
           <div>
             <h2 className="mb-0 text-4xl font-bold text-green-950 leading-tight md:text-end md:text-6xl md:leading-tight">
@@ -83,7 +130,6 @@ const AboutUs1 = () => {
 
           <Button
             className="sm:hidden flex items-center gap-2 mt-4"
-            
             onClick={() => setIsExpanded(!isExpanded)}
           >
             <span>{isExpanded ? "Show less" : "Learn more"}</span>
