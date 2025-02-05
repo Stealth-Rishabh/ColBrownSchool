@@ -22,14 +22,12 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import adventure1 from "../../assets/beyond-classroom/adventure-excurssion/adventure (1).webp";
-import adventure2 from "../../assets/beyond-classroom/adventure-excurssion/adventure (1).jpg";
-import adventure3 from "../../assets/beyond-classroom/adventure-excurssion/adventure (2).webp";
-import adventure4 from "../../assets/beyond-classroom/adventure-excurssion/adventure (3).webp";
-import adventure5 from "../../assets/beyond-classroom/adventure-excurssion/adventure (4).webp";
-import adventure6 from "../../assets/beyond-classroom/adventure-excurssion/adventure (5).webp";
-
-
+import excursion1 from "../../assets/beyond-classroom/adventure-excurssion/adventure (1).webp";
+import excursion2 from "../../assets/beyond-classroom/adventure-excurssion/adventure (1).jpg";
+import excursion3 from "../../assets/beyond-classroom/adventure-excurssion/adventure (2).webp";
+import excursion4 from "../../assets/beyond-classroom/adventure-excurssion/adventure (3).webp";
+import excursion5 from "../../assets/beyond-classroom/adventure-excurssion/adventure (4).webp";
+import excursion6 from "../../assets/beyond-classroom/adventure-excurssion/adventure (5).webp";
 
 const AdventureExcursion = () => {
   const breadcrumbItems = [
@@ -41,7 +39,7 @@ const AdventureExcursion = () => {
     <section>
       <ImgAndBreadcrumb
         title="Adventure & Excursion"
-        imageSrc={img}
+        imageSrc={excursion3}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
       />
@@ -67,74 +65,71 @@ export default AdventureExcursion;
 const images = [
   {
     id: 1,
-    src: adventure1,
+    src: excursion1,
     alt: "Students hiking in mountains",
-    category: "Adventure",
-
+    category: "Excursion",
   },
   {
     id: 2,
     src: "https://images.unsplash.com/photo-1464817739973-0128fe77aaa1",
     alt: "School field trip to museum",
-    category: "Excurssion",
+    category: "Adventure",
   },
+
   {
     id: 3,
-    src: adventure2,
+    src: excursion2,
     alt: "Rock climbing adventure",
-    category: "Adventure",
+    category: "Excursion",
   },
 
   {
     id: 4,
     src: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
     alt: "Educational visit to science center",
-    category: "Excurssion",
+    category: "Adventure",
   },
   {
     id: 5,
     src: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
     alt: "Historical monuments tour",
-    category: "Excurssion",
+    category: "Adventure",
   },
   {
     id: 6,
-    src: adventure3,
+    src: excursion3,
     alt: "Camping in wilderness",
-    category: "Adventure",
-
+    category: "Excursion",
   },
   {
     id: 7,
-    src: adventure4,
+    src: excursion4,
     alt: "Mountain trekking",
-    category: "Adventure",
+    category: "Excursion",
   },
 
   {
     id: 8,
     src: "https://images.unsplash.com/photo-1552664730-d307ca884978",
     alt: "Art gallery visit",
-    category: "Excurssion",
+    category: "Adventure",
   },
   {
     id: 9,
-    src: adventure5,
+    src: excursion5,
     alt: "Adventure sports",
-    category: "Adventure",
-
+    category: "Excursion",
   },
   {
     id: 10,
-    src: adventure6,
+    src: excursion6,
     alt: "Adventure sports",
-    category: "Adventure",
-
+    category: "Excursion",
   },
   // Add more images as needed
 ];
 
-const categories = ["All", "Adventure", "Excurssion"];
+const categories = ["All", "Adventure", "Excursion"];
 
 function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -170,7 +165,7 @@ function Gallery() {
         onValueChange={setSelectedCategory}
         className="w-fit mx-auto"
       >
-        <TabsList className="bg-white/20 dark:bg-gray-800/50 backdrop-blur-lg rounded-full p-2 inline-flex mx-auto shadow-lg">
+        <TabsList className="bg-green-50 backdrop-blur-lg rounded-full p-2 inline-flex mx-auto shadow-lg">
           {categories.map((category) => (
             <TabsTrigger
               key={category}
@@ -207,7 +202,7 @@ function Gallery() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
                   <p className="text-white text-lg font-semibold">
-                    {image.alt}
+                    {image.category}
                   </p>
                 </div>
               </div>
@@ -240,7 +235,6 @@ function Gallery() {
             />
             <p className="text-white text-center mt-4 text-lg font-semibold">
               {filteredImages[selectedImageIndex].alt}
-
             </p>
             <div className="absolute top-2 right-2">
               <Button

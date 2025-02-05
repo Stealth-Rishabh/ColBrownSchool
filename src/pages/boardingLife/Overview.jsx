@@ -4,6 +4,10 @@ import img from "../../assets/boarding-life/Boarding-Banner.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
+import classroom from "../../assets/academics/Classroom-Banner.webp";
+import library from "../../assets/boarding-life/Library-Banner.webp";
+import excursion from "../../assets/beyond-classroom/adventure-excurssion/adventure (2).webp";
+import medical from '../../assets/boarding-life/medical2.webp'
 // import { MessageCircle, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -13,8 +17,7 @@ const cards = [
     title: "Classrooms",
     description:
       "The classrooms and laboratories are well lit and ventilated, keeping in mind the technological advancements. Classrooms have been equipped with interactive smart boards to ensure better understanding.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg",
+    imageSrc: classroom,
     buttonText: "Explore More",
     path: "/boarding-life/classrooms",
   },
@@ -22,19 +25,18 @@ const cards = [
     title: "Library",
     description:
       "Our school takes pride in an exceptional library featuring a vast and rare collection of books, journals, magazines, and encyclopedias. Our library fosters a love for reading in students.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+    imageSrc: library,
     buttonText: "Explore More",
     path: "/boarding-life/library",
   },
   {
-    title: "Sports Facilities",
+    title: "Adventure & Excursion",
     description:
       "At Col. Brown, sports and physical education are integral to our curriculum. We offer a variety of sports facilities including a football field, cricket pitch, basketball court, and indoor games area. Our students excel in various regional and national sporting events.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+    imageSrc: excursion,
     buttonText: "Explore More",
     path: "/beyond-classroom/adventure-and-excurssion",
+
   },
   {
     title: "Dining Hall",
@@ -58,10 +60,10 @@ const cards = [
     title: "Medical Facilities",
     description:
       "Our school prioritizes the healthy wellbeing of our students with a fully equipped infirmary staffed by a qualified and caring nurse. A qualified MBBS MD medical practitioner visits the infirmary daily.",
-    imageSrc:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_9.jpg",
+    imageSrc: medical,
     buttonText: "Explore More",
     path: "/boarding-life/medical-facilities",
+
   },
 ];
 
@@ -95,10 +97,10 @@ const Overview = () => {
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ 
+                transition={{
                   duration: 0.5,
                   delay: index * 0.1,
-                  ease: "easeOut"
+                  ease: "easeOut",
                 }}
               >
                 <Card {...card} />
@@ -129,7 +131,7 @@ const Card = ({ title, description, imageSrc, buttonText, path }) => {
       <p className="text-base font-light leading-relaxed text-center line-clamp-2 hover:line-clamp-none sm:hover:line-clamp-2 ">
         {description}
       </p>
-      <Link to={path}>
+      <Link to={path} onClick={() => window.scrollTo(0, 0)}>
         <Button className="flex px-5 py-2 mx-auto mt-6 text-white transition-transform duration-300 bg-green-800 border-0 rounded focus:outline-none hover:bg-green-900 hover:-translate-y-1">
           {buttonText}
         </Button>

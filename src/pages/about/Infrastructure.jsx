@@ -7,7 +7,9 @@ import Heading from "../../components/Heading";
 import { MessageCircle, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import classrooom from "../../assets/academics/Classroom-Banner.webp";
 import medical from "../../assets/boarding-life/medical2.webp";
+
 
 const infrastructureData = [
   {
@@ -36,10 +38,10 @@ const infrastructureData = [
           description: "Quiet study spaces and group discussion rooms.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+      imageSrc: classrooom,
       imageAlt: "Col Brown School Library",
     },
+
     link: "/boarding-life/classrooms",
   },
   {
