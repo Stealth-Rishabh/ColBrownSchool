@@ -75,7 +75,7 @@ export default function AboutCBB() {
                 </motion.div>
               </motion.div> */}
               <motion.div
-                className="w-full px-3 sm:px-4"
+                className="w-full sm:px-4"
                 initial={{ opacity: 0, y: -30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -86,10 +86,11 @@ export default function AboutCBB() {
                   width="640"
                   height="400"
                   allow="autoplay"
-                  className="rounded-2xl"
+                  className="rounded-2xl w-full h-[220px] sm:min-h-[400px]"
                 ></iframe>
               </motion.div>
             </div>
+
           </motion.div>
 
           <motion.div
