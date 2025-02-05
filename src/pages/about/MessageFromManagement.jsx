@@ -35,10 +35,10 @@ const MessageFromManagement = () => {
         <Container>
           <Heading
             title="Leadership Insights"
-          titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
-          subtitle="Our leadership team is dedicated to creating an empowering environment that nurtures your potential and drives collective success."
-          subtitleClassName="text-gray-700"
-          className="pt-12 mx-auto"
+            titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
+            subtitle="Our leadership team is dedicated to creating an empowering environment that nurtures your potential and drives collective success."
+            subtitleClassName="text-gray-700"
+            className="pt-12 mx-auto"
           />
           <LeadershipMessage />
         </Container>
@@ -56,18 +56,20 @@ const leadershipData = [
     position: "Proctor",
     image:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/rani-indubala-singh.jpg",
-    message: `A 97-year school, Col Brown Cambridge School, has come a long way. It started in 1926 primarily for Indian Boys during the pre-Independence era; the alumni then, as today, belonged to distinguished families. The boys joined at the age of 5 and 6 years, and by the time they left, they were well-turned-out gentlemen. People preferred to send their boys to a boarding school to learn a disciplined life, and I must add here that that is the need of the hour. Today, children need boarding school more than before – here they are safe from many outside influences. We strongly believe in the values of truth, honesty, respect for the elderly, for parents, family, to respect women, and the law of the land.
-    
-    These values are the core of the Indian society. Our boys can relate to all these core values right from the beginning and we find that they have done exceedingly well in life today. They are in the armed forces, civil services, research, medicine, engineering, business, construction and education.You will find a Brownian in every nook and corner of the world. I hope that they will remember all that has been taught to them and our Late Principal Col (Dr.) T.F. O’Donells words that sums up our life “Eat well, sleep well, work hard, play hard, above all be a gentleman”.`,
+    message: `The Proctor Mrs.Indu Bala Singh is a dynamic and compassionate lady, who expertly balances administration acumen with a warm child-centered approach.
+
+As a seasoned educator and skilled administrator she has earned the respect A and admiration of both staff and students alike.
+
+A firm believer in the importance of holistic development, she encourages our students to excel not only academically but also in sports and extracurricular activities. She fosters a spirit of friendly competition and teamwork in our children.
+
+Under her expert guidance the school is thriving and our students are growing to be confident, well rounded individuals`,
   },
   {
     id: 2,
     name: "Mr. S.K. Tyagi",
     position: "Headmaster",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/sk-tyagi.jpg",
-    message: `These values are the core of Indian society. Our boys can relate to all these core values right from the beginning, and we find that they have done exceedingly well in life today. They are in the armed forces, civil services, research, medicine, engineering, business, construction, and education. You will find a Brownian in every nook and corner of the world. I hope that they will remember all that has been taught to them and our Late Principal Col (Dr.) T.F. O’Donnell's words that sum up our life: “Eat well, sleep well, work hard, play hard, above all be a gentleman.”
-    
-    This year we have completed 97 years and remember with affection those who have come before us. Col. Brown School is a lifetime experience whether you are a student or a teacher. At a personal level, I have received more than I probably have given. The journey has been eventful, full of incidents and happenings – I cherish all of them; they have indeed become fond memories. None of it would have been possible without my boys, cooperative parents, and wonderful staff.`,
+    message: `Our Headmaster Mr.S.K.Tyagi, is an esteemed member of the educational fraternity, a committed teacher, a pillar of strength and a driving force behind the school's growth and success. A visionary educator, he is always looking towards the future, seeking innovative and forward-looking schemes to enrich the educational experience of our children. His tireless efforts to stay ahead of the curve has enabled our school to remain at the very forefront of educational excellence. This reflects not just in the children's educational endeavours but also in the various co-curricular and extra-curricular activities that they participate in.`,
   },
 ];
 

@@ -6,6 +6,7 @@ import library1 from "../../assets/academics/pedagogy (2).webp";
 import library2 from "../../assets/academics/pedagogy (3).webp";
 import library3 from "../../assets/academics/pedagogy (4).webp";
 import library4 from "../../assets/academics/pedagogy (8).webp";
+import library5 from "../../assets/boarding-life/Library.webp";
 import PropTypes from "prop-types";
 import { BookOpen, Laptop, Users, BookMarked } from "lucide-react";
 
@@ -171,7 +172,7 @@ const Gallery = () => {
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: img,
+      src: library5,
       alt: "Digital Resource Center",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },

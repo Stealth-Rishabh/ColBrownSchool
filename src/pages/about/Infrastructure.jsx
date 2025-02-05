@@ -7,6 +7,7 @@ import Heading from "../../components/Heading";
 import { MessageCircle, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import medical from "../../assets/boarding-life/medical2.webp";
 
 const infrastructureData = [
   {
@@ -160,7 +161,8 @@ const infrastructureData = [
         },
         {
           title: "E-Books and Digital Resources",
-          description: "Along with regular books, we offer e-books, online articles, and digital resources to support today's learning needs.",
+          description:
+            "Along with regular books, we offer e-books, online articles, and digital resources to support today's learning needs.",
         },
       ],
       imageSrc:
@@ -226,8 +228,7 @@ const infrastructureData = [
           description: "Regular health checks for students and staff.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_9.jpg",
+      imageSrc: medical,
       imageAlt: "Col Brown School Cultural Spaces",
     },
     link: "/boarding-life/medical-facilities",

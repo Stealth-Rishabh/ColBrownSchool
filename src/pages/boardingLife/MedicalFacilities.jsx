@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/boarding-life/medical2.webp";
+import medical1 from "../../assets/boarding-life/medical1.webp";
+import medical3 from "../../assets/boarding-life/medical3.webp";
 import PropTypes from "prop-types";
 import { Stethoscope, Heart, Clock } from "lucide-react";
 
@@ -86,7 +88,7 @@ const Feature = () => {
             <div
               className="w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
               style={{
-                backgroundImage: `url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)`,
+                backgroundImage: `url(${medical1})`,
               }}
             />
           </div>
@@ -155,30 +157,34 @@ const Gallery = () => {
 
   const images = [
     {
-      src: "https://pagedone.io/asset/uploads/1713942989.png",
+      src: medical3,
       alt: "Medical facility entrance",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: "https://pagedone.io/asset/uploads/1713943004.png",
+      src: img,
       alt: "Medical staff at work",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
+
     {
-      src: "https://pagedone.io/asset/uploads/1713943024.png",
+      src: medical1,
       alt: "Treatment room",
       className: "h-[277px]",
     },
+
     {
-      src: "https://pagedone.io/asset/uploads/1713943039.png",
+      src: medical3,
       alt: "Medical equipment",
       className: "h-[277px]",
     },
+
     {
-      src: "https://pagedone.io/asset/uploads/1713943054.png",
+      src: medical1,
       alt: "Consultation room",
       className: "h-[277px]",
     },
+
   ];
 
   const openLightbox = (imageSrc) => {
