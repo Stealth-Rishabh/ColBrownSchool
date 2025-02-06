@@ -420,7 +420,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         <img
           src={feature.img}
           alt={feature.title}
-          className="object-cover w-full h-full min-h-[400px] sm:min-h-[550px]  transition-all duration-300 hover:scale-110 -z-10"
+          className="object-cover w-full h-full  transition-all duration-300 hover:scale-110 -z-10"
         />
       </div>
     </div>

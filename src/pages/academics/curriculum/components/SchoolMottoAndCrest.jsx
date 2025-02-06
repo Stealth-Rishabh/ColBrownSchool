@@ -1,6 +1,7 @@
 "use client";
-import logo from "../../../../assets/about/logo.png";
+import logo from "../../../../assets/landing/logo_col_brown.png";
 import { motion } from "framer-motion";
+
 
 export default function SchoolMottoAndCrest() {
   return (

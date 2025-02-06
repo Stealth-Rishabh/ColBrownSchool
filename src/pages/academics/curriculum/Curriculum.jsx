@@ -8,7 +8,7 @@ import CallToAction from "./components/CallToAction"
 
 export default function Curriculum() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 overflow-hidden">
       <HeroSection />
       <AcademicExcellence />
       <SubjectsAndStreams />
