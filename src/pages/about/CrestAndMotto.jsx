@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import logo from "../../assets/about/logo.png";
+import logo from "../../assets/landing/logo_col_brown.png";
 import PropTypes from 'prop-types';
 
 const CrestElement = ({ title }) => {
