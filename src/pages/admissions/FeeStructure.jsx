@@ -104,7 +104,7 @@ const FeeStructure = () => {
 
   const feeStructures = [
     {
-      title: "Fee Structure 2024-25 (Class II-V)",
+      title: "Fee Structure 2025-26 (Class II-V)",
       icon: Book,
       fees: [
         {
@@ -116,12 +116,13 @@ const FeeStructure = () => {
       ],
     },
     {
-      title: "Fee Structure 2024-25 (Class VI-XII)",
+      title: "Fee Structure 2025-26 (Class VI-XII)",
       icon: GraduationCap,
       fees: [
         {
+
           description: "The School Fees for Academic Year",
-          amount: "₹5,80,000.00",
+          amount: "₹5,90,000.00",
         },
         { description: "Caution Deposit (Refundable)", amount: "₹20,000.00" },
         { description: "Admission Fee (Non-Refundable)", amount: "₹48,000.00" },
@@ -176,7 +177,7 @@ const FeeStructure = () => {
                 className="bg-green-800 text-white"
               >
                 <div className="flex flex-col gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg">
-                  <p className="text-base">63951 14363 / 013 53535 93138</p>
+                  <p className="text-base">6395114363 / 0135-3593138</p>
                   <p className="text-base">
                     (10:00am – 4:00pm) Monday to Saturday
                   </p>

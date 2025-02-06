@@ -1,45 +1,73 @@
-import React, { useState } from "react"
-import { ChevronRight, ChevronLeft, Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
+import React, { useState } from "react";
+import { ChevronRight, ChevronLeft, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const RegistrationForm = () => {
-  const [step, setStep] = useState(1)
-  const [formData, setFormData] = useState({})
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({});
 
   const handleInputChange = (name, value) => {
-    setFormData({ ...formData, [name]: value })
-  }
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const handleNextStep = () => setStep(step + 1)
-  const handlePrevStep = () => setStep(step - 1)
+  const handleNextStep = () => setStep(step + 1);
+  const handlePrevStep = () => setStep(step - 1);
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <ChildInfo formData={formData} handleInputChange={handleInputChange} />
+        return (
+          <ChildInfo
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
+        );
       case 2:
-        return <ParentInfo formData={formData} handleInputChange={handleInputChange} />
+        return (
+          <ParentInfo
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
+        );
       case 3:
-        return <ContactInfo formData={formData} handleInputChange={handleInputChange} />
+        return (
+          <ContactInfo
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
+        );
       case 4:
-        return <AdmissionInfo formData={formData} handleInputChange={handleInputChange} />
+        return (
+          <AdmissionInfo
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-black via-gray-900 to-green-950 flex items-center justify-center p-4 sm:py-24 py-16">
       <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl">
-        <h1 className="text-3xl font-bold text-center text-green-950 mb-6">School Registration</h1>
+        <h1 className="text-3xl font-bold text-center text-green-950 mb-6">
+          School Registration
+        </h1>
         <p className="text-center text-green-800 mb-8">
-          Welcome to our online registration form. Please fill in the details below to register your child. If you have
-          any questions, please{" "}
+          Welcome to our online registration form. Please fill in the details
+          below to register your child. If you have any questions, please{" "}
           <a href="#" className="text-green-600 hover:underline">
             contact us
           </a>
@@ -54,13 +82,20 @@ const RegistrationForm = () => {
 
         <div className="flex justify-between mt-8">
           {step > 1 && (
-            <Button onClick={handlePrevStep} variant="outline" className="flex items-center">
+            <Button
+              onClick={handlePrevStep}
+              variant="outline"
+              className="flex items-center"
+            >
               <ChevronLeft className="mr-2" size={18} />
               Previous
             </Button>
           )}
           {step < 4 ? (
-            <Button onClick={handleNextStep} className="flex items-center ml-auto bg-green-950 hover:bg-green-900">
+            <Button
+              onClick={handleNextStep}
+              className="flex items-center ml-auto bg-green-950 hover:bg-green-900"
+            >
               Next
               <ChevronRight className="ml-2" size={18} />
             </Button>
@@ -76,8 +111,8 @@ const RegistrationForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ProgressBar = ({ currentStep, totalSteps }) => {
   return (
@@ -86,23 +121,33 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
         <div key={index} className="flex flex-col items-center">
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              index < currentStep ? "bg-green-950 animate-pulse text-white" : "bg-green-100 text-green-800"
+              index < currentStep
+                ? "bg-green-950 animate-pulse text-white"
+                : "bg-green-100 text-green-800"
             }`}
           >
             {index + 1}
           </div>
           <div className="text-xs mt-1 text-green-800">
-            {index === 0 ? "Child" : index === 1 ? "Parent" : index === 2 ? "Contact" : "Admission"}
+            {index === 0
+              ? "Child"
+              : index === 1
+              ? "Parent"
+              : index === 2
+              ? "Contact"
+              : "Admission"}
           </div>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const ChildInfo = ({ formData, handleInputChange }) => (
   <div>
-    <h2 className="text-xl font-semibold mb-4 text-green-950">Child Information</h2>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Child Information
+    </h2>
     <div className="space-y-4">
       <InputField
         label="Full Name of Boy"
@@ -128,11 +173,13 @@ const ChildInfo = ({ formData, handleInputChange }) => (
       />
     </div>
   </div>
-)
+);
 
 const ParentInfo = ({ formData, handleInputChange }) => (
   <div>
-    <h2 className="text-xl font-semibold mb-4 text-green-950">Father/Guardian Information</h2>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Father/Guardian Information
+    </h2>
     <div className="space-y-4">
       <InputField
         label="Full Name"
@@ -147,14 +194,21 @@ const ParentInfo = ({ formData, handleInputChange }) => (
         value={formData.nationality || ""}
         onChange={handleInputChange}
       />
-      <InputField label="Occupation" name="occupation" value={formData.occupation || ""} onChange={handleInputChange} />
+      <InputField
+        label="Occupation"
+        name="occupation"
+        value={formData.occupation || ""}
+        onChange={handleInputChange}
+      />
     </div>
   </div>
-)
+);
 
 const ContactInfo = ({ formData, handleInputChange }) => (
   <div>
-    <h2 className="text-xl font-semibold mb-4 text-green-950">Contact Information</h2>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Contact Information
+    </h2>
     <div className="space-y-4">
       <SelectField
         label="Country"
@@ -169,10 +223,21 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         name="state"
         value={formData.state || ""}
         onChange={handleInputChange}
-        options={["Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Other"]}
+        options={[
+          "Andaman and Nicobar Islands",
+          "Andhra Pradesh",
+          "Arunachal Pradesh",
+          "Other",
+        ]}
         required
       />
-      <InputField label="City" name="city" value={formData.city || ""} onChange={handleInputChange} required />
+      <InputField
+        label="City"
+        name="city"
+        value={formData.city || ""}
+        onChange={handleInputChange}
+        required
+      />
       <TextAreaField
         label="Permanent Address"
         name="address"
@@ -212,18 +277,20 @@ const ContactInfo = ({ formData, handleInputChange }) => (
       />
     </div>
   </div>
-)
+);
 
 const AdmissionInfo = ({ formData, handleInputChange }) => (
   <div>
-    <h2 className="text-xl font-semibold mb-4 text-green-950">Admission Information</h2>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Admission Information
+    </h2>
     <div className="space-y-4">
       <SelectField
         label="Year and class in which admission is desired"
         name="admissionClass"
         value={formData.admissionClass || ""}
         onChange={handleInputChange}
-        options={["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"]}
+        options={["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"]}
         required
       />
       <div className="flex items-center space-x-2">
@@ -242,13 +309,22 @@ const AdmissionInfo = ({ formData, handleInputChange }) => (
       </div>
     </div>
     <p className="mt-6 text-sm text-green-700">
-      Note: By registering, you agree to abide by the Rules and Regulations of the School, pay the fees in advance, and
-      settle any other accounts promptly.
+      Note: By registering, you agree to abide by the Rules and Regulations of
+      the School, pay the fees in advance, and settle any other accounts
+      promptly.
     </p>
   </div>
-)
+);
 
-const InputField = ({ label, name, type = "text", value, onChange, required, prefix }) => (
+const InputField = ({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
+  required,
+  prefix,
+}) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
@@ -269,7 +345,7 @@ const InputField = ({ label, name, type = "text", value, onChange, required, pre
       />
     </div>
   </div>
-)
+);
 
 const SelectField = ({ label, name, value, onChange, options, required }) => (
   <div className="space-y-2">
@@ -289,16 +365,20 @@ const SelectField = ({ label, name, value, onChange, options, required }) => (
       </SelectContent>
     </Select>
   </div>
-)
+);
 
 const TextAreaField = ({ label, name, value, onChange, required }) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
     </Label>
-    <Textarea id={name} value={value} onChange={(e) => onChange(name, e.target.value)} required={required} />
+    <Textarea
+      id={name}
+      value={value}
+      onChange={(e) => onChange(name, e.target.value)}
+      required={required}
+    />
   </div>
-)
+);
 
-export default RegistrationForm
-
+export default RegistrationForm;
