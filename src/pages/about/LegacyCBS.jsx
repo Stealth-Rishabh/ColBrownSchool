@@ -56,7 +56,7 @@ function ShapeTwo() {
 const LegacyCBS = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
-    { href: "/about/legacy-cbs", label: "About" },
+    { href: "/about/legacy-of-cbs", label: "About" },
     { label: "Legacy CBS" },
   ];
   return (

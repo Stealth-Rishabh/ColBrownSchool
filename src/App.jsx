@@ -113,10 +113,11 @@ export default function App() {
 
                   {/* Beyond Classroom */}
                   <Route
-                    path="/beyond-classroom/adventure-and-excurssion"
+                    path="/beyond-classroom/adventure-excursion"
                     element={<AdventureExcursion />}
                   />
                   <Route
+
                     path="/beyond-classroom/clubs-at-cbs"
                     element={<ClubsAndSocieties />}
                   />

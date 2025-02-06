@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CalendarPdf from "../../assets/calendar-january-may-2024.pdf"
+import CalendarPdf from "../../assets/calendar-january-may-2024.pdf";
 import {
   ChevronDown,
   Home,
@@ -32,7 +32,6 @@ import {
   FileCheck,
   HelpCircle,
   Calendar,
-  
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -96,14 +95,15 @@ const menuItems = [
         name: "Career Counselling",
         path: "/academics/career-counselling",
         icon: <HeartHandshake className="w-4 h-4 mr-2" />,
-      },{
+      },
+      {
         name: "Calendar",
         pdf: CalendarPdf,
         icon: <Calendar className="w-4 h-4 mr-2" />,
-      }
+      },
     ],
   },
- 
+
   {
     trigger: "Boarding Life",
     icon: <Hotel className="w-4 h-4 mr-2" />,
@@ -157,9 +157,8 @@ const menuItems = [
     items: [
       {
         name: "Adventure & Excurssion",
-        path: "/beyond-classroom/adventure-and-excurssion",
+        path: "/beyond-classroom/adventure-excursion",
         icon: <Trophy className="w-4 h-4 mr-2" />,
-
       },
       {
         name: "Clubs at CBS",
@@ -325,9 +324,9 @@ const MainNav = () => {
                             }}
                           >
                             {item.pdf ? (
-                              <a 
-                                href={item.pdf} 
-                                target="_blank" 
+                              <a
+                                href={item.pdf}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="block px-4 py-2 rounded-md hover:font-semibold duration-300 transition-all text-gray-700 hover:bg-gray-100 text-base hover:text-green-900"
                                 onClick={handleLinkClick}
@@ -378,7 +377,6 @@ const MainNav = () => {
                 className="text-foreground hover:text-primary"
               >
                 <motion.div
-                 
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
                   className="flex items-center hover:text-green-900 duration-100 transition-all cursor-pointer hover:-translate-y-1 p-2 rounded-md hover:bg-gray-100 font-serif text-base"
                 >

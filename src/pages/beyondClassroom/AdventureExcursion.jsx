@@ -32,8 +32,9 @@ import excursion6 from "../../assets/beyond-classroom/adventure-excurssion/adven
 const AdventureExcursion = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
-    { href: "/boarding-life/adventure-and-excurssion", label: "Boarding Life" },
+    { href: "/beyond-classroom/adventure-excursion", label: "Beyond Classroom" },
     { label: "Adventure & Excursion" },
+
   ];
   return (
     <section>

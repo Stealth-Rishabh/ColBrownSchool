@@ -43,7 +43,7 @@ export const navlinks = [
     name: "Beyond Classroom",
     path: "/beyond-classroom",
     submenu: [
-      { name: "Adventure & Excurssion", path: "/beyond-classroom/adventure-and-excurssion" },
+      { name: "Adventure & Excurssion", path: "/beyond-classroom/adventure-excursion" },
       { name: "Clubs at CBS", path: "/beyond-classroom/clubs-at-cbs" },
       { name: "News & Events", path: "/beyond-classroom/news-and-events" },
 

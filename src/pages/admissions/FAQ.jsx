@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const FAQ = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
-    { href: "/admissions/faq", label: "Admissions" },
+    { href: "/admissions/faqs", label: "Admissions" },
     { label: "Frequently Asked Questions" },
   ];
   return (
