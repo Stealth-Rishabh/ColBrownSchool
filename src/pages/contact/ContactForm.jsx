@@ -43,7 +43,7 @@ export default ContactForm;
 const ContactSection = () => {
   return (
     <section className="sm:pt-20 pt-12">
-      <div className=" mx-auto max-min-w-5 sm:w-7xl sm:px-6 lg:px-8">
+      <div className=" mx-auto max-min-w-5 sm:w-7xl sm:px-6 lg:px-11">
         <div className="grid grid-cols-1 lg:grid-cols-2 ">
           <div className="mb-10 lg:mb-0 drop-shadow-lg">
             <div className="w-full h-full group ">
@@ -56,15 +56,17 @@ const ContactSection = () => {
                 <h1 className="absolute text-3xl font-bold leading-10 text-white font-manrope sm:text-4xl top-11 left-11">
                   Contact us
                 </h1>
-                <div className="absolute bottom-0 w-full p-5 lg:p-11">
+                <div className="absolute top-1/2 -translate-y-1/2 w-full p-5 lg:p-8">
                   <div className="block space-y-4 sm:p-6 ">
                     <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md ">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Email Enquiry
                       </h5>
                       <a
-                        href="mailto:principal@colbrownschool.com"
-                        className="flex items-center mb-6"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=principal@colbrownschool.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center"
                       >
                         <Mail className="text-white min-w-5 sm:w-7 h-7" />
                         <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
@@ -76,21 +78,43 @@ const ContactSection = () => {
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Call Us
                       </h5>
-                      <a
-                        href="tel:+916395114363"
-                        className="flex items-center mb-6"
-                      >
-                        <Phone className="text-white min-w-5 sm:w-7 h-7" />
-                        <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
-                          +91 6395114363, +91 7579495090, +91 135 2655233
-                        </h5>
-                      </a>
+                      <div className="flex">
+                        <a
+                          href="tel:+916395114363"
+                          className="flex items-center"
+                        >
+                          <Phone className="text-white min-w-5 sm:w-5 h-5" />
+                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                            +91 6395114363
+                          </h5>
+                        </a>
+                        <a
+                          href="tel:+917579495090"
+                          className="flex items-center"
+                        >
+                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                            +91 7579495090
+                          </h5>
+                        </a>
+                        <a
+                          href="tel:+911352655233"
+                          className="flex items-center"
+                        >
+                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                            +91 135 2655233
+                          </h5>
+                        </a>
+                      </div>
                     </div>
                     <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Location
                       </h5>
-                      <a href="#" className="flex items-">
+                      <a
+                        href="https://www.google.com/maps/place/Col.+Brown+Cambridge+School/@30.322328,78.056969,1446m/data=!3m1!1e3!4m6!3m5!1s0x390929b641fd13a5:0xf2f0dda3f2210a65!8m2!3d30.3223276!4d78.0569688!16s%2Fm%2F0bmjr27?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMy4wIKXMDSoJLDEwMjExMjM0SAFQAw%3D%3D"
+                        target="_blank"
+                        className="flex"
+                      >
                         <MapPin className="mt-1 text-white min-w-5 sm:w-7 h-7" />
                         <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
                           5 Kasturba Road, Dalanwala Dehradun – 248 001
