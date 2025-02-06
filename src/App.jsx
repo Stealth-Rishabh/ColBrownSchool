@@ -42,17 +42,67 @@ import AlmaMater from "./pages/almaMater/AlmaMater";
 // Contact
 import ContactForm from "./pages/contact/ContactForm";
 import Blog from "./pages/blog/Blog";
+import Notice from "./pages/Notice";
 // Error
 import NotFound from "./pages/fallback/NotFound";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowUp } from "lucide-react";
+
+
+// Add ScrollToTop component
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <>
+      {isVisible && (
+        <Button
+          onClick={scrollToTop}
+          size="icon"
+          className="fixed animate-bounce z-50 bg-yellow-500 hover:bg-yellow-600 text-black bottom-6 right-6 h-9 w-9 rounded-md shadow-lg"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </Button>
+
+
+      )}
+    </>
+  );
+};
 
 export default function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Routes>
           {/* Student Portal Route without Header/Footer */}
           <Route path="/result" element={<StudentPortal />} />
-          
+
           {/* All other routes with Header/Footer */}
           <Route
             path="/*"
@@ -72,15 +122,24 @@ export default function App() {
                     path="/about/message-from-management"
                     element={<MessageFromManagement />}
                   />
-                  <Route path="/about/achievements" element={<Achievements />} />
+                  <Route
+                    path="/about/achievements"
+                    element={<Achievements />}
+                  />
                   {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
                   <Route
                     path="/about/faculty-staff"
                     element={<FacultyStaffSection />}
                   />
-                  <Route path="/about/infrastructure" element={<Infrastructure />} />
+                  <Route
+                    path="/about/infrastructure"
+                    element={<Infrastructure />}
+                  />
                   {/* Academics */}
-                  <Route path="/academics/curriculum" element={<Curriculum />} />
+                  <Route
+                    path="/academics/curriculum"
+                    element={<Curriculum />}
+                  />
                   <Route
                     path="/academics/advanced-pedagogy"
                     element={<AdvancedPedagogy />}
@@ -91,13 +150,22 @@ export default function App() {
                   />
 
                   {/* Boarding Life */}
-                  <Route path="/boarding-life/overview" element={<Overview />} />
-                  <Route path="/boarding-life/classrooms" element={<Classroom />} />
+                  <Route
+                    path="/boarding-life/overview"
+                    element={<Overview />}
+                  />
+                  <Route
+                    path="/boarding-life/classrooms"
+                    element={<Classroom />}
+                  />
                   <Route
                     path="/boarding-life/pastoral-care"
                     element={<PastoralCare />}
                   />
-                  <Route path="/boarding-life/sports-at-cbs" element={<Sports />} />
+                  <Route
+                    path="/boarding-life/sports-at-cbs"
+                    element={<Sports />}
+                  />
                   <Route
                     path="/boarding-life/safety-security"
                     element={<SafetySecurity />}
@@ -117,7 +185,6 @@ export default function App() {
                     element={<AdventureExcursion />}
                   />
                   <Route
-
                     path="/beyond-classroom/clubs-at-cbs"
                     element={<ClubsAndSocieties />}
                   />
@@ -131,8 +198,14 @@ export default function App() {
                     path="/admissions/admission-procedure"
                     element={<AdmissionProcedure />}
                   />
-                  <Route path="/admissions/fee-details" element={<FeeDetails />} />
-                  <Route path="/admissions/registration" element={<Registration />} />
+                  <Route
+                    path="/admissions/fee-details"
+                    element={<FeeDetails />}
+                  />
+                  <Route
+                    path="/admissions/registration"
+                    element={<Registration />}
+                  />
                   <Route path="/admissions/faqs" element={<FAQ />} />
 
                   {/* Alma Mater */}
@@ -141,6 +214,7 @@ export default function App() {
                   {/* Contact */}
                   <Route path="/contact-us" element={<ContactForm />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/notices" element={<Notice />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
