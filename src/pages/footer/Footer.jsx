@@ -13,26 +13,30 @@ export default function Footer() {
 
   const footerLinks = {
     "Quick Links": [
-      { name: "About CBS", href: "#" },
-      { name: "Admissions", href: "#" },
-      { name: "Blog", href: "#" },
-      { name: "Alumni Registration", href: "#" },
-      { name: "View Result", href: "#" },
-      { name: "Register Now", href: "#" },
-      { name: "Contact", href: "#" },
+      { name: "About CBS", href: "/about/legacy-of-cbs" },
+      { name: "Admissions", href: "/admissions/admission-procedure" },
+      { name: "Blog", href: "/blog" },
+      { name: "Alumni Registration", href: "/alma-mater" },
+      { name: "View Result", href: "/result" },
+      { name: "Register Now", href: "/admissions/registration" },
+      { name: "Contact", href: "/contact-us" },
     ],
     "Campus Life": [
-      { name: "Hostel", href: "#" },
-      { name: "Facilities", href: "#" },
-      { name: "Activities", href: "#" },
+      { name: "Hostel", href: "/boarding-life/hostel" },
+      { name: "Facilities", href: "/about/infrastructure" },
+      { name: "Activities", href: "/beyond-classroom/clubs-at-cbs" },
       { name: "Photo Gallery", href: "#" },
       { name: "Video Gallery", href: "#" },
     ],
     Academics: [
-      { name: "News & Events", href: "#" },
-      { name: "Fee Structure", href: "#" },
+      { name: "News & Events", href: "/beyond-classroom/news-and-events" },
+      { name: "Fee Structure", href: "/admissions/fee-details" },
       { name: "Newsletter", href: "#" },
-      { name: "Calendar", href: "#" },
+      {
+        name: "Calendar",
+        href: "/src/assets/calendar-january-may-2024.pdf",
+        target: true,
+      },
       { name: "Notice(s)", href: "#" },
     ],
   };
@@ -125,7 +129,9 @@ export default function Footer() {
                 transition={{ delay: 0.8 }}
               >
                 <a
-                  href="mailto:principal@colbrownschool.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=principal@colbrownschool.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors inline-flex items-center group break-all sm:break-normal"
                 >
                   <motion.span className="inline-block w-0 group-hover:w-2 h-[1px] bg-white mr-0 group-hover:mr-2 transition-all duration-300" />
@@ -136,11 +142,12 @@ export default function Footer() {
           </motion.div>
 
           {/* Footer Links */}
-          {Object.entries(footerLinks).map(([title, links], index) => (
+          {Object.entries(footerLinks).map(([title, links, target], index) => (
             <LinkSection
               key={title}
               title={title}
               links={links}
+              target={target}
               delay={0.2 * (index + 1)}
             />
           ))}

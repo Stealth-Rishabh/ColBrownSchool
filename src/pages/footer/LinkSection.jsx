@@ -1,9 +1,7 @@
-'use client'
+import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 
-import { motion } from "framer-motion"
-// import { Link } from "react-router-dom"
-
-export default function LinkSection({ title, links, delay = 0 }) {
+export default function LinkSection({ title, links, delay = 0, target}) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -13,12 +11,20 @@ export default function LinkSection({ title, links, delay = 0 }) {
         delayChildren: delay,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
-  }
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = (href, e) => {
+    e.preventDefault();
+    navigate(href);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
 
   return (
     <motion.div
@@ -27,7 +33,7 @@ export default function LinkSection({ title, links, delay = 0 }) {
       initial="hidden"
       animate="visible"
     >
-      <motion.h3 
+      <motion.h3
         className="text-white text-lg font-semibold relative"
         variants={itemVariants}
       >
@@ -41,25 +47,40 @@ export default function LinkSection({ title, links, delay = 0 }) {
       </motion.h3>
       <motion.ul className="space-y-3" variants={containerVariants}>
         {links.map((link, index) => (
-          <motion.li 
+          <motion.li
             key={link.name}
             variants={itemVariants}
             whileHover={{ x: 10 }}
           >
-            <a
-              href={link.href}
-              className="text-sm text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4 inline-flex items-center group"
-            >
-              <motion.span
-                className="inline-block w-0 group-hover:w-2 h-[1px] bg-white mr-0 group-hover:mr-2 transition-all duration-300"
-                initial={false}
-              />
-              {link.name}
-            </a>
+            {link.target ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4 inline-flex items-center group"
+              >
+                <motion.span
+                  className="inline-block w-0 group-hover:w-2 h-[1px] bg-white mr-0 group-hover:mr-2 transition-all duration-300"
+                  initial={false}
+                />
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                to={link.href}
+                onClick={(e) => handleClick(link.href, e)}
+                className="text-sm text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4 inline-flex items-center group"
+              >
+                <motion.span
+                  className="inline-block w-0 group-hover:w-2 h-[1px] bg-white mr-0 group-hover:mr-2 transition-all duration-300"
+                  initial={false}
+                />
+                {link.name}
+              </Link>
+            )}
           </motion.li>
         ))}
       </motion.ul>
     </motion.div>
-  )
+  );
 }
-

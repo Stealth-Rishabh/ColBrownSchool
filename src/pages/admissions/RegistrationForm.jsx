@@ -290,7 +290,7 @@ const AdmissionInfo = ({ formData, handleInputChange }) => (
         name="admissionClass"
         value={formData.admissionClass || ""}
         onChange={handleInputChange}
-        options={["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"]}
+        options={["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 11",]}
         required
       />
       <div className="flex items-center space-x-2">

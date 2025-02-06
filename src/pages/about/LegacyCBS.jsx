@@ -84,7 +84,6 @@ const AboutUs1 = () => {
       <ShapeOne />
       <ShapeTwo />
       <div className="container ">
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
           <div>
             <h2 className="mb-0 text-4xl font-bold text-green-950 leading-tight md:text-end md:text-6xl md:leading-tight">
@@ -107,10 +106,11 @@ const AboutUs1 = () => {
           >
             <p className="mb-0 text-base leading-7 text-justify opacity-70">
               Colonel Brown Cambridge School for Indian Boys is an English
-              Medium Residential School and is open to all boys irrespective of
-              caste, creed or social status. The school was founded in the year
-              1926 by Col. William Brown, for Indian boys.
+              Medium <strong>Residential School</strong> and is open to all boys
+              irrespective of caste, creed or social status. The school was
+              founded in the year 1926 by Col. William Brown, for Indian boys.
             </p>
+
             <p className="mt-6 mb-0 text-base leading-7 text-justify opacity-70">
               Affiliated to the ICSE Board of Education, the school ranks high
               amongst educational institutions in India and is amongst the best

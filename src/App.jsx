@@ -41,7 +41,7 @@ import FAQ from "./pages/admissions/FAQ";
 import AlmaMater from "./pages/almaMater/AlmaMater";
 // Contact
 import ContactForm from "./pages/contact/ContactForm";
-
+import Blog from "./pages/blog/Blog";
 // Error
 import NotFound from "./pages/fallback/NotFound";
 
@@ -140,6 +140,7 @@ export default function App() {
 
                   {/* Contact */}
                   <Route path="/contact-us" element={<ContactForm />} />
+                  <Route path="/blog" element={<Blog />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
