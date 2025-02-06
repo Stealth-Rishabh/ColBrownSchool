@@ -238,7 +238,7 @@ const FeeStructure = () => {
                 <Card className="overflow-hidden bg-white hover:shadow-lg transition-all duration-300">
                   <CardHeader className="bg-green-800 text-white">
                     <CardTitle className="flex items-center">
-                      <Icon className="mr-2 h-5 w-5" />
+                      <Icon className="mr-2 min-h-5 min-w-5 sm:h-5 sm:w-5" />
                       {title}
                     </CardTitle>
                   </CardHeader>

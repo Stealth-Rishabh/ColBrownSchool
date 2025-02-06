@@ -11,7 +11,15 @@ const FAQ = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
     { href: "/admissions/faqs", label: "Admissions" },
-    { label: "Frequently Asked Questions" },
+    {
+      label: (
+        <>
+          <span className="hidden sm:inline">Frequently Asked Questions</span>
+          <span className="sm:hidden">FAQs</span>
+        </>
+
+      ),
+    },
   ];
   return (
     <section>
@@ -114,7 +122,7 @@ const FAQSection = () => {
                 questions about our school, admissions, facilities, and more.
               </p>
             </div>
-            <div className="relative aspect-[3/4] shadow-lg  max-h-96 border brightness-75 border-gray-200 w-full overflow-hidden rounded-2xl">
+            <div className="relative sm:aspect-[3/4] shadow-lg  max-h-96 border brightness-75 border-gray-200 w-full overflow-hidden rounded-2xl">
               <img
                 src="https://cbs.edustoke.com/wp-content/uploads/2024/11/15-aug-2019-2.jpg"
                 alt="Customer support representative"
