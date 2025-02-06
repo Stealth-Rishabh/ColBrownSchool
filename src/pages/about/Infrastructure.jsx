@@ -308,21 +308,22 @@ const InfrastructureSection = ({
               id % 2 === 0 ? "lg:order-1" : "lg:order-2"
             }`}
           >
-            <div className="flex flex-col items-start justify-center w-full gap-8">
+            <div className="flex flex-col items-center sm:items-start justify-center w-full gap-8">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col items-center justify-start gap-4 lg:items-start"
+                className="flex flex-col items-center justify-center sm:justify-start gap-4 lg:items-start"
               >
                 {/* <h6 className="text-base font-normal leading-relaxed text-gray-400">
                     Our Infrastructure
                     </h6> */}
                 <div className="flex flex-col items-center justify-start w-full gap-3 lg:items-start">
-                  <h2 className="text-4xl font-bold leading-normal text-center text-green-800 font-manrope lg:text-start">
+                  <h2 className="text-3xl sm:text-4xl font-bold leading-normal text-center text-green-800 font-manrope lg:text-start">
                     {title}
                   </h2>
+
                   <p className="text-base font-normal leading-relaxed text-center text-gray-500 lg:text-start">
                     {subtitle}
                   </p>
