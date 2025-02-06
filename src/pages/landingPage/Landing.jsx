@@ -10,7 +10,7 @@ import Spotlight from "./Spotlight";
 import TimeLine from "./TimeLine";
 const Landing = () => {
   return (
-    <>
+    <div className="overflow-hidden"> 
       <HeroSlider />
       <FeatureImage />
       <Legacy />
@@ -21,8 +21,9 @@ const Landing = () => {
       <Testimonials />
       <Spotlight />
       <SchoolEvents />
-    </>
+    </div>
   );
 };
+
 
 export default Landing
