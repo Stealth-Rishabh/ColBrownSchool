@@ -16,12 +16,117 @@ import { Checkbox } from "@/components/ui/checkbox";
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
   };
 
-  const handleNextStep = () => setStep(step + 1);
+  const validateStep = (currentStep) => {
+    const newErrors = {};
+    
+    const validatePattern = (value, pattern, errorMessage) => {
+      if (!new RegExp(pattern).test(value)) {
+        return errorMessage;
+      }
+      return null;
+    };
+
+    switch (currentStep) {
+      case 1: // Child Information
+        if (!formData.childName?.trim()) {
+          newErrors.childName = "Child's name is required";
+        } else if (validatePattern(formData.childName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters")) {
+          newErrors.childName = validatePattern(formData.childName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters");
+        }
+        if (!formData.dob) {
+          newErrors.dob = "Date of birth is required";
+        }
+        if (!formData.birthPlace?.trim()) {
+          newErrors.birthPlace = "Place of birth is required";
+        } else if (validatePattern(formData.birthPlace, "^[A-Za-z\\s,]{3,50}$", "Place should only contain letters, spaces and commas")) {
+          newErrors.birthPlace = validatePattern(formData.birthPlace, "^[A-Za-z\\s,]{3,50}$", "Place should only contain letters, spaces and commas");
+        }
+        break;
+
+      case 2: // Parent Information
+        if (!formData.parentName?.trim()) {
+          newErrors.parentName = "Parent's name is required";
+        } else if (validatePattern(formData.parentName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters")) {
+          newErrors.parentName = validatePattern(formData.parentName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters");
+        }
+        if (!formData.nationality?.trim()) {
+          newErrors.nationality = "Nationality is required";
+        }
+        if (!formData.occupation?.trim()) {
+          newErrors.occupation = "Occupation is required";
+        }
+        break;
+
+      case 3: // Contact Information
+        if (!formData.country) {
+          newErrors.country = "Country is required";
+        }
+        if (!formData.state) {
+          newErrors.state = "State is required";
+        }
+        if (!formData.city?.trim()) {
+          newErrors.city = "City is required";
+        } else if (validatePattern(formData.city, "^[A-Za-z\\s]{2,30}$", "City should only contain letters and spaces")) {
+          newErrors.city = validatePattern(formData.city, "^[A-Za-z\\s]{2,30}$", "City should only contain letters and spaces");
+        }
+        if (!formData.address?.trim()) {
+          newErrors.address = "Address is required";
+        } else if (formData.address.length < 10) {
+          newErrors.address = "Address must be at least 10 characters long";
+        }
+        if (!formData.pinCode?.trim()) {
+          newErrors.pinCode = "Pin code is required";
+        } else if (validatePattern(formData.pinCode, "^[0-9]{6}$", "Pin code must be exactly 6 digits")) {
+          newErrors.pinCode = validatePattern(formData.pinCode, "^[0-9]{6}$", "Pin code must be exactly 6 digits");
+        }
+        if (!formData.email?.trim()) {
+          newErrors.email = "Email is required";
+        } else if (validatePattern(formData.email, "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", "Please enter a valid email address")) {
+          newErrors.email = validatePattern(formData.email, "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", "Please enter a valid email address");
+        }
+        if (!formData.mobile?.trim()) {
+          newErrors.mobile = "Mobile number is required";
+        } else if (validatePattern(formData.mobile, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9")) {
+          newErrors.mobile = validatePattern(formData.mobile, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9");
+        }
+        if (formData.whatsapp?.trim() && validatePattern(formData.whatsapp, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9")) {
+          newErrors.whatsapp = validatePattern(formData.whatsapp, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9");
+        }
+        break;
+
+      case 4: // Admission Information
+        if (!formData.admissionClass) {
+          newErrors.admissionClass = "Admission class is required";
+        }
+        if (!formData.terms) {
+          newErrors.terms = "You must agree to the terms and conditions";
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNextStep = () => {
+    if (validateStep(step)) {
+      setStep(step + 1);
+    }
+  };
+
   const handlePrevStep = () => setStep(step - 1);
 
   const renderStep = () => {
@@ -31,6 +136,7 @@ const RegistrationForm = () => {
           <ChildInfo
             formData={formData}
             handleInputChange={handleInputChange}
+            errors={errors}
           />
         );
       case 2:
@@ -38,6 +144,7 @@ const RegistrationForm = () => {
           <ParentInfo
             formData={formData}
             handleInputChange={handleInputChange}
+            errors={errors}
           />
         );
       case 3:
@@ -45,6 +152,7 @@ const RegistrationForm = () => {
           <ContactInfo
             formData={formData}
             handleInputChange={handleInputChange}
+            errors={errors}
           />
         );
       case 4:
@@ -52,6 +160,7 @@ const RegistrationForm = () => {
           <AdmissionInfo
             formData={formData}
             handleInputChange={handleInputChange}
+            errors={errors}
           />
         );
       default:
@@ -143,7 +252,7 @@ const ProgressBar = ({ currentStep, totalSteps }) => {
   );
 };
 
-const ChildInfo = ({ formData, handleInputChange }) => (
+const ChildInfo = ({ formData, handleInputChange, errors }) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Child Information
@@ -155,6 +264,10 @@ const ChildInfo = ({ formData, handleInputChange }) => (
         value={formData.childName || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter child's full name"
+        pattern="^[A-Za-z\s]{3,50}$"
+        title="Name should only contain letters and spaces, between 3-50 characters"
+        error={errors.childName}
       />
       <InputField
         label="Date of Birth"
@@ -163,6 +276,9 @@ const ChildInfo = ({ formData, handleInputChange }) => (
         value={formData.dob || ""}
         onChange={handleInputChange}
         required
+        max={new Date().toISOString().split('T')[0]}
+        min="2005-01-01"
+        error={errors.dob}
       />
       <InputField
         label="Place of Birth"
@@ -170,12 +286,16 @@ const ChildInfo = ({ formData, handleInputChange }) => (
         value={formData.birthPlace || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter place of birth"
+        pattern="^[A-Za-z\s,]{3,50}$"
+        title="Place should only contain letters, spaces and commas"
+        error={errors.birthPlace}
       />
     </div>
   </div>
 );
 
-const ParentInfo = ({ formData, handleInputChange }) => (
+const ParentInfo = ({ formData, handleInputChange, errors }) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Father/Guardian Information
@@ -187,24 +307,36 @@ const ParentInfo = ({ formData, handleInputChange }) => (
         value={formData.parentName || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter parent's full name"
+        pattern="^[A-Za-z\s]{3,50}$"
+        title="Name should only contain letters and spaces, between 3-50 characters"
+        error={errors.parentName}
       />
       <InputField
         label="Nationality"
         name="nationality"
         value={formData.nationality || ""}
         onChange={handleInputChange}
+        placeholder="Enter nationality"
+        pattern="^[A-Za-z\s]{3,30}$"
+        title="Nationality should only contain letters and spaces"
+        error={errors.nationality}
       />
       <InputField
         label="Occupation"
         name="occupation"
         value={formData.occupation || ""}
         onChange={handleInputChange}
+        placeholder="Enter occupation"
+        pattern="^[A-Za-z\s]{3,30}$"
+        title="Occupation should only contain letters and spaces"
+        error={errors.occupation}
       />
     </div>
   </div>
 );
 
-const ContactInfo = ({ formData, handleInputChange }) => (
+const ContactInfo = ({ formData, handleInputChange, errors }) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Contact Information
@@ -217,6 +349,8 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         onChange={handleInputChange}
         options={["India", "Other"]}
         required
+        placeholder="Select your country"
+        error={errors.country}
       />
       <SelectField
         label="State"
@@ -230,6 +364,8 @@ const ContactInfo = ({ formData, handleInputChange }) => (
           "Other",
         ]}
         required
+        placeholder="Select your state"
+        error={errors.state}
       />
       <InputField
         label="City"
@@ -237,6 +373,10 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         value={formData.city || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter your city"
+        pattern="^[A-Za-z\s]{2,30}$"
+        title="City should only contain letters and spaces"
+        error={errors.city}
       />
       <TextAreaField
         label="Permanent Address"
@@ -244,6 +384,10 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         value={formData.address || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter your complete address"
+        minLength={10}
+        maxLength={200}
+        error={errors.address}
       />
       <InputField
         label="Pin Code"
@@ -251,6 +395,10 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         value={formData.pinCode || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter 6-digit pin code"
+        pattern="^[0-9]{6}$"
+        title="Pin code must be exactly 6 digits"
+        error={errors.pinCode}
       />
       <InputField
         label="Email"
@@ -259,6 +407,10 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         value={formData.email || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter your email address"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address"
+        error={errors.email}
       />
       <InputField
         label="Mobile Number"
@@ -266,20 +418,28 @@ const ContactInfo = ({ formData, handleInputChange }) => (
         value={formData.mobile || ""}
         onChange={handleInputChange}
         required
+        placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
         prefix="+91"
+        error={errors.mobile}
       />
       <InputField
         label="WhatsApp Number"
         name="whatsapp"
         value={formData.whatsapp || ""}
         onChange={handleInputChange}
+        placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
         prefix="+91"
+        error={errors.whatsapp}
       />
     </div>
   </div>
 );
 
-const AdmissionInfo = ({ formData, handleInputChange }) => (
+const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Admission Information
@@ -292,6 +452,7 @@ const AdmissionInfo = ({ formData, handleInputChange }) => (
         onChange={handleInputChange}
         options={["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 11",]}
         required
+        error={errors.admissionClass}
       />
       <div className="flex items-center space-x-2">
         <Checkbox
@@ -324,6 +485,12 @@ const InputField = ({
   onChange,
   required,
   prefix,
+  placeholder,
+  pattern,
+  title,
+  min,
+  max,
+  error,
 }) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
@@ -341,20 +508,26 @@ const InputField = ({
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
         required={required}
-        className={prefix ? "pl-12" : ""}
+        className={`${prefix ? "pl-12" : ""} ${error ? "border-red-500" : ""}`}
+        placeholder={placeholder}
+        pattern={pattern}
+        title={title}
+        min={min}
+        max={max}
       />
     </div>
+    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
   </div>
 );
 
-const SelectField = ({ label, name, value, onChange, options, required }) => (
+const SelectField = ({ label, name, value, onChange, options, required, placeholder, error }) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
     </Label>
     <Select value={value} onValueChange={(value) => onChange(name, value)}>
-      <SelectTrigger>
-        <SelectValue placeholder={`Select ${label}`} />
+      <SelectTrigger className={error ? "border-red-500" : ""}>
+        <SelectValue placeholder={placeholder || `Select ${label}`} />
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
@@ -364,10 +537,11 @@ const SelectField = ({ label, name, value, onChange, options, required }) => (
         ))}
       </SelectContent>
     </Select>
+    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
   </div>
 );
 
-const TextAreaField = ({ label, name, value, onChange, required }) => (
+const TextAreaField = ({ label, name, value, onChange, required, placeholder, minLength, maxLength, error }) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
@@ -377,7 +551,11 @@ const TextAreaField = ({ label, name, value, onChange, required }) => (
       value={value}
       onChange={(e) => onChange(name, e.target.value)}
       required={required}
+      placeholder={placeholder}
+      minLength={minLength}
+      maxLength={maxLength}
     />
+    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
   </div>
 );
 
