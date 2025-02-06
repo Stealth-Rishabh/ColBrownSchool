@@ -36,18 +36,18 @@ const CareerCounselling = () => {
   )
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-indigo-100 min-h-screen">
+    <div className="bg-gradient-to-b from-blue-50 to-indigo-100 sm:min-h-screen">
       {/* Hero Section */}
       <Parallax
         blur={0}
         bgImage="https://source.unsplash.com/random/1920x1080?school,counselling"
         strength={500}
-        className="h-screen"
+        className="sm:h-screen"
       >
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center text-white">
             <motion.h1
-              className="text-6xl font-bold mb-4"
+              className="text-3xl sm:text-6xl font-bold mb-4"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}

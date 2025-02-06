@@ -26,7 +26,6 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "../../lib/utils";
 import PropTypes from "prop-types";
 
-
 const AdvancedPedagogy = () => {
   const [legacyRef, legacyInView] = useInView({
     triggerOnce: true,
@@ -82,25 +81,27 @@ const AdvancedPedagogy = () => {
         strength={200}
         bgImage={pedagogy6}
       >
-        <div className="relative h-[90vh] sm:h-[80vh]">
+        <div className="relative h-[40vh] sm:h-[80vh]">
           {/* <img
           src="https://images.unsplash.com/photo-1567342529842-69ee377cdf7d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Col Brown School Banner"
           className="object-cover w-full h-full"
         /> */}
           <div className="absolute inset-0 flex items-center justify-center bg-green-950 bg-opacity-50">
-            <div className="p-10 text-center rounded bg-black/50">
-              <h1 className="mb-4 text-4xl sm:text-5xl font-bold text-white">
+            <div className="m-5 sm:m-0 py-5 sm:p-10 text-center rounded bg-black/50">
+              <h1 className="mb-4 text-3xl sm:text-5xl font-bold text-white">
                 Col Brown School
               </h1>
+
               <p className="text-lg sm:text-2xl text-gray-50">
                 Nurturing Young Minds, Shaping Future Leaders
               </p>
               <a href="#legacy">
-                <Button className="mt-12 animate-bounce bg-white text-green-950 hover:bg-gray-200">
+                <Button className="mt-5 sm:mt-12 animate-bounce bg-white text-green-950 hover:bg-gray-200">
                   Explore More
                 </Button>
               </a>
+
             </div>
           </div>
         </div>
@@ -368,9 +369,6 @@ const AdvancedPedagogy = () => {
 
 export default AdvancedPedagogy;
 
-
-
-
 const features = [
   {
     img: img,
@@ -381,7 +379,7 @@ const features = [
   },
   {
     img: dick,
-    number: "Smart Classrooms", 
+    number: "Smart Classrooms",
     title: "Interactive Learning Environment",
     description:
       "Our classrooms are equipped with interactive smart boards and multimedia systems, bringing lessons to life through engaging visuals, videos, and simulations. These tools encourage active participation and make learning more dynamic and effective.",
