@@ -246,7 +246,7 @@ const Infrastructure = () => {
     { label: "Infrastructure" },
   ];
   return (
-    <section>
+    <section className="overflow-x-hidden">
       <ImgAndBreadcrumb
         title="Infrastructure"
         imageSrc={img}
@@ -262,7 +262,7 @@ const Infrastructure = () => {
             subtitleClassName="text-gray-700"
             className="pt-12 mx-auto"
           /> */}
-          <div className="grid grid-cols-1 sm:gap-16 pt-12">
+          <div className="grid grid-cols-1 gap-10 sm:gap-5 pt-12">
             {infrastructureData.map((item) => (
               <InfrastructureSection
                 key={item.id}
@@ -395,7 +395,7 @@ const InfrastructureSection = ({
               id % 2 === 0 ? "lg:order-2" : "lg:order-1"
             }`}
           >
-            <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
+            <div className="sm:w-[564px] w-full h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
               <motion.img
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
