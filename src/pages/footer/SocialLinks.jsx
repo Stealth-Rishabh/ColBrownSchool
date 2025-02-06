@@ -5,10 +5,10 @@ import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
 
 export default function SocialLinks() {
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "Youtube" },
+    { icon: Facebook, href: "https://www.facebook.com/colbrownschool", label: "Facebook" },
+    { icon: Twitter, href: "https://x.com/ColDehradun", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/colbrownschooldehradun", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/@ColBrownSchoolDehradun", label: "Youtube" },
   ]
 
   return (
@@ -24,6 +24,7 @@ export default function SocialLinks() {
           <motion.a
             key={social.label}
             href={social.href}
+            target="_blank"
             className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white transition-colors relative overflow-hidden group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
