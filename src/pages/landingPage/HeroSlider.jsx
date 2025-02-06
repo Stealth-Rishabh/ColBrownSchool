@@ -26,13 +26,14 @@ const SlideContent = memo(({ img }) => {
             <span
               key={index}
               className={
-                index === 2 || index === 2
-                  ? "text-black leading-relaxed bg-yellow-500 px-3"
+                index === 2
+                  ? "text-black leading-relaxed sm:leading-[130px] bg-yellow-500 px-3 block w-fit mt-5 mb-2"
                   : ""
               }
             >
+
               {word}
-              {index === 2 ? <br /> : " "}
+              {" "}
             </span>
           ))}
         </h1>
