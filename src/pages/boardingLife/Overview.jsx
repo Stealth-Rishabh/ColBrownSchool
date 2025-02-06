@@ -37,7 +37,7 @@ const cards = [
       "At Col. Brown, sports and physical education are integral to our curriculum. We offer a variety of sports facilities including a football field, cricket pitch, basketball court, and indoor games area. Our students excel in various regional and national sporting events.",
     imageSrc: excursion,
     buttonText: "Explore More",
-    path: "/beyond-classroom/adventure-and-excurssion",
+    path: "/beyond-classroom/adventure-excursion",
   },
   {
     title: "Dining Hall",
@@ -116,7 +116,7 @@ export default Overview;
 const Card = ({ title, description, imageSrc, buttonText, path }) => {
   return (
     <div className="mb-10 sm:max-w-1/2">
-      <div className="overflow-hidden transition-shadow duration-300 rounded-lg shadow-lg h-80 hover:shadow-xl">
+      <div className="overflow-hidden transition-shadow duration-300 rounded-lg shadow-lg h-full sm:h-80 hover:shadow-xl">
         <img
           alt="content"
           className="object-cover object-center w-full h-full transition-transform duration-300 hover:scale-125"

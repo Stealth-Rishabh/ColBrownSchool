@@ -227,10 +227,10 @@ const Gallery = () => {
   };
 
   return (
-    <section className="py-24">
+    <section className="py-12 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-2.5 lg:pb-16 pb-10">
-          <h2 className="w-full text-center text-gray-900 text-5xl font-bold font-sans leading-normal">
+          <h2 className="w-full text-center text-gray-900 text-3xl sm:text-5xl font-bold font-sans leading-normal">
             Our Houses
           </h2>
           <div className="w-full text-center text-gray-600 text-lg font-light leading-8">

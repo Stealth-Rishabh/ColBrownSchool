@@ -1,4 +1,3 @@
-"use client";
 import img from "../../../../assets/academics/academic-banner.jpg";
 import { motion } from "framer-motion";
 

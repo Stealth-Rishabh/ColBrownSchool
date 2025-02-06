@@ -26,7 +26,13 @@ import WordPullUp from "./ui/word-pull-up";
 
 const ITEMS_TO_DISPLAY = 3;
 
-const ImgAndBreadcrumb = ({ imageSrc, imageAlt, breadcrumbItems, title }) => {
+const ImgAndBreadcrumb = ({
+  imageSrc,
+  imageAlt,
+  breadcrumbItems,
+  title,
+  className,
+}) => {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -40,8 +46,9 @@ const ImgAndBreadcrumb = ({ imageSrc, imageAlt, breadcrumbItems, title }) => {
       <div className="absolute top-0 left-0 w-full h-full "></div>
       <WordPullUp
         words={title}
-        className="sm:text-6xl text-slate-200  absolute top-14 sm:top-[40%] leading-tight sm:leading-none bg-black/70 sm:bg-black/50 p-1 sm:p-10 hover:bg-black/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105 px-2 font-extrabold tracking-wide text-center"
+        className={`${className} text-slate-200  absolute top-14 sm:top-[40%] leading-tight sm:leading-none bg-black/70 sm:bg-black/50 p-1 sm:p-10 hover:bg-black/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105 px-2 font-extrabold tracking-wide text-center`}
       />
+
       <Breadcrumb className="relative z-10 -mb-8 transition-all duration-300 ease-in-out hover:drop-shadow-2xl drop-shadow-xl hover:scale-105">
         <BreadcrumbList className="px-8 py-4 bg-green-800 rounded-t-xl">
           {isDesktop ? (
@@ -77,10 +84,11 @@ const ImgAndBreadcrumb = ({ imageSrc, imageAlt, breadcrumbItems, title }) => {
               {breadcrumbItems.length > 0 && (
                 <BreadcrumbItem className="text-white mobile-breadcrumb-item">
                   <BreadcrumbLink asChild className="text-white">
-                    <Link to={breadcrumbItems[0].href}
-                     className=" font-semibold text-white transition-colors duration-100 ease-in-out hover:text-slate-100 ">
+                    <Link
+                      to={breadcrumbItems[0].href}
+                      className=" font-semibold text-white transition-colors duration-100 ease-in-out hover:text-slate-100 "
+                    >
                       {breadcrumbItems[0].label}
-                      
                     </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>

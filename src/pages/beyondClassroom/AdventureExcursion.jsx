@@ -32,9 +32,11 @@ import excursion6 from "../../assets/beyond-classroom/adventure-excurssion/adven
 const AdventureExcursion = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
-    { href: "/beyond-classroom/adventure-excursion", label: "Beyond Classroom" },
+    {
+      href: "/beyond-classroom/adventure-excursion",
+      label: "Beyond Classroom",
+    },
     { label: "Adventure & Excursion" },
-
   ];
   return (
     <section>
@@ -43,9 +45,11 @@ const AdventureExcursion = () => {
         imageSrc={excursion3}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
+        className="!text-3xl sm:!text-5xl"
       />
       <section className="">
         <Container>
+
           <Heading
             title="Adventure & Excursion"
             titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
@@ -171,10 +175,11 @@ function Gallery() {
             <TabsTrigger
               key={category}
               value={category}
-              className="px-10 py-[6px] rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-800 focus:ring-offset-2 dark:focus:ring-offset-gray-800 data-[state=active]:bg-green-800 data-[state=active]:text-white"
+              className="px-5 sm:px-10 py-[6px] rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-800 focus:ring-offset-2 dark:focus:ring-offset-gray-800 data-[state=active]:bg-green-800 data-[state=active]:text-white"
             >
               {category}
             </TabsTrigger>
+
           ))}
         </TabsList>
       </Tabs>
