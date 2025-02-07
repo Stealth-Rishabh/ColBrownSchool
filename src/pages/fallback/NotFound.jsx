@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function NotFound() {
+    const location = useLocation();
+    const isPDF = location.pathname.toLowerCase().endsWith('.pdf');
+
     return (
         <main>
             <div className="w-full bg-gradient-to-bl from-green-950 via-gray-900 to-gray-950 px-4 flex items-center justify-start h-[80vh] md:px-8">
                 <div className="max-w-lg mx-auto space-y-5 text-center">
                     <h3 className="text-white text-3xl sm:text-5xl font-bold">
-                        Page not found
+                        {isPDF ? "PDF Not Available" : "Page not found"}
                     </h3>
                     <p className="text-gray-300">
-                        Sorry, the page you are looking for could not be found or has been removed.
+                        {isPDF 
+                            ? "Sorry, the PDF document you are trying to access is not available or has been moved."
+                            : "Sorry, the page you are looking for could not be found or has been removed."
+                        }
                     </p>
                     <Link to="/" className="text-indigo-800 bg-white px-4 py-2 rounded-md duration-150 hover:text-indigo-900 font-medium inline-flex items-center gap-x-1 mt-5">
                         Go back
