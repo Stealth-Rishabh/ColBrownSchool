@@ -30,7 +30,7 @@ export const navlinks = [
     submenu: [
       { name: "Overview", path: "/boarding-life/overview" },
       { name: "Pastoral Care", path: "/boarding-life/pastoral-care" },
-      { name: "Safety & Security", path: "/boarding-life/safety-security" },
+      // { name: "Safety & Security", path: "/boarding-life/safety-security" },
       { name: "Sports at CBS", path: "/boarding-life/sports-at-cbs" },
       { name: "Medical Facilities", path: "/boarding-life/medical-facilities" },
       { name: "Hostel", path: "/boarding-life/hostel" },

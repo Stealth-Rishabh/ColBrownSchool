@@ -1,11 +1,9 @@
-"use client";
-
-//
 import { motion, useScroll, useTransform } from "framer-motion";
 import SocialLinks from "./SocialLinks";
 import WhatsAppButton from "./WhatsAppButton";
 import LinkSection from "./LinkSection";
 import logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { scrollYProgress } = useScroll();
@@ -25,8 +23,8 @@ export default function Footer() {
       { name: "Hostel", href: "/boarding-life/hostel" },
       { name: "Facilities", href: "/about/infrastructure" },
       { name: "Activities", href: "/beyond-classroom/clubs-at-cbs" },
-      { name: "Photo Gallery", href: "#" },
-      { name: "Video Gallery", href: "#" },
+      // { name: "Photo Gallery", href: "#" },
+      // { name: "Video Gallery", href: "#" },
     ],
     Academics: [
       { name: "News & Events", href: "/beyond-classroom/news-and-events" },
@@ -37,7 +35,7 @@ export default function Footer() {
         href: "/src/assets/calendar-january-may-2024.pdf",
         target: true,
       },
-      { name: "Notice(s)", href: "#" },
+      { name: "Notice(s)", href: "/notices" },
     ],
   };
 
@@ -69,19 +67,21 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <img
-                src={logo}
-                alt="Col Brown Cambridge School"
-                width={200}
-                height={60}
-                className="bg-white p-2 rounded-md"
-              />
-            </motion.div>
+            <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img
+                  src={logo}
+                  alt="Col Brown Cambridge School"
+                  width={200}
+                  height={60}
+                  className="bg-white p-2"
+                />
+              </motion.div>
+            </Link>
             <motion.address
               className="not-italic space-y-3 text-sm "
               initial={{ opacity: 0 }}

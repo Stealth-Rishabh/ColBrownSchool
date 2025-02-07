@@ -166,10 +166,10 @@ export default function App() {
                     path="/boarding-life/sports-at-cbs"
                     element={<Sports />}
                   />
-                  <Route
+                  {/* <Route
                     path="/boarding-life/safety-security"
                     element={<SafetySecurity />}
-                  />
+                  /> */}
                   <Route
                     path="/boarding-life/medical-facilities"
                     element={<MedicalFacilities />}

@@ -118,11 +118,11 @@ const menuItems = [
         path: "/boarding-life/pastoral-care",
         icon: <HeartHandshake className="w-4 h-4 mr-2" />,
       },
-      {
-        name: "Safety & Security",
-        path: "/boarding-life/safety-security",
-        icon: <Shield className="w-4 h-4 mr-2" />,
-      },
+      // {
+      //   name: "Safety & Security",
+      //   path: "/boarding-life/safety-security",
+      //   icon: <Shield className="w-4 h-4 mr-2" />,
+      // },
       {
         name: "Sports at CBS",
         path: "/boarding-life/sports-at-cbs",

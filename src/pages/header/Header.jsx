@@ -6,7 +6,7 @@ export function Header() {
   return (
     <header className="border-b shadow-sm">
       <TopBar />
-      <div className="sm:container md:max-w-6xl lg:max-w-[1400px]  mx-auto   px- py-4">
+      <div className="sm:container md:max-w-6xl lg:max-w-[1400px]  mx-auto py-4">
         <div className="flex items-center justify-between">
           <a href="/" className="flex flex-col items-start">
             <img
