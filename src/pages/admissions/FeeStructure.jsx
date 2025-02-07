@@ -104,7 +104,7 @@ const FeeStructure = () => {
 
   const feeStructures = [
     {
-      title: "Fee Structure 2025-26 (Class II-V)",
+      title: "Fee Structure 2025-26 (Class IV-V)",
       icon: Book,
       fees: [
         {

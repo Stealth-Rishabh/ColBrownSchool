@@ -28,6 +28,9 @@ import excursion3 from "../../assets/beyond-classroom/adventure-excurssion/adven
 import excursion4 from "../../assets/beyond-classroom/adventure-excurssion/adventure (3).webp";
 import excursion5 from "../../assets/beyond-classroom/adventure-excurssion/adventure (4).webp";
 import excursion6 from "../../assets/beyond-classroom/adventure-excurssion/adventure (5).webp";
+import adv1 from "../../assets/beyond-classroom/adventure-excurssion/Adv1.jpg";
+import adv2 from "../../assets/beyond-classroom/adventure-excurssion/Adv2.jpg";
+import adv3 from "../../assets/beyond-classroom/adventure-excurssion/Adv3.jpg";
 
 const AdventureExcursion = () => {
   const breadcrumbItems = [
@@ -49,7 +52,6 @@ const AdventureExcursion = () => {
       />
       <section className="">
         <Container>
-
           <Heading
             title="Adventure & Excursion"
             titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
@@ -76,7 +78,7 @@ const images = [
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1464817739973-0128fe77aaa1",
+    src: adv1,
     alt: "School field trip to museum",
     category: "Adventure",
   },
@@ -90,16 +92,17 @@ const images = [
 
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+    src: adv2,
     alt: "Educational visit to science center",
     category: "Adventure",
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
+    src: adv3,
     alt: "Historical monuments tour",
     category: "Adventure",
   },
+
   {
     id: 6,
     src: excursion3,
@@ -112,21 +115,20 @@ const images = [
     alt: "Mountain trekking",
     category: "Excursion",
   },
-
+  // {
+  //   id: 8,
+  //   src: "https://images.unsplash.com/photo-1552664730-d307ca884978",
+  //   alt: "Art gallery visit",
+  //   category: "Adventure",
+  // },
   {
     id: 8,
-    src: "https://images.unsplash.com/photo-1552664730-d307ca884978",
-    alt: "Art gallery visit",
-    category: "Adventure",
-  },
-  {
-    id: 9,
     src: excursion5,
     alt: "Adventure sports",
     category: "Excursion",
   },
   {
-    id: 10,
+    id: 9,
     src: excursion6,
     alt: "Adventure sports",
     category: "Excursion",
@@ -179,7 +181,6 @@ function Gallery() {
             >
               {category}
             </TabsTrigger>
-
           ))}
         </TabsList>
       </Tabs>

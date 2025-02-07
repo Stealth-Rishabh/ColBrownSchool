@@ -117,6 +117,10 @@ const Stats = () => {
       data: "5+",
       title: "Medical Professionals",
     },
+    {
+      data: "Wellness Centre",
+      title: "15 Beds General Ward & 5 Isolated Beds",
+    },
   ];
 
   return (
@@ -184,7 +188,6 @@ const Gallery = () => {
       alt: "Consultation room",
       className: "h-[277px]",
     },
-
   ];
 
   const openLightbox = (imageSrc) => {
