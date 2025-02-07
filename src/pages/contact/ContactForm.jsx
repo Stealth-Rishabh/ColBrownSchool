@@ -7,8 +7,14 @@ import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useState } from "react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState } from "react";
 
 const ContactForm = () => {
   const breadcrumbItems = [
@@ -48,19 +54,20 @@ const ContactSection = () => {
     email: "",
     phone: "",
     enquiryType: "Admissions",
-    message: ""
+    message: "",
   });
 
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     } else if (!/^[a-zA-Z\s]{3,50}$/.test(formData.name.trim())) {
-      newErrors.name = "Name should be 3-50 characters long and contain only letters";
+      newErrors.name =
+        "Name should be 3-50 characters long and contain only letters";
     }
 
     // Email validation
@@ -111,7 +118,7 @@ const ContactSection = () => {
                 <h1 className="absolute text-3xl font-bold leading-10 text-white font-manrope sm:text-4xl top-11 left-11">
                   Contact us
                 </h1>
-                <div className="absolute top-1/2 -translate-y-1/2 w-full p-5 lg:p-8">
+                <div className="absolute top-1/2 -translate-y-[42%] sm:-translate-y-1/2 w-full p-3 sm:p-5 lg:p-8">
                   <div className="block space-y-4 sm:p-6 ">
                     <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md ">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
@@ -129,17 +136,18 @@ const ContactSection = () => {
                         </h5>
                       </a>
                     </div>
-                    <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
+                    <div className="flex flex-col p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Call Us
                       </h5>
-                      <div className="flex">
+                      <div className="flex flex-wrap gap-2 sm:gap-0">
                         <a
                           href="tel:+916395114363"
                           className="flex items-center"
+
                         >
                           <Phone className="text-white min-w-5 sm:w-5 h-5" />
-                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                          <h5 className="mx-2 mr-3 sm:ml-5 sm:mr-0 text-sm sm:text-base font-normal leading-6 text-white">
                             +91 6395114363
                           </h5>
                         </a>
@@ -147,15 +155,18 @@ const ContactSection = () => {
                           href="tel:+917579495090"
                           className="flex items-center"
                         >
-                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                          <Phone className="text-white block sm:hidden min-w-5 sm:w-5 h-5" />
+                          <h5 className="ml-2 sm:ml-5 text-sm sm:text-base font-normal leading-6 text-white">
                             +91 7579495090
                           </h5>
                         </a>
+
                         <a
                           href="tel:+911352655233"
                           className="flex items-center"
                         >
-                          <h5 className="ml-5 text-sm sm:text-base font-normal leading-6 text-white">
+                          <Phone className="text-white block sm:hidden min-w-5 sm:w-5 h-5" />
+                          <h5 className="ml-2 sm:ml-5 text-sm sm:text-base font-normal leading-6 text-white">
                             +91 135 2655233
                           </h5>
                         </a>
@@ -192,44 +203,58 @@ const ContactSection = () => {
                 <Input
                   type="text"
                   placeholder="Name"
-                  className={`h-12 bg-transparent rounded-lg ${errors.name ? 'border-red-500' : ''}`}
+                  className={`h-12 bg-transparent rounded-lg ${
+                    errors.name ? "border-red-500" : ""
+                  }`}
                   value={formData.name}
                   onChange={(e) => {
                     setFormData({ ...formData, name: e.target.value });
-                    if (errors.name) setErrors({ ...errors, name: '' });
+                    if (errors.name) setErrors({ ...errors, name: "" });
                   }}
                 />
-                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                )}
               </div>
               <div>
                 <Input
                   type="email"
                   placeholder="Email"
-                  className={`h-12 bg-transparent rounded-lg ${errors.email ? 'border-red-500' : ''}`}
+                  className={`h-12 bg-transparent rounded-lg ${
+                    errors.email ? "border-red-500" : ""
+                  }`}
                   value={formData.email}
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
-                    if (errors.email) setErrors({ ...errors, email: '' });
+                    if (errors.email) setErrors({ ...errors, email: "" });
                   }}
                 />
-                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                )}
               </div>
               <div>
                 <Input
                   type="tel"
                   placeholder="Phone"
-                  className={`h-12 bg-transparent rounded-lg ${errors.phone ? 'border-red-500' : ''}`}
+                  className={`h-12 bg-transparent rounded-lg ${
+                    errors.phone ? "border-red-500" : ""
+                  }`}
                   value={formData.phone}
                   onChange={(e) => {
                     setFormData({ ...formData, phone: e.target.value });
-                    if (errors.phone) setErrors({ ...errors, phone: '' });
+                    if (errors.phone) setErrors({ ...errors, phone: "" });
                   }}
                 />
-                {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+                )}
               </div>
-              <Select 
+              <Select
                 defaultValue="Admissions"
-                onValueChange={(value) => setFormData({ ...formData, enquiryType: value })}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, enquiryType: value })
+                }
               >
                 <SelectTrigger className="h-12 bg-transparent rounded-lg">
                   <SelectValue placeholder="Select enquiry type" />
@@ -242,14 +267,18 @@ const ContactSection = () => {
               <div>
                 <Textarea
                   placeholder="Your message"
-                  className={`min-h-[120px] rounded-lg bg-transparent resize-none ${errors.message ? 'border-red-500' : ''}`}
+                  className={`min-h-[120px] rounded-lg bg-transparent resize-none ${
+                    errors.message ? "border-red-500" : ""
+                  }`}
                   value={formData.message}
                   onChange={(e) => {
                     setFormData({ ...formData, message: e.target.value });
-                    if (errors.message) setErrors({ ...errors, message: '' });
+                    if (errors.message) setErrors({ ...errors, message: "" });
                   }}
                 />
-                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                )}
               </div>
               <Button
                 type="submit"
