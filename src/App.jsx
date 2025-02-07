@@ -48,7 +48,7 @@ import NotFound from "./pages/fallback/NotFound";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
-
+import { routeMetadata } from './config/metadata';
 
 // Add ScrollToTop component
 const ScrollToTop = () => {
@@ -87,11 +87,45 @@ const ScrollToTop = () => {
         >
           <ArrowUp className="h-5 w-5" />
         </Button>
-
-
       )}
     </>
   );
+};
+
+// Add metadata configuration object
+const useMetaTags = (pathname) => {
+  useEffect(() => {
+    const metadata = routeMetadata[pathname] || {
+      title: "CBS School",
+      description: "CBS School - Excellence in Education",
+      keywords: "CBS, school, education",
+    };
+
+    document.title = metadata.title;
+
+    // Update meta tags
+    const metaTags = {
+      description: metadata.description,
+      keywords: metadata.keywords,
+      "og:title": metadata.title,
+      "og:description": metadata.description,
+      "twitter:title": metadata.title,
+      "twitter:description": metadata.description,
+    };
+
+    Object.entries(metaTags).forEach(([name, content]) => {
+      let element =
+        document.querySelector(`meta[name="${name}"]`) ||
+        document.querySelector(`meta[property="${name}"]`);
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(name.includes("og:") ? "property" : "name", name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
+    });
+  }, [pathname]);
 };
 
 export default function App() {
@@ -101,7 +135,14 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           {/* Student Portal Route without Header/Footer */}
-          <Route path="/result" element={<StudentPortal />} />
+          <Route
+            path="/result"
+            element={
+              <MetaWrapper pathname="/result">
+                <StudentPortal />
+              </MetaWrapper>
+            }
+          />
 
           {/* All other routes with Header/Footer */}
           <Route
@@ -111,111 +152,265 @@ export default function App() {
                 <Header />
                 <Routes>
                   {/* Landing */}
-                  <Route path="/" element={<Landing />} />
+                  <Route
+                    path="/"
+                    element={
+                      <MetaWrapper pathname="/">
+                        <Landing />
+                      </MetaWrapper>
+                    }
+                  />
                   {/* About */}
-                  <Route path="/about/legacy-of-cbs" element={<LegacyCBS />} />
+                  <Route
+                    path="/about/legacy-of-cbs"
+                    element={
+                      <MetaWrapper pathname="/about/legacy-of-cbs">
+                        <LegacyCBS />
+                      </MetaWrapper>
+                    }
+                  />
                   <Route
                     path="/about/our-visionary-leaders"
-                    element={<OurVisionaryLeaders />}
+                    element={
+                      <MetaWrapper pathname="/about/our-visionary-leaders">
+                        <OurVisionaryLeaders />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/about/message-from-management"
-                    element={<MessageFromManagement />}
+                    element={
+                      <MetaWrapper pathname="/about/message-from-management">
+                        <MessageFromManagement />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/about/achievements"
-                    element={<Achievements />}
+                    element={
+                      <MetaWrapper pathname="/about/achievements">
+                        <Achievements />
+                      </MetaWrapper>
+                    }
                   />
                   {/* <Route path="/about/mission-vision" element={<MissionVision />} /> */}
                   <Route
                     path="/about/faculty-staff"
-                    element={<FacultyStaffSection />}
+                    element={
+                      <MetaWrapper pathname="/about/faculty-staff">
+                        <FacultyStaffSection />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/about/infrastructure"
-                    element={<Infrastructure />}
+                    element={
+                      <MetaWrapper pathname="/about/infrastructure">
+                        <Infrastructure />
+                      </MetaWrapper>
+                    }
                   />
                   {/* Academics */}
                   <Route
                     path="/academics/curriculum"
-                    element={<Curriculum />}
+                    element={
+                      <MetaWrapper pathname="/academics/curriculum">
+                        <Curriculum />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/academics/advanced-pedagogy"
-                    element={<AdvancedPedagogy />}
+                    element={
+                      <MetaWrapper pathname="/academics/advanced-pedagogy">
+                        <AdvancedPedagogy />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/academics/career-counselling"
-                    element={<CareerCounseling />}
+                    element={
+                      <MetaWrapper pathname="/academics/career-counselling">
+                        <CareerCounseling />
+                      </MetaWrapper>
+                    }
                   />
 
                   {/* Boarding Life */}
                   <Route
                     path="/boarding-life/overview"
-                    element={<Overview />}
+                    element={
+                      <MetaWrapper pathname="/boarding-life/overview">
+                        <Overview />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/boarding-life/classrooms"
-                    element={<Classroom />}
+                    element={
+                      <MetaWrapper pathname="/boarding-life/classrooms">
+                        <Classroom />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/boarding-life/pastoral-care"
-                    element={<PastoralCare />}
+                    element={
+                      <MetaWrapper pathname="/boarding-life/pastoral-care">
+                        <PastoralCare />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/boarding-life/sports-at-cbs"
-                    element={<Sports />}
+                    element={
+                      <MetaWrapper pathname="/boarding-life/sports-at-cbs">
+                        <Sports />
+                      </MetaWrapper>
+                    }
                   />
+
                   {/* <Route
                     path="/boarding-life/safety-security"
                     element={<SafetySecurity />}
                   /> */}
                   <Route
                     path="/boarding-life/medical-facilities"
-                    element={<MedicalFacilities />}
+                    element={
+                      <MetaWrapper pathname="/boarding-life/medical-facilities">
+                        <MedicalFacilities />
+                      </MetaWrapper>
+                    }
                   />
 
-                  <Route path="/boarding-life/hostel" element={<Hostel />} />
-                  <Route path="/boarding-life/dining" element={<Dining />} />
-                  <Route path="/boarding-life/library" element={<Library />} />
+                  <Route
+                    path="/boarding-life/hostel"
+                    element={
+                      <MetaWrapper pathname="/boarding-life/hostel">
+                        <Hostel />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/boarding-life/dining"
+                    element={
+                      <MetaWrapper pathname="/boarding-life/dining">
+                        <Dining />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/boarding-life/library"
+                    element={
+                      <MetaWrapper pathname="/boarding-life/library">
+                        <Library />
+                      </MetaWrapper>
+                    }
+                  />
 
                   {/* Beyond Classroom */}
                   <Route
                     path="/beyond-classroom/adventure-excursion"
-                    element={<AdventureExcursion />}
+                    element={
+                      <MetaWrapper pathname="/beyond-classroom/adventure-excursion">
+                        <AdventureExcursion />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/beyond-classroom/clubs-at-cbs"
-                    element={<ClubsAndSocieties />}
+                    element={
+                      <MetaWrapper pathname="/beyond-classroom/clubs-at-cbs">
+                        <ClubsAndSocieties />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/beyond-classroom/news-and-events"
-                    element={<NewsAndEvents />}
+                    element={
+                      <MetaWrapper pathname="/beyond-classroom/news-and-events">
+                        <NewsAndEvents />
+                      </MetaWrapper>
+                    }
                   />
 
                   {/* Admissions  */}
                   <Route
                     path="/admissions/admission-procedure"
-                    element={<AdmissionProcedure />}
+                    element={
+                      <MetaWrapper pathname="/admissions/admission-procedure">
+                        <AdmissionProcedure />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/admissions/fee-details"
-                    element={<FeeDetails />}
+                    element={
+                      <MetaWrapper pathname="/admissions/fee-details">
+                        <FeeDetails />
+                      </MetaWrapper>
+                    }
                   />
                   <Route
                     path="/admissions/registration"
-                    element={<Registration />}
+                    element={
+                      <MetaWrapper pathname="/admissions/registration">
+                        <Registration />
+                      </MetaWrapper>
+                    }
                   />
-                  <Route path="/admissions/faqs" element={<FAQ />} />
+                  <Route
+                    path="/admissions/faqs"
+                    element={
+                      <MetaWrapper pathname="/admissions/faqs">
+                        <FAQ />
+                      </MetaWrapper>
+                    }
+                  />
 
                   {/* Alma Mater */}
-                  <Route path="/alma-mater" element={<AlmaMater />} />
+                  <Route
+                    path="/alma-mater"
+                    element={
+                      <MetaWrapper pathname="/alma-mater">
+                        <AlmaMater />
+                      </MetaWrapper>
+                    }
+                  />
 
                   {/* Contact */}
-                  <Route path="/contact-us" element={<ContactForm />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/notices" element={<Notice />} />
-                  <Route path="*" element={<NotFound />} />
+                  <Route
+                    path="/contact-us"
+                    element={
+                      <MetaWrapper pathname="/contact-us">
+                        <ContactForm />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/blog"
+                    element={
+                      <MetaWrapper pathname="/blog">
+                        <Blog />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/notices"
+                    element={
+                      <MetaWrapper pathname="/notices">
+                        <Notice />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="*"
+                    element={
+                      <MetaWrapper pathname="*">
+                        <NotFound />
+                      </MetaWrapper>
+                    }
+                  />
                 </Routes>
                 <Footer />
               </>
@@ -227,3 +422,9 @@ export default function App() {
     </>
   );
 }
+
+// MetaWrapper component
+const MetaWrapper = ({ children, pathname }) => {
+  useMetaTags(pathname);
+  return children;
+};
