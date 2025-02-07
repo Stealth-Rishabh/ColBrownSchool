@@ -28,8 +28,6 @@ const Sports = () => {
     { href: "/", label: "Home" },
     { href: "/boarding-life/sports-at-cbs", label: "Boarding Life" },
     { label: "Sports at CBS" },
-
-
   ];
   return (
     <section>
@@ -38,8 +36,6 @@ const Sports = () => {
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
-
-
       />
       <section className="">
         <Container>
@@ -68,37 +64,45 @@ const features = [
     description:
       "Our cricket program develops technical skills, strategic thinking and sportsmanship through professional coaching and regular matches on our well-maintained grounds.",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_5.jpg",
+    link: "/boarding-life/sports-at-cbs/cricket",
   },
   {
     title: "Basketball",
     description:
       "Students train in our indoor basketball court with experienced coaches, learning teamwork and agility while competing in inter-school tournaments.",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_21.jpg",
+    link: "/boarding-life/sports-at-cbs/basketball",
   },
+
   {
     title: "Hockey",
     description:
       "Our hockey program emphasizes both individual skills and team tactics, with regular practice sessions and competitive matches on our full-size football field.",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_23.jpg",
+    link: "/boarding-life/sports-at-cbs/hockey",
   },
   {
     title: "Volleyball",
     description:
       "Our temperature-controlled volleyball court hosts year-round training programs for all skill levels, from beginners to competitive players.",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+    link: "/boarding-life/sports-at-cbs/volleyball",
   },
+
   {
     title: "Football",
     description:
       "Students participate in track and field events on our 400-meter track, developing speed, strength and endurance through structured training programs.",
     image:
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-14.jpg",
+    link: "/boarding-life/sports-at-cbs/football",
   },
   {
     title: "Indoor Sports",
     description:
       "We offer facilities for table tennis, badminton, chess and carrom, providing students with diverse options for recreation and competitive play.",
     image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
+    link: "/boarding-life/sports-at-cbs/indoor-sports",
   },
 ];
 
@@ -112,19 +116,26 @@ const FeatureItem = ({ feature, index }) => {
         duration: 0.5,
         delay: index * 0.2, // 0.2s delay between each item
       }}
-      className="bg-green-50 dark:bg-[#1E2735] rounded-[20px] relative p-6 lg:p-12 drop-shadow-lg h-full"
+      className="bg-green-50 flex flex-col justify-between dark:bg-[#1E2735] rounded-[20px] relative p-6 drop-shadow-lg h-full"
     >
       <img
         src={feature.image}
         alt=""
-        className="h-56 max-w-full  sm:rounded-xl object-cover mx-auto mb-6 shadow-xl hover:scale-105 transition-all duration-300"
+        className="h-56 max-w-full w-full sm:rounded-xl object-cover mb-6 hover:scale-105 transition-all duration-300"
       />
       <h4 className="text-2xl leading-6 font-bold text-center text-green-800">
         {feature.title}
       </h4>
-      <p className="opacity-70 mt-4 text-justify text-green-800">
+      <p className="opacity-70 mt-4 text-center text-green-800">
         {feature.description}
       </p>
+      <Link
+        className="w-full"
+        to={feature.link}
+        onClick={() => window.scrollTo(0, 0)}
+      >
+        <Button className="mt-8 w-full">Explore More</Button>
+      </Link>
     </motion.div>
   );
 };
@@ -293,6 +304,7 @@ const features3 = [
   },
 ];
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from "react-router-dom";
 const FeatureItem3 = ({ feature, index, isExpanded, onToggle }) => (
   <motion.div
     initial={{ opacity: 0, x: index % 2 ? 50 : -50 }}
@@ -393,16 +405,16 @@ const Feature4 = () => {
       title: "Team Sports",
       items: [
         "Hockey - Building teamwork",
-        "Football - Developing coordination", 
+        "Football - Developing coordination",
         "Cricket - Strategic thinking",
         "Basketball - Agility training",
         "Volleyball - Team dynamics",
         "Tennis - Hand-eye coordination",
-        "Badminton - Quick reflexes"
+        "Badminton - Quick reflexes",
       ],
     },
     {
-      icon: Medal, 
+      icon: Medal,
       title: "Indoor Games",
       items: [
         "Table Tennis - Precision skills",
@@ -411,7 +423,7 @@ const Feature4 = () => {
         "Chess - Critical thinking",
         "Indoor activities - Creative expression",
         "Strategic games - Problem solving",
-        "Mental sports - Cognitive development"
+        "Mental sports - Cognitive development",
       ],
     },
     {
@@ -424,7 +436,7 @@ const Feature4 = () => {
         "Karate - Self-discipline",
         "Gymnastics - Flexibility",
         "Skating - Balance control",
-        "Fitness routines - Overall health"
+        "Fitness routines - Overall health",
       ],
     },
     {
@@ -437,7 +449,7 @@ const Feature4 = () => {
         "Regional Winners - Athletics",
         "Tournament Victory - Chess",
         "Championship - Table Tennis",
-        "Excellence Awards - Sports"
+        "Excellence Awards - Sports",
       ],
     },
   ];

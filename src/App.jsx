@@ -48,8 +48,8 @@ import NotFound from "./pages/fallback/NotFound";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
-import { routeMetadata } from './config/metadata';
-
+import { routeMetadata } from "./config/metadata";
+import SportsGallery from "./pages/beyondClassroom/SportsGallery";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -269,11 +269,19 @@ export default function App() {
                       </MetaWrapper>
                     }
                   />
-
+                  <Route
+                    path="/boarding-life/sports-at-cbs/:sport"
+                    element={
+                      <MetaWrapper pathname="/boarding-life/sports-at-cbs/:sport">
+                        <SportsGallery />
+                      </MetaWrapper>
+                    }
+                  />
                   {/* <Route
                     path="/boarding-life/safety-security"
                     element={<SafetySecurity />}
                   /> */}
+
                   <Route
                     path="/boarding-life/medical-facilities"
                     element={

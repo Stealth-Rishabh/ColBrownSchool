@@ -148,5 +148,16 @@ export const routeMetadata = {
     title: 'Student Portal | CBS School',
     description: 'Access student results and information',
     keywords: 'results, portal, student, CBS school',
-  }
+  },
+  '/boarding-life/sports-gallery': {
+    title: 'Sports Gallery | CBS School',
+    description: 'Explore our sports gallery',
+    keywords: 'sports, gallery, photos, CBS school',
+  },
+  '/boarding-life/sports-at-cbs/:sport': {
+    title: 'Sports Gallery | CBS School',
+    description: 'Explore our sports gallery',
+    keywords: 'sports, gallery, photos, CBS school',
+  },
+
 }; 
