@@ -33,7 +33,7 @@ export default function Footer() {
       {
         name: "Calendar",
         href: "/src/assets/calendar-january-may-2024.pdf",
-        target: true,
+        target: 1,
       },
       { name: "Notice(s)", href: "/notices" },
     ],

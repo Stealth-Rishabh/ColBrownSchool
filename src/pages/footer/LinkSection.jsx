@@ -56,7 +56,6 @@ export default function LinkSection({ title, links, delay = 0, target}) {
               <a
                 href={link.href}
                 target="_blank"
-                rel="noopener noreferrer"
                 className="text-sm text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4 inline-flex items-center group"
               >
                 <motion.span
