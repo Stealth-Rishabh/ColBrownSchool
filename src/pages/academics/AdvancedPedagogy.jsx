@@ -10,6 +10,7 @@ import {
   FlaskConical,
 } from "lucide-react";
 import Heading from "../../components/Heading"; // Adjust the import path as necessary
+import EducationalJourney from "./EducationalJourney";
 import { Button } from "../../components/ui/button";
 import { Parallax } from "react-parallax";
 import { useState } from "react";
@@ -209,7 +210,7 @@ const AdvancedPedagogy = () => {
       </section>
 
       {/* Educational Journey */}
-      <section ref={journeyRef} className="px-4 py-10 sm:py-20 bg-gray-50">
+      {/* <section ref={journeyRef} className="px-4 py-10 sm:py-20 bg-gray-50">
         <div className="container mx-auto">
           <Heading
             title="Your Educational Journey"
@@ -260,7 +261,8 @@ const AdvancedPedagogy = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <EducationalJourney />
 
       {/* Image Gallery */}
       <section
