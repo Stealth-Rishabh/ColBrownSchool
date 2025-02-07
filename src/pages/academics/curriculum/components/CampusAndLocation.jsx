@@ -34,7 +34,7 @@ export default function CampusAndLocation() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:w-1/2 lg:pl-8"
+            className="lg:w-1/2 lg:pl-8 text-lg"
           >
             <p className="text-gray-800 mb-4">
               Nestled in the prestigious Dalanwala area, CBS boasts a lush green
@@ -45,7 +45,7 @@ export default function CampusAndLocation() {
               Our campus is a testament to the region's rich heritage, with
               remnants of the famous tea gardens that once flourished here.
             </p>
-            <div className="mt-8">
+            {/* <div className="mt-8">
               <h3 className="text-lg md:text-xl font-semibold text-green-950 mb-4">
                 Key Landmarks
               </h3>
@@ -63,7 +63,7 @@ export default function CampusAndLocation() {
                   <span>State-of-the-art Science Laboratories</span>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>
