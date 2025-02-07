@@ -22,11 +22,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-12 sm:py-20 bg-gray-50 bg-gradient-to-r from-slate-300 via-slate-50 to-slate-300">
+    <section
+      id="services"
+      className="py-12 sm:py-20 bg-gray-50 bg-gradient-to-r from-slate-300 via-slate-50 to-slate-300"
+    >
       <div className="container max-w-7xl mx-auto px-4">
         <Heading
           title="Our Services"
-
           titleClassName="lg:text-5xl font-bold sm:mb-12 text-center text-green-950"
           className="fadeIn lg:pb-10"
         />

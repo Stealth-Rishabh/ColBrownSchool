@@ -7,6 +7,8 @@ import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react"
 
 const ContactForm = () => {
   const breadcrumbItems = [
@@ -41,6 +43,59 @@ const ContactForm = () => {
 
 export default ContactForm;
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    enquiryType: "Admissions",
+    message: ""
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (!/^[a-zA-Z\s]{3,50}$/.test(formData.name.trim())) {
+      newErrors.name = "Name should be 3-50 characters long and contain only letters";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation (Indian format)
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid 10-digit Indian phone number";
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message should be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+      // Handle form submission
+    }
+  };
+
   return (
     <section className="sm:pt-20 pt-12">
       <div className=" mx-auto max-min-w-5 sm:w-7xl sm:px-6 lg:px-11">
@@ -132,44 +187,69 @@ const ContactSection = () => {
             <h2 className="text-3xl font-semibold leading-10 text-green-800 font-manrope sm:text-4xl mb-11">
               Send Us A Message
             </h2>
-            <form className="space-y-5 sm:space-y-10">
-              <Input
-                type="text"
-                placeholder="Name"
-                className="h-12 bg-transparent rounded-lg"
-              />
-              <Input
-                type="email"
-                placeholder="Email"
-                className="h-12 bg-transparent rounded-lg"
-              />
-              <Input
-                type="tel"
-                placeholder="Phone"
-                className="h-12 bg-transparent rounded-lg"
-              />
-              <Textarea
-                placeholder="Your message"
-                className="min-h-[120px] rounded-lg bg-transparent resize-none"
-              />
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-7">
               <div>
-                <Label className=" text-lg font-normal leading-7 text-gray-500">
-                  Preferred method of communication
-                </Label>
-                <div className="flex mt-5">
-                  <div className="flex items-center mr-11">
-                    <RadioGroup defaultValue="email" className="flex gap-4">
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="email" id="email" />
-                        <Label htmlFor="email">Email</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="phone" id="phone" />
-                        <Label htmlFor="phone">Phone</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                </div>
+                <Input
+                  type="text"
+                  placeholder="Name"
+                  className={`h-12 bg-transparent rounded-lg ${errors.name ? 'border-red-500' : ''}`}
+                  value={formData.name}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: '' });
+                  }}
+                />
+                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+              </div>
+              <div>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  className={`h-12 bg-transparent rounded-lg ${errors.email ? 'border-red-500' : ''}`}
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    if (errors.email) setErrors({ ...errors, email: '' });
+                  }}
+                />
+                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+              </div>
+              <div>
+                <Input
+                  type="tel"
+                  placeholder="Phone"
+                  className={`h-12 bg-transparent rounded-lg ${errors.phone ? 'border-red-500' : ''}`}
+                  value={formData.phone}
+                  onChange={(e) => {
+                    setFormData({ ...formData, phone: e.target.value });
+                    if (errors.phone) setErrors({ ...errors, phone: '' });
+                  }}
+                />
+                {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
+              </div>
+              <Select 
+                defaultValue="Admissions"
+                onValueChange={(value) => setFormData({ ...formData, enquiryType: value })}
+              >
+                <SelectTrigger className="h-12 bg-transparent rounded-lg">
+                  <SelectValue placeholder="Select enquiry type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Admissions">Admissions</SelectItem>
+                  <SelectItem value="General">General</SelectItem>
+                </SelectContent>
+              </Select>
+              <div>
+                <Textarea
+                  placeholder="Your message"
+                  className={`min-h-[120px] rounded-lg bg-transparent resize-none ${errors.message ? 'border-red-500' : ''}`}
+                  value={formData.message}
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    if (errors.message) setErrors({ ...errors, message: '' });
+                  }}
+                />
+                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
               </div>
               <Button
                 type="submit"

@@ -129,6 +129,23 @@ const RegistrationForm = () => {
 
   const handlePrevStep = () => setStep(step - 1);
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (step < 4) {
+        handleNextStep();
+      } else {
+        handleSubmit();
+      }
+    }
+  };
+
+  const handleSubmit = () => {
+    if (validateStep(step)) {
+      console.log("Form submitted:", formData);
+      // Add your form submission logic here
+    }
+  };
+
   const renderStep = () => {
     switch (step) {
       case 1:
@@ -170,7 +187,10 @@ const RegistrationForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-black via-gray-900 to-green-950 flex items-center justify-center p-4 sm:py-24 py-16">
-      <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl">
+      <div 
+        className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl"
+        onKeyPress={handleKeyPress}
+      >
         <h1 className="text-3xl font-bold text-center text-green-950 mb-6">
           School Registration
         </h1>
@@ -210,7 +230,7 @@ const RegistrationForm = () => {
             </Button>
           ) : (
             <Button
-              onClick={() => console.log("Form submitted:", formData)}
+              onClick={handleSubmit}
               className="flex items-center ml-auto bg-green-600 hover:bg-green-700"
             >
               Submit
@@ -454,19 +474,23 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
         required
         error={errors.admissionClass}
       />
-      <div className="flex items-center space-x-2">
-        <Checkbox
-          id="terms"
-          checked={formData.terms || false}
-          onCheckedChange={(checked) => handleInputChange("terms", checked)}
-        />
-        <label htmlFor="terms" className="text-sm text-green-800">
-          I agree to the{" "}
-          <a href="#" className="text-green-600 hover:underline">
-            terms & conditions
-          </a>
-          .
-        </label>
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="terms"
+            checked={formData.terms || false}
+            onCheckedChange={(checked) => handleInputChange("terms", checked)}
+            className={errors.terms ? "border-red-500" : ""}
+          />
+          <label htmlFor="terms" className="text-sm text-green-800">
+            I agree to the{" "}
+            <a href="#" className="text-green-600 hover:underline">
+              terms & conditions
+            </a>
+            . <span className="text-red-500">*</span>
+          </label>
+        </div>
+        {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
       </div>
     </div>
     <p className="mt-6 text-sm text-green-700">
@@ -554,6 +578,7 @@ const TextAreaField = ({ label, name, value, onChange, required, placeholder, mi
       placeholder={placeholder}
       minLength={minLength}
       maxLength={maxLength}
+      className={error ? "border-red-500" : ""}
     />
     {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
   </div>
