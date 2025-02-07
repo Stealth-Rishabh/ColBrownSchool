@@ -28,9 +28,11 @@ const FAQ = () => {
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
+        className="!text-2xl sm:!text-5xl"
       />
       <section className="">
         <Container>
+
           {/* <Heading
             title="Frequently Asked Questions"
           titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"

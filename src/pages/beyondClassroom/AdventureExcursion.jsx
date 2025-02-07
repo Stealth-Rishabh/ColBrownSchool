@@ -45,7 +45,7 @@ const AdventureExcursion = () => {
         imageSrc={excursion3}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
-        className="!text-3xl sm:!text-5xl"
+        className="!text-2xl sm:!text-5xl"
       />
       <section className="">
         <Container>
