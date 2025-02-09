@@ -1,11 +1,12 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/admissions/news-events.jpeg";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
+
 import {
     Drawer,
     DrawerClose,

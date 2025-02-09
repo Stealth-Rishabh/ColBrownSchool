@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/admissions/admissions-procedure.avif";
+import img from "../../assets/admissions/admission.jpg";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
@@ -31,8 +31,8 @@ const AdmissionProcedure = () => {
             subtitleClassName="text-gray-700"
             className="pt-12 mx-auto sm:px-0 px-6 pb-1"
           />
-         
-          <VerticalStepper/>
+
+          <VerticalStepper />
         </Container>
       </section>
     </section>

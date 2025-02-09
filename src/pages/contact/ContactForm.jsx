@@ -1,5 +1,5 @@
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/contact.jpg";
+import img from "../../assets/contact.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import { Phone, Mail, MapPin, SendHorizonal } from "lucide-react";

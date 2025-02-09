@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/landing/bg1.webp";
+import img from "../../assets/admissions/faqs.jpeg";
+import faq from "../../assets/admissions/faq.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
@@ -17,7 +18,6 @@ const FAQ = () => {
           <span className="hidden sm:inline">Frequently Asked Questions</span>
           <span className="sm:hidden">FAQs</span>
         </>
-
       ),
     },
   ];
@@ -32,7 +32,6 @@ const FAQ = () => {
       />
       <section className="">
         <Container>
-
           {/* <Heading
             title="Frequently Asked Questions"
           titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
@@ -126,7 +125,7 @@ const FAQSection = () => {
             </div>
             <div className="relative sm:aspect-[3/4] shadow-lg  max-h-96 border brightness-75 border-gray-200 w-full overflow-hidden rounded-2xl">
               <img
-                src="https://cbs.edustoke.com/wp-content/uploads/2024/11/15-aug-2019-2.jpg"
+                src={faq}
                 alt="Customer support representative"
                 className="h-full w-full object-cover hover:scale-105 transition-all duration-300"
               />
