@@ -11,7 +11,7 @@ export function NewsCard({ item, index }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex items-center gap-3 grid rounded-lg hover:bg-gray-100 cursor-pointer"
+      className="flex items-center gap-3 rounded-lg hover:bg-gray-100 cursor-pointer"
     >
       <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
         <div className="p-4 flex gap-4">
