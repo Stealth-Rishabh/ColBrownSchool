@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 import PropTypes from "prop-types";
 import { ChevronDown } from "lucide-react";
+// import legacy from '../../../../assets/'
 
 export default function LegacyTimeline() {
   return (
