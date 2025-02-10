@@ -18,7 +18,7 @@ export default function TopBar() {
             className="flex items-center hover:text-yellow-400"
           >
             <Phone className="h-4 w-4 mr-2" />
-            +91 93951 14383
+            +91 63951 14363
           </a>
         </div>
         <div className="flex items-center space-x-4">

@@ -28,7 +28,7 @@ const FAQ = () => {
         imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
-        className="!text-2xl sm:!text-5xl"
+        className="!text-xl sm:!text-5xl"
       />
       <section className="">
         <Container>
