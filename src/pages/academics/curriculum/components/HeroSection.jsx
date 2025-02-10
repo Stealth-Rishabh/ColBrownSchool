@@ -32,6 +32,7 @@ export default function HeroSection() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="bg-white text-green-950 px-4 py-2 md:px-6 md:py-3 rounded-full font-bold text-base sm:text-lg hover:bg-opacity-90 transition duration-300"
+          onClick={() => document.getElementById('subjects-and-streams').scrollIntoView({ behavior: 'smooth' })}
         >
           View Academic Programs
         </motion.button>
