@@ -87,11 +87,12 @@ export default function SubjectsAndStreams() {
   };
   return (
     <section className="py-12 md:py-16 bg-slate-400">
-      <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-2xl md:text-3xl font-serif text-green-950 mb-6 md:mb-8 text-center">
+      <div className="container md:max-w-7xl mx-auto px-4 md:px-8">
+        <h2 className="text-2xl md:text-4xl font-semibold font-serif text-green-950 mb-6 md:mb-8 text-center">
           Subjects and Streams
         </h2>
         <div className="flex flex-wrap justify-center mb-6 md:mb-8">
+
           {Object.keys(subjects).map((tab) => (
             <button
               key={tab}

@@ -358,8 +358,9 @@ const InfrastructureSection = ({
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                      className="w-full p-3.5 rounded-xl bg-yellow-50 border-2 border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex"
+                      className="w-full p-3.5 rounded-xl bg-yellow-50 border-2 border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col h-full justify-start items-start gap-2.5 inline-flex"
                     >
+
                       <h4 className="text-2xl font-bold leading-9 text-gray-900 font-manrope">
                         {achievement.title}
                       </h4>

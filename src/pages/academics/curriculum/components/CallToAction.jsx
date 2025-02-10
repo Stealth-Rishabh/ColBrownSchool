@@ -6,7 +6,8 @@ import { Link } from "react-router-dom"
 export default function CallToAction() {
   return (
     <section className="py-16 bg-green-950 text-white">
-      <div className="container mx-auto px-4 md:px-8 text-center">
+      <div className="container md:max-w-7xl mx-auto px-4 md:px-8  text-center">
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +20,7 @@ export default function CallToAction() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap flex-col sm:flex-row justify-center gap-4"
+          className="flex flex-wrap flex-col sm:flex-row justify-center gap-8 sm:gap-4"
         >
           <Link to="/admissions/registration" onClick={() => window.scrollTo(0, 0)} passHref>
             <motion.a

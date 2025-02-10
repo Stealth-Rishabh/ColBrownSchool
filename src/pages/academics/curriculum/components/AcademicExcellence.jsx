@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export default function AcademicExcellence() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container md:max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

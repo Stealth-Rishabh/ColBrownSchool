@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function SchoolMottoAndCrest() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-8 text-center">
+      <div className="container md:max-w-7xl mx-auto px-4 md:px-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

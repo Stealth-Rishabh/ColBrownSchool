@@ -5,12 +5,13 @@ import img from "../../../../assets/landing/bg1.webp";
 export default function CampusAndLocation() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container md:max-w-7xl mx-auto px-4 md:px-8">
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-2xl md:text-3xl font-serif text-green-950 mb-8 text-center"
+          className="text-2xl md:text-4xl font-semibold font-serif text-green-950 mb-8 text-center"
         >
           Campus and Location
         </motion.h2>

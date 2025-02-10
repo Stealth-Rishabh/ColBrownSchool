@@ -257,7 +257,7 @@ const MainNav = () => {
           >
             {menu.items ? (
               <>
-                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md font-serif text-base">
+                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md font-serif text-base ">
                   {menu.icon}
                   {menu.trigger}
                   <motion.div
@@ -277,7 +277,7 @@ const MainNav = () => {
                       className="absolute left-0 w-max min-w-48  "
                     >
                       <motion.ul
-                        className="z-20 py-2 mt-9 bg-white rounded shadow-lg border font-serif text-base border-gray-200"
+                        className="z-20 py-2 mt-9 bg-white rounded drop-shadow-lg border font-serif text-base border-gray-200"
                         initial="closed"
                         animate="open"
                         exit="closed"

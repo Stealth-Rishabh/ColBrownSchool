@@ -80,7 +80,7 @@ const FeatureItem = ({ feature, index }) => (
     <div className="relative z-20 col-span-12 p-0 md:col-span-6">
       <div className={cn("bg-white h-full flex flex-col justify-center p-6 lg:p-12")}>
         <div className="mb-6">
-          <span className="block text-4xl text-red-600 font-bold leading-none">
+          <span className="block sm:text-4xl text-2xl text-red-600 sm:font-bold font-semibold leading-none">
             {feature.title}
           </span>
         </div>

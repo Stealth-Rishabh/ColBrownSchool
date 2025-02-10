@@ -50,7 +50,7 @@ const InteractiveTimeline = () => {
 
   return (
     <section className="py-16 bg-gray-800">
-      <div className="container mx-auto px-4">
+      <div className="md:max-w-7xl container mx-auto px-4">
         <h2 className="text-4xl text-white font-semibold mb-8 text-center">Timeline of Excellence</h2>
         <div className="relative">
           <div
