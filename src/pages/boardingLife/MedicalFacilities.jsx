@@ -1,8 +1,12 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/boarding-life/medical2.webp";
-import medical1 from "../../assets/boarding-life/medical1.webp";
-import medical3 from "../../assets/boarding-life/medical3.webp";
+import medical1 from "../../assets/boarding-life/medifaci (1).webp";
+import medical2 from "../../assets/boarding-life/medifaci (2).webp";
+import medical3 from "../../assets/boarding-life/medifaci (3).webp";
+import medical4 from "../../assets/boarding-life/medifaci (4).webp";
+import medical5 from "../../assets/boarding-life/medifaci (5).webp";
+import medical6 from "../../assets/boarding-life/medifaci (6).webp";
 import PropTypes from "prop-types";
 import { Stethoscope, Heart, Clock } from "lucide-react";
 
@@ -85,11 +89,10 @@ const Feature = () => {
         </div>
         <div className="max-w-7xl mx-auto">
           <div className="aspect-[16/9] max-w-3xl mx-auto mb-20">
-            <div
-              className="w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
-              style={{
-                backgroundImage: `url(${medical1})`,
-              }}
+            <img
+              src={medical2}
+              alt="Medical facilities at Col. Brown School"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
@@ -161,30 +164,27 @@ const Gallery = () => {
 
   const images = [
     {
-      src: medical3,
+      src: medical1,
       alt: "Medical facility entrance",
       className: "md:col-span-4 md:h-[404px] h-[277px]",
     },
     {
-      src: img,
+      src: medical3,
       alt: "Medical staff at work",
       className: "md:col-span-8 md:h-[404px] h-[277px]",
     },
-
     {
-      src: medical1,
+      src: medical4,
       alt: "Treatment room",
       className: "h-[277px]",
     },
-
     {
-      src: medical3,
+      src: medical5,
       alt: "Medical equipment",
       className: "h-[277px]",
     },
-
     {
-      src: medical1,
+      src: medical6,
       alt: "Consultation room",
       className: "h-[277px]",
     },

@@ -136,7 +136,7 @@ const LeadershipMessage = () => {
             <motion.img
               src={leader.image || "/placeholder.svg"}
               alt={leader.name}
-              className="w-full h-96 duration-300 aspect-square object-cover"
+              className="w-full h-96 duration-300 aspect-square object-cover object-top"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
             />
