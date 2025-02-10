@@ -44,7 +44,7 @@ const VirtualTour = () => {
         </Link>
 
         <Link
-          to="/boarding-life/sports-at-cbs"
+          to="/boarding-life/hostel"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <motion.div
