@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0.7, 1], [0.6, 1]);
 
   const footerLinks = {
     "Quick Links": [
