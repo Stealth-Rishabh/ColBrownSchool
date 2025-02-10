@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-fit py-5 sm:py-0 sm:h-[70vh] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[60vh] py-5 sm:py-0 sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <img
         src={img}
         alt="CBS Campus"

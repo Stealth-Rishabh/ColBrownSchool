@@ -151,15 +151,6 @@ const ContactSection = () => {
                             +91 6395114363
                           </h5>
                         </a>
-                        <a
-                          href="tel:+917579495090"
-                          className="flex items-center"
-                        >
-                          <Phone className="text-white block sm:hidden min-w-5 sm:w-5 h-5" />
-                          <h5 className="ml-2 sm:ml-5 text-sm sm:text-base font-normal leading-6 text-white">
-                            +91 7579495090
-                          </h5>
-                        </a>
 
                         <a
                           href="tel:+911352655233"

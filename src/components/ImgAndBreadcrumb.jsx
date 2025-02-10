@@ -43,12 +43,11 @@ const ImgAndBreadcrumb = ({
         alt={imageAlt || "Image"}
         className="absolute top-0 left-0 object-cover w-full h-full shadow-sm -z-10"
       />
-      <div className="absolute top-0 left-0 w-full h-full "></div>
+      <div className="absolute top-0 left-0 w-full h-full inset-0 bg-black/40"></div>
       <WordPullUp
         words={title}
-        className={`${className} text-3xl sm:text-5xl text-slate-200  absolute top-14 sm:top-[40%] leading-tight sm:leading-none bg-black/70 sm:bg-black/50 p-1 sm:p-10 hover:bg-black/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105 px-2 font-extrabold tracking-wide text-center`}
+        className={`${className} text-3xl sm:text-5xl text-slate-200  absolute top-14 sm:top-[40%] leading-tight sm:leading-none bg-black/70 sm:bg-black/50 p-1 sm:p-10 hover:bg-black/50 hover:text-white transition-all duration-300 ease-in-out hover:scale-105 px-2 font-extrabold tracking-wide text-center break-words`}
       />
-
 
       <Breadcrumb className="relative z-10 -mb-8 transition-all duration-300 ease-in-out hover:drop-shadow-2xl drop-shadow-xl hover:scale-105">
         <BreadcrumbList className="px-8 py-4 bg-green-800 rounded-t-xl">
@@ -87,7 +86,7 @@ const ImgAndBreadcrumb = ({
                   <BreadcrumbLink asChild className="text-white">
                     <Link
                       to={breadcrumbItems[0].href}
-                      className=" font-semibold text-white transition-colors duration-100 ease-in-out hover:text-slate-100 "
+                      className="font-semibold text-white transition-colors duration-100 ease-in-out  hover:text-slate-100"
                     >
                       {breadcrumbItems[0].label}
                     </Link>
@@ -136,12 +135,12 @@ const ImgAndBreadcrumb = ({
                   {item.href ? (
                     <BreadcrumbLink
                       asChild
-                      className="truncate max-w-20 md:max-w-none text-white"
+                      className="text-white truncate max-w-20 md:max-w-none"
                     >
                       <Link to={item.href}>{item.label}</Link>
                     </BreadcrumbLink>
                   ) : (
-                    <BreadcrumbPage className="truncate max-w-20 md:max-w-none text-white">
+                    <BreadcrumbPage className="text-white truncate max-w-20 md:max-w-none">
                       {item.label}
                     </BreadcrumbPage>
                   )}

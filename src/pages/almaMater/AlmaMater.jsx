@@ -92,9 +92,11 @@ const AlmaMater = () => {
   }
 
   return (
-    <div className="max-w-2xl my- sm:my-20 mx-auto p-6 bg-white rounded-lg sm:shadow-lg">
+    <section className="sm:py-20 bg-gradient-to-tr from-black via-gray-900 to-green-950">
+    <div className="max-w-2xl my-  mx-auto p-6 bg-white sm:rounded-lg sm:shadow-lg">
       <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Alumni Registration</h2>
       
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -253,7 +255,7 @@ const AlmaMater = () => {
               control={form.control}
               name="visitDate"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="">
                   <FormLabel>Intended Visit Date</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
@@ -355,7 +357,9 @@ const AlmaMater = () => {
         </form>
       </Form>
     </div>
+    </section>
   )
 }
+
 
 export default AlmaMater

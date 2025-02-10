@@ -14,11 +14,11 @@ export default function TopBar() {
             principal@colbrownschool.com
           </a>
           <a
-            href="tel:+919395114383"
+            href="tel:+916395114363"
             className="flex items-center hover:text-yellow-400"
           >
             <Phone className="h-4 w-4 mr-2" />
-            +91 93951 14383
+            +91 63951 14363
           </a>
         </div>
         <div className="flex items-center space-x-4">
