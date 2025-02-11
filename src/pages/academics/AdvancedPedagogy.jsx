@@ -26,6 +26,7 @@ import elearning from "../../assets/academics/elearning.webp";
 import { ArrowRight } from "lucide-react";
 import { cn } from "../../lib/utils";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const AdvancedPedagogy = () => {
   const [legacyRef, legacyInView] = useInView({
@@ -102,7 +103,6 @@ const AdvancedPedagogy = () => {
                   Explore More
                 </Button>
               </a>
-
             </div>
           </div>
         </div>
@@ -283,49 +283,59 @@ const AdvancedPedagogy = () => {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_28.jpg",
                 alt: "Classroom",
                 icon: <School className="w-6 h-6" />,
+                link: "/boarding-life/classrooms",
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_26.jpg",
                 alt: "Laboratory",
                 icon: <FlaskConical className="w-6 h-6" />,
+                link: "",
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
                 alt: "Sports facilities",
                 icon: <Volleyball className="w-6 h-6" />,
+                link: "/boarding-life/sports-at-cbs",
               },
               {
                 src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
                 alt: "Library",
                 icon: <BookOpen className="w-6 h-6" />,
+                link: "/boarding-life/library",
               },
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="relative overflow-hidden sm:rounded rounded shadow-lg"
-                initial={initialStyle}
-                animate={galleryInView ? "visible" : "hidden"}
-                variants={fadeIn}
-                transition={{ duration: 0.3, delay: 0.05 * (index + 1) }} // Reduced duration and delay
+              <Link
+                to={item.link}
+                onClick={() => window.scrollTo(0, 0)}
+                passHref
               >
-                <img
-                  src={item.src || "https://v0.dev/placeholder.svg"}
-                  alt={item.alt}
-                  className="object-cover w-full h-full"
-                />
-                <div className="absolute  flex sm:hidden items-center justify-center transition-opacity duration-300 bg-green-950 bg-opacity-70 hover:opacity-100 bottom-0 w-full p-4">
-                  <p className="text-lg font-semibold text-white flex items-center gap-2">
-                    {" "}
-                    {item.icon} {item.alt}
-                  </p>
-                </div>
-                <div className="hidden absolute inset-0 sm:flex items-center justify-center transition-opacity duration-300 opacity-0 bg-green-950 bg-opacity-70 hover:opacity-100">
-                  <p className="text-2xl font-semibold text-white flex items-center gap-2 animate-bounce mt-5">
-                    {" "}
-                    {item.icon} {item.alt}
-                  </p>
-                </div>
-              </motion.div>
+                <motion.div
+                  key={index}
+                  className="relative overflow-hidden sm:rounded rounded shadow-lg"
+                  initial={initialStyle}
+                  animate={galleryInView ? "visible" : "hidden"}
+                  variants={fadeIn}
+                  transition={{ duration: 0.3, delay: 0.05 * (index + 1) }} // Reduced duration and delay
+                >
+                  <img
+                    src={item.src || "https://v0.dev/placeholder.svg"}
+                    alt={item.alt}
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute  flex sm:hidden items-center justify-center transition-opacity duration-300 bg-green-950 bg-opacity-70 hover:opacity-100 bottom-0 w-full p-4">
+                    <p className="text-lg font-semibold text-white flex items-center gap-2">
+                      {" "}
+                      {item.icon} {item.alt}
+                    </p>
+                  </div>
+                  <div className="hidden absolute inset-0 sm:flex items-center justify-center transition-opacity duration-300 opacity-0 bg-green-950 bg-opacity-70 hover:opacity-100">
+                    <p className="text-2xl font-semibold text-white flex items-center gap-2 animate-bounce mt-5">
+                      {" "}
+                      {item.icon} {item.alt}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -353,15 +363,21 @@ const AdvancedPedagogy = () => {
           >
             Take the first step towards an exceptional education. Apply now!
           </motion.p>
-          <motion.button
-            className="px-8 py-3 text-lg font-semibold transition-colors duration-300 bg-white rounded-full text-green-950 hover:bg-gray-200"
-            initial={initialStyle}
-            animate={ctaInView ? "visible" : "hidden"}
-            variants={fadeIn}
-            transition={{ duration: 0.3, delay: 0.2 }} // Reduced duration and delay
+          <Link
+            to="/admissions/registration"
+            onClick={() => window.scrollTo(0, 0)}
+            passHref
           >
-            Apply Now
-          </motion.button>
+            <motion.button
+              className="px-8 py-3 text-lg font-semibold transition-colors duration-300 bg-white rounded-full text-green-950 hover:bg-gray-200"
+              initial={initialStyle}
+              animate={ctaInView ? "visible" : "hidden"}
+              variants={fadeIn}
+              transition={{ duration: 0.3, delay: 0.2 }} // Reduced duration and delay
+            >
+              Apply Now
+            </motion.button>
+          </Link>
         </div>
       </section>
       <Feature />

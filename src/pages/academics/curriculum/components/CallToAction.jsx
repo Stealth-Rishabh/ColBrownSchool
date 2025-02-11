@@ -32,7 +32,7 @@ export default function CallToAction() {
               Register Now
             </motion.a>
           </Link>
-          <Link to="/src/assets/calendar-january-may-2024.pdf" target="_blank" passHref>
+          <a href="/src/assets/calendar-january-may-2024.pdf" target="_blank" passHref>
             <motion.a
               whileHover={{ scale: 1.05 }}
 
@@ -41,7 +41,7 @@ export default function CallToAction() {
             >
               View Calendar
             </motion.a>
-          </Link>
+          </a>
           <Link to="/admissions/fee-details" onClick={() => window.scrollTo(0, 0)} passHref>
             <motion.a
               whileHover={{ scale: 1.05 }}
