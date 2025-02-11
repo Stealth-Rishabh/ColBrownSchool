@@ -9,5 +9,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  assetsInclude: ['**/*.JPG']
+  assetsInclude: ['**/*.JPG'],
+  // Add jsconfig.json or tsconfig.json in your project root with:
+  // {
+  //   "compilerOptions": {
+  //     "baseUrl": ".",
+  //     "paths": {
+  //       "@/*": ["src/*"]
+  //     }
+  //   }
+  // }
 })

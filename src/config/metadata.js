@@ -159,5 +159,10 @@ export const routeMetadata = {
     description: 'Explore our sports gallery',
     keywords: 'sports, gallery, photos, CBS school',
   },
+  '/notable-alumni': {
+    title: 'Notable Alumni | CBS School',
+    description: 'Explore our notable alumni',
+    keywords: 'alumni, notable, achievements, CBS school',
+  },
 
 }; 

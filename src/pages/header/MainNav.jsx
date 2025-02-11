@@ -206,8 +206,19 @@ const menuItems = [
   },
   {
     trigger: "Alma Mater",
-    path: "/alma-mater",
     icon: <Contact className="w-4 h-4 mr-2" />,
+    items: [
+      {
+        name: "Alma Mater",
+        path: "/alma-mater",
+        icon: <GraduationCap className="w-4 h-4 mr-2" />,
+      },
+      {
+        name: "Notable Alumni", 
+        path: "/notable-alumni",
+        icon: <Users className="w-4 h-4 mr-2" />,
+      },
+    ],
   },
   // {
   //   trigger: "Contact Us",
@@ -256,8 +267,8 @@ const MainNav = () => {
             onMouseLeave={handleMouseLeave}
           >
             {menu.items ? (
-              <>
-                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md font-serif text-base ">
+              <div className="relative flex flex-col items-center">
+                <button className="flex items-center text-foreground hover:text-primary focus:outline-none p-2 hover:bg-gray-100 rounded-md font-serif text-base">
                   {menu.icon}
                   {menu.trigger}
                   <motion.div
@@ -274,7 +285,8 @@ const MainNav = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-0 w-max min-w-48  "
+                      className="absolute w-max min-w-48 top-full"
+                      style={{ transformOrigin: 'top center' }}
                     >
                       <motion.ul
                         className="z-20 py-2 mt-9 bg-white rounded drop-shadow-lg border font-serif text-base border-gray-200"
@@ -370,7 +382,7 @@ const MainNav = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </>
+              </div>
             ) : (
               <Link
                 to={menu.path}

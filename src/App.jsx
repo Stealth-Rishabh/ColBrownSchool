@@ -39,6 +39,7 @@ import FAQ from "./pages/admissions/FAQ";
 
 // Alma Mater
 import AlmaMater from "./pages/almaMater/AlmaMater";
+import NotableAlumni from "./pages/almaMater/NotableAlumni";
 // Contact
 import ContactForm from "./pages/contact/ContactForm";
 import Blog from "./pages/blog/Blog";
@@ -386,6 +387,14 @@ export default function App() {
                     }
                   />
 
+                  <Route
+                    path="/notable-alumni"
+                    element={
+                      <MetaWrapper pathname="/notable-alumni">
+                        <NotableAlumni />
+                      </MetaWrapper>
+                    }
+                  />
                   {/* Contact */}
                   <Route
                     path="/contact-us"

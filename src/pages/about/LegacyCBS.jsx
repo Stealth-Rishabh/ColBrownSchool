@@ -3,7 +3,7 @@ import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/academics/Campus.webp";
 import img1 from "../../assets/about/colonel-william-brown.jpg";
 import dick from "../../assets/about/dickhouse.webp";
-import logo from "../../assets/about/colbrown.webp";
+import logo from "../../assets/about/Since 1926.png";
 import Container from "../../components/wrappers/Container";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "../../lib/utils";

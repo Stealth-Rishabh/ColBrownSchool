@@ -2,7 +2,10 @@ import { motion } from "framer-motion";
 import { cn } from "../../../../lib/utils";
 import PropTypes from "prop-types";
 import { ChevronDown } from "lucide-react";
-// import legacy from '../../../../assets/'
+import legacy from "../../../../assets/about/Since 1926.png";
+import ratio from "@/assets/academics/StudentRatio.webp";
+import discipline from "@/assets/academics/Disciplined.webp";
+import campus from "@/assets/academics/Area.webp";
 
 export default function LegacyTimeline() {
   return (
@@ -32,13 +35,13 @@ export default function LegacyTimeline() {
 
 const features = [
   {
-    img: "https://v0.dev/placeholder.svg?height=300&width=400",
+    img: legacy,
     title: "Legacy of 99 Years ",
     description:
       "Established in 1926, Col Brown School has been nurturing young minds for nearly a century. Our rich heritage and time-tested educational approach have shaped generations of successful leaders and professionals.",
   },
   {
-    img: "https://v0.dev/placeholder.svg?height=300&width=400",
+    img: ratio,
     title: "Student Teacher Ratio 8:1",
     description:
       "Our low student-to-teacher ratio ensures personalized attention and mentoring for every student. This enables deeper learning engagement and helps teachers identify and nurture each student's unique potential.",
@@ -50,13 +53,13 @@ const features = [
       "Our consistent academic excellence and holistic development approach has earned us recognition among India's premier residential schools. We maintain high educational standards while fostering character development and leadership skills.",
   },
   {
-    img: "https://v0.dev/placeholder.svg?height=300&width=400",
+    img: discipline,
     title: "Disciplined Environment",
     description:
       "We cultivate a structured environment that instills self-discipline, responsibility and strong moral values. Our daily routine and code of conduct help shape well-rounded individuals with exemplary character.",
   },
   {
-    img: "https://v0.dev/placeholder.svg?height=300&width=400",
+    img: campus,
     title: "Spread Across 63+ Acre area",
     description:
       "Our sprawling campus provides an ideal setting for both academic pursuits and extracurricular activities. The vast grounds house modern facilities while preserving the natural beauty of our historic location.",
@@ -79,7 +82,11 @@ const FeatureItem = ({ feature, index }) => (
       </div>
     </div>
     <div className="relative z-20 col-span-12 p-0 md:col-span-6">
-      <div className={cn("bg-white h-full flex flex-col justify-center p-6 lg:p-12")}>
+      <div
+        className={cn(
+          "bg-white h-full flex flex-col justify-center p-6 lg:p-12"
+        )}
+      >
         <div className="mb-6">
           <span className="block sm:text-4xl text-2xl text-red-600 sm:font-bold font-semibold leading-none">
             {feature.title}
@@ -103,11 +110,7 @@ const Feature = () => {
     <section className="text-zinc-900 relative overflow-hidden z-10">
       <div className="container max-w-7xl mx-auto">
         {features.map((feature, i) => (
-          <FeatureItem
-            feature={feature}
-            index={i + 1}
-            key={i}
-          />
+          <FeatureItem feature={feature} index={i + 1} key={i} />
         ))}
       </div>
     </section>
