@@ -29,7 +29,7 @@ export default function Footer() {
     Academics: [
       { name: "News & Events", href: "/beyond-classroom/news-and-events" },
       { name: "Fee Structure", href: "/admissions/fee-details" },
-      { name: "Newsletter", href: "#" },
+      { name: "Newsletter", href: "/newsletter" },
       {
         name: "Calendar",
         href: "https://col-brown-school.vercel.app/assets/calendar-january-may-2024-Dre_knEo.pdf",
@@ -88,27 +88,29 @@ export default function Footer() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                5 Kasturba Road, Dalanwala
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                Dehradun – 248 001
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                Uttarakhand, India
-              </motion.p>
+              <Link to="https://www.google.com/maps/place/Col.+Brown+Cambridge+School/@30.322328,78.056969,1446m/data=!3m1!1e3!4m6!3m5!1s0x390929b641fd13a5:0xf2f0dda3f2210a65!8m2!3d30.3223276!4d78.0569688!16s%2Fm%2F0bmjr27?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMy4wIKXMDSoJLDEwMjExMjM0SAFQAw%3D%3D" target="_blank">
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  5 Kasturba Road, Dalanwala
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Dehradun – 248 001
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  Uttarakhand, India
+                </motion.p>
+              </Link>
               <motion.p
                 className="pt-2"
                 initial={{ opacity: 0, x: -20 }}

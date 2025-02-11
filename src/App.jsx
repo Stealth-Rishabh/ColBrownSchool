@@ -44,6 +44,7 @@ import NotableAlumni from "./pages/almaMater/NotableAlumni";
 import ContactForm from "./pages/contact/ContactForm";
 import Blog from "./pages/blog/Blog";
 import Notice from "./pages/Notice";
+import Newsletter from "./pages/Newsletter";
 // Error
 import NotFound from "./pages/fallback/NotFound";
 import { useEffect, useState } from "react";
@@ -417,6 +418,14 @@ export default function App() {
                     element={
                       <MetaWrapper pathname="/notices">
                         <Notice />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/newsletter"
+                    element={
+                      <MetaWrapper pathname="/newsletter">
+                        <Newsletter />
                       </MetaWrapper>
                     }
                   />

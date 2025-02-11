@@ -177,7 +177,10 @@ const FeeStructure = () => {
                 className="bg-green-800 text-white"
               >
                 <div className="flex flex-col gap-2 p-5 border border-green-800 rounded-lg hover:bg-green-800 hover:text-white transition-colors duration-300 shadow-lg">
-                  <p className="text-base">6395114363 / 0135-3593138</p>
+                  <p className="text-base">
+                    <a href="tel:+916395114363">+91 6395114363</a> /{" "}
+                    <a href="tel:01353593138">0135-3593138</a>
+                  </p>
                   <p className="text-base">
                     (10:00am – 4:00pm) Monday to Saturday
                   </p>
