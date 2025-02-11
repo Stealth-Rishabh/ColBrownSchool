@@ -1,4 +1,4 @@
-import CalendarPdf from "../../assets/calendar-january-may-2024.pdf"
+import CalendarPdf from "../../assets/calendar-january-may-2024.pdf";
 
 export const navlinks = [
   { name: "Home", path: "/" },
@@ -8,7 +8,10 @@ export const navlinks = [
     submenu: [
       { name: "Legacy of CBS", path: "/about/legacy-of-cbs" },
       { name: "Our Visionary Leaders", path: "/about/our-visionary-leaders" },
-      { name: "Message from the Management", path: "/about/message-from-management" },
+      {
+        name: "Message from the Management",
+        path: "/about/message-from-management",
+      },
       { name: "Achievements", path: "/about/achievements" },
       { name: "Faculty & Staff", path: "/about/faculty-staff" },
       { name: "Infrastructure", path: "/about/infrastructure" },
@@ -36,18 +39,18 @@ export const navlinks = [
       { name: "Hostel", path: "/boarding-life/hostel" },
       { name: "Dining", path: "/boarding-life/dining" },
       { name: "Library", path: "/boarding-life/library" },
-
     ],
   },
   {
     name: "Beyond Classroom",
     path: "/beyond-classroom",
     submenu: [
-      { name: "Adventure & Excurssion", path: "/beyond-classroom/adventure-excursion" },
+      {
+        name: "Adventure & Excurssion",
+        path: "/beyond-classroom/adventure-excursion",
+      },
       { name: "Clubs at CBS", path: "/beyond-classroom/clubs-at-cbs" },
       { name: "News & Events", path: "/beyond-classroom/news-and-events" },
-
-
     ],
   },
   {
@@ -60,6 +63,13 @@ export const navlinks = [
       { name: "FAQs", path: "/admissions/faqs" },
     ],
   },
-  { name: "Alma Mater", path: "/alma-mater" },
+  {
+    name: "Alma Mater",
+    path: "/alma-mater",
+    submenu: [
+      { name: "Alma Mater", path: "/alma-mater" },
+      { name: "Notable Alumni", path: "/notable-alumni" },
+    ],
+  },
   { name: "Contact Us", path: "/contact-us" },
 ];
