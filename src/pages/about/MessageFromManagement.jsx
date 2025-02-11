@@ -16,6 +16,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const MessageFromManagement = () => {
   const breadcrumbItems = [
@@ -124,9 +125,9 @@ const LeadershipMessage = () => {
                     </motion.div>
                   </Button>
                 </DrawerTrigger>
-                <DrawerContent className="bg-gradient-to-r from-gray-950 via-gray-700  to-gray-950 text-white">
+                <DrawerContent className="bg-gradient-to-r from-gray-950 via-gray-700 to-gray-950 text-white h-[60vh]">
                   <motion.div
-                    className="mx-auto w-full max-w-sm sm:max-w-2xl max-h-[90vh] "
+                    className="mx-auto w-full max-w-sm sm:max-w-2xl h-full"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
@@ -139,16 +140,18 @@ const LeadershipMessage = () => {
                         {leader.position}
                       </DrawerDescription>
                     </DrawerHeader>
-                    <div className="p-4 pb-0 text-white/90">
-                      <p className=" text-justify max-h-[500px] overflow-y-auto scrollbar-hide scroll-smooth">
-                        {leader.message.split("\n").map((line, index) => (
-                          <span key={index}>
-                            {line}
-                            <br />
-                          </span>
-                        ))}
-                      </p>
-                    </div>
+                    <ScrollArea className="h-[32vh] px-4">
+                      <div className="text-white/90">
+                        <p className="text-justify">
+                          {leader.message.split("\n").map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                        </p>
+                      </div>
+                    </ScrollArea>
                     <DrawerFooter>
                       <DrawerClose asChild>
                         <Button variant="">Close</Button>
