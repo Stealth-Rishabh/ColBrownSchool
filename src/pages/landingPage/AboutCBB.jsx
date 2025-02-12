@@ -4,7 +4,33 @@ import about from "../../assets/landing/about.png";
 import green from "../../assets/academics/Campus Location.webp";
 import nineteen from "../../assets/landing/nineteen-thirties-2.webp";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+
 export default function AboutCBB() {
+  const [isInView, setIsInView] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <Container className="lg:py-10">
@@ -82,7 +108,8 @@ export default function AboutCBB() {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <iframe
-                  src="https://www.youtube.com/embed/ReeaPy0jZjc?autoplay=1&mute=1"
+                  ref={videoRef}
+                  src={`https://www.youtube.com/embed/mZdDi62XFgU${isInView ? '?autoplay=1&mute=1' : ''}`}
                   frameborder="0"
                   allow="autoplay; encrypted-media"
                   allowfullscreen
