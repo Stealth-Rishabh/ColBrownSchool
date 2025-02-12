@@ -82,15 +82,15 @@ export default function AboutCBB() {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <iframe
-                  src="https://www.youtube.com/embed/ReeaPy0jZjc?si=enykszyKavHnfSYp"
-                  width="640"
-                  height="400"
-                  allow="autoplay"
+                  src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                  title="video"
                   className="rounded-2xl w-full h-[220px] sm:min-h-[400px]"
-                ></iframe>
+                />
               </motion.div>
             </div>
-
           </motion.div>
 
           <motion.div

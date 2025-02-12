@@ -35,7 +35,7 @@ export default function CallToAction() {
             </motion.a>
           </Link>
           <a
-            href="https://col-brown-school.vercel.app/assets/calendar-january-may-2024-Dre_knEo.pdf"
+            href="https://col-brown-school.vercel.app/assets/calendar-january-may-2025-Dre_knEo.pdf"
             target="_blank"
           >
             <motion.a

@@ -32,7 +32,7 @@ export default function Footer() {
       { name: "Newsletter", href: "/newsletter" },
       {
         name: "Calendar",
-        href: "https://col-brown-school.vercel.app/assets/calendar-january-may-2024-Dre_knEo.pdf",
+        href: "https://col-brown-school.vercel.app/assets/calendar-january-may-2025-Dre_knEo.pdf",
         target: 1,
       },
       { name: "Notice(s)", href: "/notices" },

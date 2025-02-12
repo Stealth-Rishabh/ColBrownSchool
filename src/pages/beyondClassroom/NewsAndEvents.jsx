@@ -103,9 +103,9 @@ We pray for the departed soul and pray to God to give the strength to loved ones
     id: 4,
     date: "May 18, 2024",
     images: [
-      "https://www.colbrownschool.com/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail23.jpg",
-      "https://www.colbrownschool.com/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail1.jpg",
-      "https://www.colbrownschool.com/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail2-1.jpg",
+      "https://www.colbrownschool.com/blog/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail23.jpg",
+      "https://www.colbrownschool.com/blog/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail1.jpg",
+      "https://www.colbrownschool.com/blog/cbs/wp-content/uploads/2024/05/wipro-earthian-award-ceremony-detail2-1.jpg",
     ],
     title: "Wipro Earthian Award Ceremony",
     excerpt:

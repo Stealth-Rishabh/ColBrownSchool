@@ -111,7 +111,7 @@ const Feature = () => {
               Our Boarding Houses
             </h1>
             <p className="text-lg opacity-80 leading-7">
-              Six distinguished boarding houses, each with its unique character
+              Seven distinguished boarding houses, each with its unique character
               and tradition, provide a nurturing home away from home for our
               students under the care of dedicated house masters.
             </p>
