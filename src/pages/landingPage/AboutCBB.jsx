@@ -82,7 +82,7 @@ export default function AboutCBB() {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <iframe
-                  src="https://drive.google.com/file/d/1K0JydH5GbrfHI8AW2QXCUKZWNFolifiR/preview"
+                  src="https://www.youtube.com/embed/ReeaPy0jZjc?si=enykszyKavHnfSYp"
                   width="640"
                   height="400"
                   allow="autoplay"
