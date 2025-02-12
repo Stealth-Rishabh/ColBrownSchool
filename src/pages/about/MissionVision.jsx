@@ -18,6 +18,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import FacultyStaffSection from "./FacultyStaffSection";
+import { ScrollArea } from "@/components/ui/scroll-area";
 // import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 const MissionVision = () => {
   // const breadcrumbItems = [
@@ -163,14 +164,14 @@ const LeadershipMessage = () => {
                     </motion.div>
                   </Button>
                 </DrawerTrigger>
-                <DrawerContent className="bg-gradient-to-r from-gray-950 via-gray-900  to-gray-950 text-white">
+                <DrawerContent className="bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950 text-white max-h-[70vh]">
                   <motion.div
-                    className="mx-auto w-full max-w-sm sm:max-w-2xl max-h-[90vh] "
+                    className="mx-auto w-full max-w-sm sm:max-w-2xl"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <DrawerHeader>
+                    <DrawerHeader className="pb-2 sm:pb-0">
                       <DrawerTitle className="text-2xl font-bold text-left sm:text-center text-white">
                         {leader.name}
                       </DrawerTitle>
@@ -178,19 +179,21 @@ const LeadershipMessage = () => {
                         {leader.position}
                       </DrawerDescription>
                     </DrawerHeader>
-                    <div className="p-4 pb-0 text-white/90">
-                      <p className=" text-justify max-h-[500px] overflow-y-auto scrollbar-hide scroll-smooth">
-                        {leader.message.split("\n").map((line, index) => (
-                          <span key={index}>
-                            {line}
-                            <br />
-                          </span>
-                        ))}
-                      </p>
+                    <div className="px-4 text-white/90">
+                      <ScrollArea className="h-[280px] sm:h-[300px] pr-4">
+                        <p className="text-justify pb-4">
+                          {leader.message.split("\n").map((line, index) => (
+                            <span key={index}>
+                              {line}
+                              <br />
+                            </span>
+                          ))}
+                        </p>
+                      </ScrollArea>
                     </div>
                     <DrawerFooter>
                       <DrawerClose asChild>
-                        <Button className="bg-white text-gray-950 hover:bg-gray-100 active:scale-95 duration-300 ">
+                        <Button className="bg-white text-gray-950 hover:bg-gray-100 active:scale-95 duration-300">
                           Close
                         </Button>
                       </DrawerClose>

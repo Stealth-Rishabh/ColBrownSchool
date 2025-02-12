@@ -61,7 +61,7 @@ const AchievementsSection = () => {
                             <img
                               src={src || "/placeholder.svg"}
                               alt={`${key} image ${index + 1}`}
-                              className="w-full h-96 object-cover rounded-lg"
+                              className="w-full aspect-video sm:h-96 object-cover rounded-lg"
                             />
                           </CarouselItem>
                         ))}

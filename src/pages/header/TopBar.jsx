@@ -5,7 +5,7 @@ export default function TopBar() {
   return (
     <div className="bg-gray-900 text-white px-4 py-3 block">
       <div className="sm:container md:max-w-6xl lg:max-w-[1400px] mx-auto flex flex-wrap justify-between items-center text-sm">
-        <div className="flex items-center flex-wrap sm:space-x-4 mb-2 sm:mb-0">
+        <div className="hidden sm:flex items-center flex-wrap sm:space-x-4 mb-2 sm:mb-0">
           <a
             href="mailto:principal@colbrownschool.com"
             className="flex items-center mr-2 sm:mr-0 hover:text-yellow-400"
