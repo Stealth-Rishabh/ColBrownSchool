@@ -18,7 +18,7 @@ const Registration = () => {
     <section>
       <ImgAndBreadcrumb
         title="Registration"
-        imageSrc={img}
+        imageSrc="https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-10.jpg"
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
       />

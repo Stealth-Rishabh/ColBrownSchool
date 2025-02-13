@@ -25,7 +25,7 @@ const FAQ = () => {
     <section>
       <ImgAndBreadcrumb
         title="Frequently Asked Questions"
-        imageSrc={img}
+        imageSrc="https://cbs.edustoke.com/wp-content/uploads/2024/11/15-aug-2019-2.jpg"
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
         className="!text-xl sm:!text-5xl"
