@@ -68,7 +68,7 @@ const AlumniCard = ({ name, role, image }) => (
 
 const NotableAlumni = () => {
   return (
-    <section className="py-24">
+    <section className="py-12 sm:py-24 px-6">
       <div className="container mx-auto max-w-7xl">
         <Heading
           title="Our Notable Alumni"
