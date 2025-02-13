@@ -257,7 +257,7 @@ const MainNav = () => {
   }, []);
 
   return (
-    <nav className="hidden sm:block bg-background" ref={navRef}>
+    <nav className="hidden sm:block " ref={navRef}>
       <ul className="relative z-20 flex space-x-6">
         {menuItems.map((menu, index) => (
           <li
