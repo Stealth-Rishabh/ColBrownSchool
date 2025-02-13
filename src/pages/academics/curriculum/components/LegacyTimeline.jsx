@@ -6,6 +6,7 @@ import legacy from "../../../../assets/about/Since 1926.png";
 import ratio from "@/assets/academics/StudentRatio.webp";
 import discipline from "@/assets/academics/Disciplined.webp";
 import campus from "@/assets/academics/Area.webp";
+import academics from "@/assets/landing/academics.webp";
 
 export default function LegacyTimeline() {
   return (
@@ -47,7 +48,7 @@ const features = [
       "Our low student-to-teacher ratio ensures personalized attention and mentoring for every student. This enables deeper learning engagement and helps teachers identify and nurture each student's unique potential.",
   },
   {
-    img: "https://v0.dev/placeholder.svg?height=300&width=400",
+    img: academics,
     title: "Ranked among top 10 Boys Residential School in North India",
     description:
       "Our consistent academic excellence and holistic development approach has earned us recognition among India's premier residential schools. We maintain high educational standards while fostering character development and leadership skills.",
@@ -77,7 +78,7 @@ const FeatureItem = ({ feature, index }) => (
         <img
           src={feature.img}
           alt={feature.title}
-          className="object-cover w-full h-full sm:min-h-[400px] transition-all duration-300 hover:scale-110 -z-10"
+          className="object-cover w-full max-h-96 sm:max-h-full transition-all duration-300 hover:scale-110 -z-10"
         />
       </div>
     </div>

@@ -37,10 +37,13 @@ import badminton1 from "../assets/sports/Badminton/img (1).webp";
 import badminton2 from "../assets/sports/Badminton/img (2).webp";
 import badminton3 from "../assets/sports/Badminton/img (3).webp";
 
-
 import tennis1 from "../assets/sports/Tennis/img (1).webp";
 import tennis2 from "../assets/sports/Tennis/img (2).webp";
 import tennis3 from "../assets/sports/Tennis/img (3).webp";
+
+import karate1 from "../assets/sports/Karate/img (1).webp";
+import karate2 from "../assets/sports/Karate/img (2).webp";
+import karate3 from "../assets/sports/Karate/img (3).webp";   
 
 
 
@@ -113,6 +116,11 @@ export const sportsData = {
     routeLink: "/boarding-life/sports-at-cbs/football",
     images: [
       "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-14.jpg",
+      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-15.jpg",
+      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-16.jpg",
+      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-13.jpg",
+      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-2.jpg",
+      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-8.jpg"
       // Add more football-related image URLs
     ],
     description:
@@ -174,7 +182,7 @@ export const sportsData = {
   },
   tennis: {
     title: "Tennis at CBS",
-    subtitle: "Developing precision and technique",
+    subtitle: "Developing precision and technique", 
     routeLink: "/boarding-life/sports-at-cbs/tennis",
     images: [
       tennis1,
@@ -183,5 +191,17 @@ export const sportsData = {
     ],
     description:
       "Students receive professional tennis coaching on our well-maintained courts, learning proper techniques and participating in competitive matches.",
+  },
+  karate: {
+    title: "Karate at CBS",
+    subtitle: "Building discipline and self-defense",
+    routeLink: "/boarding-life/sports-at-cbs/karate",
+    images: [
+      karate1,
+      karate2,
+      karate3,
+    ],
+    description:
+      "Our karate program builds discipline, self-defense skills and physical fitness through structured training under experienced black belt instructors.",
   },
 };

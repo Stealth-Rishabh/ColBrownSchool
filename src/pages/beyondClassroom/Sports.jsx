@@ -2,7 +2,7 @@ import skating from "../../assets/sports/Skating/img (1).webp";
 import swimming from "../../assets/sports/Swimming/img (1).webp";
 import badminton from "../../assets/sports/Badminton/img (1).webp";
 import tennis from "../../assets/sports/Tennis/img (1).webp";
-
+import karate from "../../assets/sports/Karate/img (1).webp";
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/beyond-classroom/Sports-Banner.webp";
@@ -136,6 +136,13 @@ const features = [
       "Students receive professional tennis coaching on our well-maintained courts, learning proper techniques and participating in competitive matches.",
     image: tennis,
     link: "/boarding-life/sports-at-cbs/tennis",
+  },
+  {
+    title: "Karate",
+    description:
+      "Our karate program builds discipline, self-defense skills and physical fitness through structured training under experienced black belt instructors.",
+    image: karate,
+    link: "/boarding-life/sports-at-cbs/karate",
   },
 ];
 
