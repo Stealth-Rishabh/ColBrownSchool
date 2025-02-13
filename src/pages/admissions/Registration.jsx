@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/admissions/register1.jpeg";
+import img from "../../assets/admissions/registration.jpg";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
@@ -18,7 +18,7 @@ const Registration = () => {
     <section>
       <ImgAndBreadcrumb
         title="Registration"
-        imageSrc="https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-10.jpg"
+        imageSrc={img}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
       />

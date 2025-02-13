@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/admissions/faqs.jpeg";
-import faq from "../../assets/admissions/faq.webp";
+import faq from "../../assets/admissions/faq.jpg";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
@@ -25,7 +25,7 @@ const FAQ = () => {
     <section>
       <ImgAndBreadcrumb
         title="Frequently Asked Questions"
-        imageSrc="https://cbs.edustoke.com/wp-content/uploads/2024/11/15-aug-2019-2.jpg"
+        imageSrc={faq}
         imageAlt="Description of the image"
         breadcrumbItems={breadcrumbItems}
         className="!text-xl sm:!text-5xl"

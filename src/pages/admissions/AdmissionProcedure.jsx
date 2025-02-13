@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/admissions/awards.jpg";
+import img from "../../assets/admissions/admission.jpg";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
