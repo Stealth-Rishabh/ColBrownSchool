@@ -13,7 +13,7 @@ export function NewsCard({ item, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="flex items-center gap-3 rounded-lg hover:bg-gray-100 cursor-pointer"
     >
-      <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300">
+      <Card className="group cursor-pointer w-full hover:shadow-lg transition-all duration-300">
         <div className="p-4 flex gap-4">
           <img
             src={item.image}
@@ -25,7 +25,7 @@ export function NewsCard({ item, index }) {
               <Calendar className="w-3 h-3" />
               <span>{item.date}</span>
             </div>
-            <h3 className="font-medium group-hover:text-green-900 transition-colors line-clamp-2">
+            <h3 className="font-medium group-hover:text-green-900 transition-colors line-clamp-2 hover:underline hover:line-clamp-none">
               {item.title}
             </h3>
             <span className="inline-block px-2 py-1 text-xs bg-green-50 text-green-600 rounded">

@@ -5,29 +5,29 @@ import { VideoPreview } from "./VideoPreview";
 import { NewsCard } from "./NewsCard";
 import { EventCard } from "./EventCard";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import news from "../../assets/landing/events/news.webp";
 import wipro from "../../assets/landing/events/wipro.webp";
 export default function SchoolEvents() {
   const newsItems = [
     {
+      date: "NOVEMBER 27, 2024",
+      title: "Ashwani Rinwa Obituary",
+      image: news,
+      type: "NEWS",
+    },
+    {
       date: "OCTOBER 21, 2024",
-      title: "Obituary",
+      title: "Sri. Vijay Kumar Farshwal Obituary",
       image: news,
       type: "NEWS",
     },
     {
       date: "OCTOBER 5, 2024",
-      title:
-        "Col. Brown Cambridge School rated amongst the top Boarding Schools in North India",
+      title: "Col. Brown Cambridge School rated amongst the top Boarding Schools in North India",
       image: news,
       type: "NEWS",
-    },
-    {
-      date: "MAY 18, 2024",
-      title: "Wipro Earthian Award Ceremony",
-      image: wipro,
-      type: "EVENTS",
     },
     // {
     //   date: "APRIL 9, 2024",
@@ -39,23 +39,51 @@ export default function SchoolEvents() {
 
   const events = [
     {
-      date: { day: "23", month: "DEC" },
-      title: "Build Education Website Using WordPress",
-      time: "08:00 - 17:00",
-      location: "Chicago, US",
+      date: { day: "18", month: "MAY" },
+      title: "Wipro Earthian Award Ceremony",
+      year: "2024",
+      location: "Him Jyoti School",
+      description: "Wipro Earthian Ceremony and Open day was organized by Nature Science Initiative at Him Jyoti School on Saturday 11th May 2024",
     },
     {
-      date: { day: "15", month: "DEC" },
-      title: "Applying Natural Laws to Technology and Society",
-      time: "08:00 - 17:00",
-      location: "Venice, Italy",
+      date: { day: "5", month: "APR" },
+      title: "Farewell Party Report for Class 12th at Col. Brown Cambridge",
+      year: "2024",
+      location: "Col. Brown Cambridge School",
+      description: "The farewell party for the Class 12th students of Col. Brown Cambridge School was held on January 25, 2024",
     },
     {
-      date: { day: "30", month: "SEP" },
-      title: "Roundtable discussion on STEAM education",
-      time: "08:00 - 17:00",
-      location: "NewYork, USA",
+      date: { day: "19", month: "FEB" },
+      title: "Migratory Bird Watching at Asan Barrage",
+      year: "2024",
+      location: "Asan Barrage",
+      description: "Join us for a day of bird watching at Asan Barrage.",
     },
+  ];
+
+  const pastEvents = [
+    {
+      date: { day: "31", month: "OCT" },
+      title: "CBS’MUN Report 2023",
+      year: "2023",
+      location: "Col. Brown Cambridge School",
+      description: "It is a great pleasure to bring a report of the second edition of CBS’MUN 2023.",
+    },
+    {
+      date: { day: "2", month: "OCT" },
+      title: "Butterfly Walk",
+      year: "2023",
+      location: "Col. Brown Cambridge School",
+      description: "On 2nd October 2023, the School organized a programme of Biodiversity. Mr. Sanjai Sondhi graced the occasion.",
+    },
+    {
+      date: { day: "1", month: "OCT" },
+      title: "SUPW Activity",
+      year: "2023",
+      location: "Col. Brown Cambridge School",
+      description: "Details about the SUPW activity will be provided soon.",
+    },
+    
   ];
 
   return (
@@ -81,7 +109,7 @@ export default function SchoolEvents() {
             </motion.h2>
             <div className="grid sm:grid-cols-3 space-y-5 sm:space-y-0 sm:gap-5">
               <motion.div
-                className="col-span-2 grid h-[420px] overflow-hidden"
+                className="col-span-2 grid h-[430px] overflow-hidden"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -90,9 +118,11 @@ export default function SchoolEvents() {
                 <VideoPreview />
               </motion.div>
 
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-2">
                 {newsItems.map((item, index) => (
-                  <NewsCard key={index} item={item} index={index} />
+                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                    <NewsCard item={item} index={index} />
+                  </Link>
                 ))}
               </div>
             </div>
@@ -123,15 +153,19 @@ export default function SchoolEvents() {
                 </TabsTrigger>
                 <TabsTrigger value="past">Past Events</TabsTrigger>
               </TabsList>
-              <TabsContent value="upcoming" className="space-y-4">
+              <TabsContent value="upcoming" className="grid grid-cols-1 gap-4">
                 {events.map((event, index) => (
-                  <EventCard key={index} event={event} index={index} />
+                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                    <EventCard key={index} event={event} index={index} />
+                  </Link>
                 ))}
               </TabsContent>
-              <TabsContent value="past">
-                <div className="text-center py-8 text-muted-foreground">
-                  No past events to display
-                </div>
+              <TabsContent value="past" className="grid grid-cols-1 gap-4">
+              {pastEvents.map((event, index) => (
+                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                    <EventCard key={index} event={event} index={index} />
+                  </Link>
+                ))}
               </TabsContent>
             </Tabs>
           </motion.div>
