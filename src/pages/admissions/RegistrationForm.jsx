@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,23 +13,66 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    studentname: "",
+    dob: "",
+    birthplace: "",
+    fathername: "",
+    nationality: "",
+    occupation: "",
+    country: "",
+    state: "",
+    city: "",
+    address: "",
+    zipcode: "",
+    contact_email: "",
+    telephone: "",
+    whatsapp_number: "",
+    addmissionclass: "",
+    agree: false,
+    frmtoken: "",
+    "g-recaptcha-response": "",
+  });
   const [errors, setErrors] = useState({});
+  const [captchaToken, setCaptchaToken] = useState("");
+
+  // Fetch CSRF token from server when component mounts
+  useEffect(() => {
+    fetchCSRFToken();
+  }, []);
+
+  const fetchCSRFToken = async () => {
+    try {
+      const response = await fetch("/path-to-fetch-csrf-token", {
+        method: "GET",
+        credentials: "include", // Include cookies if required
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setFormData((prev) => ({ ...prev, frmtoken: data.token }));
+      } else {
+        console.error("Failed to fetch CSRF token");
+      }
+    } catch (error) {
+      console.error("Error fetching CSRF token:", error);
+    }
+  };
 
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
+      setErrors({ ...errors, [name]: "" });
     }
   };
 
   const validateStep = (currentStep) => {
     const newErrors = {};
-    
+
     const validatePattern = (value, pattern, errorMessage) => {
       if (!new RegExp(pattern).test(value)) {
         return errorMessage;
@@ -39,30 +82,64 @@ const RegistrationForm = () => {
 
     switch (currentStep) {
       case 1: // Child Information
-        if (!formData.childName?.trim()) {
-          newErrors.childName = "Child's name is required";
-        } else if (validatePattern(formData.childName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters")) {
-          newErrors.childName = validatePattern(formData.childName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters");
+        if (!formData.studentname?.trim()) {
+          newErrors.studentname = "Child's name is required";
+        } else if (
+          validatePattern(
+            formData.studentname,
+            "^[A-Za-z\\s]{3,50}$",
+            "Name should only contain letters and spaces, between 3-50 characters"
+          )
+        ) {
+          newErrors.studentname = validatePattern(
+            formData.studentname,
+            "^[A-Za-z\\s]{3,50}$",
+            "Name should only contain letters and spaces, between 3-50 characters"
+          );
         }
+
         if (!formData.dob) {
           newErrors.dob = "Date of birth is required";
         }
-        if (!formData.birthPlace?.trim()) {
-          newErrors.birthPlace = "Place of birth is required";
-        } else if (validatePattern(formData.birthPlace, "^[A-Za-z\\s,]{3,50}$", "Place should only contain letters, spaces and commas")) {
-          newErrors.birthPlace = validatePattern(formData.birthPlace, "^[A-Za-z\\s,]{3,50}$", "Place should only contain letters, spaces and commas");
+
+        if (!formData.birthplace?.trim()) {
+          newErrors.birthplace = "Place of birth is required";
+        } else if (
+          validatePattern(
+            formData.birthplace,
+            "^[A-Za-z\\s,]{3,50}$",
+            "Place should only contain letters, spaces and commas"
+          )
+        ) {
+          newErrors.birthplace = validatePattern(
+            formData.birthplace,
+            "^[A-Za-z\\s,]{3,50}$",
+            "Place should only contain letters, spaces and commas"
+          );
         }
         break;
 
       case 2: // Parent Information
-        if (!formData.parentName?.trim()) {
-          newErrors.parentName = "Parent's name is required";
-        } else if (validatePattern(formData.parentName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters")) {
-          newErrors.parentName = validatePattern(formData.parentName, "^[A-Za-z\\s]{3,50}$", "Name should only contain letters and spaces, between 3-50 characters");
+        if (!formData.fathername?.trim()) {
+          newErrors.fathername = "Parent's name is required";
+        } else if (
+          validatePattern(
+            formData.fathername,
+            "^[A-Za-z\\s]{3,50}$",
+            "Name should only contain letters and spaces, between 3-50 characters"
+          )
+        ) {
+          newErrors.fathername = validatePattern(
+            formData.fathername,
+            "^[A-Za-z\\s]{3,50}$",
+            "Name should only contain letters and spaces, between 3-50 characters"
+          );
         }
+
         if (!formData.nationality?.trim()) {
           newErrors.nationality = "Nationality is required";
         }
+
         if (!formData.occupation?.trim()) {
           newErrors.occupation = "Occupation is required";
         }
@@ -72,45 +149,109 @@ const RegistrationForm = () => {
         if (!formData.country) {
           newErrors.country = "Country is required";
         }
+
         if (!formData.state) {
           newErrors.state = "State is required";
         }
+
         if (!formData.city?.trim()) {
           newErrors.city = "City is required";
-        } else if (validatePattern(formData.city, "^[A-Za-z\\s]{2,30}$", "City should only contain letters and spaces")) {
-          newErrors.city = validatePattern(formData.city, "^[A-Za-z\\s]{2,30}$", "City should only contain letters and spaces");
+        } else if (
+          validatePattern(
+            formData.city,
+            "^[A-Za-z\\s]{2,30}$",
+            "City should only contain letters and spaces"
+          )
+        ) {
+          newErrors.city = validatePattern(
+            formData.city,
+            "^[A-Za-z\\s]{2,30}$",
+            "City should only contain letters and spaces"
+          );
         }
+
         if (!formData.address?.trim()) {
           newErrors.address = "Address is required";
         } else if (formData.address.length < 10) {
           newErrors.address = "Address must be at least 10 characters long";
         }
-        if (!formData.pinCode?.trim()) {
-          newErrors.pinCode = "Pin code is required";
-        } else if (validatePattern(formData.pinCode, "^[0-9]{6}$", "Pin code must be exactly 6 digits")) {
-          newErrors.pinCode = validatePattern(formData.pinCode, "^[0-9]{6}$", "Pin code must be exactly 6 digits");
+
+        if (!formData.zipcode?.trim()) {
+          newErrors.zipcode = "Pin code is required";
+        } else if (
+          validatePattern(
+            formData.zipcode,
+            "^[0-9]{6}$",
+            "Pin code must be exactly 6 digits"
+          )
+        ) {
+          newErrors.zipcode = validatePattern(
+            formData.zipcode,
+            "^[0-9]{6}$",
+            "Pin code must be exactly 6 digits"
+          );
         }
-        if (!formData.email?.trim()) {
-          newErrors.email = "Email is required";
-        } else if (validatePattern(formData.email, "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", "Please enter a valid email address")) {
-          newErrors.email = validatePattern(formData.email, "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", "Please enter a valid email address");
+
+        if (!formData.contact_email?.trim()) {
+          newErrors.contact_email = "Email is required";
+        } else if (
+          validatePattern(
+            formData.contact_email,
+            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+            "Please enter a valid email address"
+          )
+        ) {
+          newErrors.contact_email = validatePattern(
+            formData.contact_email,
+            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+            "Please enter a valid email address"
+          );
         }
-        if (!formData.mobile?.trim()) {
-          newErrors.mobile = "Mobile number is required";
-        } else if (validatePattern(formData.mobile, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9")) {
-          newErrors.mobile = validatePattern(formData.mobile, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9");
+
+        if (!formData.telephone?.trim()) {
+          newErrors.telephone = "Mobile number is required";
+        } else if (
+          validatePattern(
+            formData.telephone,
+            "^[6-9][0-9]{9}$",
+            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+          )
+        ) {
+          newErrors.telephone = validatePattern(
+            formData.telephone,
+            "^[6-9][0-9]{9}$",
+            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+          );
         }
-        if (formData.whatsapp?.trim() && validatePattern(formData.whatsapp, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9")) {
-          newErrors.whatsapp = validatePattern(formData.whatsapp, "^[6-9][0-9]{9}$", "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9");
+
+        if (formData.whatsapp_number?.trim()) {
+          if (
+            validatePattern(
+              formData.whatsapp_number,
+              "^[6-9][0-9]{9}$",
+              "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+            )
+          ) {
+            newErrors.whatsapp_number = validatePattern(
+              formData.whatsapp_number,
+              "^[6-9][0-9]{9}$",
+              "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+            );
+          }
         }
         break;
 
       case 4: // Admission Information
-        if (!formData.admissionClass) {
-          newErrors.admissionClass = "Admission class is required";
+        if (!formData.addmissionclass) {
+          newErrors.addmissionclass = "Admission class is required";
         }
-        if (!formData.terms) {
-          newErrors.terms = "You must agree to the terms and conditions";
+
+        if (!formData.agree) {
+          newErrors.agree = "You must agree to the terms and conditions";
+        }
+
+        if (!formData["g-recaptcha-response"]) {
+          newErrors["g-recaptcha-response"] = "Please complete the reCAPTCHA";
         }
         break;
 
@@ -131,7 +272,7 @@ const RegistrationForm = () => {
   const handlePrevStep = () => setStep(step - 1);
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       if (step < 4) {
         handleNextStep();
       } else {
@@ -140,11 +281,45 @@ const RegistrationForm = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateStep(step)) {
-      console.log("Form submitted:", formData);
-      // Add your form submission logic here
+      try {
+        const submitData = new FormData();
+
+        // Append all form fields
+        Object.entries(formData).forEach(([key, value]) => {
+          submitData.append(key, value);
+        });
+
+        const response = await fetch(
+          "https://www.colbrownschool.com/ccavenue/paymentnew.php",
+          {
+            method: "POST",
+            body: submitData,
+            credentials: "include", // Include cookies if needed
+          }
+        );
+
+        if (response.ok) {
+          const result = await response.text(); // Or response.json() if server returns JSON
+          console.log("Form submission successful:", result);
+          alert("Form submitted successfully!");
+          // Optionally, reset the form or redirect the user
+        } else {
+          const errorText = await response.text();
+          console.error("Form submission failed:", errorText);
+          alert("There was an error submitting the form. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("There was an error submitting the form. Please try again.");
+      }
     }
+  };
+
+  const onRecaptchaChange = (token) => {
+    setCaptchaToken(token);
+    handleInputChange("g-recaptcha-response", token);
   };
 
   const renderStep = () => {
@@ -179,6 +354,7 @@ const RegistrationForm = () => {
             formData={formData}
             handleInputChange={handleInputChange}
             errors={errors}
+            onRecaptchaChange={onRecaptchaChange}
           />
         );
       default:
@@ -188,7 +364,7 @@ const RegistrationForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-black via-gray-900 to-green-950 flex items-center justify-center p-4 sm:py-24 py-16">
-      <div 
+      <div
         className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl"
         onKeyPress={handleKeyPress}
       >
@@ -281,14 +457,14 @@ const ChildInfo = ({ formData, handleInputChange, errors }) => (
     <div className="space-y-4">
       <InputField
         label="Full Name of Boy"
-        name="childName"
-        value={formData.childName || ""}
+        name="studentname"
+        value={formData.studentname || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter child's full name"
         pattern="^[A-Za-z\s]{3,50}$"
         title="Name should only contain letters and spaces, between 3-50 characters"
-        error={errors.childName}
+        error={errors.studentname}
       />
       <InputField
         label="Date of Birth"
@@ -297,20 +473,20 @@ const ChildInfo = ({ formData, handleInputChange, errors }) => (
         value={formData.dob || ""}
         onChange={handleInputChange}
         required
-        max={new Date().toISOString().split('T')[0]}
+        max={new Date().toISOString().split("T")[0]}
         min="2005-01-01"
         error={errors.dob}
       />
       <InputField
         label="Place of Birth"
-        name="birthPlace"
-        value={formData.birthPlace || ""}
+        name="birthplace"
+        value={formData.birthplace || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter place of birth"
         pattern="^[A-Za-z\s,]{3,50}$"
         title="Place should only contain letters, spaces and commas"
-        error={errors.birthPlace}
+        error={errors.birthplace}
       />
     </div>
   </div>
@@ -324,14 +500,14 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
     <div className="space-y-4">
       <InputField
         label="Full Name"
-        name="parentName"
-        value={formData.parentName || ""}
+        name="fathername"
+        value={formData.fathername || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter parent's full name"
         pattern="^[A-Za-z\s]{3,50}$"
         title="Name should only contain letters and spaces, between 3-50 characters"
-        error={errors.parentName}
+        error={errors.fathername}
       />
       <InputField
         label="Nationality"
@@ -412,55 +588,60 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
       />
       <InputField
         label="Pin Code"
-        name="pinCode"
-        value={formData.pinCode || ""}
+        name="zipcode"
+        value={formData.zipcode || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter 6-digit pin code"
         pattern="^[0-9]{6}$"
         title="Pin code must be exactly 6 digits"
-        error={errors.pinCode}
+        error={errors.zipcode}
       />
       <InputField
         label="Email"
-        name="email"
+        name="contact_email"
         type="email"
-        value={formData.email || ""}
+        value={formData.contact_email || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter your email address"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         title="Please enter a valid email address"
-        error={errors.email}
+        error={errors.contact_email}
       />
       <InputField
         label="Mobile Number"
-        name="mobile"
-        value={formData.mobile || ""}
+        name="telephone"
+        value={formData.telephone || ""}
         onChange={handleInputChange}
         required
         placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
         pattern="^[6-9][0-9]{9}$"
         title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
         prefix="+91"
-        error={errors.mobile}
+        error={errors.telephone}
       />
       <InputField
         label="WhatsApp Number"
-        name="whatsapp"
-        value={formData.whatsapp || ""}
+        name="whatsapp_number"
+        value={formData.whatsapp_number || ""}
         onChange={handleInputChange}
         placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
         pattern="^[6-9][0-9]{9}$"
         title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
         prefix="+91"
-        error={errors.whatsapp}
+        error={errors.whatsapp_number}
       />
     </div>
   </div>
 );
 
-const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
+const AdmissionInfo = ({
+  formData,
+  handleInputChange,
+  errors,
+  onRecaptchaChange,
+}) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Admission Information
@@ -468,22 +649,22 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
     <div className="space-y-4">
       <SelectField
         label="Year and class in which admission is desired"
-        name="admissionClass"
-        value={formData.admissionClass || ""}
+        name="addmissionclass"
+        value={formData.addmissionclass || ""}
         onChange={handleInputChange}
-        options={["Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 11",]}
+        options={["4th", "5th", "6th", "7th", "8th", "9th", "11th"]}
         required
-        error={errors.admissionClass}
+        error={errors.addmissionclass}
       />
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
           <Checkbox
-            id="terms"
-            checked={formData.terms || false}
-            onCheckedChange={(checked) => handleInputChange("terms", checked)}
-            className={errors.terms ? "border-red-500" : ""}
+            id="agree"
+            checked={formData.agree || false}
+            onCheckedChange={(checked) => handleInputChange("agree", checked)}
+            className={errors.agree ? "border-red-500" : ""}
           />
-          <label htmlFor="terms" className="text-sm text-green-800">
+          <label htmlFor="agree" className="text-sm text-green-800">
             I agree to the{" "}
             <a href="#" className="text-green-600 hover:underline">
               terms & conditions
@@ -491,7 +672,19 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
             . <span className="text-red-500">*</span>
           </label>
         </div>
-        {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
+        {errors.agree && <p className="text-red-500 text-sm">{errors.agree}</p>}
+      </div>
+      {/* reCAPTCHA */}
+      <div className="my-4">
+        <ReCAPTCHA
+          sitekey="6LftoiwUAAAAABnCMVn9JNpKHWE9YbhveZtdg34n"
+          onChange={onRecaptchaChange}
+        />
+        {errors["g-recaptcha-response"] && (
+          <p className="text-red-500 text-sm">
+            {errors["g-recaptcha-response"]}
+          </p>
+        )}
       </div>
     </div>
     <p className="mt-6 text-sm text-green-700">
@@ -530,6 +723,7 @@ const InputField = ({
       <Input
         type={type}
         id={name}
+        name={name}
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
         required={required}
@@ -545,7 +739,16 @@ const InputField = ({
   </div>
 );
 
-const SelectField = ({ label, name, value, onChange, options, required, placeholder, error }) => (
+const SelectField = ({
+  label,
+  name,
+  value,
+  onChange,
+  options,
+  required,
+  placeholder,
+  error,
+}) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
@@ -566,13 +769,24 @@ const SelectField = ({ label, name, value, onChange, options, required, placehol
   </div>
 );
 
-const TextAreaField = ({ label, name, value, onChange, required, placeholder, minLength, maxLength, error }) => (
+const TextAreaField = ({
+  label,
+  name,
+  value,
+  onChange,
+  required,
+  placeholder,
+  minLength,
+  maxLength,
+  error,
+}) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
     </Label>
     <Textarea
       id={name}
+      name={name}
       value={value}
       onChange={(e) => onChange(name, e.target.value)}
       required={required}
