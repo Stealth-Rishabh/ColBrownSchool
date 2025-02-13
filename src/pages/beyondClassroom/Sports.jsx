@@ -1,3 +1,8 @@
+import skating from "../../assets/sports/Skating/img (1).webp";
+import swimming from "../../assets/sports/Swimming/img (1).webp";
+import badminton from "../../assets/sports/Badminton/img (1).webp";
+import tennis from "../../assets/sports/Tennis/img (1).webp";
+
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/beyond-classroom/Sports-Banner.webp";
@@ -101,8 +106,36 @@ const features = [
     title: "Indoor Sports",
     description:
       "We offer facilities for table tennis, badminton, chess and carrom, providing students with diverse options for recreation and competitive play.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
+    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg", 
     link: "/boarding-life/sports-at-cbs/indoor-sports",
+  },
+  {
+    title: "Skating",
+    description: 
+      "Our skating program helps students develop balance, coordination and agility through professional instruction on our dedicated skating rink.",
+    image: skating,
+    link: "/boarding-life/sports-at-cbs/skating",
+  },
+  {
+    title: "Swimming",
+    description:
+      "Students learn proper swimming techniques and water safety in our temperature-controlled pool under the guidance of certified instructors.",
+    image: swimming,
+    link: "/boarding-life/sports-at-cbs/swimming", 
+  },
+  {
+    title: "Badminton",
+    description:
+      "Our indoor badminton courts provide year-round training facilities where students can develop their skills and compete in tournaments.",
+    image: badminton,
+    link: "/boarding-life/sports-at-cbs/badminton",
+  },
+  {
+    title: "Tennis",
+    description: 
+      "Students receive professional tennis coaching on our well-maintained courts, learning proper techniques and participating in competitive matches.",
+    image: tennis,
+    link: "/boarding-life/sports-at-cbs/tennis",
   },
 ];
 

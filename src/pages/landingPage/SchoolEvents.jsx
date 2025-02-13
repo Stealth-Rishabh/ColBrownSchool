@@ -118,7 +118,7 @@ export default function SchoolEvents() {
                 <VideoPreview />
               </motion.div>
 
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-4 sm:gap-2">
                 {newsItems.map((item, index) => (
                   <Link to='/beyond-classroom/news-and-events' key={index}>
                     <NewsCard item={item} index={index} />
