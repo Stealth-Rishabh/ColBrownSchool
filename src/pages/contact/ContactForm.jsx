@@ -160,7 +160,7 @@ const ContactSection = () => {
         console.log("Form submission result:", result);
 
         if (result.success) {
-          // Clear form data after successful submission
+          // Clear form data and related states
           setFormData({
             parentName: "",
             studentName: "",
@@ -171,9 +171,18 @@ const ContactSection = () => {
             class: "",
             enquiry: "",
           });
+          setSelectedState(""); // Reset selected state
+          setCities([]); // Clear cities list
+
+          // Force Select components to reset by clearing their values
+          const stateSelect = document.querySelector('select[name="state"]');
+          const citySelect = document.querySelector('select[name="city"]');
+          const classSelect = document.querySelector('select[name="class"]');
+          if (stateSelect) stateSelect.value = "";
+          if (citySelect) citySelect.value = "";
+          if (classSelect) classSelect.value = "";
+
           alert("Form submitted successfully!");
-          // Optionally, redirect to a thank-you page
-          // navigate("/thankyou");
         } else {
           throw new Error(result.message || "Failed to submit form");
         }
@@ -355,7 +364,7 @@ const ContactSection = () => {
                 )}
               </div>
               <div>
-                <Select onValueChange={handleStateChange}>
+                <Select onValueChange={handleStateChange} name="state">
                   <SelectTrigger className="h-12 bg-transparent rounded-lg">
                     <SelectValue placeholder="Select State" />
                   </SelectTrigger>
@@ -377,6 +386,7 @@ const ContactSection = () => {
                     setFormData({ ...formData, city: value })
                   }
                   disabled={!selectedState}
+                  name="city"
                 >
                   <SelectTrigger className="h-12 bg-transparent rounded-lg">
                     <SelectValue placeholder="Select City" />
@@ -398,6 +408,7 @@ const ContactSection = () => {
                   onValueChange={(value) =>
                     setFormData({ ...formData, class: value })
                   }
+                  name="class"
                 >
                   <SelectTrigger className="h-12 bg-transparent rounded-lg">
                     <SelectValue placeholder="Select Class" />
