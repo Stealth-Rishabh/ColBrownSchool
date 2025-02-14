@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Country, State, City } from "country-state-city";
-
+import { State, City } from "country-state-city";
+import { ConfettiButton } from "@/components/magicui/confetti";
 export function EnquiryModal() {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -188,11 +188,11 @@ export function EnquiryModal() {
           </Button>
         </DialogTrigger>
         <DialogContent
-          closeIconClassName="hidden"
+          closeIconClassName="sm:hidden bg-white rounded relative"
           className="max-w-[90vw] rounded-lg p-5 sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide bg-gradient-to-tr from-green-900 sm:from-black via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none"
         >
           <DialogHeader>
-            <DialogTitle className="px-6 py-3 text-lg font-bold tracking-wider text-center text-white bg-green-800 sm:bg-green-900 rounded-lg sm:text-xl">
+            <DialogTitle className="px-6 py-3 text-lg font-bold tracking-wider text-center text-white bg-green-800 sm:bg-green-900 rounded-lg sm:text-xl mt-5">
               Enquiry Form
             </DialogTitle>
           </DialogHeader>
@@ -364,12 +364,12 @@ export function EnquiryModal() {
             </div>
 
             {/* Submit Button */}
-            <Button
+            <ConfettiButton
               type="submit"
               className="w-full h-8 text-sm sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white"
             >
               Submit
-            </Button>
+            </ConfettiButton>
           </form>
         </DialogContent>
       </Dialog>

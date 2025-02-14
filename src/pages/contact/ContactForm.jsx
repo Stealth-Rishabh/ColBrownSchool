@@ -160,6 +160,7 @@ const ContactSection = () => {
         console.log("Form submission result:", result);
 
         if (result.success) {
+          // Clear form data after successful submission
           setFormData({
             parentName: "",
             studentName: "",
