@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ContactForm = () => {
   const breadcrumbItems = [
@@ -32,14 +32,6 @@ const ContactForm = () => {
       />
       <section className="bg-gray-100">
         <Container>
-          {/* <Heading
-            title="Contact Us"
-          titleClassName="text-green-950 lg:text-5xl text-3xl font-bold"
-          subtitle="Our leadership team is dedicated to creating an empowering environment that nurtures your potential and drives collective success."
-          subtitleClassName="text-gray-700"
-          className="pt-12 mx-auto"
-          />
-          */}
           <ContactSection />
         </Container>
       </section>
@@ -48,47 +40,73 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    enquiryType: "Admissions",
+    state: "",
+    city: "",
+    class: "",
     message: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [cities, setCities] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+
+  const indianStates = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  ];
+
+  useEffect(() => {
+    // Simulated city data - in real app, fetch from API based on selected state
+    if (selectedState) {
+      const dummyCities = [
+        "City 1", "City 2", "City 3", "City 4", "City 5"
+      ];
+      setCities(dummyCities);
+    }
+  }, [selectedState]);
 
   const validateForm = () => {
     const newErrors = {};
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
-    } else if (!/^[a-zA-Z\s]{3,50}$/.test(formData.name.trim())) {
-      newErrors.name =
-        "Name should be 3-50 characters long and contain only letters";
     }
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
 
-    // Phone validation (Indian format)
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
     } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
       newErrors.phone = "Please enter a valid 10-digit Indian phone number";
     }
 
-    // Message validation
+    if (!formData.state) {
+      newErrors.state = "Please select a state";
+    }
+
+    if (!formData.city) {
+      newErrors.city = "Please select a city";
+    }
+
+    if (!formData.class) {
+      newErrors.class = "Please select a class";
+    }
+
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message should be at least 10 characters long";
     }
 
     setErrors(newErrors);
@@ -99,16 +117,15 @@ const ContactSection = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted:", formData);
-      // Handle form submission
     }
   };
 
   return (
     <section className="sm:pt-20 pt-12">
-      <div className=" mx-auto max-min-w-5 sm:w-7xl sm:px-6 lg:px-11">
-        <div className="grid grid-cols-1 lg:grid-cols-2 ">
+      <div className="mx-auto max-min-w-5 sm:w-7xl sm:px-6 lg:px-11">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="mb-10 lg:mb-0 drop-shadow-lg">
-            <div className="w-full h-full group ">
+            <div className="w-full h-full group">
               <div className="relative h-full">
                 <img
                   src="https://www.welhamboys.org/images/contact-banner.jpg"
@@ -119,8 +136,8 @@ const ContactSection = () => {
                   Contact us
                 </h1>
                 <div className="absolute top-1/2 -translate-y-[42%] sm:-translate-y-1/2 w-full p-3 sm:p-5 lg:p-8">
-                  <div className="block space-y-4 sm:p-6 ">
-                    <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md ">
+                  <div className="block space-y-4 sm:p-6">
+                    <div className="flex flex-col p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Email Enquiry
                       </h5>
@@ -144,7 +161,6 @@ const ContactSection = () => {
                         <a
                           href="tel:+916395114363"
                           className="flex items-center"
-
                         >
                           <Phone className="text-white min-w-5 sm:w-5 h-5" />
                           <h5 className="mx-2 mr-3 sm:ml-5 sm:mr-0 text-sm sm:text-base font-normal leading-6 text-white">
@@ -163,7 +179,7 @@ const ContactSection = () => {
                         </a>
                       </div>
                     </div>
-                    <div className="flex flex-col  p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
+                    <div className="flex flex-col p-3 border-[0.5px] hover:-translate-y-2 transition-all duration-300 border-white/40 rounded-md backdrop-blur-md">
                       <h5 className="mb-4 text-lg font-semibold leading-6 text-white">
                         Location
                       </h5>
@@ -241,23 +257,74 @@ const ContactSection = () => {
                   <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
                 )}
               </div>
-              <Select
-                defaultValue="Admissions"
-                onValueChange={(value) =>
-                  setFormData({ ...formData, enquiryType: value })
-                }
-              >
-                <SelectTrigger className="h-12 bg-transparent rounded-lg">
-                  <SelectValue placeholder="Select enquiry type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Admissions">Admissions</SelectItem>
-                  <SelectItem value="General">General</SelectItem>
-                </SelectContent>
-              </Select>
+              <div>
+                <Select
+                  onValueChange={(value) => {
+                    setSelectedState(value);
+                    setFormData({ ...formData, state: value, city: "" });
+                  }}
+                >
+                  <SelectTrigger className="h-12 bg-transparent rounded-lg">
+                    <SelectValue placeholder="Select State" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {indianStates.map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.state && (
+                  <p className="mt-1 text-sm text-red-500">{errors.state}</p>
+                )}
+              </div>
+              <div>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, city: value })
+                  }
+                  disabled={!selectedState}
+                >
+                  <SelectTrigger className="h-12 bg-transparent rounded-lg">
+                    <SelectValue placeholder="Select City" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {cities.map((city) => (
+                      <SelectItem key={city} value={city}>
+                        {city}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.city && (
+                  <p className="mt-1 text-sm text-red-500">{errors.city}</p>
+                )}
+              </div>
+              <div>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, class: value })
+                  }
+                >
+                  <SelectTrigger className="h-12 bg-transparent rounded-lg">
+                    <SelectValue placeholder="Select Class" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array.from({ length: 9 }, (_, i) => i + 4).map((num) => (
+                      <SelectItem key={num} value={num.toString()}>
+                        Class {num}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.class && (
+                  <p className="mt-1 text-sm text-red-500">{errors.class}</p>
+                )}
+              </div>
               <div>
                 <Textarea
-                  placeholder="Your message"
+                  placeholder="Your Message"
                   className={`min-h-[120px] rounded-lg bg-transparent resize-none ${
                     errors.message ? "border-red-500" : ""
                   }`}
