@@ -305,6 +305,7 @@ const AdvancedPedagogy = () => {
               },
             ].map((item, index) => (
               <Link
+                key={index}
                 to={item.link}
                 onClick={() => window.scrollTo(0, 0)}
                 passHref
@@ -426,7 +427,7 @@ const features = [
 ];
 
 const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
-  <div className="grid grid-cols-12 mx-0 mb-6 md:mb-0">
+  <div className="grid grid-cols-12 mx-0 mb-6 md:mb-0 ">
     <div
       className={cn("col-span-12 md:col-span-6 relative z-20 p-0", {
         "md:order-2": index % 2,
@@ -494,7 +495,7 @@ const Feature = () => {
 
   return (
     <section className="sm:py-14   dark:bg-[#0b1727] text-zinc-900 dark:text-white relative overflow-hidden z-10">
-      <div className="container mx-auto">
+      <div className="container mx-auto p-6 bg-slate-100 sm:p-0">
         {features.map((feature, i) => (
           <FeatureItem
             feature={feature}

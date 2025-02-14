@@ -104,7 +104,7 @@ export function EnquiryModal() {
     <div className="fixed right-0 top-[40%] z-50">
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="bg-yellow-400 sm:text-lg text-black px-6 py-6 -rotate-90 translate-x-[38%] hover:bg-yellow-500/90">
+          <Button className="bg-yellow-400 animate-pulse sm:text-lg text-black px-6 py-6 -rotate-90 translate-x-[38%] hover:bg-yellow-500/90">
             Enquire Now
           </Button>
         </DialogTrigger>
@@ -251,10 +251,10 @@ export function EnquiryModal() {
                 className="min-h-[60px] text-sm resize-none"
               />
             </div>
-            
+
             <Button
               type="submit"
-              className="w-full h-8 text-sm sm:text-white text-black bg-white sm:bg-green-900"
+              className="w-full h-8 text-sm sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white"
             >
               Submit
             </Button>
