@@ -52,6 +52,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { routeMetadata } from "./config/metadata";
 import SportsGallery from "./pages/beyondClassroom/SportsGallery";
+import { EnquiryModal } from "@/components/EnquiryModal";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -135,6 +136,7 @@ export default function App() {
     <>
       <Router>
         <ScrollToTop />
+        <EnquiryModal />
         <Routes>
           {/* Student Portal Route without Header/Footer */}
           <Route
