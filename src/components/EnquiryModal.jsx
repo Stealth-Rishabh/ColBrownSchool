@@ -177,7 +177,7 @@ export function EnquiryModal() {
                     <SelectItem
                       key={state.iso2}
                       value={state.iso2}
-                      className="text-sm text-white"
+                      className="text-sm "
                     >
                       {state.name}
                     </SelectItem>
@@ -205,7 +205,7 @@ export function EnquiryModal() {
                     <SelectItem
                       key={city.id}
                       value={city.name}
-                      className="text-sm text-white"
+                      className="text-sm "
                     >
                       {city.name}
                     </SelectItem>
@@ -230,7 +230,7 @@ export function EnquiryModal() {
                     <SelectItem
                       key={num}
                       value={num.toString()}
-                      className="text-sm text-white"
+                      className="text-sm "
                     >
                       Class {num}
                     </SelectItem>
