@@ -1,11 +1,10 @@
+import React, { useState, useEffect } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/contact.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import { Phone, Mail, MapPin, SendHorizonal } from "lucide-react";
 import { Input } from "../../components/ui/input";
-import { Label } from "../../components/ui/label";
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -14,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState, useEffect } from "react";
+import { Country, State, City } from "country-state-city";
 
 const ContactForm = () => {
   const breadcrumbItems = [
@@ -43,42 +42,51 @@ export default ContactForm;
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    parentName: "",
+    studentName: "",
     email: "",
     phone: "",
     state: "",
     city: "",
     class: "",
-    message: "",
+    enquiry: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
 
-  const indianStates = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
-  ];
+  useEffect(() => {
+    // Fetch Indian states using country-state-city
+    const indianStates = State.getStatesOfCountry("IN");
+    setStates(indianStates);
+  }, []);
 
   useEffect(() => {
-    // Simulated city data - in real app, fetch from API based on selected state
     if (selectedState) {
-      const dummyCities = [
-        "City 1", "City 2", "City 3", "City 4", "City 5"
-      ];
-      setCities(dummyCities);
+      const fetchedCities = City.getCitiesOfState("IN", selectedState);
+      setCities(fetchedCities);
+    } else {
+      setCities([]);
     }
   }, [selectedState]);
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+    if (!formData.parentName.trim()) {
+      newErrors.parentName = "Parent's name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.parentName)) {
+      newErrors.parentName =
+        "Parent's name should only contain letters and spaces";
+    }
+
+    if (!formData.studentName.trim()) {
+      newErrors.studentName = "Student's name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.studentName)) {
+      newErrors.studentName =
+        "Student's name should only contain letters and spaces";
     }
 
     if (!formData.email.trim()) {
@@ -105,19 +113,79 @@ const ContactSection = () => {
       newErrors.class = "Please select a class";
     }
 
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
+    if (!formData.enquiry.trim()) {
+      newErrors.enquiry = "Enquiry message is required";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
+      // Create FormData object with the expected field names
+      const formDataToSend = new FormData();
+      formDataToSend.append("contact-parent-name", formData.parentName);
+      formDataToSend.append("contact-student-name", formData.studentName);
+      formDataToSend.append("contact-email", formData.email);
+      formDataToSend.append("contact-phone", formData.phone);
+      formDataToSend.append("contact-class", formData.class);
+      formDataToSend.append("contact-enquiry", formData.enquiry);
+      formDataToSend.append("referrer_name", window.location.href); // Optional: capture referrer
+      formDataToSend.append("keyword", ""); // Optional: set if available
+      formDataToSend.append("source", "website");
+      formDataToSend.append("orderid", "1049"); // Set as per requirement
+      formDataToSend.append("sitename", "colNewWebsite");
+      formDataToSend.append("campaign_url", window.location.href);
+      formDataToSend.append("campaign_name", ""); // Optional: set if available
+      formDataToSend.append("network", ""); // Optional: set if available
+
+      try {
+        const response = await fetch("https://www.bfis.in/BFIS/bfis_crm.php", {
+          method: "POST",
+          body: formDataToSend,
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        console.log("Form submission result:", result);
+
+        if (result.success) {
+          setFormData({
+            parentName: "",
+            studentName: "",
+            email: "",
+            phone: "",
+            state: "",
+            city: "",
+            class: "",
+            enquiry: "",
+          });
+          alert("Form submitted successfully!");
+          // Optionally, redirect to a thank-you page
+          // navigate("/thankyou");
+        } else {
+          throw new Error(result.message || "Failed to submit form");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Failed to send message. Please try again.");
+      }
     }
+  };
+
+  const handleStateChange = (value) => {
+    setSelectedState(value);
+    const selectedStateObj = states.find((state) => state.isoCode === value);
+    const stateName = selectedStateObj ? selectedStateObj.name : "";
+    setFormData({ ...formData, state: stateName, city: "" });
+
+    // Clear city if state changes
+    setCities([]);
   };
 
   return (
@@ -209,18 +277,41 @@ const ContactSection = () => {
               <div>
                 <Input
                   type="text"
-                  placeholder="Name"
+                  placeholder="Parent's Name"
                   className={`h-12 bg-transparent rounded-lg ${
-                    errors.name ? "border-red-500" : ""
+                    errors.parentName ? "border-red-500" : ""
                   }`}
-                  value={formData.name}
+                  value={formData.parentName}
                   onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
-                    if (errors.name) setErrors({ ...errors, name: "" });
+                    setFormData({ ...formData, parentName: e.target.value });
+                    if (errors.parentName)
+                      setErrors({ ...errors, parentName: "" });
                   }}
                 />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                {errors.parentName && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.parentName}
+                  </p>
+                )}
+              </div>
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Student's Name"
+                  className={`h-12 bg-transparent rounded-lg ${
+                    errors.studentName ? "border-red-500" : ""
+                  }`}
+                  value={formData.studentName}
+                  onChange={(e) => {
+                    setFormData({ ...formData, studentName: e.target.value });
+                    if (errors.studentName)
+                      setErrors({ ...errors, studentName: "" });
+                  }}
+                />
+                {errors.studentName && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.studentName}
+                  </p>
                 )}
               </div>
               <div>
@@ -258,19 +349,14 @@ const ContactSection = () => {
                 )}
               </div>
               <div>
-                <Select
-                  onValueChange={(value) => {
-                    setSelectedState(value);
-                    setFormData({ ...formData, state: value, city: "" });
-                  }}
-                >
+                <Select onValueChange={handleStateChange}>
                   <SelectTrigger className="h-12 bg-transparent rounded-lg">
                     <SelectValue placeholder="Select State" />
                   </SelectTrigger>
                   <SelectContent>
-                    {indianStates.map((state) => (
-                      <SelectItem key={state} value={state}>
-                        {state}
+                    {states.map((state) => (
+                      <SelectItem key={state.isoCode} value={state.isoCode}>
+                        {state.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -291,8 +377,8 @@ const ContactSection = () => {
                   </SelectTrigger>
                   <SelectContent>
                     {cities.map((city) => (
-                      <SelectItem key={city} value={city}>
-                        {city}
+                      <SelectItem key={city.name} value={city.name}>
+                        {city.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -324,18 +410,18 @@ const ContactSection = () => {
               </div>
               <div>
                 <Textarea
-                  placeholder="Your Message"
+                  placeholder="Enquiry"
                   className={`min-h-[120px] rounded-lg bg-transparent resize-none ${
-                    errors.message ? "border-red-500" : ""
+                    errors.enquiry ? "border-red-500" : ""
                   }`}
-                  value={formData.message}
+                  value={formData.enquiry}
                   onChange={(e) => {
-                    setFormData({ ...formData, message: e.target.value });
-                    if (errors.message) setErrors({ ...errors, message: "" });
+                    setFormData({ ...formData, enquiry: e.target.value });
+                    if (errors.enquiry) setErrors({ ...errors, enquiry: "" });
                   }}
                 />
-                {errors.message && (
-                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                {errors.enquiry && (
+                  <p className="mt-1 text-sm text-red-500">{errors.enquiry}</p>
                 )}
               </div>
               <Button

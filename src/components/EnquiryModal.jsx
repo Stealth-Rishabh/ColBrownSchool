@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,46 +19,10 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-
-// Static state data as fallback
-const indianStates = [
-  { iso2: "AN", name: "Andaman and Nicobar Islands" },
-  { iso2: "AP", name: "Andhra Pradesh" },
-  { iso2: "AR", name: "Arunachal Pradesh" },
-  { iso2: "AS", name: "Assam" },
-  { iso2: "BR", name: "Bihar" },
-  { iso2: "CH", name: "Chandigarh" },
-  { iso2: "CT", name: "Chhattisgarh" },
-  { iso2: "DL", name: "Delhi" },
-  { iso2: "GA", name: "Goa" },
-  { iso2: "GJ", name: "Gujarat" },
-  { iso2: "HR", name: "Haryana" },
-  { iso2: "HP", name: "Himachal Pradesh" },
-  { iso2: "JK", name: "Jammu and Kashmir" },
-  { iso2: "JH", name: "Jharkhand" },
-  { iso2: "KA", name: "Karnataka" },
-  { iso2: "KL", name: "Kerala" },
-  { iso2: "MP", name: "Madhya Pradesh" },
-  { iso2: "MH", name: "Maharashtra" },
-  { iso2: "MN", name: "Manipur" },
-  { iso2: "ML", name: "Meghalaya" },
-  { iso2: "MZ", name: "Mizoram" },
-  { iso2: "NL", name: "Nagaland" },
-  { iso2: "OR", name: "Odisha" },
-  { iso2: "PY", name: "Puducherry" },
-  { iso2: "PB", name: "Punjab" },
-  { iso2: "RJ", name: "Rajasthan" },
-  { iso2: "SK", name: "Sikkim" },
-  { iso2: "TN", name: "Tamil Nadu" },
-  { iso2: "TG", name: "Telangana" },
-  { iso2: "TR", name: "Tripura" },
-  { iso2: "UP", name: "Uttar Pradesh" },
-  { iso2: "UT", name: "Uttarakhand" },
-  { iso2: "WB", name: "West Bengal" },
-];
+import { Country, State, City } from "country-state-city";
 
 export function EnquiryModal() {
-  const [states] = useState(indianStates); // Remove setStates since it's not used
+  const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -72,19 +36,23 @@ export function EnquiryModal() {
     message: "",
   });
 
-  // Fetch cities when state is selected
+  // Fetch Indian states using country-state-city
+  useEffect(() => {
+    const indianStates = State.getStatesOfCountry("IN");
+    setStates(indianStates);
+  }, []);
+
+  // Fetch cities when a state is selected
   useEffect(() => {
     const fetchCities = async () => {
-      if (!selectedState) return;
+      if (!selectedState) {
+        setCities([]);
+        return;
+      }
       setIsLoading(true);
       try {
-        // For now, using some dummy cities based on state
-        const dummyCities = [
-          { id: 1, name: "City 1" },
-          { id: 2, name: "City 2" },
-          { id: 3, name: "City 3" },
-        ];
-        setCities(dummyCities);
+        const fetchedCities = City.getCitiesOfState("IN", selectedState);
+        setCities(fetchedCities);
       } catch (error) {
         console.error("Error fetching cities:", error);
       } finally {
@@ -96,7 +64,7 @@ export function EnquiryModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log("Form submitted:", formData);
     // Handle form submission logic here
   };
 
@@ -108,13 +76,17 @@ export function EnquiryModal() {
             Enquire Now
           </Button>
         </DialogTrigger>
-        <DialogContent closeIconClassName="hidden" className="max-w-[90vw] rounded-lg p-5  sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide  bg-gradient-to-tr from-green-900 sm:from-black via via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none">
+        <DialogContent
+          closeIconClassName="hidden"
+          className="max-w-[90vw] rounded-lg p-5 sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide bg-gradient-to-tr from-green-900 sm:from-black via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none"
+        >
           <DialogHeader>
             <DialogTitle className="px-6 py-3 text-lg font-bold tracking-wider text-center text-white bg-green-800 sm:bg-green-900 rounded-lg sm:text-xl">
               Enquiry Form
             </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="grid gap-3 py-2">
+            {/* Name Field */}
             <div className="grid gap-1.5">
               <Label htmlFor="name" className="text-sm text-white">
                 Name
@@ -129,6 +101,8 @@ export function EnquiryModal() {
                 required
               />
             </div>
+
+            {/* Email Field */}
             <div className="grid gap-1.5">
               <Label htmlFor="email" className="text-sm text-white">
                 Email
@@ -144,6 +118,8 @@ export function EnquiryModal() {
                 required
               />
             </div>
+
+            {/* Phone Field */}
             <div className="grid gap-1.5">
               <Label htmlFor="phone" className="text-sm text-white">
                 Phone
@@ -159,25 +135,34 @@ export function EnquiryModal() {
                 required
               />
             </div>
+
+            {/* State Select */}
             <div className="grid gap-1.5">
               <Label htmlFor="state" className="text-sm text-white">
                 State
               </Label>
               <Select
                 onValueChange={(value) => {
+                  const selectedStateObj = states.find(
+                    (state) => state.isoCode === value
+                  );
                   setSelectedState(value);
-                  setFormData({ ...formData, state: value });
+                  setFormData({
+                    ...formData,
+                    state: selectedStateObj?.name || "", // Store state name like "Bihar" instead of "BR"
+                    city: "",
+                  });
                 }}
               >
                 <SelectTrigger className="h-8 text-sm">
-                  <SelectValue placeholder="Select state" />
+                  <SelectValue placeholder="Select State" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[200px] overflow-y-auto">
                   {states.map((state) => (
                     <SelectItem
-                      key={state.iso2}
-                      value={state.iso2}
-                      className="text-sm "
+                      key={state.isoCode}
+                      value={state.isoCode}
+                      className="text-sm"
                     >
                       {state.name}
                     </SelectItem>
@@ -185,6 +170,8 @@ export function EnquiryModal() {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* City Select */}
             <div className="grid gap-1.5">
               <Label htmlFor="city" className="text-sm text-white">
                 City
@@ -197,15 +184,15 @@ export function EnquiryModal() {
               >
                 <SelectTrigger className="h-8 text-sm">
                   <SelectValue
-                    placeholder={isLoading ? "Loading..." : "Select city"}
+                    placeholder={isLoading ? "Loading..." : "Select City"}
                   />
                 </SelectTrigger>
                 <SelectContent>
                   {cities.map((city) => (
                     <SelectItem
-                      key={city.id}
+                      key={city.name}
                       value={city.name}
-                      className="text-sm "
+                      className="text-sm"
                     >
                       {city.name}
                     </SelectItem>
@@ -213,6 +200,8 @@ export function EnquiryModal() {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Class Select */}
             <div className="grid gap-1.5">
               <Label htmlFor="class" className="text-sm text-white">
                 Class
@@ -223,14 +212,14 @@ export function EnquiryModal() {
                 }
               >
                 <SelectTrigger className="h-8 text-sm">
-                  <SelectValue placeholder="Select class" />
+                  <SelectValue placeholder="Select Class" />
                 </SelectTrigger>
                 <SelectContent>
                   {Array.from({ length: 9 }, (_, i) => i + 4).map((num) => (
                     <SelectItem
                       key={num}
                       value={num.toString()}
-                      className="text-sm "
+                      className="text-sm"
                     >
                       Class {num}
                     </SelectItem>
@@ -238,6 +227,8 @@ export function EnquiryModal() {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Message Field */}
             <div className="grid gap-1.5">
               <Label htmlFor="message" className="text-sm text-white">
                 Your Message
@@ -252,6 +243,7 @@ export function EnquiryModal() {
               />
             </div>
 
+            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full h-8 text-sm sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white"
