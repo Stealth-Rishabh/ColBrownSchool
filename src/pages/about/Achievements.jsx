@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/about/Achievement-Banner.webp";
+import img from "../../assets/about/Achievement-Banner.jpg";
 import Container from "../../components/wrappers/Container";
 import Heading from "../../components/Heading";
 

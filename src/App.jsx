@@ -53,6 +53,7 @@ import { ArrowUp } from "lucide-react";
 import { routeMetadata } from "./config/metadata";
 import SportsGallery from "./pages/beyondClassroom/SportsGallery";
 import { EnquiryModal } from "@/components/EnquiryModal";
+import { DockDemo } from "@/components/DockButtons";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -133,10 +134,11 @@ const useMetaTags = (pathname) => {
 
 export default function App() {
   return (
-    <>
+    <section className="relative">
       <Router>
         <ScrollToTop />
         <EnquiryModal />
+        <DockDemo />
         <Routes>
           {/* Student Portal Route without Header/Footer */}
           <Route
@@ -447,7 +449,7 @@ export default function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>
-    </>
+    </section>
   );
 }
 
