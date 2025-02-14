@@ -13,7 +13,7 @@ export const navlinks = [
         path: "/about/message-from-management",
       },
       { name: "Achievements", path: "/about/achievements" },
-      { name: "Faculty & Staff", path: "/about/faculty-staff" },
+      // { name: "Faculty & Staff", path: "/about/faculty-staff" },
       { name: "Infrastructure", path: "/about/infrastructure" },
     ],
   },

@@ -164,7 +164,7 @@ const VirtualTour = () => {
         </Link>
 
         <Link
-          to="/alma-mater"
+          to="/notable-alumni"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <motion.div

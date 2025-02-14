@@ -60,7 +60,7 @@ const LegacyCBS = () => {
     { label: "Legacy CBS" },
   ];
   return (
-    <section>
+    <section className="overflow-hidden">
       <ImgAndBreadcrumb
         title="Legacy of CBS"
         imageSrc={img}
@@ -83,7 +83,7 @@ const AboutUs1 = () => {
     <section className="ezy__about4 relative z-[1] light py-14 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
       <ShapeOne />
       <ShapeTwo />
-      <div className="container ">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
           <div>
             <h2 className="mb-0 text-4xl font-bold text-green-950 leading-tight md:text-end md:text-6xl md:leading-tight">
@@ -92,7 +92,7 @@ const AboutUs1 = () => {
           </div>
           <div className="my-6 lg:px-4 lg:my-0">
             <div
-              className="min-h-[300px] md:h-full bg-center rounded bg-cover bg-no-repeat"
+              className="min-h-[500px]  bg-center rounded bg-cover bg-no-repeat"
               style={{
                 backgroundImage: `url(${img1})`,
               }}

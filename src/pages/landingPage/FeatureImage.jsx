@@ -8,7 +8,7 @@ import { Button } from "../../components/ui/button";
 import {
   School,
   BookOpen,
-  VibrateIcon as Volleyball,
+  Volleyball,
   ClipboardList,
 } from "lucide-react";
 import { Link } from "react-router-dom";
