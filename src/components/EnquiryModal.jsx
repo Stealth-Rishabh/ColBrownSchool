@@ -108,9 +108,9 @@ export function EnquiryModal() {
             Enquire Now
           </Button>
         </DialogTrigger>
-        <DialogContent closeIconClassName="hidden" className="max-w-[90vw] rounded-lg p-5  sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide  bg-gradient-to-tr from-black via-gray-900 to-green-950 border-none">
+        <DialogContent closeIconClassName="hidden" className="max-w-[90vw] rounded-lg p-5  sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide  bg-gradient-to-tr from-green-900 sm:from-black via via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none">
           <DialogHeader>
-            <DialogTitle className="text-lg sm:text-xl text-center bg-green-900 font-bold text-white tracking-wider px-6 py-3 rounded-lg">
+            <DialogTitle className="px-6 py-3 text-lg font-bold tracking-wider text-center text-white bg-green-800 sm:bg-green-900 rounded-lg sm:text-xl">
               Enquiry Form
             </DialogTitle>
           </DialogHeader>
@@ -251,9 +251,10 @@ export function EnquiryModal() {
                 className="min-h-[60px] text-sm resize-none"
               />
             </div>
+            
             <Button
               type="submit"
-              className="w-full h-8 text-sm bg-green-900 text-white"
+              className="w-full h-8 text-sm sm:text-white text-black bg-white sm:bg-green-900"
             >
               Submit
             </Button>
