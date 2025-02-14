@@ -130,22 +130,27 @@ const ContactSection = () => {
       formDataToSend.append("contact-student-name", formData.studentName);
       formDataToSend.append("contact-email", formData.email);
       formDataToSend.append("contact-phone", formData.phone);
+      formDataToSend.append("contact-state", formData.state);
+      formDataToSend.append("contact-city", formData.city);
       formDataToSend.append("contact-class", formData.class);
       formDataToSend.append("contact-enquiry", formData.enquiry);
-      formDataToSend.append("referrer_name", window.location.href); // Optional: capture referrer
-      formDataToSend.append("keyword", ""); // Optional: set if available
+      formDataToSend.append("referrer_name", window.location.href);
+      formDataToSend.append("keyword", "");
       formDataToSend.append("source", "website");
-      formDataToSend.append("orderid", "1049"); // Set as per requirement
+      formDataToSend.append("orderid", "1049");
       formDataToSend.append("sitename", "colNewWebsite");
       formDataToSend.append("campaign_url", window.location.href);
-      formDataToSend.append("campaign_name", ""); // Optional: set if available
-      formDataToSend.append("network", ""); // Optional: set if available
+      formDataToSend.append("campaign_name", "");
+      formDataToSend.append("network", "");
 
       try {
-        const response = await fetch("https://www.bfis.in/BFIS/bfis_crm.php", {
-          method: "POST",
-          body: formDataToSend,
-        });
+        const response = await fetch(
+          "https://www.colbrownschool.com/CRM/colbrown_crm.php",
+          {
+            method: "POST",
+            body: formDataToSend,
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Network response was not ok");

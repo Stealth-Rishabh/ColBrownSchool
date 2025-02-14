@@ -35,6 +35,7 @@ export function EnquiryModal() {
     class: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
 
   // Fetch Indian states using country-state-city
   useEffect(() => {
@@ -62,10 +63,120 @@ export function EnquiryModal() {
     fetchCities();
   }, [selectedState]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission logic here
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Create FormData object with the expected field names for CRM
+    const formDataToSend = new FormData();
+    formDataToSend.append("contact-parent-name", formData.name);
+    formDataToSend.append("contact-student-name", formData.name); // Using same name for both fields
+    formDataToSend.append("contact-email", formData.email);
+    formDataToSend.append("contact-phone", formData.phone);
+    formDataToSend.append("contact-state", formData.state); // Add state
+    formDataToSend.append("contact-city", formData.city); // Add city
+    formDataToSend.append("contact-class", formData.class);
+    formDataToSend.append("contact-enquiry", formData.message);
+    formDataToSend.append("referrer_name", window.location.href);
+    formDataToSend.append("keyword", "");
+    formDataToSend.append("source", "website");
+    formDataToSend.append("orderid", "1049");
+    formDataToSend.append("sitename", "colNewWebsite");
+    formDataToSend.append("campaign_url", window.location.href);
+    formDataToSend.append("campaign_name", "");
+    formDataToSend.append("network", "");
+
+    try {
+      const response = await fetch(
+        "https://www.colbrownschool.com/CRM/colbrown_crm.php",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log("Form submission result:", result);
+
+      if (result.success) {
+        // Reset form data
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          state: "",
+          city: "",
+          class: "",
+          message: "",
+        });
+        setSelectedState(""); // Reset selected state
+        setCities([]); // Reset cities
+        alert("Form submitted successfully!");
+      } else {
+        throw new Error(result.message || "Failed to submit form");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to send message. Please try again.");
+    }
+  };
+
+  // Update validateForm to include state and city validation
+  const validateForm = () => {
+    const errors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
+      errors.name = "Name should only contain letters and spaces";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      errors.phone = "Phone number is required";
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      errors.phone = "Please enter a valid 10-digit Indian phone number";
+    }
+
+    // State validation
+    if (!formData.state) {
+      errors.state = "Please select a state";
+    }
+
+    // City validation
+    if (!formData.city) {
+      errors.city = "Please select a city";
+    }
+
+    // Class validation
+    if (!formData.class) {
+      errors.class = "Please select a class";
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    }
+
+    setErrors(errors);
+    return errors;
   };
 
   return (
@@ -100,6 +211,9 @@ export function EnquiryModal() {
                 }
                 required
               />
+              {errors?.name && (
+                <p className="text-xs text-red-500">{errors.name}</p>
+              )}
             </div>
 
             {/* Email Field */}
@@ -117,6 +231,9 @@ export function EnquiryModal() {
                 }
                 required
               />
+              {errors?.email && (
+                <p className="text-xs text-red-500">{errors.email}</p>
+              )}
             </div>
 
             {/* Phone Field */}
@@ -134,6 +251,9 @@ export function EnquiryModal() {
                 }
                 required
               />
+              {errors?.phone && (
+                <p className="text-xs text-red-500">{errors.phone}</p>
+              )}
             </div>
 
             {/* State Select */}
