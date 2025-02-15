@@ -3,27 +3,48 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import video from "../../assets/landing/events/video.webp";
+import { useEffect, useRef, useState } from "react";
 export function VideoPreview() {
+  const [isInView, setIsInView] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, []);
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="relative rounded-xl overflow-hidden group cursor-pointer"
-    >
-      <img
-        src={video}
-        alt="School aerial view"
-        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-      />
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        whileHover={{ scale: 1.1 }}
-      >
-        <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-          <Play className="w-10 h-10 text-red-600 ml-1" />
-        </div>
-      </motion.div>
-    </motion.div>
+    className="w-full sm:px-4"
+    initial={{ opacity: 0, y: -30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: 0.5 }}
+  >
+    <iframe
+      ref={videoRef}
+      src={`https://www.youtube.com/embed/ekL-m0WAtlY${isInView ? '?autoplay=1&mute=1' : ''}`}
+      frameBorder="0"
+      allow="autoplay; encrypted-media"
+      allowFullScreen
+      title="video"
+      className="sm:rounded-2xl rounded-lg w-full sm:h-full aspect-video"
+    />
+  </motion.div>
   );
 }

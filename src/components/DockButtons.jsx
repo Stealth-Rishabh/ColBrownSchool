@@ -4,6 +4,7 @@ import React from "react";
 
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { Link } from "react-router-dom";
+import DrawerDock from "@/pages/header/DrawerDock";
 
 /** @type {React.SVGProps<SVGSVGElement>} */
 const IconProps = {};
@@ -24,7 +25,7 @@ export function DockDemo() {
 
   return (
     <div
-      className={`fixed bottom-5 sm:bottom-8 right-[25%] sm:right-[44%] z-50 md:transition-opacity md:duration-300 block ${
+      className={`fixed bottom-5 sm:bottom-8 right-[25%] sm:right-[43.5%] z-50 md:transition-opacity md:duration-300 block ${
         isVisible ? "md:opacity-100" : "md:opacity-0 md:pointer-events-none"
       }`}
     >
@@ -33,10 +34,10 @@ export function DockDemo() {
           <Icons.home className="size-full" />
         </DockIcon>
         <DockIcon className="bg-black/10 dark:bg-white/10">
-          <Icons.call className="size-full" />
+          <Icons.hamburger className="size-full" />
         </DockIcon>
         <DockIcon className="bg-black/10 dark:bg-white/10">
-          <Icons.hamburger className="size-full" />
+          <Icons.call className="size-full" />
         </DockIcon>
 
         <DockIcon className="bg-black/10 dark:bg-white/10">
@@ -90,24 +91,8 @@ const Icons = {
     </a>
   ),
   hamburger: (props) => (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="lucide lucide-menu text-white"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
-  ),
+     <DrawerDock  {...props}/>
+    ),
 
   whatsapp: (props) => (
     <a

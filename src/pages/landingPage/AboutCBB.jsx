@@ -110,9 +110,9 @@ export default function AboutCBB() {
                 <iframe
                   ref={videoRef}
                   src={`https://www.youtube.com/embed/mZdDi62XFgU${isInView ? '?autoplay=1&mute=1' : ''}`}
-                  frameborder="0"
+                  frameBorder="0"
                   allow="autoplay; encrypted-media"
-                  allowfullscreen
+                  allowFullScreen
                   title="video"
                   className="rounded-2xl w-full h-[220px] sm:min-h-[400px]"
                 />

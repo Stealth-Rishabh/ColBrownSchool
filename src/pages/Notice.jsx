@@ -48,10 +48,12 @@ function EntranceTestGuidelines() {
           <tbody>
             <tr>
               <td className="py-2 px-4 text-center border-r border-gray-200">
-                07 December 2024
+                {/* 07 December 2024 */}
+                Update you soon
               </td>
               <td className="py-2 px-4 text-center border-r border-gray-200">
-                3:00 PM – 4:30 PM
+                {/* 3:00 PM – 4:30 PM */}
+                Update you soon
               </td>
               <td className="py-2 px-4 text-center">1 hour 30 min.</td>
             </tr>

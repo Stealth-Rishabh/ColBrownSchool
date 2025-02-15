@@ -109,7 +109,7 @@ export default function SchoolEvents() {
             </motion.h2>
             <div className="grid sm:grid-cols-3 space-y-5 sm:space-y-0 sm:gap-5">
               <motion.div
-                className="col-span-2 grid h-[430px] overflow-hidden"
+                className="col-span-2 grid sm:h-[430px] overflow-hidden"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
