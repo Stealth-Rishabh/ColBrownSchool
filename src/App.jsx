@@ -17,18 +17,18 @@ import Curriculum from "./pages/academics/curriculum/Curriculum";
 import AdvancedPedagogy from "./pages/academics/AdvancedPedagogy";
 import CareerCounseling from "./pages/academics/career-counseling/CareerCounseling";
 // Boarding Life
-import Overview from "./pages/boardingLife/Overview";
+// import Overview from "./pages/boardingLife/Overview";
 import Classroom from "./pages/boardingLife/Classroom";
-import PastoralCare from "./pages/boardingLife/PastoralCare";
-import SafetySecurity from "./pages/boardingLife/SafetySecurity";
-import MedicalFacilities from "./pages/boardingLife/MedicalFacilities";
-import Hostel from "./pages/boardingLife/Hostel";
-import Dining from "./pages/boardingLife/Dining";
-import Library from "./pages/boardingLife/Library";
-// Beyond Classroom
-import Sports from "./pages/beyondClassroom/Sports";
-import AdventureExcursion from "./pages/beyondClassroom/AdventureExcursion";
-import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
+// import PastoralCare from "./pages/boardingLife/PastoralCare";
+// import SafetySecurity from "./pages/boardingLife/SafetySecurity";
+// import MedicalFacilities from "./pages/boardingLife/MedicalFacilities";
+// import Hostel from "./pages/boardingLife/Hostel";
+// import Dining from "./pages/boardingLife/Dining";
+// import Library from "./pages/boardingLife/Library";
+// // Beyond Classroom
+// import Sports from "./pages/beyondClassroom/Sports";
+// import AdventureExcursion from "./pages/beyondClassroom/AdventureExcursion";
+// import ClubsAndSocieties from "./pages/beyondClassroom/ClubsAndSocieties";
 import NewsAndEvents from "./pages/beyondClassroom/NewsAndEvents";
 // Admissions
 import AdmissionProcedure from "./pages/admissions/AdmissionProcedure";
@@ -47,13 +47,14 @@ import Notice from "./pages/Notice";
 import Newsletter from "./pages/Newsletter";
 // Error
 import NotFound from "./pages/fallback/NotFound";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { routeMetadata } from "./config/metadata";
-import SportsGallery from "./pages/beyondClassroom/SportsGallery";
+// import SportsGallery from "./pages/beyondClassroom/SportsGallery";
 import { EnquiryModal } from "@/components/EnquiryModal";
 import { DockDemo } from "@/components/DockButtons";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -131,6 +132,25 @@ const useMetaTags = (pathname) => {
     });
   }, [pathname]);
 };
+
+// Lazy load heavy components
+const Overview = lazy(() => import("./pages/boardingLife/Overview"));
+const PastoralCare = lazy(() => import("./pages/boardingLife/PastoralCare"));
+const Sports = lazy(() => import("./pages/beyondClassroom/Sports"));
+const SportsGallery = lazy(() => import("./pages/beyondClassroom/SportsGallery"));
+
+const MedicalFacilities = lazy(() =>
+  import("./pages/boardingLife/MedicalFacilities")
+);
+const Hostel = lazy(() => import("./pages/boardingLife/Hostel"));
+const Dining = lazy(() => import("./pages/boardingLife/Dining"));
+const Library = lazy(() => import("./pages/boardingLife/Library"));
+const AdventureExcursion = lazy(() =>
+  import("./pages/beyondClassroom/AdventureExcursion")
+);
+const ClubsAndSocieties = lazy(() =>
+  import("./pages/beyondClassroom/ClubsAndSocieties")
+);
 
 export default function App() {
   return (
@@ -247,7 +267,9 @@ export default function App() {
                     path="/boarding-life/overview"
                     element={
                       <MetaWrapper pathname="/boarding-life/overview">
-                        <Overview />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Overview />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -263,7 +285,9 @@ export default function App() {
                     path="/boarding-life/pastoral-care"
                     element={
                       <MetaWrapper pathname="/boarding-life/pastoral-care">
-                        <PastoralCare />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <PastoralCare />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -271,7 +295,9 @@ export default function App() {
                     path="/boarding-life/sports-at-cbs"
                     element={
                       <MetaWrapper pathname="/boarding-life/sports-at-cbs">
-                        <Sports />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Sports />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -279,7 +305,9 @@ export default function App() {
                     path="/boarding-life/sports-at-cbs/:sport"
                     element={
                       <MetaWrapper pathname="/boarding-life/sports-at-cbs/:sport">
-                        <SportsGallery />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <SportsGallery />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -292,7 +320,9 @@ export default function App() {
                     path="/boarding-life/medical-facilities"
                     element={
                       <MetaWrapper pathname="/boarding-life/medical-facilities">
-                        <MedicalFacilities />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <MedicalFacilities />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -301,7 +331,9 @@ export default function App() {
                     path="/boarding-life/hostel"
                     element={
                       <MetaWrapper pathname="/boarding-life/hostel">
-                        <Hostel />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Hostel />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -309,7 +341,9 @@ export default function App() {
                     path="/boarding-life/dining"
                     element={
                       <MetaWrapper pathname="/boarding-life/dining">
-                        <Dining />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Dining />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -317,7 +351,9 @@ export default function App() {
                     path="/boarding-life/library"
                     element={
                       <MetaWrapper pathname="/boarding-life/library">
-                        <Library />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Library />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -327,7 +363,9 @@ export default function App() {
                     path="/beyond-classroom/adventure-excursion"
                     element={
                       <MetaWrapper pathname="/beyond-classroom/adventure-excursion">
-                        <AdventureExcursion />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <AdventureExcursion />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />
@@ -335,7 +373,9 @@ export default function App() {
                     path="/beyond-classroom/clubs-at-cbs"
                     element={
                       <MetaWrapper pathname="/beyond-classroom/clubs-at-cbs">
-                        <ClubsAndSocieties />
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <ClubsAndSocieties />
+                        </Suspense>
                       </MetaWrapper>
                     }
                   />

@@ -14,6 +14,8 @@ import dining from "../../assets/boarding-life/Dinning (3).webp";
 import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
+import { OptimizedImage } from "@/components/OptimizedImage";
+
 const cards = [
   {
     title: "Classrooms",
@@ -117,10 +119,12 @@ const Card = ({ title, description, imageSrc, buttonText, path }) => {
   return (
     <div className="mb-10 sm:max-w-1/2">
       <div className="overflow-hidden transition-shadow duration-300 rounded-lg shadow-lg h-full sm:h-80 hover:shadow-xl">
-        <img
-          alt="content"
-          className="object-cover object-center w-full h-full transition-transform duration-300 hover:scale-125"
+        <OptimizedImage
           src={imageSrc}
+          alt={title}
+          className="object-cover w-full h-full transition-all duration-300 hover:scale-110"
+          width={400}
+          height={300}
         />
       </div>
       <h2 className="mt-6 mb-3 text-3xl font-medium text-center text-gray-700 title-font">

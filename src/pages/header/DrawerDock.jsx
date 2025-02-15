@@ -65,8 +65,8 @@ const DrawerDock = (props) => {
 
   return (
     <Sheet>
-      <SheetTrigger className="lg:hidden block">
-        <button className="p-2 text-black  rounded lg:hidden">
+      <SheetTrigger className=" block">
+        <button className="p-2 text-black  rounded">
           <svg
             {...props}
             xmlns="http://www.w3.org/2000/svg"
