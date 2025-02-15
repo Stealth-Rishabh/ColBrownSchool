@@ -1,30 +1,14 @@
-import path from "path";
-import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import imagemin from "vite-plugin-imagemin";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    imagemin({
-      gifsicle: { optimizationLevel: 7, interlaced: false },
-      optipng: { optimizationLevel: 7 },
-      mozjpeg: { quality: 80 },
-      pngquant: { quality: [0.8, 0.9], speed: 4 },
-      svgo: {
-        plugins: [
-          { name: "removeViewBox", active: false },
-          { name: "removeDimensions", active: true },
-        ],
-      },
-    }),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  assetsInclude: ["**/*.JPG"],
   build: {
     rollupOptions: {
       output: {
@@ -46,6 +30,21 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
+  server: {
+    hmr: {
+      overlay: true,
+    },
+    watch: {
+      usePolling: true,
+    },
   },
   // Add jsconfig.json or tsconfig.json in your project root with:
   // {
