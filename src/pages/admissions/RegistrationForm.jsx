@@ -236,10 +236,10 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
-        // 1. Create FormData object
+        // Create FormData object
         const submitData = new FormData();
 
-        // 2. Add all required fields matching PHP form
+        // Add all form fields
         Object.entries({
           studentname: formData.studentname,
           dob: formData.dob,
@@ -247,7 +247,7 @@ const RegistrationForm = () => {
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: "101", // Hardcoded to India like PHP
+          country: "101", // Hardcoded to India
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -258,54 +258,63 @@ const RegistrationForm = () => {
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
           "g-recaptcha-response": formData["g-recaptcha-response"],
-          frmtoken: formData.frmtoken,
         }).forEach(([key, value]) => {
           submitData.append(key, value);
         });
 
-        // 3. Submit to paymentnew.php
+        console.log("Submitting form data:", Object.fromEntries(submitData));
+
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
             method: "POST",
             body: submitData,
-            credentials: "include", // Important for session handling
+            credentials: "include",
           }
         );
 
+        console.log("Response status:", response.status);
+        const responseText = await response.text();
+        console.log("Response text:", responseText);
+
         if (response.ok) {
-          // 4. Get the payment form HTML from paymentnew.php
-          const htmlResponse = await response.text();
+          // Check if response contains the payment form
+          if (responseText.includes('form name="cbs_payment"')) {
+            // Create temporary container
+            const tempDiv = document.createElement("div");
+            tempDiv.style.display = "none";
+            tempDiv.innerHTML = responseText;
 
-          // 5. Create temporary container and insert payment form
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = htmlResponse;
+            // Find the payment form
+            const ccAvenueForm = tempDiv.querySelector(
+              'form[name="cbs_payment"]'
+            );
 
-          // 6. Find the CCAvenue payment form
-          const ccAvenueForm = tempDiv.querySelector(
-            'form[name="cbs_payment"]'
-          );
+            if (ccAvenueForm) {
+              // Set transaction ID
+              const tid = new Date().getTime();
+              const tidInput = ccAvenueForm.querySelector("#tid");
+              if (tidInput) {
+                tidInput.value = tid;
+              }
 
-          if (ccAvenueForm) {
-            // 7. Set transaction ID
-            const tid = new Date().getTime();
-            const tidInput = ccAvenueForm.querySelector("#tid");
-            if (tidInput) {
-              tidInput.value = tid;
+              // Add to document and submit
+              document.body.appendChild(tempDiv);
+              ccAvenueForm.submit();
+            } else {
+              throw new Error("Payment form not found in response");
             }
-
-            // 8. Add form to document and submit
-            document.body.appendChild(tempDiv);
-            ccAvenueForm.submit();
           } else {
-            throw new Error("Payment form not found in response");
+            throw new Error("Response does not contain payment form");
           }
         } else {
-          throw new Error("Form submission failed");
+          throw new Error(
+            `Server responded with status ${response.status}: ${responseText}`
+          );
         }
       } catch (error) {
         console.error("Error submitting form:", error);
-        alert("There was an error submitting the form. Please try again.");
+        alert(`Error: ${error.message}`);
       }
     }
   };
