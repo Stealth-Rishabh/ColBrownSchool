@@ -146,98 +146,58 @@ const RegistrationForm = () => {
         break;
 
       case 3: // Contact Information
-        if (!formData.country) {
-          newErrors.country = "Country is required";
-        }
+        // Country is hardcoded to India (101), so no validation needed
 
+        // State validation for select field
         if (!formData.state) {
-          newErrors.state = "State is required";
+          newErrors.state = "Please select a state";
         }
 
-        if (!formData.city?.trim()) {
-          newErrors.city = "City is required";
-        } else if (
-          validatePattern(
-            formData.city,
-            "^[A-Za-z\\s]{2,30}$",
-            "City should only contain letters and spaces"
-          )
-        ) {
-          newErrors.city = validatePattern(
-            formData.city,
-            "^[A-Za-z\\s]{2,30}$",
-            "City should only contain letters and spaces"
-          );
+        // City validation for select field
+        if (!formData.city) {
+          newErrors.city = "Please select a city";
         }
 
+        // Address validation
         if (!formData.address?.trim()) {
           newErrors.address = "Address is required";
         } else if (formData.address.length < 10) {
           newErrors.address = "Address must be at least 10 characters long";
         }
 
+        // Pin code validation
         if (!formData.zipcode?.trim()) {
           newErrors.zipcode = "Pin code is required";
-        } else if (
-          validatePattern(
-            formData.zipcode,
-            "^[0-9]{6}$",
-            "Pin code must be exactly 6 digits"
-          )
-        ) {
-          newErrors.zipcode = validatePattern(
-            formData.zipcode,
-            "^[0-9]{6}$",
-            "Pin code must be exactly 6 digits"
-          );
+        } else if (!/^[0-9]{6}$/.test(formData.zipcode)) {
+          newErrors.zipcode = "Pin code must be exactly 6 digits";
         }
 
+        // Email validation
         if (!formData.contact_email?.trim()) {
           newErrors.contact_email = "Email is required";
         } else if (
-          validatePattern(
-            formData.contact_email,
-            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
-            "Please enter a valid email address"
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            formData.contact_email
           )
         ) {
-          newErrors.contact_email = validatePattern(
-            formData.contact_email,
-            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
-            "Please enter a valid email address"
-          );
+          newErrors.contact_email = "Please enter a valid email address";
         }
 
+        // Phone validation
         if (!formData.telephone?.trim()) {
           newErrors.telephone = "Mobile number is required";
-        } else if (
-          validatePattern(
-            formData.telephone,
-            "^[6-9][0-9]{9}$",
-            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          )
-        ) {
-          newErrors.telephone = validatePattern(
-            formData.telephone,
-            "^[6-9][0-9]{9}$",
-            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          );
+        } else if (!/^[6-9][0-9]{9}$/.test(formData.telephone)) {
+          newErrors.telephone =
+            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9";
         }
 
-        if (formData.whatsapp_number?.trim()) {
-          if (
-            validatePattern(
-              formData.whatsapp_number,
-              "^[6-9][0-9]{9}$",
-              "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-            )
-          ) {
-            newErrors.whatsapp_number = validatePattern(
-              formData.whatsapp_number,
-              "^[6-9][0-9]{9}$",
-              "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-            );
-          }
+        // WhatsApp validation (optional)
+        if (
+          formData.whatsapp_number?.trim() &&
+          !/^[6-9][0-9]{9}$/.test(formData.whatsapp_number)
+        ) {
+          newErrors.whatsapp_number =
+            "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9";
         }
         break;
 
@@ -284,27 +244,73 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
+        // Create FormData object
         const submitData = new FormData();
 
-        // Append all form fields
-        Object.entries(formData).forEach(([key, value]) => {
+        // Format data to match PHP backend expectations
+        const formDataToSubmit = {
+          ...formData,
+          // Required fields for payment processing
+          studentname: formData.studentname,
+          dob: formData.dob,
+          birthplace: formData.birthplace,
+          fathername: formData.fathername,
+          nationality: formData.nationality,
+          occupation: formData.occupation,
+          country: "101", // Hardcoded to India
+          state: formData.state,
+          city: formData.city,
+          address: formData.address,
+          zipcode: formData.zipcode,
+          contact_email: formData.contact_email,
+          telephone: formData.telephone,
+          whatsapp_number: formData.whatsapp_number,
+          addmissionclass: formData.addmissionclass,
+          agree: formData.agree ? "1" : "0",
+          "g-recaptcha-response": formData["g-recaptcha-response"],
+        };
+
+        // Append all form fields to FormData
+        Object.entries(formDataToSubmit).forEach(([key, value]) => {
           submitData.append(key, value);
         });
 
+        // Submit to the same endpoint as PHP version
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
             method: "POST",
             body: submitData,
-            credentials: "include", // Include cookies if needed
+            credentials: "include", // Important for session handling
           }
         );
 
         if (response.ok) {
-          const result = await response.text(); // Or response.json() if server returns JSON
-          console.log("Form submission successful:", result);
-          alert("Form submitted successfully!");
-          // Optionally, reset the form or redirect the user
+          const htmlResponse = await response.text();
+
+          // Create a temporary container for the CCAvenue form
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = htmlResponse;
+
+          // Find and submit the CCAvenue payment form
+          const ccAvenueForm = tempDiv.querySelector(
+            'form[name="cbs_payment"]'
+          );
+
+          if (ccAvenueForm) {
+            // Generate transaction ID as done in the PHP version
+            const tid = new Date().getTime();
+            const tidInput = ccAvenueForm.querySelector("#tid");
+            if (tidInput) {
+              tidInput.value = tid;
+            }
+
+            // Append the form to body and submit
+            document.body.appendChild(tempDiv);
+            ccAvenueForm.submit();
+          } else {
+            throw new Error("Payment form not found in response");
+          }
         } else {
           const errorText = await response.text();
           console.error("Form submission failed:", errorText);
@@ -539,42 +545,53 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
       Contact Information
     </h2>
     <div className="space-y-4">
+      {/* Country - Hardcoded to India */}
       <SelectField
         label="Country"
         name="country"
-        value={formData.country || ""}
+        value="101"
         onChange={handleInputChange}
-        options={["India", "Other"]}
+        options={[{ id: "101", name: "India" }]}
         required
-        placeholder="Select your country"
+        disabled={true}
+        placeholder="Select country"
         error={errors.country}
       />
+
+      {/* State */}
       <SelectField
         label="State"
         name="state"
         value={formData.state || ""}
         onChange={handleInputChange}
         options={[
-          "Andaman and Nicobar Islands",
-          "Andhra Pradesh",
-          "Arunachal Pradesh",
-          "Other",
+          { id: "1", name: "Uttarakhand" },
+          { id: "2", name: "Uttar Pradesh" },
+          // Add other states as needed
         ]}
         required
-        placeholder="Select your state"
+        placeholder="Select state"
         error={errors.state}
       />
-      <InputField
+
+      {/* City */}
+      <SelectField
         label="City"
         name="city"
         value={formData.city || ""}
         onChange={handleInputChange}
+        options={[
+          { id: "1", name: "Dehradun" },
+          { id: "2", name: "Haridwar" },
+          { id: "3", name: "Rishikesh" },
+          { id: "4", name: "Mussoorie" },
+          // Add other cities as needed
+        ]}
         required
-        placeholder="Enter your city"
-        pattern="^[A-Za-z\s]{2,30}$"
-        title="City should only contain letters and spaces"
+        placeholder="Select city"
         error={errors.city}
       />
+
       <TextAreaField
         label="Permanent Address"
         name="address"
@@ -748,19 +765,28 @@ const SelectField = ({
   required,
   placeholder,
   error,
+  disabled = false,
 }) => (
   <div className="space-y-2">
     <Label htmlFor={name} className="text-green-800">
       {label} {required && <span className="text-red-500">*</span>}
     </Label>
-    <Select value={value} onValueChange={(value) => onChange(name, value)}>
-      <SelectTrigger className={error ? "border-red-500" : ""}>
+    <Select
+      value={value}
+      onValueChange={(value) => onChange(name, value)}
+      disabled={disabled}
+    >
+      <SelectTrigger
+        className={`${error ? "border-red-500" : ""} ${
+          disabled ? "bg-gray-100" : ""
+        }`}
+      >
         <SelectValue placeholder={placeholder || `Select ${label}`} />
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
-          <SelectItem key={option} value={option}>
-            {option}
+          <SelectItem key={option.id || option} value={option.id || option}>
+            {option.name || option}
           </SelectItem>
         ))}
       </SelectContent>
