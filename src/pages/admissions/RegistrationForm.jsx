@@ -13,9 +13,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import ReCAPTCHA from "react-google-recaptcha";
-
-const RECAPTCHA_SITE_KEY = "6LftoiwUAAAAABnCMVn9JNpKHWE9YbhveZtdg34n";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -37,7 +34,6 @@ const RegistrationForm = () => {
     addmissionclass: "",
     agree: false,
     frmtoken: "",
-    "g-recaptcha-response": "",
   });
   const [errors, setErrors] = useState({});
 
@@ -212,10 +208,6 @@ const RegistrationForm = () => {
         if (!formData.agree) {
           newErrors.agree = "You must agree to the terms and conditions";
         }
-
-        if (!formData["g-recaptcha-response"]) {
-          newErrors["g-recaptcha-response"] = "Please complete the reCAPTCHA";
-        }
         break;
 
       default:
@@ -226,64 +218,23 @@ const RegistrationForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNextStep = () => {
-    if (validateStep(step)) {
-      setStep(step + 1);
-    }
-  };
-
-  const handlePrevStep = () => setStep(step - 1);
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      if (step < 4) {
-        handleNextStep();
-      } else {
-        handleSubmit();
-      }
-    }
-  };
-
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
         // Create FormData object
         const submitData = new FormData();
 
-        // Match the exact field names from PHP form
-        const formFields = {
-          studentname: formData.studentname,
-          dob: formData.dob,
-          birthplace: formData.birthplace,
-          fathername: formData.fathername,
-          nationality: formData.nationality,
-          occupation: formData.occupation,
-          country: formData.country || "101", // Default to India
-          state: formData.state,
-          city: formData.city,
-          address: formData.address,
-          zipcode: formData.zipcode,
-          contact_email: formData.contact_email,
-          telephone: formData.telephone,
-          whatsapp_number: formData.whatsapp_number,
-          addmissionclass: formData.addmissionclass,
-          agree: formData.agree ? "1" : "0",
-          frmtoken: formData.frmtoken,
-          "g-recaptcha-response": formData["g-recaptcha-response"],
-        };
-
-        // Add all form fields to FormData
-        Object.entries(formFields).forEach(([key, value]) => {
+        // Add all form fields
+        Object.entries(formData).forEach(([key, value]) => {
           submitData.append(key, value);
         });
 
-        // Submit to the PHP endpoint
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
             method: "POST",
             body: submitData,
-            credentials: "include", // Important for cookies/sessions
+            credentials: "include",
           }
         );
 
@@ -291,8 +242,9 @@ const RegistrationForm = () => {
           throw new Error(`Server responded with status ${response.status}`);
         }
 
+        // Log the response for debugging
         const responseText = await response.text();
-        console.log("PHP Response:", responseText);
+        console.log("Server Response:", responseText);
 
         // Create a temporary container and parse the HTML response
         const parser = new DOMParser();
@@ -300,10 +252,11 @@ const RegistrationForm = () => {
         const paymentForm = doc.querySelector('form[name="cbs_payment"]');
 
         if (!paymentForm) {
+          console.error("Response HTML:", responseText);
           throw new Error("Payment form not found in response");
         }
 
-        // Create and submit the payment form
+        // Create a hidden form element
         const form = document.createElement("form");
         form.style.display = "none";
         form.method = paymentForm.method;
@@ -335,8 +288,26 @@ const RegistrationForm = () => {
     }
   };
 
-  const onRecaptchaChange = (token) => {
-    handleInputChange("g-recaptcha-response", token);
+  const handleNext = () => {
+    if (validateStep(step)) {
+      if (step < 4) {
+        setStep(step + 1);
+      } else {
+        handleSubmit();
+      }
+    }
+  };
+
+  const handlePrevStep = () => setStep(step - 1);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (step < 4) {
+        handleNext();
+      } else {
+        handleSubmit();
+      }
+    }
   };
 
   const renderStep = () => {
@@ -371,7 +342,6 @@ const RegistrationForm = () => {
             formData={formData}
             handleInputChange={handleInputChange}
             errors={errors}
-            onRecaptchaChange={onRecaptchaChange}
           />
         );
       default:
@@ -414,23 +384,22 @@ const RegistrationForm = () => {
               Previous
             </Button>
           )}
-          {step < 4 ? (
-            <Button
-              onClick={handleNextStep}
-              className="flex items-center ml-auto bg-green-950 hover:bg-green-900"
-            >
-              Next
-              <ChevronRight className="ml-2" size={18} />
-            </Button>
-          ) : (
-            <Button
-              onClick={handleSubmit}
-              className="flex items-center ml-auto bg-green-600 hover:bg-green-700"
-            >
-              Submit
-              <Check className="ml-2" size={18} />
-            </Button>
-          )}
+          <Button
+            onClick={handleNext}
+            className="flex items-center ml-auto bg-green-950 hover:bg-green-900"
+          >
+            {step < 4 ? (
+              <>
+                Next
+                <ChevronRight className="ml-2" size={18} />
+              </>
+            ) : (
+              <>
+                Submit
+                <Check className="ml-2" size={18} />
+              </>
+            )}
+          </Button>
         </div>
       </div>
     </div>
@@ -664,12 +633,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
   </div>
 );
 
-const AdmissionInfo = ({
-  formData,
-  handleInputChange,
-  errors,
-  onRecaptchaChange,
-}) => (
+const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Admission Information
@@ -701,15 +665,6 @@ const AdmissionInfo = ({
           </label>
         </div>
         {errors.agree && <p className="text-red-500 text-sm">{errors.agree}</p>}
-      </div>
-      {/* reCAPTCHA */}
-      <div className="my-4">
-        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={onRecaptchaChange} />
-        {errors["g-recaptcha-response"] && (
-          <p className="text-red-500 text-sm">
-            {errors["g-recaptcha-response"]}
-          </p>
-        )}
       </div>
     </div>
     <p className="mt-6 text-sm text-green-700">
