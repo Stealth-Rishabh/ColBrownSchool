@@ -48,13 +48,24 @@ const RegistrationForm = () => {
 
   const fetchCSRFToken = async () => {
     try {
-      const response = await fetch("/path-to-fetch-csrf-token", {
-        method: "GET",
-        credentials: "include", // Include cookies if required
-      });
+      const response = await fetch(
+        "https://www.colbrownschool.com/admissions/registration/",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       if (response.ok) {
-        const data = await response.json();
-        setFormData((prev) => ({ ...prev, frmtoken: data.token }));
+        const text = await response.text();
+        // Parse the HTML to get the token
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "text/html");
+        const tokenInput = doc.querySelector('input[name="frmtoken"]');
+        if (tokenInput) {
+          setFormData((prev) => ({ ...prev, frmtoken: tokenInput.value }));
+        } else {
+          console.error("CSRF token not found in response");
+        }
       } else {
         console.error("Failed to fetch CSRF token");
       }
@@ -239,15 +250,15 @@ const RegistrationForm = () => {
         // Create FormData object
         const submitData = new FormData();
 
-        // Add all form fields
-        Object.entries({
+        // Match the exact field names from PHP form
+        const formFields = {
           studentname: formData.studentname,
           dob: formData.dob,
           birthplace: formData.birthplace,
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: "101", // Hardcoded to India
+          country: formData.country || "101", // Default to India
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -257,61 +268,66 @@ const RegistrationForm = () => {
           whatsapp_number: formData.whatsapp_number,
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
+          frmtoken: formData.frmtoken,
           "g-recaptcha-response": formData["g-recaptcha-response"],
-        }).forEach(([key, value]) => {
+        };
+
+        // Add all form fields to FormData
+        Object.entries(formFields).forEach(([key, value]) => {
           submitData.append(key, value);
         });
 
-        console.log("Submitting form data:", Object.fromEntries(submitData));
-
+        // Submit to the PHP endpoint
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
             method: "POST",
             body: submitData,
-            credentials: "include",
+            credentials: "include", // Important for cookies/sessions
           }
         );
 
-        console.log("Response status:", response.status);
-        const responseText = await response.text();
-        console.log("Response text:", responseText);
-
-        if (response.ok) {
-          // Check if response contains the payment form
-          if (responseText.includes('form name="cbs_payment"')) {
-            // Create temporary container
-            const tempDiv = document.createElement("div");
-            tempDiv.style.display = "none";
-            tempDiv.innerHTML = responseText;
-
-            // Find the payment form
-            const ccAvenueForm = tempDiv.querySelector(
-              'form[name="cbs_payment"]'
-            );
-
-            if (ccAvenueForm) {
-              // Set transaction ID
-              const tid = new Date().getTime();
-              const tidInput = ccAvenueForm.querySelector("#tid");
-              if (tidInput) {
-                tidInput.value = tid;
-              }
-
-              // Add to document and submit
-              document.body.appendChild(tempDiv);
-              ccAvenueForm.submit();
-            } else {
-              throw new Error("Payment form not found in response");
-            }
-          } else {
-            throw new Error("Response does not contain payment form");
-          }
-        } else {
-          throw new Error(
-            `Server responded with status ${response.status}: ${responseText}`
-          );
+        if (!response.ok) {
+          throw new Error(`Server responded with status ${response.status}`);
         }
+
+        const responseText = await response.text();
+        console.log("PHP Response:", responseText);
+
+        // Create a temporary container and parse the HTML response
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(responseText, "text/html");
+        const paymentForm = doc.querySelector('form[name="cbs_payment"]');
+
+        if (!paymentForm) {
+          throw new Error("Payment form not found in response");
+        }
+
+        // Create and submit the payment form
+        const form = document.createElement("form");
+        form.style.display = "none";
+        form.method = paymentForm.method;
+        form.action = paymentForm.action;
+        form.name = paymentForm.name;
+
+        // Copy all input fields from the parsed form
+        paymentForm.querySelectorAll("input").forEach((input) => {
+          const newInput = document.createElement("input");
+          newInput.type = input.type;
+          newInput.name = input.name;
+          newInput.value = input.value;
+
+          // Special handling for tid
+          if (input.id === "tid") {
+            newInput.value = new Date().getTime();
+          }
+
+          form.appendChild(newInput);
+        });
+
+        // Append and submit form
+        document.body.appendChild(form);
+        form.submit();
       } catch (error) {
         console.error("Error submitting form:", error);
         alert(`Error: ${error.message}`);
