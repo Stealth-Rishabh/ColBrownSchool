@@ -15,6 +15,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import ReCAPTCHA from "react-google-recaptcha";
 
+const RECAPTCHA_SITE_KEY = "6LftoiwUAAAAABnCMVn9JNpKHWE9YbhveZtdg34n";
+
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -24,7 +26,7 @@ const RegistrationForm = () => {
     fathername: "",
     nationality: "",
     occupation: "",
-    country: "",
+    country: "101",
     state: "",
     city: "",
     address: "",
@@ -38,7 +40,6 @@ const RegistrationForm = () => {
     "g-recaptcha-response": "",
   });
   const [errors, setErrors] = useState({});
-  const [captchaToken, setCaptchaToken] = useState("");
 
   // Fetch CSRF token from server when component mounts
   useEffect(() => {
@@ -84,18 +85,9 @@ const RegistrationForm = () => {
       case 1: // Child Information
         if (!formData.studentname?.trim()) {
           newErrors.studentname = "Child's name is required";
-        } else if (
-          validatePattern(
-            formData.studentname,
-            "^[A-Za-z\\s]{3,50}$",
-            "Name should only contain letters and spaces, between 3-50 characters"
-          )
-        ) {
-          newErrors.studentname = validatePattern(
-            formData.studentname,
-            "^[A-Za-z\\s]{3,50}$",
-            "Name should only contain letters and spaces, between 3-50 characters"
-          );
+        } else if (!/^[A-Za-z\s]{3,50}$/.test(formData.studentname)) {
+          newErrors.studentname =
+            "Name should only contain letters and spaces, between 3-50 characters";
         }
 
         if (!formData.dob) {
@@ -244,20 +236,18 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
-        // Create FormData object
+        // 1. Create FormData object
         const submitData = new FormData();
 
-        // Format data to match PHP backend expectations
-        const formDataToSubmit = {
-          ...formData,
-          // Required fields for payment processing
+        // 2. Add all required fields matching PHP form
+        Object.entries({
           studentname: formData.studentname,
           dob: formData.dob,
           birthplace: formData.birthplace,
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: "101", // Hardcoded to India
+          country: "101", // Hardcoded to India like PHP
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -268,14 +258,12 @@ const RegistrationForm = () => {
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
           "g-recaptcha-response": formData["g-recaptcha-response"],
-        };
-
-        // Append all form fields to FormData
-        Object.entries(formDataToSubmit).forEach(([key, value]) => {
+          frmtoken: formData.frmtoken,
+        }).forEach(([key, value]) => {
           submitData.append(key, value);
         });
 
-        // Submit to the same endpoint as PHP version
+        // 3. Submit to paymentnew.php
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
@@ -286,35 +274,34 @@ const RegistrationForm = () => {
         );
 
         if (response.ok) {
+          // 4. Get the payment form HTML from paymentnew.php
           const htmlResponse = await response.text();
 
-          // Create a temporary container for the CCAvenue form
+          // 5. Create temporary container and insert payment form
           const tempDiv = document.createElement("div");
           tempDiv.innerHTML = htmlResponse;
 
-          // Find and submit the CCAvenue payment form
+          // 6. Find the CCAvenue payment form
           const ccAvenueForm = tempDiv.querySelector(
             'form[name="cbs_payment"]'
           );
 
           if (ccAvenueForm) {
-            // Generate transaction ID as done in the PHP version
+            // 7. Set transaction ID
             const tid = new Date().getTime();
             const tidInput = ccAvenueForm.querySelector("#tid");
             if (tidInput) {
               tidInput.value = tid;
             }
 
-            // Append the form to body and submit
+            // 8. Add form to document and submit
             document.body.appendChild(tempDiv);
             ccAvenueForm.submit();
           } else {
             throw new Error("Payment form not found in response");
           }
         } else {
-          const errorText = await response.text();
-          console.error("Form submission failed:", errorText);
-          alert("There was an error submitting the form. Please try again.");
+          throw new Error("Form submission failed");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -324,7 +311,6 @@ const RegistrationForm = () => {
   };
 
   const onRecaptchaChange = (token) => {
-    setCaptchaToken(token);
     handleInputChange("g-recaptcha-response", token);
   };
 
@@ -693,10 +679,7 @@ const AdmissionInfo = ({
       </div>
       {/* reCAPTCHA */}
       <div className="my-4">
-        <ReCAPTCHA
-          sitekey="6LftoiwUAAAAABnCMVn9JNpKHWE9YbhveZtdg34n"
-          onChange={onRecaptchaChange}
-        />
+        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={onRecaptchaChange} />
         {errors["g-recaptcha-response"] && (
           <p className="text-red-500 text-sm">
             {errors["g-recaptcha-response"]}
@@ -785,8 +768,11 @@ const SelectField = ({
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
-          <SelectItem key={option.id || option} value={option.id || option}>
-            {option.name || option}
+          <SelectItem
+            key={typeof option === "object" ? option.id : option}
+            value={typeof option === "object" ? option.id : option}
+          >
+            {typeof option === "object" ? option.name : option}
           </SelectItem>
         ))}
       </SelectContent>
