@@ -101,7 +101,10 @@ const RegistrationForm = () => {
     setSelectedState(value);
     const selectedStateObj = states.find((state) => state.isoCode === value);
     const stateName = selectedStateObj ? selectedStateObj.name : "";
-    handleInputChange("state", stateName);
+    setFormData(prev => ({
+      ...prev,
+      state: stateName
+    }));
     handleInputChange("city", ""); // Clear city when state changes
 
     // Clear state error when state is selected
