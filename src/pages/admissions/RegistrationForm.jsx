@@ -275,6 +275,7 @@ const RegistrationForm = () => {
         }
 
         const responseText = await response.text();
+        console.log("Response from server:", responseText); // Debug log
 
         // Check if response contains PHP error
         if (
@@ -299,27 +300,93 @@ const RegistrationForm = () => {
         // Create the actual form to submit
         const form = document.createElement("form");
         form.method = "post";
-        form.action = paymentForm.action;
+        form.action =
+          "https://www.colbrownschool.com/ccavenue/ccavRequestHandler.php";
         form.name = "cbs_payment";
         form.style.display = "none";
 
-        // Copy all input fields from the parsed form to the new form
-        paymentForm
-          .querySelectorAll('input[type="hidden"]')
-          .forEach((input) => {
-            const newInput = document.createElement("input");
-            newInput.type = "hidden";
-            newInput.name = input.name;
-            newInput.value = input.value;
-            form.appendChild(newInput);
-          });
-
         // Set transaction ID
         const tid = new Date().getTime().toString();
-        const tidInput = form.querySelector("#tid");
-        if (tidInput) {
-          tidInput.value = tid;
-        }
+
+        // Required payment form fields with proper error handling
+        const formFields = {
+          tid: tid,
+          merchant_id: "23160",
+          order_id:
+            paymentForm.querySelector('input[name="order_id"]')?.value || "",
+          amount:
+            paymentForm.querySelector('input[name="amount"]')?.value || "",
+          currency: "INR",
+          redirect_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          cancel_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          language: "EN",
+          billing_name:
+            paymentForm.querySelector('input[name="billing_name"]')?.value ||
+            formData.fathername,
+          billing_address:
+            paymentForm.querySelector('input[name="billing_address"]')?.value ||
+            formData.address,
+          billing_city:
+            paymentForm.querySelector('input[name="billing_city"]')?.value ||
+            formData.city,
+          billing_state:
+            paymentForm.querySelector('input[name="billing_state"]')?.value ||
+            formData.state,
+          billing_zip:
+            paymentForm.querySelector('input[name="billing_zip"]')?.value ||
+            formData.zipcode,
+          billing_country:
+            paymentForm.querySelector('input[name="billing_country"]')?.value ||
+            formData.country,
+          billing_tel:
+            paymentForm.querySelector('input[name="billing_tel"]')?.value ||
+            formData.telephone,
+          billing_email:
+            paymentForm.querySelector('input[name="billing_email"]')?.value ||
+            formData.contact_email,
+          delivery_name:
+            paymentForm.querySelector('input[name="delivery_name"]')?.value ||
+            formData.fathername,
+          delivery_address:
+            paymentForm.querySelector('input[name="delivery_address"]')
+              ?.value || formData.address,
+          delivery_city:
+            paymentForm.querySelector('input[name="delivery_city"]')?.value ||
+            formData.city,
+          delivery_state:
+            paymentForm.querySelector('input[name="delivery_state"]')?.value ||
+            formData.state,
+          delivery_zip:
+            paymentForm.querySelector('input[name="delivery_zip"]')?.value ||
+            formData.zipcode,
+          delivery_country:
+            paymentForm.querySelector('input[name="delivery_country"]')
+              ?.value || formData.country,
+          delivery_tel:
+            paymentForm.querySelector('input[name="delivery_tel"]')?.value ||
+            formData.telephone,
+          merchant_param1: "",
+          merchant_param2: "",
+          merchant_param3: "",
+          merchant_param4: "",
+          merchant_param5: "",
+          promo_code: "",
+          customer_identifier: "",
+        };
+
+        // Add all fields to form
+        Object.entries(formFields).forEach(([name, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = name;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        // Debug log before submission
+        console.log("Payment form fields:", formFields);
 
         // Add form to body and submit
         document.body.appendChild(form);
