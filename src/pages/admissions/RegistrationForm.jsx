@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -225,61 +225,106 @@ const RegistrationForm = () => {
         const submitData = new FormData();
 
         // Add all form fields
-        Object.entries(formData).forEach(([key, value]) => {
-          submitData.append(key, value);
+        Object.entries({
+          studentname: formData.studentname,
+          dob: formData.dob,
+          birthplace: formData.birthplace,
+          fathername: formData.fathername,
+          nationality: formData.nationality,
+          occupation: formData.occupation,
+          country: formData.country || "101",
+          state: formData.state,
+          city: formData.city,
+          address: formData.address,
+          zipcode: formData.zipcode,
+          contact_email: formData.contact_email,
+          telephone: formData.telephone,
+          whatsapp_number: formData.whatsapp_number,
+          addmissionclass: formData.addmissionclass,
+          agree: formData.agree ? "1" : "0",
+        }).forEach(([key, value]) => {
+          submitData.append(key, value || "");
         });
+
+        console.log("Submitting form data:", Object.fromEntries(submitData));
 
         const response = await fetch(
           "https://www.colbrownschool.com/ccavenue/paymentnew.php",
           {
             method: "POST",
             body: submitData,
-            credentials: "include",
+            headers: {
+              Accept: "text/html",
+            },
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`Server responded with status ${response.status}`);
+        const responseText = await response.text();
+
+        // Check if response contains PHP error
+        if (
+          responseText.includes("Fatal error") ||
+          responseText.includes("Warning")
+        ) {
+          console.error("PHP Error:", responseText);
+          throw new Error("Server error occurred. Please try again later.");
         }
 
-        // Log the response for debugging
-        const responseText = await response.text();
-        console.log("Server Response:", responseText);
-
-        // Create a temporary container and parse the HTML response
+        // Create a temporary div to parse the HTML
         const parser = new DOMParser();
         const doc = parser.parseFromString(responseText, "text/html");
         const paymentForm = doc.querySelector('form[name="cbs_payment"]');
 
         if (!paymentForm) {
-          console.error("Response HTML:", responseText);
+          console.error("Full response:", responseText);
           throw new Error("Payment form not found in response");
         }
 
-        // Create a hidden form element
+        // Create the actual form to submit
         const form = document.createElement("form");
+        form.method = "post";
+        form.action =
+          "https://www.colbrownschool.com/ccavenue/ccavRequestHandler.php";
+        form.name = "cbs_payment";
         form.style.display = "none";
-        form.method = paymentForm.method;
-        form.action = paymentForm.action;
-        form.name = paymentForm.name;
 
-        // Copy all input fields from the parsed form
-        paymentForm.querySelectorAll("input").forEach((input) => {
-          const newInput = document.createElement("input");
-          newInput.type = input.type;
-          newInput.name = input.name;
-          newInput.value = input.value;
+        // Set transaction ID
+        const tid = new Date().getTime().toString();
 
-          // Special handling for tid
-          if (input.id === "tid") {
-            newInput.value = new Date().getTime();
-          }
+        // Required payment form fields
+        const formFields = {
+          tid: tid,
+          merchant_id: "23160",
+          order_id: paymentForm.querySelector('input[name="order_id"]').value,
+          amount: paymentForm.querySelector('input[name="amount"]').value,
+          currency: "INR",
+          redirect_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          cancel_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          language: "EN",
+          billing_name: formData.fathername,
+          billing_address: formData.address,
+          billing_city: formData.city,
+          billing_state: formData.state,
+          billing_zip: formData.zipcode,
+          billing_country: "India",
+          billing_tel: formData.telephone,
+          billing_email: formData.contact_email,
+        };
 
-          form.appendChild(newInput);
+        // Add all fields to form
+        Object.entries(formFields).forEach(([name, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = name;
+          input.value = value;
+          form.appendChild(input);
         });
 
-        // Append and submit form
+        // Add form to body and submit
         document.body.appendChild(form);
+        console.log("Submitting payment form...");
         form.submit();
       } catch (error) {
         console.error("Error submitting form:", error);
