@@ -280,6 +280,14 @@ const RegistrationForm = () => {
           throw new Error("Payment form not found in response");
         }
 
+        // Extract billing_city and billing_state from the paymentForm
+        const billingCity = paymentForm.querySelector(
+          'input[name="billing_city"]'
+        ).value;
+        const billingState = paymentForm.querySelector(
+          'input[name="billing_state"]'
+        ).value;
+
         // Create the actual form to submit
         const form = document.createElement("form");
         form.method = "post";
@@ -303,14 +311,23 @@ const RegistrationForm = () => {
           cancel_url:
             "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
           language: "EN",
-          billing_name: formData.fathername,
-          billing_address: formData.address,
-          billing_city: formData.city,
-          billing_state: formData.state,
-          billing_zip: formData.zipcode,
-          billing_country: "India",
-          billing_tel: formData.telephone,
-          billing_email: formData.contact_email,
+          billing_name: paymentForm.querySelector('input[name="billing_name"]')
+            .value,
+          billing_address: paymentForm.querySelector(
+            'input[name="billing_address"]'
+          ).value,
+          billing_city: billingCity, // Use extracted city name
+          billing_state: billingState, // Use extracted state name
+          billing_zip: paymentForm.querySelector('input[name="billing_zip"]')
+            .value,
+          billing_country: paymentForm.querySelector(
+            'input[name="billing_country"]'
+          ).value,
+          billing_tel: paymentForm.querySelector('input[name="billing_tel"]')
+            .value,
+          billing_email: paymentForm.querySelector(
+            'input[name="billing_email"]'
+          ).value,
         };
 
         // Add all fields to form
