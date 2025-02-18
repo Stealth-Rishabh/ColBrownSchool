@@ -1,6 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { ChevronRight, ChevronLeft, Check } from "lucide-react";
+import {
+  ChevronRight,
+  ChevronLeft,
+  Check,
+  Loader2,
+  CheckCircle2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +22,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     studentname: "",
     dob: "",
@@ -221,6 +229,7 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
+        setIsSubmitting(true);
         // Create FormData object
         const submitData = new FormData();
 
@@ -259,6 +268,10 @@ const RegistrationForm = () => {
           }
         );
 
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
         const responseText = await response.text();
 
         // Check if response contains PHP error
@@ -266,11 +279,13 @@ const RegistrationForm = () => {
           responseText.includes("Fatal error") ||
           responseText.includes("Warning")
         ) {
-          console.error("PHP Error:", responseText);
           throw new Error("Server error occurred. Please try again later.");
         }
 
-        // Create a temporary div to parse the HTML
+        // Show success state briefly before redirecting
+        setIsSuccess(true);
+
+        // Continue with the rest of your form submission logic...
         const parser = new DOMParser();
         const doc = parser.parseFromString(responseText, "text/html");
         const paymentForm = doc.querySelector('form[name="cbs_payment"]');
@@ -346,6 +361,10 @@ const RegistrationForm = () => {
       } catch (error) {
         console.error("Error submitting form:", error);
         alert(`Error: ${error.message}`);
+      } finally {
+        // Reset submission state if there was an error
+        // (won't be reached if payment form submission is successful)
+        setIsSubmitting(false);
       }
     }
   };
@@ -414,9 +433,34 @@ const RegistrationForm = () => {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-black via-gray-900 to-green-950 flex items-center justify-center p-4 sm:py-24 py-16">
       <div
-        className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl"
+        className="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl relative"
         onKeyPress={handleKeyPress}
       >
+        {(isSubmitting || isSuccess) && (
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center rounded-lg z-50">
+            <div className="text-center space-y-4">
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-12 w-12 animate-spin text-green-950 mx-auto" />
+                  <p className="text-green-950 font-medium">
+                    Processing your registration...
+                  </p>
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto" />
+                  <p className="text-green-950 font-medium">
+                    Registration submitted successfully!
+                  </p>
+                  <p className="text-sm text-green-800">
+                    Redirecting to payment...
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
         <h1 className="text-3xl font-bold text-center text-green-950 mb-6">
           School Registration
         </h1>
@@ -642,7 +686,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
           { id: "33", name: "Jammu and Kashmir" },
           { id: "34", name: "Ladakh" },
           { id: "35", name: "Lakshadweep" },
-          { id: "36", name: "Puducherry" }
+          { id: "36", name: "Puducherry" },
         ]}
         required
         placeholder="Select state"
@@ -687,7 +731,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
           { id: "29", name: "Shimla" },
           { id: "30", name: "Silvassa" },
           { id: "31", name: "Srinagar" },
-          { id: "32", name: "Thiruvananthapuram" }
+          { id: "32", name: "Thiruvananthapuram" },
         ]}
         required
         placeholder="Select city"
