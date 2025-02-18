@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { State, City } from "country-state-city";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -24,7 +23,7 @@ const RegistrationForm = () => {
     fathername: "",
     nationality: "",
     occupation: "",
-    country: "India",
+    country: "101",
     state: "",
     city: "",
     address: "",
@@ -72,18 +71,10 @@ const RegistrationForm = () => {
   };
 
   const handleInputChange = (name, value) => {
-    console.log(`Updating ${name} with value:`, value); // Debug log
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
+    setFormData({ ...formData, [name]: value });
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      setErrors({ ...errors, [name]: "" });
     }
   };
 
@@ -154,7 +145,7 @@ const RegistrationForm = () => {
         break;
 
       case 3: // Contact Information
-        // Country is now "India", no validation needed
+        // Country is hardcoded to India (101), so no validation needed
 
         // State validation for select field
         if (!formData.state) {
@@ -230,9 +221,10 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
+        // Create FormData object
         const submitData = new FormData();
 
-        // Add form fields
+        // Add all form fields
         Object.entries({
           studentname: formData.studentname,
           dob: formData.dob,
@@ -240,7 +232,7 @@ const RegistrationForm = () => {
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: formData.country || "India",
+          country: formData.country || "101",
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -250,7 +242,6 @@ const RegistrationForm = () => {
           whatsapp_number: formData.whatsapp_number,
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
-          frmtoken: formData.frmtoken,
         }).forEach(([key, value]) => {
           submitData.append(key, value || "");
         });
@@ -268,45 +259,36 @@ const RegistrationForm = () => {
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
         const responseText = await response.text();
 
-        // Debug logging
-        console.log("Raw response:", responseText);
-
-        // Check for PHP errors or empty response
-        if (!responseText.trim()) {
-          throw new Error("Empty response received from server");
-        }
-
+        // Check if response contains PHP error
         if (
           responseText.includes("Fatal error") ||
-          responseText.includes("Warning") ||
-          responseText.includes("Notice") ||
-          responseText.includes("Error:")
+          responseText.includes("Warning")
         ) {
           console.error("PHP Error:", responseText);
           throw new Error("Server error occurred. Please try again later.");
         }
 
-        // Parse the HTML response
+        // Create a temporary div to parse the HTML
         const parser = new DOMParser();
         const doc = parser.parseFromString(responseText, "text/html");
-
-        // Look for the payment form
         const paymentForm = doc.querySelector('form[name="cbs_payment"]');
 
         if (!paymentForm) {
-          console.error("Response content:", responseText);
-          throw new Error(
-            "Payment form not found in response. Please contact support."
-          );
+          console.error("Full response:", responseText);
+          throw new Error("Payment form not found in response");
         }
 
-        // Create and submit the payment form
+        // Extract billing_city and billing_state from the paymentForm
+        const billingCity = paymentForm.querySelector(
+          'input[name="billing_city"]'
+        ).value;
+        const billingState = paymentForm.querySelector(
+          'input[name="billing_state"]'
+        ).value;
+
+        // Create the actual form to submit
         const form = document.createElement("form");
         form.method = "post";
         form.action =
@@ -314,36 +296,56 @@ const RegistrationForm = () => {
         form.name = "cbs_payment";
         form.style.display = "none";
 
-        // Copy all input fields from the response form
-        const inputs = paymentForm.getElementsByTagName("input");
-        console.log("Found input fields:", inputs.length);
-
-        Array.from(inputs).forEach((input) => {
-          const newInput = document.createElement("input");
-          newInput.type = "hidden";
-          newInput.name = input.name;
-          newInput.value = input.value || "";
-          form.appendChild(newInput);
-          console.log(`Added field: ${input.name} = ${input.value}`);
-        });
-
         // Set transaction ID
         const tid = new Date().getTime().toString();
-        const tidInput = form.querySelector('input[name="tid"]');
-        if (tidInput) {
-          tidInput.value = tid;
-        }
+
+        // Required payment form fields
+        const formFields = {
+          tid: tid,
+          merchant_id: "23160",
+          order_id: paymentForm.querySelector('input[name="order_id"]').value,
+          amount: paymentForm.querySelector('input[name="amount"]').value,
+          currency: "INR",
+          redirect_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          cancel_url:
+            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
+          language: "EN",
+          billing_name: paymentForm.querySelector('input[name="billing_name"]')
+            .value,
+          billing_address: paymentForm.querySelector(
+            'input[name="billing_address"]'
+          ).value,
+          billing_city: billingCity, // Use extracted city name
+          billing_state: billingState, // Use extracted state name
+          billing_zip: paymentForm.querySelector('input[name="billing_zip"]')
+            .value,
+          billing_country: paymentForm.querySelector(
+            'input[name="billing_country"]'
+          ).value,
+          billing_tel: paymentForm.querySelector('input[name="billing_tel"]')
+            .value,
+          billing_email: paymentForm.querySelector(
+            'input[name="billing_email"]'
+          ).value,
+        };
+
+        // Add all fields to form
+        Object.entries(formFields).forEach(([name, value]) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = name;
+          input.value = value;
+          form.appendChild(input);
+        });
 
         // Add form to body and submit
         document.body.appendChild(form);
-        console.log(
-          "Submitting payment form with fields:",
-          Object.fromEntries(new FormData(form))
-        );
+        console.log("Submitting payment form...");
         form.submit();
       } catch (error) {
         console.error("Error submitting form:", error);
-        alert(`Error: ${error.message}\nPlease try again or contact support.`);
+        alert(`Error: ${error.message}`);
       }
     }
   };
@@ -579,132 +581,179 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
   </div>
 );
 
-const ContactInfo = ({ formData, handleInputChange, errors }) => {
-  // Get all states of India
-  const states = State.getStatesOfCountry("IN").map((state) => ({
-    id: state.name,
-    name: state.name,
-    isoCode: state.isoCode,
-  }));
+const ContactInfo = ({ formData, handleInputChange, errors }) => (
+  <div>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Contact Information
+    </h2>
+    <div className="space-y-4">
+      {/* Country - Hardcoded to India */}
+      <SelectField
+        label="Country"
+        name="country"
+        value="101"
+        onChange={handleInputChange}
+        options={[{ id: "101", name: "India" }]}
+        required
+        disabled={true}
+        placeholder="Select country"
+        error={errors.country}
+      />
 
-  // Get cities based on selected state's isoCode
-  const selectedState = states.find((s) => s.name === formData.state);
-  const cities = selectedState
-    ? City.getCitiesOfState("IN", selectedState.isoCode).map((city) => ({
-        id: city.name,
-        name: city.name,
-      }))
-    : [];
+      {/* State */}
+      <SelectField
+        label="State"
+        name="state"
+        value={formData.state || ""}
+        onChange={handleInputChange}
+        options={[
+          { id: "1", name: "Andhra Pradesh" },
+          { id: "2", name: "Arunachal Pradesh" },
+          { id: "3", name: "Assam" },
+          { id: "4", name: "Bihar" },
+          { id: "5", name: "Chhattisgarh" },
+          { id: "6", name: "Goa" },
+          { id: "7", name: "Gujarat" },
+          { id: "8", name: "Haryana" },
+          { id: "9", name: "Himachal Pradesh" },
+          { id: "10", name: "Jharkhand" },
+          { id: "11", name: "Karnataka" },
+          { id: "12", name: "Kerala" },
+          { id: "13", name: "Madhya Pradesh" },
+          { id: "14", name: "Maharashtra" },
+          { id: "15", name: "Manipur" },
+          { id: "16", name: "Meghalaya" },
+          { id: "17", name: "Mizoram" },
+          { id: "18", name: "Nagaland" },
+          { id: "19", name: "Odisha" },
+          { id: "20", name: "Punjab" },
+          { id: "21", name: "Rajasthan" },
+          { id: "22", name: "Sikkim" },
+          { id: "23", name: "Tamil Nadu" },
+          { id: "24", name: "Telangana" },
+          { id: "25", name: "Tripura" },
+          { id: "26", name: "Uttar Pradesh" },
+          { id: "27", name: "Uttarakhand" },
+          { id: "28", name: "West Bengal" },
+          { id: "29", name: "Andaman and Nicobar Islands" },
+          { id: "30", name: "Chandigarh" },
+          { id: "31", name: "Dadra and Nagar Haveli and Daman and Diu" },
+          { id: "32", name: "Delhi" },
+          { id: "33", name: "Jammu and Kashmir" },
+          { id: "34", name: "Ladakh" },
+          { id: "35", name: "Lakshadweep" },
+          { id: "36", name: "Puducherry" }
+        ]}
+        required
+        placeholder="Select state"
+        error={errors.state}
+      />
 
-  return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4 text-green-950">
-        Contact Information
-      </h2>
-      <div className="space-y-4">
-        {/* Country - Hardcoded to India */}
-        <SelectField
-          label="Country"
-          name="country"
-          value="India"
-          onChange={handleInputChange}
-          options={[{ id: "India", name: "India" }]}
-          required
-          disabled={true}
-          placeholder="Select country"
-          error={errors.country}
-        />
+      {/* City */}
+      <SelectField
+        label="City"
+        name="city"
+        value={formData.city || ""}
+        onChange={handleInputChange}
+        options={[
+          { id: "1", name: "Agartala" },
+          { id: "2", name: "Aizawl" },
+          { id: "3", name: "Amaravati" },
+          { id: "4", name: "Bengaluru" },
+          { id: "5", name: "Bhopal" },
+          { id: "6", name: "Bhubaneswar" },
+          { id: "7", name: "Chandigarh" },
+          { id: "8", name: "Chennai" },
+          { id: "9", name: "Dehradun" },
+          { id: "10", name: "Dispur" },
+          { id: "11", name: "Gandhinagar" },
+          { id: "12", name: "Gangtok" },
+          { id: "13", name: "Imphal" },
+          { id: "14", name: "Itanagar" },
+          { id: "15", name: "Jaipur" },
+          { id: "16", name: "Kavaratti" },
+          { id: "17", name: "Kohima" },
+          { id: "18", name: "Kolkata" },
+          { id: "19", name: "Leh" },
+          { id: "20", name: "Lucknow" },
+          { id: "21", name: "Mumbai" },
+          { id: "22", name: "Panaji" },
+          { id: "23", name: "Patna" },
+          { id: "24", name: "Port Blair" },
+          { id: "25", name: "Puducherry" },
+          { id: "26", name: "Raipur" },
+          { id: "27", name: "Ranchi" },
+          { id: "28", name: "Shillong" },
+          { id: "29", name: "Shimla" },
+          { id: "30", name: "Silvassa" },
+          { id: "31", name: "Srinagar" },
+          { id: "32", name: "Thiruvananthapuram" }
+        ]}
+        required
+        placeholder="Select city"
+        error={errors.city}
+      />
 
-        {/* State */}
-        <SelectField
-          label="State"
-          name="state"
-          value={formData.state || ""}
-          onChange={(name, value) => {
-            handleInputChange(name, value);
-            // Reset city when state changes
-            handleInputChange("city", "");
-          }}
-          options={states}
-          required
-          placeholder="Select state"
-          error={errors.state}
-        />
-
-        {/* City */}
-        <SelectField
-          label="City"
-          name="city"
-          value={formData.city || ""}
-          onChange={handleInputChange}
-          options={cities}
-          required
-          placeholder="Select city"
-          error={errors.city}
-          disabled={!formData.state}
-        />
-
-        <TextAreaField
-          label="Permanent Address"
-          name="address"
-          value={formData.address || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your complete address"
-          minLength={10}
-          maxLength={200}
-          error={errors.address}
-        />
-        <InputField
-          label="Pin Code"
-          name="zipcode"
-          value={formData.zipcode || ""}
-          onChange={handleInputChange}
-          requiredy
-          placeholder="Enter 6-digit pin code"
-          pattern="^[0-9]{6}$"
-          title="Pin code must be exactly 6 digits"
-          error={errors.zipcode}
-        />
-        <InputField
-          label="Email"
-          name="contact_email"
-          type="email"
-          value={formData.contact_email || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your email address"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          title="Please enter a valid email address"
-          error={errors.contact_email}
-        />
-        <InputField
-          label="Mobile Number"
-          name="telephone"
-          value={formData.telephone || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
-          pattern="^[6-9][0-9]{9}$"
-          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          prefix="+91"
-          error={errors.telephone}
-        />
-        <InputField
-          label="WhatsApp Number"
-          name="whatsapp_number"
-          value={formData.whatsapp_number || ""}
-          onChange={handleInputChange}
-          placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
-          pattern="^[6-9][0-9]{9}$"
-          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          prefix="+91"
-          error={errors.whatsapp_number}
-        />
-      </div>
+      <TextAreaField
+        label="Permanent Address"
+        name="address"
+        value={formData.address || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter your complete address"
+        minLength={10}
+        maxLength={200}
+        error={errors.address}
+      />
+      <InputField
+        label="Pin Code"
+        name="zipcode"
+        value={formData.zipcode || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter 6-digit pin code"
+        pattern="^[0-9]{6}$"
+        title="Pin code must be exactly 6 digits"
+        error={errors.zipcode}
+      />
+      <InputField
+        label="Email"
+        name="contact_email"
+        type="email"
+        value={formData.contact_email || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter your email address"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address"
+        error={errors.contact_email}
+      />
+      <InputField
+        label="Mobile Number"
+        name="telephone"
+        value={formData.telephone || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+        prefix="+91"
+        error={errors.telephone}
+      />
+      <InputField
+        label="WhatsApp Number"
+        name="whatsapp_number"
+        value={formData.whatsapp_number || ""}
+        onChange={handleInputChange}
+        placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+        prefix="+91"
+        error={errors.whatsapp_number}
+      />
     </div>
-  );
-};
+  </div>
+);
 
 const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
   <div>
@@ -717,15 +766,7 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
         name="addmissionclass"
         value={formData.addmissionclass || ""}
         onChange={handleInputChange}
-        options={[
-          { id: "4th", name: "4th" },
-          { id: "5th", name: "5th" },
-          { id: "6th", name: "6th" },
-          { id: "7th", name: "7th" },
-          { id: "8th", name: "8th" },
-          { id: "9th", name: "9th" },
-          { id: "11th", name: "11th" },
-        ]}
+        options={["4th", "5th", "6th", "7th", "8th", "9th", "11th"]}
         required
         error={errors.addmissionclass}
       />
@@ -805,7 +846,7 @@ const SelectField = ({
   name,
   value,
   onChange,
-  options = [], // Add default empty array
+  options,
   required,
   placeholder,
   error,
@@ -828,12 +869,14 @@ const SelectField = ({
         <SelectValue placeholder={placeholder || `Select ${label}`} />
       </SelectTrigger>
       <SelectContent>
-        {Array.isArray(options) &&
-          options.map((option) => (
-            <SelectItem key={option.id || option.name} value={option.name}>
-              {option.name}
-            </SelectItem>
-          ))}
+        {options.map((option) => (
+          <SelectItem
+            key={typeof option === "object" ? option.id : option}
+            value={typeof option === "object" ? option.id : option}
+          >
+            {typeof option === "object" ? option.name : option}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
     {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
