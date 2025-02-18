@@ -24,7 +24,7 @@ const RegistrationForm = () => {
     fathername: "",
     nationality: "",
     occupation: "",
-    country: "101",
+    country: "India",
     state: "",
     city: "",
     address: "",
@@ -146,7 +146,7 @@ const RegistrationForm = () => {
         break;
 
       case 3: // Contact Information
-        // Country is hardcoded to India (101), so no validation needed
+        // Country is now "India", no validation needed
 
         // State validation for select field
         if (!formData.state) {
@@ -233,7 +233,7 @@ const RegistrationForm = () => {
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: formData.country || "101",
+          country: formData.country || "India",
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -243,6 +243,7 @@ const RegistrationForm = () => {
           whatsapp_number: formData.whatsapp_number,
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
+          frmtoken: formData.frmtoken,
         }).forEach(([key, value]) => {
           submitData.append(key, value || "");
         });
@@ -257,15 +258,21 @@ const RegistrationForm = () => {
             headers: {
               Accept: "text/html",
             },
+            credentials: "include",
           }
         );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         const responseText = await response.text();
 
         // Check if response contains PHP error
         if (
           responseText.includes("Fatal error") ||
-          responseText.includes("Warning")
+          responseText.includes("Warning") ||
+          responseText.includes("Notice")
         ) {
           console.error("PHP Error:", responseText);
           throw new Error("Server error occurred. Please try again later.");
@@ -281,64 +288,30 @@ const RegistrationForm = () => {
           throw new Error("Payment form not found in response");
         }
 
-        // Extract billing_city and billing_state from the paymentForm
-        const billingCity = paymentForm.querySelector(
-          'input[name="billing_city"]'
-        ).value;
-        const billingState = paymentForm.querySelector(
-          'input[name="billing_state"]'
-        ).value;
-
         // Create the actual form to submit
         const form = document.createElement("form");
         form.method = "post";
-        form.action =
-          "https://www.colbrownschool.com/ccavenue/ccavRequestHandler.php";
+        form.action = paymentForm.action;
         form.name = "cbs_payment";
         form.style.display = "none";
 
+        // Copy all input fields from the parsed form to the new form
+        paymentForm
+          .querySelectorAll('input[type="hidden"]')
+          .forEach((input) => {
+            const newInput = document.createElement("input");
+            newInput.type = "hidden";
+            newInput.name = input.name;
+            newInput.value = input.value;
+            form.appendChild(newInput);
+          });
+
         // Set transaction ID
         const tid = new Date().getTime().toString();
-
-        // Required payment form fields
-        const formFields = {
-          tid: tid,
-          merchant_id: "23160",
-          order_id: paymentForm.querySelector('input[name="order_id"]').value,
-          amount: paymentForm.querySelector('input[name="amount"]').value,
-          currency: "INR",
-          redirect_url:
-            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
-          cancel_url:
-            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
-          language: "EN",
-          billing_name: paymentForm.querySelector('input[name="billing_name"]')
-            .value,
-          billing_address: paymentForm.querySelector(
-            'input[name="billing_address"]'
-          ).value,
-          billing_city: billingCity, // Use extracted city name
-          billing_state: billingState, // Use extracted state name
-          billing_zip: paymentForm.querySelector('input[name="billing_zip"]')
-            .value,
-          billing_country: paymentForm.querySelector(
-            'input[name="billing_country"]'
-          ).value,
-          billing_tel: paymentForm.querySelector('input[name="billing_tel"]')
-            .value,
-          billing_email: paymentForm.querySelector(
-            'input[name="billing_email"]'
-          ).value,
-        };
-
-        // Add all fields to form
-        Object.entries(formFields).forEach(([name, value]) => {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = name;
-          input.value = value;
-          form.appendChild(input);
-        });
+        const tidInput = form.querySelector("#tid");
+        if (tidInput) {
+          tidInput.value = tid;
+        }
 
         // Add form to body and submit
         document.body.appendChild(form);
@@ -585,9 +558,13 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
 const ContactInfo = ({ formData, handleInputChange, errors }) => {
   // Get all states of India
   const states = State.getStatesOfCountry("IN");
-  // Get cities based on selected state
+
+  // Get cities based on selected state's isoCode
   const cities = formData.state
-    ? City.getCitiesOfState("IN", formData.state)
+    ? City.getCitiesOfState(
+        "IN",
+        states.find((s) => s.name === formData.state)?.isoCode || ""
+      )
     : [];
 
   return (
@@ -600,9 +577,9 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
         <SelectField
           label="Country"
           name="country"
-          value="101"
+          value="India"
           onChange={handleInputChange}
-          options={[{ id: "101", name: "India" }]}
+          options={[{ id: "India", name: "India" }]}
           required
           disabled={true}
           placeholder="Select country"
@@ -614,9 +591,13 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           label="State"
           name="state"
           value={formData.state || ""}
-          onChange={handleInputChange}
+          onChange={(name, value) => {
+            handleInputChange(name, value);
+            // Reset city when state changes
+            handleInputChange("city", "");
+          }}
           options={states.map((state) => ({
-            id: state.isoCode,
+            id: state.name,
             name: state.name,
           }))}
           required
@@ -631,12 +612,13 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           value={formData.city || ""}
           onChange={handleInputChange}
           options={cities.map((city) => ({
-            id: city.name, // Using city name as ID to ensure name is sent to backend
+            id: city.name,
             name: city.name,
           }))}
           required
           placeholder="Select city"
           error={errors.city}
+          disabled={!formData.state}
         />
 
         <TextAreaField
@@ -712,7 +694,15 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
         name="addmissionclass"
         value={formData.addmissionclass || ""}
         onChange={handleInputChange}
-        options={["4th", "5th", "6th", "7th", "8th", "9th", "11th"]}
+        options={[
+          { id: "4th", name: "4th" },
+          { id: "5th", name: "5th" },
+          { id: "6th", name: "6th" },
+          { id: "7th", name: "7th" },
+          { id: "8th", name: "8th" },
+          { id: "9th", name: "9th" },
+          { id: "11th", name: "11th" },
+        ]}
         required
         error={errors.addmissionclass}
       />
@@ -816,11 +806,8 @@ const SelectField = ({
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
-          <SelectItem
-            key={typeof option === "object" ? option.id : option}
-            value={typeof option === "object" ? option.id : option}
-          >
-            {typeof option === "object" ? option.name : option}
+          <SelectItem key={option.id} value={option.id}>
+            {option.name}
           </SelectItem>
         ))}
       </SelectContent>
