@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
-import img from "../../assets/admissions/fees.jpg";
+import img from "../../assets/admissions/feesDetails.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
 import Heading from "../../components/Heading";
