@@ -230,10 +230,9 @@ const RegistrationForm = () => {
   const handleSubmit = async () => {
     if (validateStep(step)) {
       try {
-        // Create FormData object
         const submitData = new FormData();
 
-        // Add all form fields
+        // Add form fields
         Object.entries({
           studentname: formData.studentname,
           dob: formData.dob,
@@ -266,7 +265,6 @@ const RegistrationForm = () => {
             headers: {
               Accept: "text/html",
             },
-            // credentials: "include",
           }
         );
 
@@ -275,29 +273,40 @@ const RegistrationForm = () => {
         }
 
         const responseText = await response.text();
-        console.log("Response from server:", responseText); // Debug log
 
-        // Check if response contains PHP error
+        // Debug logging
+        console.log("Raw response:", responseText);
+
+        // Check for PHP errors or empty response
+        if (!responseText.trim()) {
+          throw new Error("Empty response received from server");
+        }
+
         if (
           responseText.includes("Fatal error") ||
           responseText.includes("Warning") ||
-          responseText.includes("Notice")
+          responseText.includes("Notice") ||
+          responseText.includes("Error:")
         ) {
           console.error("PHP Error:", responseText);
           throw new Error("Server error occurred. Please try again later.");
         }
 
-        // Create a temporary div to parse the HTML
+        // Parse the HTML response
         const parser = new DOMParser();
         const doc = parser.parseFromString(responseText, "text/html");
+
+        // Look for the payment form
         const paymentForm = doc.querySelector('form[name="cbs_payment"]');
 
         if (!paymentForm) {
-          console.error("Full response:", responseText);
-          throw new Error("Payment form not found in response");
+          console.error("Response content:", responseText);
+          throw new Error(
+            "Payment form not found in response. Please contact support."
+          );
         }
 
-        // Create the actual form to submit
+        // Create and submit the payment form
         const form = document.createElement("form");
         form.method = "post";
         form.action =
@@ -305,96 +314,36 @@ const RegistrationForm = () => {
         form.name = "cbs_payment";
         form.style.display = "none";
 
-        // Set transaction ID
-        const tid = new Date().getTime().toString();
+        // Copy all input fields from the response form
+        const inputs = paymentForm.getElementsByTagName("input");
+        console.log("Found input fields:", inputs.length);
 
-        // Required payment form fields with proper error handling
-        const formFields = {
-          tid: tid,
-          merchant_id: "23160",
-          order_id:
-            paymentForm.querySelector('input[name="order_id"]')?.value || "",
-          amount:
-            paymentForm.querySelector('input[name="amount"]')?.value || "",
-          currency: "INR",
-          redirect_url:
-            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
-          cancel_url:
-            "https://www.colbrownschool.com/ccavenue/ccavResponseHandler.php",
-          language: "EN",
-          billing_name:
-            paymentForm.querySelector('input[name="billing_name"]')?.value ||
-            formData.fathername,
-          billing_address:
-            paymentForm.querySelector('input[name="billing_address"]')?.value ||
-            formData.address,
-          billing_city:
-            paymentForm.querySelector('input[name="billing_city"]')?.value ||
-            formData.city,
-          billing_state:
-            paymentForm.querySelector('input[name="billing_state"]')?.value ||
-            formData.state,
-          billing_zip:
-            paymentForm.querySelector('input[name="billing_zip"]')?.value ||
-            formData.zipcode,
-          billing_country:
-            paymentForm.querySelector('input[name="billing_country"]')?.value ||
-            formData.country,
-          billing_tel:
-            paymentForm.querySelector('input[name="billing_tel"]')?.value ||
-            formData.telephone,
-          billing_email:
-            paymentForm.querySelector('input[name="billing_email"]')?.value ||
-            formData.contact_email,
-          delivery_name:
-            paymentForm.querySelector('input[name="delivery_name"]')?.value ||
-            formData.fathername,
-          delivery_address:
-            paymentForm.querySelector('input[name="delivery_address"]')
-              ?.value || formData.address,
-          delivery_city:
-            paymentForm.querySelector('input[name="delivery_city"]')?.value ||
-            formData.city,
-          delivery_state:
-            paymentForm.querySelector('input[name="delivery_state"]')?.value ||
-            formData.state,
-          delivery_zip:
-            paymentForm.querySelector('input[name="delivery_zip"]')?.value ||
-            formData.zipcode,
-          delivery_country:
-            paymentForm.querySelector('input[name="delivery_country"]')
-              ?.value || formData.country,
-          delivery_tel:
-            paymentForm.querySelector('input[name="delivery_tel"]')?.value ||
-            formData.telephone,
-          merchant_param1: "",
-          merchant_param2: "",
-          merchant_param3: "",
-          merchant_param4: "",
-          merchant_param5: "",
-          promo_code: "",
-          customer_identifier: "",
-        };
-
-        // Add all fields to form
-        Object.entries(formFields).forEach(([name, value]) => {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = name;
-          input.value = value;
-          form.appendChild(input);
+        Array.from(inputs).forEach((input) => {
+          const newInput = document.createElement("input");
+          newInput.type = "hidden";
+          newInput.name = input.name;
+          newInput.value = input.value || "";
+          form.appendChild(newInput);
+          console.log(`Added field: ${input.name} = ${input.value}`);
         });
 
-        // Debug log before submission
-        console.log("Payment form fields:", formFields);
+        // Set transaction ID
+        const tid = new Date().getTime().toString();
+        const tidInput = form.querySelector('input[name="tid"]');
+        if (tidInput) {
+          tidInput.value = tid;
+        }
 
         // Add form to body and submit
         document.body.appendChild(form);
-        console.log("Submitting payment form...");
+        console.log(
+          "Submitting payment form with fields:",
+          Object.fromEntries(new FormData(form))
+        );
         form.submit();
       } catch (error) {
         console.error("Error submitting form:", error);
-        alert(`Error: ${error.message}`);
+        alert(`Error: ${error.message}\nPlease try again or contact support.`);
       }
     }
   };
