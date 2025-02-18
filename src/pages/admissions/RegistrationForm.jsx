@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { State, City } from "country-state-city";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -581,119 +582,124 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
   </div>
 );
 
-const ContactInfo = ({ formData, handleInputChange, errors }) => (
-  <div>
-    <h2 className="text-xl font-semibold mb-4 text-green-950">
-      Contact Information
-    </h2>
-    <div className="space-y-4">
-      {/* Country - Hardcoded to India */}
-      <SelectField
-        label="Country"
-        name="country"
-        value="101"
-        onChange={handleInputChange}
-        options={[{ id: "101", name: "India" }]}
-        required
-        disabled={true}
-        placeholder="Select country"
-        error={errors.country}
-      />
+const ContactInfo = ({ formData, handleInputChange, errors }) => {
+  // Get all states of India
+  const states = State.getStatesOfCountry("IN");
+  // Get cities based on selected state
+  const cities = formData.state
+    ? City.getCitiesOfState("IN", formData.state)
+    : [];
 
-      {/* State */}
-      <SelectField
-        label="State"
-        name="state"
-        value={formData.state || ""}
-        onChange={handleInputChange}
-        options={[
-          { id: "1", name: "Uttarakhand" },
-          { id: "2", name: "Uttar Pradesh" },
-          // Add other states as needed
-        ]}
-        required
-        placeholder="Select state"
-        error={errors.state}
-      />
+  return (
+    <div>
+      <h2 className="text-xl font-semibold mb-4 text-green-950">
+        Contact Information
+      </h2>
+      <div className="space-y-4">
+        {/* Country - Hardcoded to India */}
+        <SelectField
+          label="Country"
+          name="country"
+          value="101"
+          onChange={handleInputChange}
+          options={[{ id: "101", name: "India" }]}
+          required
+          disabled={true}
+          placeholder="Select country"
+          error={errors.country}
+        />
 
-      {/* City */}
-      <SelectField
-        label="City"
-        name="city"
-        value={formData.city || ""}
-        onChange={handleInputChange}
-        options={[
-          { id: "1", name: "Dehradun" },
-          { id: "2", name: "Haridwar" },
-          { id: "3", name: "Rishikesh" },
-          { id: "4", name: "Mussoorie" },
-          // Add other cities as needed
-        ]}
-        required
-        placeholder="Select city"
-        error={errors.city}
-      />
+        {/* State */}
+        <SelectField
+          label="State"
+          name="state"
+          value={formData.state || ""}
+          onChange={handleInputChange}
+          options={states.map((state) => ({
+            id: state.isoCode,
+            name: state.name,
+          }))}
+          required
+          placeholder="Select state"
+          error={errors.state}
+        />
 
-      <TextAreaField
-        label="Permanent Address"
-        name="address"
-        value={formData.address || ""}
-        onChange={handleInputChange}
-        required
-        placeholder="Enter your complete address"
-        minLength={10}
-        maxLength={200}
-        error={errors.address}
-      />
-      <InputField
-        label="Pin Code"
-        name="zipcode"
-        value={formData.zipcode || ""}
-        onChange={handleInputChange}
-        required
-        placeholder="Enter 6-digit pin code"
-        pattern="^[0-9]{6}$"
-        title="Pin code must be exactly 6 digits"
-        error={errors.zipcode}
-      />
-      <InputField
-        label="Email"
-        name="contact_email"
-        type="email"
-        value={formData.contact_email || ""}
-        onChange={handleInputChange}
-        required
-        placeholder="Enter your email address"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        title="Please enter a valid email address"
-        error={errors.contact_email}
-      />
-      <InputField
-        label="Mobile Number"
-        name="telephone"
-        value={formData.telephone || ""}
-        onChange={handleInputChange}
-        required
-        placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
-        pattern="^[6-9][0-9]{9}$"
-        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-        prefix="+91"
-        error={errors.telephone}
-      />
-      <InputField
-        label="WhatsApp Number"
-        name="whatsapp_number"
-        value={formData.whatsapp_number || ""}
-        onChange={handleInputChange}
-        placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
-        pattern="^[6-9][0-9]{9}$"
-        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-        prefix="+91"
-        error={errors.whatsapp_number}
-      />
+        {/* City */}
+        <SelectField
+          label="City"
+          name="city"
+          value={formData.city || ""}
+          onChange={handleInputChange}
+          options={cities.map((city) => ({
+            id: city.name, // Using city name as ID to ensure name is sent to backend
+            name: city.name,
+          }))}
+          required
+          placeholder="Select city"
+          error={errors.city}
+        />
+
+        <TextAreaField
+          label="Permanent Address"
+          name="address"
+          value={formData.address || ""}
+          onChange={handleInputChange}
+          required
+          placeholder="Enter your complete address"
+          minLength={10}
+          maxLength={200}
+          error={errors.address}
+        />
+        <InputField
+          label="Pin Code"
+          name="zipcode"
+          value={formData.zipcode || ""}
+          onChange={handleInputChange}
+          required
+          placeholder="Enter 6-digit pin code"
+          pattern="^[0-9]{6}$"
+          title="Pin code must be exactly 6 digits"
+          error={errors.zipcode}
+        />
+        <InputField
+          label="Email"
+          name="contact_email"
+          type="email"
+          value={formData.contact_email || ""}
+          onChange={handleInputChange}
+          required
+          placeholder="Enter your email address"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          title="Please enter a valid email address"
+          error={errors.contact_email}
+        />
+        <InputField
+          label="Mobile Number"
+          name="telephone"
+          value={formData.telephone || ""}
+          onChange={handleInputChange}
+          required
+          placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
+          pattern="^[6-9][0-9]{9}$"
+          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+          prefix="+91"
+          error={errors.telephone}
+        />
+        <InputField
+          label="WhatsApp Number"
+          name="whatsapp_number"
+          value={formData.whatsapp_number || ""}
+          onChange={handleInputChange}
+          placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
+          pattern="^[6-9][0-9]{9}$"
+          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+          prefix="+91"
+          error={errors.whatsapp_number}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
   <div>
