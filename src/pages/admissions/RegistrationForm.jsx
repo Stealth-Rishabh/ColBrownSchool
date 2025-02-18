@@ -437,7 +437,7 @@ const RegistrationForm = () => {
         onKeyPress={handleKeyPress}
       >
         {(isSubmitting || isSuccess) && (
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center rounded-lg z-50">
+          <div className="absolute h-60 inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center rounded-lg z-50">
             <div className="text-center space-y-4">
               {isSubmitting ? (
                 <>
@@ -916,7 +916,7 @@ const SelectField = ({
         {options.map((option) => (
           <SelectItem
             key={typeof option === "object" ? option.id : option}
-            value={typeof option === "object" ? option.id : option}
+            value={typeof option === "object" ? option.name : option}
           >
             {typeof option === "object" ? option.name : option}
           </SelectItem>
