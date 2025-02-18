@@ -266,7 +266,7 @@ const RegistrationForm = () => {
             headers: {
               Accept: "text/html",
             },
-            credentials: "include",
+            // credentials: "include",
           }
         );
 
