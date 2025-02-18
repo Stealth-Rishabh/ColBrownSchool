@@ -559,13 +559,21 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
   // Get all states of India
   const states = State.getStatesOfCountry("IN");
 
+  // Find the selected state's isoCode based on the state name in formData
+  const selectedState = states.find((state) => state.name === formData.state);
+  const selectedStateIsoCode = selectedState ? selectedState.isoCode : "";
+
   // Get cities based on selected state's isoCode
-  const cities = formData.state
-    ? City.getCitiesOfState(
-        "IN",
-        states.find((s) => s.name === formData.state)?.isoCode || ""
-      )
+  const cities = selectedStateIsoCode
+    ? City.getCitiesOfState("IN", selectedStateIsoCode)
     : [];
+
+  // Debugging: Log selected state and fetched cities
+  useEffect(() => {
+    console.log("Selected State:", formData.state);
+    console.log("Selected State ISO Code:", selectedStateIsoCode);
+    console.log("Fetched Cities:", cities);
+  }, [formData.state, selectedStateIsoCode, cities]);
 
   return (
     <div>
@@ -593,8 +601,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           value={formData.state || ""}
           onChange={(name, value) => {
             handleInputChange(name, value);
-            // Reset city when state changes
-            handleInputChange("city", "");
+            handleInputChange("city", ""); // Reset city when state changes
           }}
           options={states.map((state) => ({
             id: state.name,

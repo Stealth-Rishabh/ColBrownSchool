@@ -22,9 +22,16 @@ export default function TopBar() {
           </a>
         </div>
         <div className="flex items-center justify-center sm:justify-start flex-wrap space-x-4">
-          <Link to="/result" className="hover:text-yellow-400">
+          {/* <Link to="/result" className="hover:text-yellow-400">
             View Result
-          </Link>
+          </Link> */}
+          <a
+            href="https://www.colbrownschool.com/cbs_prbms/login"
+            className="hover:text-yellow-400"
+            target="_blank"
+          >
+            View Result
+          </a>
           <Link to="/notices" className="hover:text-yellow-400">
             Notice(s)
           </Link>
