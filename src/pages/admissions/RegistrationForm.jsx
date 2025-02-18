@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { State, City } from "country-state-city";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -37,29 +36,11 @@ const RegistrationForm = () => {
     frmtoken: "",
   });
   const [errors, setErrors] = useState({});
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState([]);
-  const [selectedState, setSelectedState] = useState("");
 
   // Fetch CSRF token from server when component mounts
   useEffect(() => {
     fetchCSRFToken();
   }, []);
-
-  useEffect(() => {
-    // Fetch Indian states using country-state-city
-    const indianStates = State.getStatesOfCountry("IN");
-    setStates(indianStates);
-  }, []);
-
-  useEffect(() => {
-    if (selectedState) {
-      const fetchedCities = City.getCitiesOfState("IN", selectedState);
-      setCities(fetchedCities);
-    } else {
-      setCities([]);
-    }
-  }, [selectedState]);
 
   const fetchCSRFToken = async () => {
     try {
@@ -94,22 +75,6 @@ const RegistrationForm = () => {
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
-    }
-  };
-
-  const handleStateChange = (value) => {
-    setSelectedState(value);
-    const selectedStateObj = states.find((state) => state.isoCode === value);
-    const stateName = selectedStateObj ? selectedStateObj.name : "";
-    setFormData(prev => ({
-      ...prev,
-      state: stateName
-    }));
-    handleInputChange("city", ""); // Clear city when state changes
-
-    // Clear state error when state is selected
-    if (errors.state) {
-      setErrors({ ...errors, state: "" });
     }
   };
 
@@ -182,12 +147,12 @@ const RegistrationForm = () => {
       case 3: // Contact Information
         // Country is hardcoded to India (101), so no validation needed
 
-        // State validation - check if state is selected
-        if (!selectedState) {
+        // State validation for select field
+        if (!formData.state) {
           newErrors.state = "Please select a state";
         }
 
-        // City validation
+        // City validation for select field
         if (!formData.city) {
           newErrors.city = "Please select a city";
         }
@@ -235,7 +200,7 @@ const RegistrationForm = () => {
         }
         break;
 
-      case 4:
+      case 4: // Admission Information
         if (!formData.addmissionclass) {
           newErrors.addmissionclass = "Admission class is required";
         }
@@ -414,10 +379,6 @@ const RegistrationForm = () => {
             formData={formData}
             handleInputChange={handleInputChange}
             errors={errors}
-            states={states}
-            cities={cities}
-            selectedState={selectedState}
-            handleStateChange={handleStateChange}
           />
         );
       case 4:
@@ -603,150 +564,119 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
   </div>
 );
 
-const ContactInfo = ({
-  formData,
-  handleInputChange,
-  errors,
-  states,
-  cities,
-  selectedState,
-  handleStateChange,
-}) => {
-  return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4 text-green-950">
-        Contact Information
-      </h2>
-      <div className="space-y-4">
-        {/* Country - Hardcoded to India */}
-        <SelectField
-          label="Country"
-          name="country"
-          value="101"
-          onChange={handleInputChange}
-          options={[{ id: "101", name: "India" }]}
-          required
-          disabled={true}
-          placeholder="Select country"
-          error={errors.country}
-        />
+const ContactInfo = ({ formData, handleInputChange, errors }) => (
+  <div>
+    <h2 className="text-xl font-semibold mb-4 text-green-950">
+      Contact Information
+    </h2>
+    <div className="space-y-4">
+      {/* Country - Hardcoded to India */}
+      <SelectField
+        label="Country"
+        name="country"
+        value="101"
+        onChange={handleInputChange}
+        options={[{ id: "101", name: "India" }]}
+        required
+        disabled={true}
+        placeholder="Select country"
+        error={errors.country}
+      />
 
-        {/* State Selection */}
-        <div className="space-y-2">
-          <Label htmlFor="state" className="text-green-800">
-            State <span className="text-red-500">*</span>
-          </Label>
-          <Select
-            onValueChange={handleStateChange}
-            name="state"
-            value={selectedState}
-          >
-            <SelectTrigger
-              className={`${errors.state ? "border-red-500" : ""}`}
-            >
-              <SelectValue placeholder="Select State" />
-            </SelectTrigger>
-            <SelectContent>
-              {states.map((state) => (
-                <SelectItem key={state.isoCode} value={state.isoCode}>
-                  {state.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.state && (
-            <p className="text-red-500 text-sm mt-1">{errors.state}</p>
-          )}
-        </div>
+      {/* State */}
+      <SelectField
+        label="State"
+        name="state"
+        value={formData.state || ""}
+        onChange={handleInputChange}
+        options={[
+          { id: "1", name: "Uttarakhand" },
+          { id: "2", name: "Uttar Pradesh" },
+          // Add other states as needed
+        ]}
+        required
+        placeholder="Select state"
+        error={errors.state}
+      />
 
-        {/* City Selection */}
-        <div className="space-y-2">
-          <Label htmlFor="city" className="text-green-800">
-            City <span className="text-red-500">*</span>
-          </Label>
-          <Select
-            onValueChange={(value) => handleInputChange("city", value)}
-            disabled={!selectedState}
-            name="city"
-            value={formData.city}
-          >
-            <SelectTrigger className={`${errors.city ? "border-red-500" : ""}`}>
-              <SelectValue placeholder="Select City" />
-            </SelectTrigger>
-            <SelectContent>
-              {cities.map((city) => (
-                <SelectItem key={city.name} value={city.name}>
-                  {city.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.city && (
-            <p className="text-red-500 text-sm mt-1">{errors.city}</p>
-          )}
-        </div>
+      {/* City */}
+      <SelectField
+        label="City"
+        name="city"
+        value={formData.city || ""}
+        onChange={handleInputChange}
+        options={[
+          { id: "1", name: "Dehradun" },
+          { id: "2", name: "Haridwar" },
+          { id: "3", name: "Rishikesh" },
+          { id: "4", name: "Mussoorie" },
+          // Add other cities as needed
+        ]}
+        required
+        placeholder="Select city"
+        error={errors.city}
+      />
 
-        <TextAreaField
-          label="Permanent Address"
-          name="address"
-          value={formData.address || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your complete address"
-          minLength={10}
-          maxLength={200}
-          error={errors.address}
-        />
-        <InputField
-          label="Pin Code"
-          name="zipcode"
-          value={formData.zipcode || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter 6-digit pin code"
-          pattern="^[0-9]{6}$"
-          title="Pin code must be exactly 6 digits"
-          error={errors.zipcode}
-        />
-        <InputField
-          label="Email"
-          name="contact_email"
-          type="email"
-          value={formData.contact_email || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your email address"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          title="Please enter a valid email address"
-          error={errors.contact_email}
-        />
-        <InputField
-          label="Mobile Number"
-          name="telephone"
-          value={formData.telephone || ""}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
-          pattern="^[6-9][0-9]{9}$"
-          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          prefix="+91"
-          error={errors.telephone}
-        />
-        <InputField
-          label="WhatsApp Number"
-          name="whatsapp_number"
-          value={formData.whatsapp_number || ""}
-          onChange={handleInputChange}
-          placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
-          pattern="^[6-9][0-9]{9}$"
-          title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
-          prefix="+91"
-          error={errors.whatsapp_number}
-        />
-      </div>
+      <TextAreaField
+        label="Permanent Address"
+        name="address"
+        value={formData.address || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter your complete address"
+        minLength={10}
+        maxLength={200}
+        error={errors.address}
+      />
+      <InputField
+        label="Pin Code"
+        name="zipcode"
+        value={formData.zipcode || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter 6-digit pin code"
+        pattern="^[0-9]{6}$"
+        title="Pin code must be exactly 6 digits"
+        error={errors.zipcode}
+      />
+      <InputField
+        label="Email"
+        name="contact_email"
+        type="email"
+        value={formData.contact_email || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter your email address"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address"
+        error={errors.contact_email}
+      />
+      <InputField
+        label="Mobile Number"
+        name="telephone"
+        value={formData.telephone || ""}
+        onChange={handleInputChange}
+        required
+        placeholder="Enter 10-digit mobile number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+        prefix="+91"
+        error={errors.telephone}
+      />
+      <InputField
+        label="WhatsApp Number"
+        name="whatsapp_number"
+        value={formData.whatsapp_number || ""}
+        onChange={handleInputChange}
+        placeholder="Enter 10-digit WhatsApp number (e.g., 9876543210)"
+        pattern="^[6-9][0-9]{9}$"
+        title="Please enter a valid Indian mobile number starting with 6, 7, 8, or 9"
+        prefix="+91"
+        error={errors.whatsapp_number}
+      />
     </div>
-  );
-};
+  </div>
+);
 
 const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
   <div>
