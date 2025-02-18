@@ -72,10 +72,18 @@ const RegistrationForm = () => {
   };
 
   const handleInputChange = (name, value) => {
-    setFormData({ ...formData, [name]: value });
+    console.log(`Updating ${name} with value:`, value); // Debug log
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors({ ...errors, [name]: "" });
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
     }
   };
 
@@ -571,7 +579,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
   // Debugging: Log selected state and fetched cities
   useEffect(() => {
     console.log("Selected State:", formData.state);
-    console.log("Selected State ISO Code:", selectedStateIsoCode);
+    console.log("Selected State ISO Code:", selectedState.name);
     console.log("Fetched Cities:", cities);
   }, [formData.state, selectedStateIsoCode, cities]);
 
@@ -644,7 +652,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           name="zipcode"
           value={formData.zipcode || ""}
           onChange={handleInputChange}
-          required
+          requiredy
           placeholder="Enter 6-digit pin code"
           pattern="^[0-9]{6}$"
           title="Pin code must be exactly 6 digits"
