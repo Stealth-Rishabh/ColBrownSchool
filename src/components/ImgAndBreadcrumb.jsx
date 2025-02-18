@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import {
   Breadcrumb,
@@ -37,7 +38,7 @@ const ImgAndBreadcrumb = ({
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <div className="relative flex items-end justify-center h-44 sm:h-[35rem]">
+    <div className="relative flex items-end justify-center h-44 sm:h-[34rem]">
       <img
         src={imageSrc}
         alt={imageAlt || "Image"}
