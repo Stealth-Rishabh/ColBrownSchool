@@ -632,23 +632,20 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
 
 const ContactInfo = ({ formData, handleInputChange, errors }) => {
   // Get all states of India
-  const states = State.getStatesOfCountry("IN");
-
-  // Find the selected state's isoCode based on the state name in formData
-  const selectedState = states.find((state) => state.name === formData.state);
-  const selectedStateIsoCode = selectedState ? selectedState.isoCode : "";
+  const states = State.getStatesOfCountry("IN").map((state) => ({
+    id: state.name,
+    name: state.name,
+    isoCode: state.isoCode,
+  }));
 
   // Get cities based on selected state's isoCode
-  const cities = selectedStateIsoCode
-    ? City.getCitiesOfState("IN", selectedStateIsoCode)
+  const selectedState = states.find((s) => s.name === formData.state);
+  const cities = selectedState
+    ? City.getCitiesOfState("IN", selectedState.isoCode).map((city) => ({
+        id: city.name,
+        name: city.name,
+      }))
     : [];
-
-  // Debugging: Log selected state and fetched cities
-  useEffect(() => {
-    console.log("Selected State:", formData.state);
-    console.log("Selected State ISO Code:", selectedState.name);
-    console.log("Fetched Cities:", cities);
-  }, [formData.state, selectedStateIsoCode, cities]);
 
   return (
     <div>
@@ -676,12 +673,10 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           value={formData.state || ""}
           onChange={(name, value) => {
             handleInputChange(name, value);
-            handleInputChange("city", ""); // Reset city when state changes
+            // Reset city when state changes
+            handleInputChange("city", "");
           }}
-          options={states.map((state) => ({
-            id: state.name,
-            name: state.name,
-          }))}
+          options={states}
           required
           placeholder="Select state"
           error={errors.state}
@@ -693,10 +688,7 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => {
           name="city"
           value={formData.city || ""}
           onChange={handleInputChange}
-          options={cities.map((city) => ({
-            id: city.name,
-            name: city.name,
-          }))}
+          options={cities}
           required
           placeholder="Select city"
           error={errors.city}
@@ -864,7 +856,7 @@ const SelectField = ({
   name,
   value,
   onChange,
-  options,
+  options = [], // Add default empty array
   required,
   placeholder,
   error,
@@ -887,11 +879,12 @@ const SelectField = ({
         <SelectValue placeholder={placeholder || `Select ${label}`} />
       </SelectTrigger>
       <SelectContent>
-        {options.map((option) => (
-          <SelectItem key={option.id} value={option.id}>
-            {option.name}
-          </SelectItem>
-        ))}
+        {Array.isArray(options) &&
+          options.map((option) => (
+            <SelectItem key={option.id || option.name} value={option.name}>
+              {option.name}
+            </SelectItem>
+          ))}
       </SelectContent>
     </Select>
     {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
