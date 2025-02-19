@@ -172,4 +172,10 @@ export const routeMetadata = {
     description: "Subscribe to our newsletter",
     keywords: "newsletter, subscribe, updates, CBS school",
   },
+  "/payment-status": {
+    title: "Payment Status | Col Brown Cambridge School",
+    description:
+      "Check your payment status for Col Brown Cambridge School registration",
+    keywords: "payment status, registration, Col Brown Cambridge School",
+  },
 };

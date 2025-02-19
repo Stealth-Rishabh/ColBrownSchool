@@ -55,6 +55,7 @@ import { routeMetadata } from "./config/metadata";
 import { EnquiryModal } from "@/components/EnquiryModal";
 import { DockDemo } from "@/components/DockButtons";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import PaymentStatus from "./pages/payment/PaymentStatus";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -137,7 +138,9 @@ const useMetaTags = (pathname) => {
 const Overview = lazy(() => import("./pages/boardingLife/Overview"));
 const PastoralCare = lazy(() => import("./pages/boardingLife/PastoralCare"));
 const Sports = lazy(() => import("./pages/beyondClassroom/Sports"));
-const SportsGallery = lazy(() => import("./pages/beyondClassroom/SportsGallery"));
+const SportsGallery = lazy(() =>
+  import("./pages/beyondClassroom/SportsGallery")
+);
 
 const MedicalFacilities = lazy(() =>
   import("./pages/boardingLife/MedicalFacilities")
@@ -160,6 +163,16 @@ export default function App() {
         <EnquiryModal />
         <DockDemo />
         <Routes>
+          {/* Add this new route before other routes */}
+          <Route
+            path="/payment-status"
+            element={
+              <MetaWrapper pathname="/payment-status">
+                <PaymentStatus />
+              </MetaWrapper>
+            }
+          />
+
           {/* Student Portal Route without Header/Footer */}
           <Route
             path="/result"
