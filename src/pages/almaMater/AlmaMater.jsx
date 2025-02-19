@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon, Clock } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+// import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,134 +15,138 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Calendar } from "@/components/ui/calendar"
+} from "@/components/ui/select";
+// import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
-  title: z.string(),
-  name: z.string().min(2, {
+  alumniname: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
-  rollNo: z.string().min(1, {
-    message: "Roll number is required.",
-  }),
-  house: z.string().min(1, {
-    message: "Please select your house.",
-  }),
-  batch: z.string().min(1, {
-    message: "Batch year is required.",
-  }),
-  email: z.string().email({
+  alumniemail: z.string().email({
     message: "Please enter a valid email address.",
   }),
-  mobile: z.string().min(10, {
+  alumniphone: z.string().min(10, {
+    message: "Please enter a valid phone number.",
+  }),
+  alumnimobile: z.string().min(10, {
     message: "Please enter a valid mobile number.",
   }),
-  profession: z.string().min(1, {
-    message: "Profession is required.",
+  dob: z.string().refine((date) => !isNaN(Date.parse(date)), {
+    message: "Please enter a valid date.",
   }),
-  address: z.string().min(1, {
-    message: "Address is required.",
+  alumniaddressone: z.string().min(1, {
+    message: "Address Line 1 is required.",
   }),
-  visitDate: z.date({
-    required_error: "Please select a date.",
+  alumniaddresstwo: z.string().optional(),
+  alumnicity: z.string().min(1, {
+    message: "City is required.",
   }),
-  visitTime: z.string().min(1, {
-    message: "Please select a time.",
+  alumnistate: z.string().min(1, {
+    message: "State is required.",
   }),
-  interactionDetails: z.string(),
-  additionalVisitors: z.string(),
-})
+  alumnicountry: z.string().min(1, {
+    message: "Country is required.",
+  }),
+  alumnipin: z.string().min(1, {
+    message: "Pin Number is required.",
+  }),
+  alumnicomment: z.string().optional(),
+});
 
 const AlmaMater = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "Mr.",
-      name: "",
-      rollNo: "",
-      house: "",
-      batch: "",
-      email: "",
-      mobile: "",
-      profession: "",
-      address: "",
-      interactionDetails: "",
-      additionalVisitors: "",
+      alumniname: "",
+      alumniemail: "",
+      alumniphone: "",
+      alumnimobile: "",
+      dob: "",
+      alumniaddressone: "",
+      alumniaddresstwo: "",
+      alumnicity: "",
+      alumnistate: "",
+      alumnicountry: "",
+      alumnipin: "",
+      alumnicomment: "",
     },
-  })
+  });
 
-  function onSubmit(values) {
-    console.log(values)
+  async function onSubmit(values) {
+    // Debug: Log form values
+    console.log("Form Values:", values);
+
+    try {
+      const response = await fetch(
+        "https://www.colbrownschool.com/api/process_alumni_registration.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+
+      // Debug: Log raw response
+      console.log("Raw Response:", response);
+
+      const data = await response.json();
+
+      // Debug: Log parsed response data
+      console.log("Response Data:", data);
+
+      if (response.ok) {
+        console.log("Registration successful!");
+        alert("Registration Successful!");
+        form.reset();
+      } else {
+        console.error("Registration failed:", data.message);
+        alert(`Registration Failed: ${data.message}`);
+      }
+    } catch (error) {
+      // Debug: Log detailed error information
+      console.error("Error Details:", {
+        message: error.message,
+        stack: error.stack,
+        error: error,
+      });
+      alert("An error occurred while submitting the form.");
+    }
   }
 
   return (
     <section className="sm:py-20 bg-gradient-to-tr from-black via-gray-900 to-green-950">
-    <div className="max-w-2xl my-  mx-auto p-6 bg-white sm:rounded-lg sm:shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Alumni Registration</h2>
-      
+      <div className="max-w-2xl my- mx-auto p-6 bg-white sm:rounded-lg sm:shadow-lg">
+        <h2 className="text-3xl font-bold text-center text-green-800 mb-8">
+          Alumni Registration
+        </h2>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Title</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select title" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Mr.">Mr.</SelectItem>
-                    <SelectItem value="Mrs.">Mrs.</SelectItem>
-                    <SelectItem value="Ms.">Ms.</SelectItem>
-                    <SelectItem value="Dr.">Dr.</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your full name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="rollNo"
+              name="alumniname"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Roll Number</FormLabel>
+                  <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your WBS roll number" {...field} />
+                    <Input placeholder="Enter your full name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -151,45 +155,7 @@ const AlmaMater = () => {
 
             <FormField
               control={form.control}
-              name="house"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>House</FormLabel>
-                  <Select onValueChange={field.onChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select your house" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="red">Red House</SelectItem>
-                      <SelectItem value="blue">Blue House</SelectItem>
-                      <SelectItem value="green">Green House</SelectItem>
-                      <SelectItem value="yellow">Yellow House</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormField
-              control={form.control}
-              name="batch"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Batch Year</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Year of graduation" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="email"
+              name="alumniemail"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
@@ -200,12 +166,24 @@ const AlmaMater = () => {
                 </FormItem>
               )}
             />
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}
-              name="mobile"
+              name="alumniphone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+91 XXXXXXXXXX" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnimobile"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Mobile Number</FormLabel>
@@ -219,73 +197,27 @@ const AlmaMater = () => {
 
             <FormField
               control={form.control}
-              name="profession"
+              name="dob"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Profession</FormLabel>
+                  <FormLabel>Date of Birth</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your current role" {...field} />
+                    <Input type="date" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
 
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Permanent Address</FormLabel>
-                <FormControl>
-                  <Textarea 
-                    placeholder="Enter your permanent address"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}
-              name="visitDate"
+              name="alumniaddressone"
               render={({ field }) => (
-                <FormItem className="">
-                  <FormLabel>Intended Visit Date</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={"outline"}
-                        className={cn(
-                          "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date < new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                <FormItem>
+                  <FormLabel>Address Line 1</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Address line 1" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -293,13 +225,84 @@ const AlmaMater = () => {
 
             <FormField
               control={form.control}
-              name="visitTime"
+              name="alumniaddresstwo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Preferred Time</FormLabel>
+                  <FormLabel>Address Line 2</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="time"
+                    <Input placeholder="Address line 2" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnicity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input placeholder="City" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnistate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>State</FormLabel>
+                  <FormControl>
+                    <Input placeholder="State" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnicountry"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Country</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Country" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnipin"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pin Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Pin Number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="alumnicomment"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Comment</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Enter your comment"
+                      className="resize-none"
                       {...field}
                     />
                   </FormControl>
@@ -307,59 +310,18 @@ const AlmaMater = () => {
                 </FormItem>
               )}
             />
-          </div>
 
-          <FormField
-            control={form.control}
-            name="interactionDetails"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Preferred Interactions</FormLabel>
-                <FormControl>
-                  <Textarea 
-                    placeholder="Please mention any specific person or department you would like to interact with during your visit"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  This helps us arrange meetings in advance
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="additionalVisitors"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Additional Visitors</FormLabel>
-                <FormControl>
-                  <Textarea 
-                    placeholder="Please mention details of any additional visitors (batchmates, family members, etc.)"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  Help us prepare for all your companions
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button type="submit" className="w-full bg-green-800 hover:bg-green-700">
-            Submit Registration
-          </Button>
-        </form>
-      </Form>
-    </div>
+            <Button
+              type="submit"
+              className="w-full bg-green-800 hover:bg-green-700"
+            >
+              Submit Registration
+            </Button>
+          </form>
+        </Form>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-
-export default AlmaMater
+export default AlmaMater;
