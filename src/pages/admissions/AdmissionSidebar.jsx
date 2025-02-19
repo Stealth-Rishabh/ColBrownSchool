@@ -4,9 +4,10 @@ import { Calendar, Bell, AlertCircle } from "lucide-react"
 const AdmissionSidebar = () => {
   const notices = [
     {
-      title: "Application Deadline",
-      date: "2023-08-31",
-      description: "Last date to submit admission applications for the upcoming academic year.",
+      title: "Admissions Joining Dates",
+      date: "2024-04-01",
+      description: `Juniors: 1st April (Join Before 4 pm)
+       Class 11th: 10th April (Join Before 4 pm)`,
       isNew: true,
     },
     {
@@ -48,7 +49,8 @@ const AdmissionSidebar = () => {
               <Calendar className="w-4 h-4 mr-1" />
               {notice.date}
             </p>
-            <p className="text-sm text-gray-700">{notice.description}</p>
+            
+            <p className="text-sm text-gray-700 whitespace-pre-line">{notice.description}</p>
           </div>
         ))}
       </div>
