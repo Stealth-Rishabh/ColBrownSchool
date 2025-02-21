@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Country, State, City } from "country-state-city";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -31,7 +32,7 @@ const RegistrationForm = () => {
     fathername: "",
     nationality: "",
     occupation: "",
-    country: "101",
+    country: "India",
     state: "",
     city: "",
     address: "",
@@ -44,11 +45,57 @@ const RegistrationForm = () => {
     frmtoken: "",
   });
   const [errors, setErrors] = useState({});
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
 
   // Fetch CSRF token from server when component mounts
   useEffect(() => {
     fetchCSRFToken();
+    // Initialize states and cities based on default country
+    const selectedCountry = Country.getAllCountries().find(
+      (country) => country.name === formData.country
+    );
+    if (selectedCountry) {
+      const statesData = State.getStatesOfCountry(selectedCountry.isoCode);
+      setStates(statesData);
+    }
   }, []);
+
+  // Fetch states when country changes
+  useEffect(() => {
+    const selectedCountry = Country.getAllCountries().find(
+      (country) => country.name === formData.country
+    );
+    if (selectedCountry) {
+      const statesData = State.getStatesOfCountry(selectedCountry.isoCode);
+      setStates(statesData);
+      setFormData((prev) => ({ ...prev, state: "", city: "" }));
+      setCities([]);
+    }
+  }, [formData.country]);
+
+  // Fetch cities when state changes
+  useEffect(() => {
+    if (formData.state) {
+      const selectedState = State.getStateByCodeAndCountry(
+        State.getStatesOfCountry(
+          Country.getAllCountries().find((c) => c.name === formData.country)
+            ?.isoCode
+        ).find((s) => s.name === formData.state).isoCode,
+        Country.getAllCountries().find((c) => c.name === formData.country)
+          ?.isoCode
+      );
+      if (selectedState) {
+        const citiesData = City.getCitiesOfState(
+          selectedState.countryCode,
+          selectedState.isoCode
+        );
+        setCities(citiesData);
+      }
+    } else {
+      setCities([]);
+    }
+  }, [formData.state]);
 
   const fetchCSRFToken = async () => {
     try {
@@ -153,7 +200,7 @@ const RegistrationForm = () => {
         break;
 
       case 3: // Contact Information
-        // Country is hardcoded to India (101), so no validation needed
+        // Country is hardcoded to India, no validation needed
 
         // State validation for select field
         if (!formData.state) {
@@ -241,7 +288,7 @@ const RegistrationForm = () => {
           fathername: formData.fathername,
           nationality: formData.nationality,
           occupation: formData.occupation,
-          country: formData.country || "101",
+          country: formData.country || "India",
           state: formData.state,
           city: formData.city,
           address: formData.address,
@@ -251,6 +298,7 @@ const RegistrationForm = () => {
           whatsapp_number: formData.whatsapp_number,
           addmissionclass: formData.addmissionclass,
           agree: formData.agree ? "1" : "0",
+          frmtoken: formData.frmtoken,
         }).forEach(([key, value]) => {
           submitData.append(key, value || "");
         });
@@ -331,8 +379,8 @@ const RegistrationForm = () => {
           billing_address: paymentForm.querySelector(
             'input[name="billing_address"]'
           ).value,
-          billing_city: billingCity, // Use extracted city name
-          billing_state: billingState, // Use extracted state name
+          billing_city: billingCity,
+          billing_state: billingState,
           billing_zip: paymentForm.querySelector('input[name="billing_zip"]')
             .value,
           billing_country: paymentForm.querySelector(
@@ -343,6 +391,32 @@ const RegistrationForm = () => {
           billing_email: paymentForm.querySelector(
             'input[name="billing_email"]'
           ).value,
+          delivery_name: paymentForm.querySelector(
+            'input[name="delivery_name"]'
+          ).value,
+          delivery_address: paymentForm.querySelector(
+            'input[name="delivery_address"]'
+          ).value,
+          delivery_city: paymentForm.querySelector(
+            'input[name="delivery_city"]'
+          ).value,
+          delivery_state: paymentForm.querySelector(
+            'input[name="delivery_state"]'
+          ).value,
+          delivery_zip: paymentForm.querySelector('input[name="delivery_zip"]')
+            .value,
+          delivery_country: paymentForm.querySelector(
+            'input[name="delivery_country"]'
+          ).value,
+          delivery_tel: paymentForm.querySelector('input[name="delivery_tel"]')
+            .value,
+          merchant_param1: "",
+          merchant_param2: "",
+          merchant_param3: "",
+          merchant_param4: "",
+          merchant_param5: "",
+          promo_code: "",
+          customer_identifier: "",
         };
 
         // Add all fields to form
@@ -415,6 +489,8 @@ const RegistrationForm = () => {
             formData={formData}
             handleInputChange={handleInputChange}
             errors={errors}
+            states={states}
+            cities={cities}
           />
         );
       case 4:
@@ -625,7 +701,13 @@ const ParentInfo = ({ formData, handleInputChange, errors }) => (
   </div>
 );
 
-const ContactInfo = ({ formData, handleInputChange, errors }) => (
+const ContactInfo = ({
+  formData,
+  handleInputChange,
+  errors,
+  states,
+  cities,
+}) => (
   <div>
     <h2 className="text-xl font-semibold mb-4 text-green-950">
       Contact Information
@@ -635,9 +717,11 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
       <SelectField
         label="Country"
         name="country"
-        value="101"
+        value="India"
         onChange={handleInputChange}
-        options={[{ id: "101", name: "India" }]}
+        options={Country.getAllCountries().map((country) => ({
+          name: country.name,
+        }))}
         required
         disabled={true}
         placeholder="Select country"
@@ -650,44 +734,9 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
         name="state"
         value={formData.state || ""}
         onChange={handleInputChange}
-        options={[
-          { id: "1", name: "Andhra Pradesh" },
-          { id: "2", name: "Arunachal Pradesh" },
-          { id: "3", name: "Assam" },
-          { id: "4", name: "Bihar" },
-          { id: "5", name: "Chhattisgarh" },
-          { id: "6", name: "Goa" },
-          { id: "7", name: "Gujarat" },
-          { id: "8", name: "Haryana" },
-          { id: "9", name: "Himachal Pradesh" },
-          { id: "10", name: "Jharkhand" },
-          { id: "11", name: "Karnataka" },
-          { id: "12", name: "Kerala" },
-          { id: "13", name: "Madhya Pradesh" },
-          { id: "14", name: "Maharashtra" },
-          { id: "15", name: "Manipur" },
-          { id: "16", name: "Meghalaya" },
-          { id: "17", name: "Mizoram" },
-          { id: "18", name: "Nagaland" },
-          { id: "19", name: "Odisha" },
-          { id: "20", name: "Punjab" },
-          { id: "21", name: "Rajasthan" },
-          { id: "22", name: "Sikkim" },
-          { id: "23", name: "Tamil Nadu" },
-          { id: "24", name: "Telangana" },
-          { id: "25", name: "Tripura" },
-          { id: "26", name: "Uttar Pradesh" },
-          { id: "27", name: "Uttarakhand" },
-          { id: "28", name: "West Bengal" },
-          { id: "29", name: "Andaman and Nicobar Islands" },
-          { id: "30", name: "Chandigarh" },
-          { id: "31", name: "Dadra and Nagar Haveli and Daman and Diu" },
-          { id: "32", name: "Delhi" },
-          { id: "33", name: "Jammu and Kashmir" },
-          { id: "34", name: "Ladakh" },
-          { id: "35", name: "Lakshadweep" },
-          { id: "36", name: "Puducherry" },
-        ]}
+        options={states.map((state) => ({
+          name: state.name,
+        }))}
         required
         placeholder="Select state"
         error={errors.state}
@@ -699,40 +748,9 @@ const ContactInfo = ({ formData, handleInputChange, errors }) => (
         name="city"
         value={formData.city || ""}
         onChange={handleInputChange}
-        options={[
-          { id: "1", name: "Agartala" },
-          { id: "2", name: "Aizawl" },
-          { id: "3", name: "Amaravati" },
-          { id: "4", name: "Bengaluru" },
-          { id: "5", name: "Bhopal" },
-          { id: "6", name: "Bhubaneswar" },
-          { id: "7", name: "Chandigarh" },
-          { id: "8", name: "Chennai" },
-          { id: "9", name: "Dehradun" },
-          { id: "10", name: "Dispur" },
-          { id: "11", name: "Gandhinagar" },
-          { id: "12", name: "Gangtok" },
-          { id: "13", name: "Imphal" },
-          { id: "14", name: "Itanagar" },
-          { id: "15", name: "Jaipur" },
-          { id: "16", name: "Kavaratti" },
-          { id: "17", name: "Kohima" },
-          { id: "18", name: "Kolkata" },
-          { id: "19", name: "Leh" },
-          { id: "20", name: "Lucknow" },
-          { id: "21", name: "Mumbai" },
-          { id: "22", name: "Panaji" },
-          { id: "23", name: "Patna" },
-          { id: "24", name: "Port Blair" },
-          { id: "25", name: "Puducherry" },
-          { id: "26", name: "Raipur" },
-          { id: "27", name: "Ranchi" },
-          { id: "28", name: "Shillong" },
-          { id: "29", name: "Shimla" },
-          { id: "30", name: "Silvassa" },
-          { id: "31", name: "Srinagar" },
-          { id: "32", name: "Thiruvananthapuram" },
-        ]}
+        options={cities.map((city) => ({
+          name: city.name,
+        }))}
         required
         placeholder="Select city"
         error={errors.city}
@@ -810,7 +828,9 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
         name="addmissionclass"
         value={formData.addmissionclass || ""}
         onChange={handleInputChange}
-        options={["4th", "5th", "6th", "7th", "8th", "9th", "11th"]}
+        options={["4th", "5th", "6th", "7th", "8th", "9th", "11th"].map(
+          (cls) => ({ name: cls })
+        )}
         required
         error={errors.addmissionclass}
       />
@@ -902,7 +922,7 @@ const SelectField = ({
     </Label>
     <Select
       value={value}
-      onValueChange={(value) => onChange(name, value)}
+      onValueChange={(val) => onChange(name, val)}
       disabled={disabled}
     >
       <SelectTrigger
@@ -913,12 +933,9 @@ const SelectField = ({
         <SelectValue placeholder={placeholder || `Select ${label}`} />
       </SelectTrigger>
       <SelectContent>
-        {options.map((option) => (
-          <SelectItem
-            key={typeof option === "object" ? option.id : option}
-            value={typeof option === "object" ? option.id : option}
-          >
-            {typeof option === "object" ? option.name : option}
+        {options.map((option, index) => (
+          <SelectItem key={index} value={option.name}>
+            {option.name}
           </SelectItem>
         ))}
       </SelectContent>

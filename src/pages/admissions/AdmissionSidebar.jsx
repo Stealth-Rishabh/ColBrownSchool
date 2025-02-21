@@ -1,5 +1,4 @@
-import React from "react"
-import { Calendar, Bell, AlertCircle } from "lucide-react"
+import { Calendar, Bell, AlertCircle } from "lucide-react";
 
 const AdmissionSidebar = () => {
   const notices = [
@@ -10,24 +9,24 @@ const AdmissionSidebar = () => {
        Class 11th: 10th April (Join Before 4 pm)`,
       isNew: true,
     },
-    {
-      title: "Entrance Exam",
-      date: "2023-09-15",
-      description: "Entrance examination for all applicants from grade VI to XII.",
-      isNew: false,
-    },
+    // {
+    //   title: "Entrance Exam",
+    //   date: "2023-09-15",
+    //   description: "Entrance examination for all applicants from grade VI to XII.",
+    //   isNew: false,
+    // },
     // {
     //   title: "Interview Schedule",
     //   date: "2023-09-25",
     //   description: "Face-to-face interviews for shortlisted candidates.",
     //   isNew: true,
     // },
-    {
-      title: "Results Declaration",
-      date: "2023-10-10",
-      description: "Final admission results will be announced on the school website.",
-      isNew: false,
-    },
+    // {
+    //   title: "Results Declaration",
+    //   date: "2023-10-10",
+    //   description: "Final admission results will be announced on the school website.",
+    //   isNew: false,
+    // },
   ]
 
   return (
