@@ -5,7 +5,12 @@ import academics from "../../assets/landing/academics.webp";
 import sports from "../../assets/landing/sports.webp";
 import coCurricular from "../../assets/landing/co-curricular.webp";
 import { Button } from "../../components/ui/button";
-import { School, BookOpen, Volleyball, ClipboardList } from "lucide-react";
+import {
+  School,
+  BookOpen,
+  Volleyball,
+  ClipboardList,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FeatureImage = () => {
@@ -66,7 +71,7 @@ const FeatureImage = () => {
   }, []);
 
   return (
-    <Container className="relative z-10 -mt-32 md:-mt-40">
+    <Container className="relative z-10 -mt-20 md:-mt-40">
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 group lg:grid-cols-4 sm:gap-2">
         {data.map((item, index) => (
           <div
@@ -83,11 +88,6 @@ const FeatureImage = () => {
             <img
               src={item.image || "/placeholder.svg"}
               alt={item.title}
-              loading="lazy"
-              decoding="async"
-              fetchPriority={index === 2 ? "high" : "auto"}
-              width={600}
-              height={800}
               className="object-left object-cover w-full h-full transition-all duration-300 hover:scale-110"
             />
             <div
@@ -129,3 +129,4 @@ const FeatureImage = () => {
 };
 
 export default FeatureImage;
+
