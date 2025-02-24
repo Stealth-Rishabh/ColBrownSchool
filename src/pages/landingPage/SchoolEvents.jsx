@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import news from "../../assets/landing/events/news.webp";
 import wipro from "../../assets/landing/events/wipro.webp";
+
 export default function SchoolEvents() {
   const newsItems = [
     {
@@ -25,7 +26,8 @@ export default function SchoolEvents() {
     },
     {
       date: "OCTOBER 5, 2024",
-      title: "Col. Brown Cambridge School rated amongst the top Boarding Schools in North India",
+      title:
+        "Col. Brown Cambridge School rated amongst the top Boarding Schools in North India",
       image: news,
       type: "NEWS",
     },
@@ -43,14 +45,16 @@ export default function SchoolEvents() {
       title: "Wipro Earthian Award Ceremony",
       year: "2024",
       location: "Him Jyoti School",
-      description: "Wipro Earthian Ceremony and Open day was organized by Nature Science Initiative at Him Jyoti School on Saturday 11th May 2024",
+      description:
+        "Wipro Earthian Ceremony and Open day was organized by Nature Science Initiative at Him Jyoti School on Saturday 11th May 2024",
     },
     {
       date: { day: "5", month: "APR" },
       title: "Farewell Party Report for Class 12th at Col. Brown Cambridge",
       year: "2024",
       location: "Col. Brown Cambridge School",
-      description: "The farewell party for the Class 12th students of Col. Brown Cambridge School was held on January 25, 2024",
+      description:
+        "The farewell party for the Class 12th students of Col. Brown Cambridge School was held on January 25, 2024",
     },
     {
       date: { day: "19", month: "FEB" },
@@ -64,17 +68,19 @@ export default function SchoolEvents() {
   const pastEvents = [
     {
       date: { day: "31", month: "OCT" },
-      title: "CBS’MUN Report 2023",
+      title: "CBS'MUN Report 2023",
       year: "2023",
       location: "Col. Brown Cambridge School",
-      description: "It is a great pleasure to bring a report of the second edition of CBS’MUN 2023.",
+      description:
+        "It is a great pleasure to bring a report of the second edition of CBS'MUN 2023.",
     },
     {
       date: { day: "2", month: "OCT" },
       title: "Butterfly Walk",
       year: "2023",
       location: "Col. Brown Cambridge School",
-      description: "On 2nd October 2023, the School organized a programme of Biodiversity. Mr. Sanjai Sondhi graced the occasion.",
+      description:
+        "On 2nd October 2023, the School organized a programme of Biodiversity. Mr. Sanjai Sondhi graced the occasion.",
     },
     {
       date: { day: "1", month: "OCT" },
@@ -83,7 +89,6 @@ export default function SchoolEvents() {
       location: "Col. Brown Cambridge School",
       description: "Details about the SUPW activity will be provided soon.",
     },
-    
   ];
 
   return (
@@ -120,7 +125,7 @@ export default function SchoolEvents() {
 
               <div className="grid grid-cols-1 gap-4 sm:gap-2">
                 {newsItems.map((item, index) => (
-                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                  <Link to="/beyond-classroom/news-and-events" key={index}>
                     <NewsCard item={item} index={index} />
                   </Link>
                 ))}
@@ -155,14 +160,14 @@ export default function SchoolEvents() {
               </TabsList>
               <TabsContent value="upcoming" className="grid grid-cols-1 gap-4">
                 {events.map((event, index) => (
-                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                  <Link to="/beyond-classroom/news-and-events" key={index}>
                     <EventCard key={index} event={event} index={index} />
                   </Link>
                 ))}
               </TabsContent>
               <TabsContent value="past" className="grid grid-cols-1 gap-4">
-              {pastEvents.map((event, index) => (
-                  <Link to='/beyond-classroom/news-and-events' key={index}>
+                {pastEvents.map((event, index) => (
+                  <Link to="/beyond-classroom/news-and-events" key={index}>
                     <EventCard key={index} event={event} index={index} />
                   </Link>
                 ))}

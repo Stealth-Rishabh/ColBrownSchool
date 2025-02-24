@@ -5,6 +5,7 @@ import green from "../../assets/academics/Campus Location.webp";
 import nineteen from "../../assets/landing/nineteen-thirties-2.webp";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import LazyLoadYouTube from "../../components/LazyLoadYouTube";
 
 export default function AboutCBB() {
   const [isInView, setIsInView] = useState(false);
@@ -107,14 +108,9 @@ export default function AboutCBB() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <iframe
-                  ref={videoRef}
-                  src={`https://www.youtube.com/embed/mZdDi62XFgU${isInView ? '?autoplay=1&mute=1' : ''}`}
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                  title="video"
-                  className="rounded-2xl w-full h-[220px] sm:min-h-[400px]"
+                <LazyLoadYouTube
+                  videoId="mZdDi62XFgU"
+                  title="Col. Brown School Video"
                 />
               </motion.div>
             </div>
