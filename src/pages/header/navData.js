@@ -1,4 +1,4 @@
-import CalendarPdf from "../../assets/calendar-january-may-2024.pdf";
+// import CalendarPdf from "../../assets/calendar-january-may-2024.pdf";
 
 export const navlinks = [
   { name: "Home", path: "/" },
@@ -24,7 +24,7 @@ export const navlinks = [
       { name: "Curriculum", path: "/academics/curriculum" },
       { name: "Advanced Pedagogy", path: "/academics/advanced-pedagogy" },
       { name: "Career Counselling", path: "/academics/career-counselling" },
-      { name: "Calendar", path: "/academics/calendar", pdf: CalendarPdf },
+      // { name: "Calendar", path: "/academics/calendar", pdf: CalendarPdf },
     ],
   },
   {
