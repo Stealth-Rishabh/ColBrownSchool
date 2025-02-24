@@ -11,7 +11,7 @@ import TimeLine from "./TimeLine";
 const Landing = () => {
   return (
     <div className="overflow-hidden"> 
-      <HeroSlider />
+      {/* <HeroSlider /> */}
       <FeatureImage />
       <Legacy />
       {/* <AboutCB /> */}
