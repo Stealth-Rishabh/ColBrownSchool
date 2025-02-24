@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "./pages/header/Header";
 import Landing from "./pages/landingPage/Landing";
-import StudentPortal from "./pages/login/StudentPortal";
+
 import Footer from "./pages/footer/Footer";
 // About
 import LegacyCBS from "./pages/about/LegacyCBS";
@@ -174,15 +174,7 @@ export default function App() {
             }
           />
 
-          {/* Student Portal Route without Header/Footer */}
-          {/* <Route
-            path="/result"
-            element={
-              <MetaWrapper pathname="/result">
-                <StudentPortal />
-              </MetaWrapper>
-            }
-          /> */}
+         
 
           {/* All other routes with Header/Footer */}
           <Route

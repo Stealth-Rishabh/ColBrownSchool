@@ -147,11 +147,11 @@ export const routeMetadata = {
     description: "Important notices and announcements",
     keywords: "notices, announcements, updates, CBS school",
   },
-  "/result": {
-    title: "Student Portal | CBS School",
-    description: "Access student results and information",
-    keywords: "results, portal, student, CBS school",
-  },
+  // "/result": {
+  //   title: "Student Portal | CBS School",
+  //   description: "Access student results and information",
+  //   keywords: "results, portal, student, CBS school",
+  // },
   "/boarding-life/sports-gallery": {
     title: "Sports Gallery | CBS School",
     description: "Explore our sports gallery",
