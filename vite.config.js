@@ -26,12 +26,6 @@ export default defineConfig({
             "./src/pages/beyondClassroom/AdventureExcursion.jsx",
             "./src/pages/beyondClassroom/ClubsAndSocieties.jsx",
           ],
-          "embla-carousel": ["embla-carousel-react", "embla-carousel-autoplay"],
-          "framer-motion": ["framer-motion"],
-          "secondary-components": [
-            /src\/pages\/academics/,
-            /src\/pages\/admissions/,
-          ],
         },
       },
     },
