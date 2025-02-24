@@ -1,48 +1,91 @@
 "use client";
-import { useEffect, useRef, useState, memo } from "react";
+import { useEffect, useRef, useState, memo, Suspense, lazy } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../../components/ui/carousel";
 import img1 from "../../assets/landing/bg1.webp";
 import img2 from "../../assets/boarding-life/PastoralCare-banner.jpg";
 
-// Preload critical image immediately
-const preloadImage = (src) => {
-  if (typeof window !== "undefined") {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = src;
-    link.type = "image/webp"; // Specify image type if possible
-    document.head.appendChild(link);
-  }
-};
+// Lazy load carousel components
+const Carousel = lazy(() =>
+  import("../../components/ui/carousel").then((module) => ({
+    default: module.Carousel,
+  }))
+);
+const CarouselContent = lazy(() =>
+  import("../../components/ui/carousel").then((module) => ({
+    default: module.CarouselContent,
+  }))
+);
+const CarouselItem = lazy(() =>
+  import("../../components/ui/carousel").then((module) => ({
+    default: module.CarouselItem,
+  }))
+);
+const Autoplay = lazy(() => import("embla-carousel-autoplay"));
+
+const LoadingFallback = () => (
+  <div className="h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] w-full bg-gray-200 animate-pulse flex items-center justify-center">
+    <div className="text-gray-600">Loading...</div>
+  </div>
+);
 
 const HeroSlider = () => {
-  useEffect(() => {
-    // Preload the first image for faster LCP
-    preloadImage(img1);
-  }, []);
-
   const [api, setApi] = useState(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-  const plugin = useRef(
-    Autoplay({
-      delay: 8000,
-      stopOnInteraction: true,
-      rootNode: (emblaRoot) => emblaRoot.parentElement,
-    })
-  );
+  const [mounted, setMounted] = useState(false);
+  const plugin = useRef(null);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    draggable: true,
+    loop: true,
+    speed: 10,
+  });
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  useEffect(() => {
+    if (emblaApi) {
+      setApi(emblaApi);
+      setCount(emblaApi.slideNodes().length);
+
+      // Subscribe to carousel events
+      emblaApi.on("select", () => {
+        setCurrent(emblaApi.selectedScrollSnap());
+      });
+
+      // Load and initialize Autoplay
+      const loadAutoplay = async () => {
+        try {
+          const AutoplayModule = await import("embla-carousel-autoplay");
+          plugin.current = AutoplayModule.default({
+            delay: 8000,
+            stopOnInteraction: true,
+            rootNode: (emblaRoot) => emblaRoot.parentElement,
+          });
+          emblaApi.plugins().add(plugin.current);
+        } catch (error) {
+          console.error("Error loading Autoplay:", error);
+        }
+      };
+
+      loadAutoplay();
+
+      return () => {
+        emblaApi.off("select");
+        if (plugin.current) {
+          emblaApi.plugins().remove(plugin.current);
+        }
+      };
+    }
+  }, [emblaApi]);
 
   const imgSlider = [
     {
       image: img1,
-      imageSmall: "/assets/landing/bg1-small.webp", // Provide a smaller image for responsive
+      imageSmall: "/assets/landing/bg1-small.webp",
       tagline: "Give your Dreams wings to fly",
       highlights: [
         "World-class curriculum",
@@ -52,7 +95,7 @@ const HeroSlider = () => {
     },
     {
       image: img2,
-      imageSmall: "/assets/boarding-life/PastoralCare-banner-small.jpg", // Smaller image
+      imageSmall: "/assets/boarding-life/PastoralCare-banner-small.jpg",
       tagline: "Celebrate Every Special Moment",
       highlights: [
         "Cultural festivals",
@@ -62,38 +105,25 @@ const HeroSlider = () => {
     },
   ];
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    draggable: true,
-    loop: true,
-    speed: 10,
-  });
+  if (!mounted) return <LoadingFallback />;
 
   return (
     <section className="hero-section h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] w-full relative">
-      <Carousel
-        ref={emblaRef}
-        plugins={[plugin.current]}
-        setApi={setApi}
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.play}
-        options={{
-          skipSnaps: false,
-          inViewThreshold: 0.7,
-          dragFree: false,
-        }}
-      >
-        <CarouselContent>
-          {imgSlider.map((img, index) => (
-            <CarouselItem
-              key={index}
-              className="w-full sm:h-full relative h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)]"
-            >
-              <SlideImage img={img} index={index} />
-              <SlideContent img={img} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+      <Suspense fallback={<LoadingFallback />}>
+        <div ref={emblaRef} className="overflow-hidden w-full h-full">
+          <div className="flex h-full">
+            {imgSlider.map((img, index) => (
+              <div
+                key={index}
+                className="flex-[0_0_100%] min-w-0 relative h-full"
+              >
+                <SlideImage img={img} index={index} />
+                <SlideContent img={img} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </Suspense>
 
       <div className="absolute justify-center hidden mt-4 space-x-2 -rotate-90 sm:flex -right-0 bottom-28">
         {Array.from({ length: count }).map((_, index) => (
@@ -114,18 +144,7 @@ const SlideContent = memo(({ img }) => {
   return (
     <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[10%] left-[10%] sm:left-[8%] z-20 space-y-6">
       <h1 className="text-4xl font-extrabold leading-relaxed text-white md:text-6xl lg:text-8xl sm:py-4 sm:tracking-wide drop-shadow-lg">
-        {img.tagline.split(" ").map((word, index) => (
-          <span
-            key={index}
-            className={
-              index === 2
-                ? "text-black leading-relaxed sm:leading-[130px] bg-yellow-500 px-3 block w-fit mt-5 mb-2"
-                : ""
-            }
-          >
-            {word}{" "}
-          </span>
-        ))}
+        {img.tagline}
       </h1>
       <div className="sm:hidden block">
         <p className="text-2xl font-bold md:text-3xl text-white md:font-bold text-left max-w-[20rem] md:max-w-3xl">
@@ -142,7 +161,8 @@ const SlideImage = memo(({ img, index }) => {
   const imgRef = useRef(null);
 
   useEffect(() => {
-    if (index === 0) return; // Skip for the first image as it's preloaded
+    if (index === 0) return;
+
     const observer = new IntersectionObserver(
       (entries, observerInstance) => {
         entries.forEach((entry) => {
@@ -154,7 +174,7 @@ const SlideImage = memo(({ img, index }) => {
         });
       },
       {
-        rootMargin: "0px",
+        rootMargin: "50px",
         threshold: 0.1,
       }
     );
@@ -176,25 +196,26 @@ const SlideImage = memo(({ img, index }) => {
         ref={imgRef}
         data-src={img.image}
         alt={img.tagline}
-        className={`object-cover w-screen h-[420px] md:h-[92v] lg:h-[95vh] transition-opacity duration-300 ${
+        width={1920}
+        height={1080}
+        className={`object-cover w-full h-full transition-opacity duration-300 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
-        loading={index === 0 ? "eager" : "lazy"} // Eager loading for the first image
-        fetchPriority={index === 0 ? "high" : "auto"} // High priority for first image
+        loading={index === 0 ? "eager" : "lazy"}
+        fetchPriority={index === 0 ? "high" : "auto"}
         decoding="async"
-        src={index === 0 ? img.image : undefined} // Set src for the first image
+        src={index === 0 ? img.image : undefined}
         onLoad={() => setLoaded(true)}
         onError={(e) => {
           console.error("Image load error:", e);
-          // Consider implementing a fallback image here
         }}
         srcSet={`${img.image} 1920w, ${img.imageSmall} 768w`}
-        sizes="(max-width: 768px) 100vw, 1920px"
+        sizes="100vw"
       />
-      {!loaded && index !== 0 && (
+      {!loaded && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       )}
-      <div className="absolute inset-0 z-20 bg-black opacity-50" />
+      <div className="absolute inset-0 bg-black opacity-50" />
     </>
   );
 });
