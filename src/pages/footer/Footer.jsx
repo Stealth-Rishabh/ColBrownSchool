@@ -15,7 +15,11 @@ export default function Footer() {
       { name: "Admissions", href: "/admissions/admission-procedure" },
       { name: "Blog", href: "/blog" },
       { name: "Alumni Registration", href: "/alma-mater" },
-      { name: "View Result", href: "/result" },
+      {
+        name: "View Result",
+        href: "https://www.colbrownschool.com/cbs_prbms/login",
+        target: "_blank",
+      },
       { name: "Register Now", href: "/admissions/registration" },
       { name: "Contact", href: "/contact-us" },
     ],
@@ -88,7 +92,10 @@ export default function Footer() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <Link to="https://www.google.com/maps/place/Col.+Brown+Cambridge+School/@30.322328,78.056969,1446m/data=!3m1!1e3!4m6!3m5!1s0x390929b641fd13a5:0xf2f0dda3f2210a65!8m2!3d30.3223276!4d78.0569688!16s%2Fm%2F0bmjr27?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMy4wIKXMDSoJLDEwMjExMjM0SAFQAw%3D%3D" target="_blank">
+              <Link
+                to="https://www.google.com/maps/place/Col.+Brown+Cambridge+School/@30.322328,78.056969,1446m/data=!3m1!1e3!4m6!3m5!1s0x390929b641fd13a5:0xf2f0dda3f2210a65!8m2!3d30.3223276!4d78.0569688!16s%2Fm%2F0bmjr27?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMy4wIKXMDSoJLDEwMjExMjM0SAFQAw%3D%3D"
+                target="_blank"
+              >
                 <motion.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}

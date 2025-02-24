@@ -175,14 +175,14 @@ export default function App() {
           />
 
           {/* Student Portal Route without Header/Footer */}
-          <Route
+          {/* <Route
             path="/result"
             element={
               <MetaWrapper pathname="/result">
                 <StudentPortal />
               </MetaWrapper>
             }
-          />
+          /> */}
 
           {/* All other routes with Header/Footer */}
           <Route

@@ -71,7 +71,7 @@ const FeatureImage = () => {
   }, []);
 
   return (
-    <Container className="relative z-10 -mt-20 md:-mt-40">
+    <Container className="relative z-10 -mt-32 md:-mt-40">
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 group lg:grid-cols-4 sm:gap-2">
         {data.map((item, index) => (
           <div

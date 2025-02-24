@@ -1,29 +1,11 @@
 "use client";
-import { useEffect, useRef, useState, memo, Suspense, lazy } from "react";
+import { useEffect, useRef, useState, memo, Suspense } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import img1 from "../../assets/landing/bg1.webp";
 import img2 from "../../assets/boarding-life/PastoralCare-banner.jpg";
 
-// Lazy load carousel components
-const Carousel = lazy(() =>
-  import("../../components/ui/carousel").then((module) => ({
-    default: module.Carousel,
-  }))
-);
-const CarouselContent = lazy(() =>
-  import("../../components/ui/carousel").then((module) => ({
-    default: module.CarouselContent,
-  }))
-);
-const CarouselItem = lazy(() =>
-  import("../../components/ui/carousel").then((module) => ({
-    default: module.CarouselItem,
-  }))
-);
-const Autoplay = lazy(() => import("embla-carousel-autoplay"));
-
 const LoadingFallback = () => (
-  <div className="h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] w-full bg-gray-200 animate-pulse flex items-center justify-center">
+  <div className="h-[420px] md:h-[92vh] lg:h-[95vh] w-full bg-gray-200 animate-pulse flex items-center justify-center">
     <div className="text-gray-600">Loading...</div>
   </div>
 );
@@ -108,7 +90,7 @@ const HeroSlider = () => {
   if (!mounted) return <LoadingFallback />;
 
   return (
-    <section className="hero-section h-[420px] md:h-[calc(100vh-160px)] lg:h-[calc(100vh-120px)] w-full relative">
+    <section className="hero-section h-[420px] md:h-[92vh] lg:h-[80vh] w-full relative">
       <Suspense fallback={<LoadingFallback />}>
         <div ref={emblaRef} className="overflow-hidden w-full h-full">
           <div className="flex h-full">
@@ -142,7 +124,7 @@ const HeroSlider = () => {
 
 const SlideContent = memo(({ img }) => {
   return (
-    <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[10%] left-[10%] sm:left-[8%] z-20 space-y-6">
+    <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[15%] left-[10%] sm:left-[8%] z-20 space-y-6">
       <h1 className="text-4xl font-extrabold leading-relaxed text-white md:text-6xl lg:text-8xl sm:py-4 sm:tracking-wide drop-shadow-lg">
         {img.tagline}
       </h1>
