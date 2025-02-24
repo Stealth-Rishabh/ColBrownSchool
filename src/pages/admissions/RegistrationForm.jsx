@@ -858,6 +858,12 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
       the School, pay the fees in advance, and settle any other accounts
       promptly.
     </p>
+    <p className="mt-3 text-sm text-green-700   ">
+      Note: For seamless registration, we recommend using a{" "}
+      <span className="text-green-950 font-bold animate-pulse ">Credit Card and Net Banking</span> which ensures instant confirmation.
+      Currently, <span className="text-red-500 font-bold animate-pulse">Debit Card</span> is payment method is not available.
+     
+    </p>
   </div>
 );
 

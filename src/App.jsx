@@ -56,6 +56,7 @@ import { EnquiryModal } from "@/components/EnquiryModal";
 import { DockDemo } from "@/components/DockButtons";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import PaymentStatus from "./pages/payment/PaymentStatus";
+import ThankYou from "./pages/ThankYou";
 // Add ScrollToTop component
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -483,6 +484,14 @@ export default function App() {
                     element={
                       <MetaWrapper pathname="/newsletter">
                         <Newsletter />
+                      </MetaWrapper>
+                    }
+                  />
+                  <Route
+                    path="/thank-you"
+                    element={
+                      <MetaWrapper pathname="/thank-you">
+                        <ThankYou />
                       </MetaWrapper>
                     }
                   />

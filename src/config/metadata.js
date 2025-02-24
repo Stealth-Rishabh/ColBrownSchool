@@ -178,4 +178,9 @@ export const routeMetadata = {
       "Check your payment status for Col Brown Cambridge School registration",
     keywords: "payment status, registration, Col Brown Cambridge School",
   },
+  "/thank-you": {
+    title: "Thank You - CBS School",
+    description: "Thank you for your enquiry at CBS School",
+    keywords: "thank you, enquiry, CBS School",
+  },
 };
