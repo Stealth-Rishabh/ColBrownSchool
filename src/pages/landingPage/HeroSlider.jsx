@@ -1,8 +1,6 @@
 "use client";
-import { useEffect, useRef, useState, memo, Suspense } from "react";
+import { useEffect, useRef, useState, memo, Suspense, lazy } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import img1 from "../../assets/landing/bg1.webp";
-import img2 from "../../assets/boarding-life/PastoralCare-banner.jpg";
 
 const LoadingFallback = () => (
   <div className="h-[420px] md:h-[92vh] lg:h-[95vh] w-full bg-gray-200 animate-pulse flex items-center justify-center">
@@ -66,7 +64,7 @@ const HeroSlider = () => {
 
   const imgSlider = [
     {
-      image: img1,
+      image: lazy(() => import("../../assets/landing/bg1.webp")),
       imageSmall: "/assets/landing/bg1-small.webp",
       tagline: "Give your Dreams wings to fly",
       highlights: [
@@ -76,7 +74,9 @@ const HeroSlider = () => {
       ],
     },
     {
-      image: img2,
+      image: lazy(() =>
+        import("../../assets/boarding-life/PastoralCare-banner.jpg")
+      ),
       imageSmall: "/assets/boarding-life/PastoralCare-banner-small.jpg",
       tagline: "Celebrate Every Special Moment",
       highlights: [
@@ -86,6 +86,15 @@ const HeroSlider = () => {
       ],
     },
   ];
+
+  useEffect(() => {
+    const loadEmbla = async () => {
+      const { default: Embla } = await import("embla-carousel-react");
+      const Autoplay = await import("embla-carousel-autoplay");
+      // Initialize carousel after load
+    };
+    loadEmbla();
+  }, []);
 
   if (!mounted) return <LoadingFallback />;
 
@@ -99,8 +108,12 @@ const HeroSlider = () => {
                 key={index}
                 className="flex-[0_0_100%] min-w-0 relative h-full"
               >
-                <SlideImage img={img} index={index} />
-                <SlideContent img={img} />
+                <Suspense fallback={<LoadingFallback />}>
+                  {current === index && <SlideImage img={img} index={index} />}
+                </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  {current === index && <SlideContent img={img} />}
+                </Suspense>
               </div>
             ))}
           </div>
@@ -125,13 +138,13 @@ const HeroSlider = () => {
 const SlideContent = memo(({ img }) => {
   return (
     <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[15%] left-[10%] sm:left-[8%] z-20 space-y-6">
-      {/* <h1 className="text-4xl font-extrabold text-white md:text-6xl lg:text-8xl sm:py-4 drop-shadow-lg">
+      <h1 className="text-4xl font-extrabold text-white md:text-6xl lg:text-8xl sm:py-4 drop-shadow-lg">
         {img.tagline}
-      </h1> */}
+      </h1>
       <div className="sm:hidden block">
-        {/* <p className="text-2xl font-bold md:text-3xl text-white md:font-bold text-left max-w-[20rem] md:max-w-3xl">
+        <p className="text-2xl font-bold md:text-3xl text-white md:font-bold text-left max-w-[20rem] md:max-w-3xl">
           {img.highlights[0]}
-        </p> */}
+        </p>
       </div>
     </div>
   );
