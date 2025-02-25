@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/academics/Campus.webp";
 import img1 from "../../assets/about/colonel-william-brown.jpg";

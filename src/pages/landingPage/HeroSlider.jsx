@@ -1,8 +1,11 @@
 "use client";
 import { useEffect, useRef, useState, memo, Suspense } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import img1 from "../../assets/landing/bg1.webp";
 import img2 from "../../assets/boarding-life/PastoralCare-banner.jpg";
+// import img1Small from "../../assets/landing/bg1-small.webp";
+// import img2Small from "../../assets/boarding-life/PastoralCare-banner-small.jpg";
 
 const LoadingFallback = () => (
   <div className="h-[420px] md:h-[92vh] lg:h-[95vh] w-full bg-gray-200 animate-pulse flex items-center justify-center">
@@ -15,13 +18,21 @@ const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const plugin = useRef(null);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    draggable: true,
-    loop: true,
-    speed: 10,
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      draggable: true,
+      loop: true,
+      speed: 10,
+    },
+    [
+      Autoplay({
+        delay: 8000,
+        stopOnInteraction: true,
+        rootNode: (emblaRoot) => emblaRoot.parentElement,
+      }),
+    ]
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -38,28 +49,8 @@ const HeroSlider = () => {
         setCurrent(emblaApi.selectedScrollSnap());
       });
 
-      // Load and initialize Autoplay
-      const loadAutoplay = async () => {
-        try {
-          const AutoplayModule = await import("embla-carousel-autoplay");
-          plugin.current = AutoplayModule.default({
-            delay: 8000,
-            stopOnInteraction: true,
-            rootNode: (emblaRoot) => emblaRoot.parentElement,
-          });
-          emblaApi.plugins().add(plugin.current);
-        } catch (error) {
-          console.error("Error loading Autoplay:", error);
-        }
-      };
-
-      loadAutoplay();
-
       return () => {
         emblaApi.off("select");
-        if (plugin.current) {
-          emblaApi.plugins().remove(plugin.current);
-        }
       };
     }
   }, [emblaApi]);
@@ -67,7 +58,7 @@ const HeroSlider = () => {
   const imgSlider = [
     {
       image: img1,
-      imageSmall: "/assets/landing/bg1-small.webp",
+      imageSmall: img1,
       tagline: "Give your Dreams wings to fly",
       highlights: [
         "World-class curriculum",
@@ -77,7 +68,7 @@ const HeroSlider = () => {
     },
     {
       image: img2,
-      imageSmall: "/assets/boarding-life/PastoralCare-banner-small.jpg",
+      imageSmall: img2,
       tagline: "Celebrate Every Special Moment",
       highlights: [
         "Cultural festivals",
@@ -90,7 +81,7 @@ const HeroSlider = () => {
   if (!mounted) return <LoadingFallback />;
 
   return (
-    <section className="hero-section h-[420px] md:h-[92vh] lg:h-[80vh] w-full relative">
+    <section className="hero-section h-[350px] md:h-[92vh] lg:h-[80vh] w-full relative">
       <Suspense fallback={<LoadingFallback />}>
         <div ref={emblaRef} className="overflow-hidden w-full h-full">
           <div className="flex h-full">
