@@ -20,9 +20,10 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 // import { State, City } from "country-state-city";
-import {State,City} from "../utils/stateCity"
+import { State, City } from "../utils/stateCity";
 import { ConfettiButton } from "@/components/magicui/confetti";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 export function EnquiryModal() {
   const [states, setStates] = useState([]);
@@ -41,6 +42,7 @@ export function EnquiryModal() {
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const indianStates = State.getStatesOfCountry("IN");
@@ -93,6 +95,8 @@ export function EnquiryModal() {
       setErrors(validationErrors);
       return;
     }
+
+    setIsSubmitting(true);
 
     const formDataToSend = new FormData();
     formDataToSend.append("contact-parent-name", formData.name);
@@ -149,6 +153,8 @@ export function EnquiryModal() {
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -255,11 +261,13 @@ export function EnquiryModal() {
               <Input
                 id="phone"
                 type="tel"
+                maxLength={10}
                 className="h-8 text-sm rounded"
                 value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  setFormData({ ...formData, phone: value });
+                }}
                 required
               />
               {errors?.phone && (
@@ -370,12 +378,19 @@ export function EnquiryModal() {
               />
             </div>
 
-            <ConfettiButton
+            <Button
               type="submit"
-              className="w-full h-8 text-sm rounded sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white"
+              disabled={isSubmitting}
+              className="w-full h-8 text-sm rounded sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white disabled:opacity-50"
             >
-              Submit
-            </ConfettiButton>
+              {isSubmitting ? (
+                <>
+                  Please Wait <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                </>
+              ) : (
+                "Submit"
+              )}
+            </Button>
           </form>
         </DialogContent>
       </Dialog>

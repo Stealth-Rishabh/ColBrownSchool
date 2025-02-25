@@ -3,7 +3,7 @@ import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/contact.webp";
 import Container from "../../components/wrappers/Container";
 import { Button } from "../../components/ui/button";
-import { Phone, Mail, MapPin, SendHorizonal } from "lucide-react";
+import { Phone, Mail, MapPin, SendHorizonal, Loader2 } from "lucide-react";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -14,7 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 // import { State, City } from "country-state-city";
-import {State,City} from "../../utils/stateCity";
+import { State, City } from "../../utils/stateCity";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const breadcrumbItems = [
@@ -42,6 +43,7 @@ const ContactForm = () => {
 export default ContactForm;
 
 const ContactSection = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     parentName: "",
     studentName: "",
@@ -57,6 +59,7 @@ const ContactSection = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Fetch Indian states using country-state-city
@@ -98,6 +101,8 @@ const ContactSection = () => {
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
+    } else if (formData.phone.length > 10) {
+      newErrors.phone = "Phone number cannot exceed 10 digits";
     } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
       newErrors.phone = "Please enter a valid 10-digit Indian phone number";
     }
@@ -125,6 +130,7 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setIsSubmitting(true);
       // Create FormData object with the expected field names
       const formDataToSend = new FormData();
       formDataToSend.append("contact-parent-name", formData.parentName);
@@ -183,13 +189,16 @@ const ContactSection = () => {
           if (citySelect) citySelect.value = "";
           if (classSelect) classSelect.value = "";
 
-          alert("Form submitted successfully!");
+          // alert("Form submitted successfully!");
+          navigate("/thank-you");
         } else {
           throw new Error(result.message || "Failed to submit form");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
         alert("Failed to send message. Please try again.");
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -350,13 +359,17 @@ const ContactSection = () => {
               <div>
                 <Input
                   type="tel"
+                  maxLength={10}
                   placeholder="Phone"
                   className={`h-12 bg-transparent rounded-lg ${
                     errors.phone ? "border-red-500" : ""
                   }`}
                   value={formData.phone}
                   onChange={(e) => {
-                    setFormData({ ...formData, phone: e.target.value });
+                    const value = e.target.value
+                      .replace(/\D/g, "")
+                      .slice(0, 10);
+                    setFormData({ ...formData, phone: value });
                     if (errors.phone) setErrors({ ...errors, phone: "" });
                   }}
                 />
@@ -444,10 +457,20 @@ const ContactSection = () => {
               </div>
               <Button
                 type="submit"
-                className="w-full h-12 group bg-green-800 rounded-lg hover:bg-green-700"
+                disabled={isSubmitting}
+                className="w-full h-12 group bg-green-800 rounded-lg hover:bg-green-700 disabled:opacity-50"
               >
-                Send Message{" "}
-                <SendHorizonal className="mt-1 w-5 h-5 text-white group-hover:translate-x-2 transition-all duration-300" />
+                {isSubmitting ? (
+                  <>
+                    Please Wait{" "}
+                    <Loader2 className="ml-2 h-5 w-5 animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    Send Message{" "}
+                    <SendHorizonal className="mt-1 w-5 h-5 text-white group-hover:translate-x-2 transition-all duration-300" />
+                  </>
+                )}
               </Button>
             </form>
           </div>
