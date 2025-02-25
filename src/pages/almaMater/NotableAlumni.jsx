@@ -6,6 +6,8 @@ import vir from "@/assets/almaMater/bhadra-singh.png";
 import vp from "@/assets/almaMater/vp-singh.png";
 import deependra from "@/assets/almaMater/deependra-singh.png";
 import meiyang from "@/assets/almaMater/myan-chang.png";
+import { alumniestimonials } from "./alumniTestimonials";
+import Testimonials from "../landingPage/Testimonials";
 
 const alumniData = [
   {
@@ -50,7 +52,7 @@ const AlumniCard = ({ name, role, image }) => (
       />
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
+
       {/* Content Overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-green-600/80 opacity-0 group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-4 transition-all duration-300">
         <div className="text-center text-white p-6">
@@ -78,6 +80,13 @@ const NotableAlumni = () => {
           {alumniData.map((alumni) => (
             <AlumniCard key={alumni.name} {...alumni} />
           ))}
+        </div>
+        <div className="mt-10">
+          <Testimonials
+            testimonialList={alumniestimonials}
+            title="Alumni Testimonials"
+            subtitle="Our alumni have shared their experiences, emphasizing the importance of both paid and unpaid roles in shaping their careers."
+          />
         </div>
       </div>
     </section>

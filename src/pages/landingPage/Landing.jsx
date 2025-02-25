@@ -8,9 +8,10 @@ import Testimonials from "./Testimonials";
 import SchoolEvents from "./SchoolEvents";
 import Spotlight from "./Spotlight";
 import TimeLine from "./TimeLine";
+import { testimonials } from "./testimonialData";
 const Landing = () => {
   return (
-    <div className="overflow-hidden"> 
+    <div className="overflow-hidden">
       <HeroSlider />
       <FeatureImage />
       <Legacy />
@@ -18,12 +19,15 @@ const Landing = () => {
       <AboutCBB />
       <TimeLine />
       <VirtualTour />
-      <Testimonials />
+      <Testimonials
+        testimonialList={testimonials}
+        title="Parent Testimonials"
+        subtitle="Our students' parents have shared their experiences, emphasizing the importance of both paid and unpaid roles in shaping their children's careers."
+      />
       <Spotlight />
       <SchoolEvents />
     </div>
   );
 };
 
-
-export default Landing
+export default Landing;

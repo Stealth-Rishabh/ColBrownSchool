@@ -10,12 +10,6 @@ import {
 } from "../../components/ui/avatar";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
-import ravi from "../../assets/landing/ravi_tyagi.jpg";
-import abhinav from "../../assets/landing/abhinav.jpg";
-import aayan from "../../assets/landing/aryan.jpg";
-import agrims from "../../assets/landing/Agrims.jpg";
-import ayan from "../../assets/landing/ayan.jpg";
-import manal from "../../assets/landing/manal.jpg";
 
 function ShapeOne() {
   return (
@@ -60,10 +54,13 @@ function ShapeTwo() {
   );
 }
 
-const Testimonials = () => {
+const Testimonials = ({testimonialList, title, subtitle}) => {
+  
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex) => setIndex(selectedIndex);
+  
+
+  // const handleSelect = (selectedIndex) => setIndex(selectedIndex);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,37 +70,35 @@ const Testimonials = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const getVisibleTestimonials = () => {
-    const testimonials = [];
-    for (let i = 0; i < 3; i++) {
-      const testimonialIndex = (index + i) % 6;
-      testimonials.push(testimonialList[testimonialIndex]);
-    }
-    return testimonials;
-  };
+  // const getVisibleTestimonials = () => {
+  //   const testimonials = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     const testimonialIndex = (index + i) % 6;
+  //     testimonials.push(testimonialList[testimonialIndex]);
+  //   }
+  //   return testimonials;
+  // };
 
   return (
     <section className="ezy__testimonial23 light py-6  sm:py-14  bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white relative z-[1]">
-      <ShapeOne />
-      <ShapeTwo />
+      {/* <ShapeOne /> */}
+      {/* <ShapeTwo /> */}
 
       <div className="sm:container md:max-w-6xl lg:max-w-7xl  px-4 mx-auto">
         <div className="grid grid-cols-12 gap-6 items-start justify-between mb-6 md:mb-12">
           <div className="col-span-12 md:col-span-6 lg:col-span-4">
             <h2 className="sm:text-4xl text-3xl text-center sm:text-left font-bold leading-normal">
-              Parent Testimonials
+              {title || "Testimonials"}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8">
             <p className="text-lg leading-[1.7] opacity-80 text-center sm:text-left">
-              Our students' parents have shared their experiences, emphasizing
-              the importance of both paid and unpaid roles in shaping their
-              children's careers.
+              {subtitle || "Our students' parents have shared their experiences, emphasizing the importance of both paid and unpaid roles in shaping their children's careers."}
             </p>
           </div>
         </div>
 
-        <TestimonialCarousel />
+        <TestimonialCarousel testimonials={testimonialList} />
       </div>
     </section>
   );
@@ -130,11 +125,11 @@ function TestimonialCard({ testimonial, isActive }) {
       >
         <CardContent className="p-6 flex flex-col items-center text-center h-full justify-between relative">
           <QuoteIcon className="absolute top-4 left-4 text-gray-300 w-8 h-8 opacity-50" />
-          <Avatar className="w-48 h-48 mb-4 ring-4 ring-white">
+          <Avatar className="w-48 h-fit mb-4 ring-4 ring-white">
             <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-            <AvatarFallback>{testimonial?.name?.charAt(0)}</AvatarFallback>
+            {/* <AvatarFallback>{testimonial?.name?.charAt(0)}</AvatarFallback> */}
           </Avatar>
-          <div className="relative">
+          <div className="relative mt-5">
             <div
               className={`mb-4 text-base font-normal relative z-10 overflow-hidden ${
                 !isExpanded ? "line-clamp-6" : ""
@@ -160,52 +155,6 @@ function TestimonialCard({ testimonial, isActive }) {
   );
 }
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Lt Col Ravi Tyagi",
-    role: "Parent of Yug Tyagi of class 7th",
-    content: `<p><b>Discipline :</b>&nbsp;The foundation of a well groomed personality. And CBS makes sure that discipline is never lost sight of<br><b>Academics:&nbsp;</b>Excellent and experienced staff sweating it out day and night ensuring excellence. The school teaches how's and why's of concepts instead of just what's<br><b>Sports and Adventure:</b>&nbsp;Endless facilities (indoors/ outdoors) are available at the school to master any sport of his choice under the best instructors. And what follows is health for life<br><b>Extra Curriculars:</b>&nbsp;All facets of personality of a child are groomed be it music, arts or drama the horizon of growth is unlimited<br><b>Boarding:</b>&nbsp;The best boarding school of the country providing a safe habitat to kids under experienced house masters/ matrons</p>`,
-    avatar: ravi,
-  },
-  {
-    id: 2,
-    name: "Rishikesh Kumar Singh",
-    role: "Parent of Abhinav & Vaibhav",
-    content: `<ol style="list-style-type: decimal; padding-left: 1.5em;"><li>"Our child's time at Colonel Brown has been truly transformative. Thank you for providing a nurturing environment that fosters growth, learning, and friendship."</li><li>"We're grateful for the dedication and care shown by the teachers, house parents, and staff. You've become like a second family to our child."</li><li>"The values, discipline, and education imparted at Colonel Brown have shaped our child into a confident and responsible individual. We can't thank you enough."</li><li>"The academic excellence and extracurricular opportunities at Colonel Brown have helped our child discover their passions and talents."</li><li>"The school's emphasis on Indian culture and values has instilled a sense of pride and responsibility in our child."</li><li>"The boarding facilities and care provided by the house parents have made our child feel safe and supported away from home."</li><li>"We would like to express our sincere appreciation to the management, teachers, and staff of Colonel Brown for their tireless efforts in providing quality education and care to our child."</li><li>"Please accept our heartfelt gratitude for the opportunities and experiences provided by Colonel Brown. Our child's time at the school has been truly enriching."</li></ol>`,
-    avatar: abhinav,
-  },
-  {
-    id: 3,
-    // name: "Carol Williams",
-    role: "Parent of Aayan class 11th and Sufyan class 9th",
-    content: `<p><b>Discipline :</b>&nbsp;The foundation of a well groomed personality. And CBS makes sure that discipline is never lost sight of<br><b>Academics:&nbsp;</b>Excellent and experienced staff sweating it out day and night ensuring excellence. The school teaches how's and why's of concepts instead of just what's<br><b>Sports and Adventure:</b>&nbsp;Endless facilities (indoors/ outdoors) are available at the school to master any sport of his choice under the best instructors. And what follows is health for life<br><b>Extra Curriculars:</b>&nbsp;All facets of personality of a child are groomed be it music, arts or drama the horizon of growth is unlimited<br><b>Boarding:</b>&nbsp;The best boarding school of the country providing a safe habitat to kids under experienced house masters/ matrons</p>`,
-    avatar: aayan,
-  },
-  {
-    id: 4,
-    // name: "David Brown",
-    role: "Parent of Agrim Class 9th",
-    content: `Col. Brown School in my point of view is a place where both academics and personal
-development are valued equally. For my son it has been a place where his personality
-has been nurtured.`,
-    avatar: agrims,
-  },
-  {
-    id: 5,
-    // name: "Eva Martinez",
-    role: "Parent of Ayan Nasir class 12th",
-    content: `<p><b>Caring Teachers:</b>&nbsp;"I'm happy with how the teachers at your school care about you and always make sure you understand what you're learning."<br><b>Good Learning Program:&nbsp;</b>"Your school has a great program that helps you learn important subjects and think critically. It prepares you for the future."<br><b>Fun Activities:</b>&nbsp;"I like how your school offers so many fun activities outside of class, like sports and clubs. It's good that you can try new things."<br><b>Supportive Environment:</b>&nbsp;"Your school has a friendly and supportive atmosphere where everyone feels safe to learn and share their ideas."<br><b>Great School Community:</b>&nbsp;"I'm proud of how your school has a strong sense of community, where everyone helps and respects each other."</p>`,
-    avatar: ayan,
-  },
-  {
-    id: 6,
-    // name: "Eva Martinez",
-    role: "Parent of Manal Nautiyal class 9th",
-    content: `<p>The nurturing environment, dedicated teachers, and well-established facilities at Col. Brown School<br>help students grow both academically and personally. As a boarding school, it offers a true home away<br>from home, fostering discipline, values, and overall development. Life on campus provides countless<br>opportunities for students to explore their interests and refine their talents. Whether it's academics,<br>sports, or hobbies, children are guided to excel in every field. I couldn't ask for a better school for my<br>child's development.</p>`,
-    avatar: manal,
-  },
-];
 
 const OPTIONS = {
   align: "center",
@@ -213,7 +162,7 @@ const OPTIONS = {
   loop: true,
 };
 
-function TestimonialCarousel() {
+function TestimonialCarousel({testimonials}) {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -268,6 +217,7 @@ function TestimonialCarousel() {
               <TestimonialCard
                 testimonial={testimonial}
                 isActive={index === selectedIndex}
+                
               />
             </div>
           ))}
@@ -276,7 +226,7 @@ function TestimonialCarousel() {
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full hidden md:flex"
+        className="absolute  -left-0 top-1/2 -translate-y-1/2 rounded-full hidden md:flex"
         onClick={scrollPrev}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -285,7 +235,7 @@ function TestimonialCarousel() {
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full hidden md:flex"
+        className="absolute  right-4 top-1/2 -translate-y-1/2 rounded-full hidden md:flex"
         onClick={scrollNext}
       >
         <ChevronRight className="h-4 w-4" />

@@ -23,7 +23,7 @@ const ThankYou = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-green-900 via-green-950 to-green-900">
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-tr from-green-900 via-green-950 to-green-900">
       <div className="text-center p-8 bg-white rounded-lg shadow-xl max-w-md mx-4">
         <CheckCircle2 className="mx-auto text-green-500 h-16 w-16 mb-6" />
         <h1 className="text-2xl font-bold text-gray-800 mb-4">
