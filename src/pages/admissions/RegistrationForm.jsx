@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Country, State, City } from "country-state-city";
+import { State, City } from "@/utils/stateCity";
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -51,23 +51,15 @@ const RegistrationForm = () => {
   // Fetch CSRF token from server when component mounts
   useEffect(() => {
     fetchCSRFToken();
-    // Initialize states and cities based on default country
-    const selectedCountry = Country.getAllCountries().find(
-      (country) => country.name === formData.country
-    );
-    if (selectedCountry) {
-      const statesData = State.getStatesOfCountry(selectedCountry.isoCode);
-      setStates(statesData);
-    }
+    // Initialize states based on default country (India)
+    const statesData = State.getStatesOfCountry("IN");
+    setStates(statesData);
   }, []);
 
-  // Fetch states when country changes
+  // Fetch states when country changes (if country selection is dynamic in the future)
   useEffect(() => {
-    const selectedCountry = Country.getAllCountries().find(
-      (country) => country.name === formData.country
-    );
-    if (selectedCountry) {
-      const statesData = State.getStatesOfCountry(selectedCountry.isoCode);
+    if (formData.country) {
+      const statesData = State.getStatesOfCountry("IN"); // Assuming countryCode "IN" for India
       setStates(statesData);
       setFormData((prev) => ({ ...prev, state: "", city: "" }));
       setCities([]);
@@ -77,25 +69,17 @@ const RegistrationForm = () => {
   // Fetch cities when state changes
   useEffect(() => {
     if (formData.state) {
-      const selectedState = State.getStateByCodeAndCountry(
-        State.getStatesOfCountry(
-          Country.getAllCountries().find((c) => c.name === formData.country)
-            ?.isoCode
-        ).find((s) => s.name === formData.state).isoCode,
-        Country.getAllCountries().find((c) => c.name === formData.country)
-          ?.isoCode
+      const selectedState = states.find(
+        (state) => state.name === formData.state
       );
       if (selectedState) {
-        const citiesData = City.getCitiesOfState(
-          selectedState.countryCode,
-          selectedState.isoCode
-        );
+        const citiesData = City.getCitiesOfState("IN", selectedState.isoCode);
         setCities(citiesData);
       }
     } else {
       setCities([]);
     }
-  }, [formData.state]);
+  }, [formData.state, states]);
 
   const fetchCSRFToken = async () => {
     try {
@@ -719,9 +703,7 @@ const ContactInfo = ({
         name="country"
         value="India"
         onChange={handleInputChange}
-        options={Country.getAllCountries().map((country) => ({
-          name: country.name,
-        }))}
+        options={[{ name: "India" }]} // Only India is available
         required
         disabled={true}
         placeholder="Select country"
@@ -860,9 +842,12 @@ const AdmissionInfo = ({ formData, handleInputChange, errors }) => (
     </p>
     <p className="mt-3 text-sm text-green-700   ">
       Note: For seamless registration, we recommend using a{" "}
-      <span className="text-green-950 font-bold animate-pulse ">Credit Card and Net Banking</span> which ensures instant confirmation.
-      Currently, <span className="text-red-500 font-bold animate-pulse">Debit Card</span> is payment method is not available.
-     
+      <span className="text-green-950 font-bold animate-pulse ">
+        Credit Card and Net Banking
+      </span>{" "}
+      which ensures instant confirmation. Currently,{" "}
+      <span className="text-red-500 font-bold animate-pulse">Debit Card</span>{" "}
+      is payment method is not available.
     </p>
   </div>
 );

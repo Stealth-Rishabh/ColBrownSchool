@@ -13,7 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { State, City } from "country-state-city";
+// import { State, City } from "country-state-city";
+import {State,City} from "../../utils/stateCity";
 
 const ContactForm = () => {
   const breadcrumbItems = [

@@ -19,7 +19,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { State, City } from "country-state-city";
+// import { State, City } from "country-state-city";
+import {State,City} from "../utils/stateCity"
 import { ConfettiButton } from "@/components/magicui/confetti";
 import { useNavigate } from "react-router-dom";
 
