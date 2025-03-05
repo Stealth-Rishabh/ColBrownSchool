@@ -91,7 +91,7 @@ const Feature = () => {
             <div
               className="w-full h-full bg-center bg-no-repeat bg-cover rounded-xl"
               style={{
-                backgroundImage: `url(https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_18.jpg)`,
+                backgroundImage: `url(${img})`,
               }}
             />
           </div>

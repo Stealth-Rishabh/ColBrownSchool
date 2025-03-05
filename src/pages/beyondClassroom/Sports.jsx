@@ -1,5 +1,7 @@
 import skating from "../../assets/sports/Skating/img (1).webp";
 import swimming from "../../assets/sports/Swimming/img (1).webp";
+
+import basketball1 from "../../assets/sports/Basketball/img (1).webp"; 
 import badminton from "../../assets/sports/Badminton/img (1).webp";
 import tennis from "../../assets/sports/Tennis/img (1).webp";
 import karate from "../../assets/sports/Karate/img (1).webp";
@@ -68,14 +70,14 @@ const features = [
     title: "Cricket",
     description:
       "Our cricket program develops technical skills, strategic thinking and sportsmanship through professional coaching and regular matches on our well-maintained grounds.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_5.jpg",
+    image: Cricket,
     link: "/boarding-life/sports-at-cbs/cricket",
   },
   {
     title: "Basketball",
     description:
       "Students train in our indoor basketball court with experienced coaches, learning teamwork and agility while competing in inter-school tournaments.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_21.jpg",
+    image: basketball1,
     link: "/boarding-life/sports-at-cbs/basketball",
   },
 
@@ -106,7 +108,7 @@ const features = [
     title: "Indoor Sports",
     description:
       "We offer facilities for table tennis, badminton, chess and carrom, providing students with diverse options for recreation and competitive play.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg", 
+    image: badminton,
     link: "/boarding-life/sports-at-cbs/indoor-sports",
   },
   {
@@ -283,7 +285,7 @@ const Feature2 = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-6 lg:col-span-4">
             <img
-              src="https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_21.jpg"
+              src={basketball1}
               alt=""
               className="h-full brightness-50 max-w-full object-cover rounded-xl mx-auto mb-6 drop-shadow-lg"
             />

@@ -14,7 +14,7 @@ import EducationalJourney from "./EducationalJourney";
 import { Button } from "../../components/ui/button";
 import { Parallax } from "react-parallax";
 import { useState } from "react";
-
+import classroom from "../../assets/academics/Classroom-Banner.webp";
 import dick from "../../assets/academics/Smart Classrooms.jpg";
 import logo from "../../assets/about/colbrown.webp";
 import img from "../../assets/academics/AI.webp";
@@ -22,6 +22,8 @@ import campus from "../../assets/academics/Career&Teaching.webp";
 import pedagogy6 from "../../assets/academics/pedagogy (6).webp";
 import pedagogy5 from "../../assets/academics/pedagogy (5).webp";
 import elearning from "../../assets/academics/elearning.webp";
+import badminton from "../../assets/sports/Badminton/img (1).webp";
+import library from "../../assets/boarding-life/Library-Banner.webp";
 
 import { ArrowRight } from "lucide-react";
 import { cn } from "../../lib/utils";
@@ -280,25 +282,25 @@ const AdvancedPedagogy = () => {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             {[
               {
-                src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_28.jpg",
+                src: classroom,
                 alt: "Classroom",
                 icon: <School className="w-6 h-6" />,
                 link: "/boarding-life/classrooms",
               },
               {
-                src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_26.jpg",
-                alt: "Laboratory",
+                src: pedagogy5,
+                alt: "Labs",
                 icon: <FlaskConical className="w-6 h-6" />,
                 link: "",
               },
               {
-                src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+                src: badminton,
                 alt: "Sports facilities",
                 icon: <Volleyball className="w-6 h-6" />,
                 link: "/boarding-life/sports-at-cbs",
               },
               {
-                src: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_16.jpg",
+                src: library,
                 alt: "Library",
                 icon: <BookOpen className="w-6 h-6" />,
                 link: "/boarding-life/library",
@@ -312,7 +314,7 @@ const AdvancedPedagogy = () => {
               >
                 <motion.div
                   key={index}
-                  className="relative overflow-hidden sm:rounded rounded shadow-lg"
+                  className="relative overflow-hidden sm:rounded h-56 rounded shadow-lg"
                   initial={initialStyle}
                   animate={galleryInView ? "visible" : "hidden"}
                   variants={fadeIn}

@@ -17,8 +17,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import FacultyStaffSection from "./FacultyStaffSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import donald from "../../assets/about/management/dr-t-f-o-donnell.jpg";
+import narendra from "../../assets/about/management/narender-singh.jpg";
+import abhai from "../../assets/about/management/abhy-singh.jpg";
 // import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 const MissionVision = () => {
   // const breadcrumbItems = [
@@ -74,8 +76,7 @@ const leadershipData = [
     id: 1,
     name: "Col. T.F.O' Donnell",
     position: "Principal",
-    image:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/dr-t-f-o-donnell-2-1.jpg",
+    image: donald,
     message: `Within a year or so Col. T.F. O'Donnell took over the school and the Cleaves left for Ireland. Col. T.F. O'Donnell carried on the good work. He was an erudite scholar and was partial toward literary writing which consumed most of his time. He wrote and published many books, some of which were taught in schools around the country. Two of his well-known works, "The Adventures of an SP" and "Cockpit of the East" are major literary works. The original manuscripts are preserved and kept in the library.
 
     The Second World War (1939 to 1945) saw the alumni of the school in action in Africa, Europe and the South East. With the end of the war, the political climate of the country started changing rapidly with the partition in 1947. The school suffered its 1st major blow as friends were ripped apart, for approximately 40% of the boys left to become the citizens of the newly formed State of Pakistan. The school saw gradual changes both in the staff and the students; by 1960 Mrs. 0′ Donnell, Mr. McIntosh the Vice-Principal and Col. 0'Donnell passed away; and by 1965 none of the European staff was left.`,
@@ -94,8 +95,7 @@ const leadershipData = [
     id: 2,
     name: "Mr. Narendra Singh",
     position: "Principal",
-    image:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/narender-singh.jpg",
+    image: narendra,
     message: `With the death of Col. O'Donnell on 26th January 1960, the administration of the school was held by an Indian since Mr. Narendra Singh had already taken over as the Principal because of the Colonel's failing health. Both Subedar Bhagwat Singh and Narendra Singh had served in the Army together and were keen sportsmen. Mr. Narendra Singh studied at BHU from where he took his Masters in English.
 
     An excellent player and an avid fan of hockey, he was known to promote the sport both in school and U.P. A stickler for discipline, he believed in the ancient adage- 'Spare the rod and spoil the child'. Many old students 'fondly' remember that.`,
@@ -104,7 +104,7 @@ const leadershipData = [
     id: 3,
     name: "Mr. Abhai Singh",
     position: "Principal",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/abhy-singh.jpg",
+    image: abhai,
     message: `It would be unfair to the school motto, 'Truth is Great ', not to report that for reasons beyond comprehension the school progress did not only come to a stand-still but over the next fifteen years witnessed a slide backwards.
 
     The school went through very dark and trying times from 1969 to 1976, when the process of regeneration was set in motion. In 1976, Mr. Abhai Singh took over the reins of C.B.S. on his return from Canada after the death of Mr. Narendra Singh. An ex-Brownian, well-travelled, a keen sportsman, a voracious reader and a strong believer in the dignity of human labour, Mr. Abhai Singh's task was not an easy one. It is to his credit that he modernised living facilities for the boys and staff alike: he restructured the Dining Hall, the Library, and the Computer Lab; constructed new and better hostels like Ireland House, Patel House, Col. House, White House, Kitchner Block, and McIntosh House; created an open-air theatre: the Tamarind Theatre; and added underground water tanks to resolve the perennial water shortages.

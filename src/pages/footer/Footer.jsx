@@ -176,8 +176,16 @@ export default function Footer() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
             >
-              © Col. Brown Cambridge School {new Date().getFullYear()}. All
-              Rights Reserved
+              © Col. Brown Cambridge School {new Date().getFullYear()}.
+              All&nbsp;
+              <a
+                href="https://www.thedesignvillage.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit text-decoration-none cursor-default"
+              >
+                Rights Reserved
+              </a>
             </motion.p>
             <SocialLinks />
           </div>

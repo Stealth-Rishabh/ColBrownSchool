@@ -32,6 +32,7 @@ export function EnquiryModal() {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
+    parentName: "",
     name: "",
     email: "",
     phone: "",
@@ -99,7 +100,7 @@ export function EnquiryModal() {
     setIsSubmitting(true);
 
     const formDataToSend = new FormData();
-    formDataToSend.append("contact-parent-name", formData.name);
+    formDataToSend.append("contact-parent-name", formData.parentName);
     formDataToSend.append("contact-student-name", formData.name);
     formDataToSend.append("contact-email", formData.email);
     formDataToSend.append("contact-phone", formData.phone);
@@ -161,6 +162,11 @@ export function EnquiryModal() {
   const validateForm = () => {
     const errors = {};
 
+    if (!formData.parentName.trim()) {
+      errors.parentName = "Parent Name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.parentName)) {
+      errors.parentName = "Parent Name should only contain letters and spaces";
+    }
     if (!formData.name.trim()) {
       errors.name = "Name is required";
     } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
@@ -209,17 +215,34 @@ export function EnquiryModal() {
         </DialogTrigger>
         <DialogContent
           closeIconClassName=" bg-white rounded relative"
-          className="max-w-[90vw] rounded-lg p-5 sm:max-w-[425px] max-h-[95vh] sm:max-h-[95vh] overflow-y-auto scrollbar-hide bg-gradient-to-tr from-green-900 sm:from-black via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none"
+          className="max-w-[90vw] scale-90 rounded-lg p-5 sm:max-w-[425px] h-auto sm:max-h-auto overflow-y-auto scrollbar-hide bg-gradient-to-tr from-green-900 sm:from-black via-green-950 sm:via-gray-900 to-green-900 sm:to-green-950 border-none"
         >
           <DialogHeader>
-            <DialogTitle className="px-6 py-3 text-lg font-bold tracking-wider text-center text-white bg-green-800 sm:bg-green-900 rounded-lg sm:text-xl mt-5">
+            <DialogTitle className="px-6 py-3 mt-5 text-lg font-bold tracking-wider text-center text-white bg-green-800 rounded-lg sm:bg-green-900 sm:text-xl">
               Enquiry Form
             </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="grid gap-3 py-2">
             <div className="grid gap-1.5">
               <Label htmlFor="name" className="text-sm text-white">
-                Name
+                Parent Name
+              </Label>
+              <Input
+                id="name"
+                className="h-8 text-sm rounded"
+                value={formData.parentName}
+                onChange={(e) =>
+                  setFormData({ ...formData, parentName: e.target.value })
+                }
+                required
+              />
+              {errors?.parentName && (
+                <p className="text-xs text-red-500">{errors.parentName}</p>
+              )}
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="name" className="text-sm text-white">
+                Student Name
               </Label>
               <Input
                 id="name"
@@ -381,11 +404,11 @@ export function EnquiryModal() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-8 text-sm rounded sm:text-white text-black bg-white sm:bg-green-900 hover:bg-green-800 hover:text-white disabled:opacity-50"
+              className="w-full h-8 text-sm text-black bg-white rounded sm:text-white sm:bg-green-900 hover:bg-green-800 hover:text-white disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
-                  Please Wait <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                  Please Wait <Loader2 className="w-4 h-4 ml-2 animate-spin" />
                 </>
               ) : (
                 "Submit"

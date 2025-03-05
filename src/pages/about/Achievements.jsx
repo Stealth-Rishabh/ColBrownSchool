@@ -3,9 +3,17 @@ import ImgAndBreadcrumb from "../../components/ImgAndBreadcrumb";
 import img from "../../assets/about/Achievement-Banner.jpg";
 import Container from "../../components/wrappers/Container";
 import Heading from "../../components/Heading";
+import care5 from "../../assets/boarding-life/Care5.jpg"
+import Cricket from "../../assets/beyond-classroom/Cricket.webp";
+import music1 from "../../assets/beyond-classroom/clubs/music/music (1).webp";
+import coCurricular from "../../assets/landing/co-curricular.webp";
+import care1 from "../../assets/boarding-life/Care1.jpg";
+import deependra from "@/assets/almaMater/deependra-singh.png";
+
 
 import dick from "../../assets/about/dickhouse.webp";
 import logo from "../../assets/about/colbrown.webp";
+
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "../../lib/utils";
 import PropTypes from "prop-types";
@@ -44,35 +52,35 @@ export default Achievements;
 
 const features = [
   {
-    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_35.jpg",
+    img: care5,
     number: "Academic Excellence",
     title: "Consistently Outstanding Results",
     description:
       "Our students consistently achieve outstanding results in ICSE board examinations, with several top-ranked students each year. This recognition reflects our unwavering focus on academic rigor and a nurturing environment.",
   },
   {
-    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_40.jpg",
+    img: Cricket,
     number: "Sports Achievements",
     title: "Champions in Sports",
     description:
       "Col Brown Cambridge School is renowned for its strength in sports, particularly in hockey and athletics. Our teams have won multiple All India Championships and inter-school tournaments. Sportsmanship, discipline, and teamwork are cornerstones of our sports culture, and our athletes make us proud with each win.",
   },
   {
-    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_37.jpg",
+    img: music1,
     number: "Cultural & Co-Curricular Achievements",
     title: "Excellence Beyond Academics",
     description:
       "Our students shine not only in academics and sports but also in cultural and co-curricular events. The school has won awards in debating, theatre, music, and art competitions, showcasing the diverse talents of our students. These accolades highlight our dedication to nurturing creativity and self-expression.",
   },
   {
-    img: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_11.jpg",
+    img: care1,
     number: "Social Impact & Community Service",
     title: "Making a Difference",
     description:
       "Community service is integral to our ethos. Our students regularly engage in initiatives that make a positive impact on society, from environmental projects to volunteer work. These efforts have earned recognition and awards from various civic organizations.",
   },
   {
-    img: "https://cbs.edustoke.com/wp-content/uploads/2024/12/572x400_38.jpg",
+    img: deependra,
     number: "Recognition of Alumni",
     title: "Legacy of Excellence",
     description:
@@ -87,7 +95,7 @@ const FeatureItem = ({ feature, index, isExpanded, onToggle }) => (
         "md:order-2": index % 2,
       })}
     >
-      <div className="relative z-20 p-0 overflow-hidden">
+      <div className="relative z-20 p-0 overflow-hidden max-h-[500px]">
         <img
           src={feature.img}
           alt={feature.title}

@@ -17,7 +17,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-
+import indubala from "../../assets/about/management/rani-indubala-singh.jpg";
+import sktyagi from "../../assets/about/management/sk-tyagi.jpg";
 const MessageFromManagement = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },
@@ -55,8 +56,7 @@ const leadershipData = [
     id: 1,
     name: "Ms. Indubala Singh",
     position: "Proctor",
-    image:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/rani-indubala-singh.jpg",
+    image: indubala,
     message: `The Proctor Mrs.Indu Bala Singh is a dynamic and compassionate lady, who expertly balances administration acumen with a warm child-centered approach.
 
 As a seasoned educator and skilled administrator she has earned the respect A and admiration of both staff and students alike.
@@ -69,7 +69,7 @@ Under her expert guidance the school is thriving and our students are growing to
     id: 2,
     name: "Mr. S.K. Tyagi",
     position: "Headmaster",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/sk-tyagi.jpg",
+    image: sktyagi,
     message: `Our Headmaster Mr.S.K.Tyagi, is an esteemed member of the educational fraternity, a committed teacher, a pillar of strength and a driving force behind the school's growth and success. A visionary educator, he is always looking towards the future, seeking innovative and forward-looking schemes to enrich the educational experience of our children. His tireless efforts to stay ahead of the curve has enabled our school to remain at the very forefront of educational excellence. This reflects not just in the children's educational endeavours but also in the various co-curricular and extra-curricular activities that they participate in.`,
   },
 ];

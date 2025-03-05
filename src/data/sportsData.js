@@ -77,7 +77,7 @@ export const sportsData = {
     subtitle: "Building teamwork and agility on the court",
     routeLink: "/boarding-life/sports-at-cbs/basketball",
     images: [
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_21.jpg",
+
       // Add more basketball-related image URLs
       basketball1,
       basketball2,
@@ -93,7 +93,7 @@ export const sportsData = {
     subtitle: "Excellence in India's national sport",
     routeLink: "/boarding-life/sports-at-cbs/hockey",
     images: [
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_23.jpg",
+     
       // Add more hockey-related image URLs
     ],
     description:
@@ -104,7 +104,7 @@ export const sportsData = {
     subtitle: "Fostering teamwork and coordination",
     routeLink: "/boarding-life/sports-at-cbs/volleyball",
     images: [
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+     
       // Add more volleyball-related image URLs
     ],
     description:
@@ -131,7 +131,7 @@ export const sportsData = {
     subtitle: "Developing focus and precision",
     routeLink: "/boarding-life/sports-at-cbs/indoor-sports",
     images: [
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
+    
       // Add more indoor sports-related image URLs
       indoor1,
       indoor2,

@@ -116,11 +116,19 @@ const HeroSlider = () => {
 const SlideContent = memo(({ img }) => {
   return (
     <div className="size-full max-w-[90%] sm:max-w-4xl items-center justify-center overflow-hidden sm:pt-8 absolute top-16 sm:top-[15%] left-[10%] sm:left-[8%] z-20 space-y-6">
-      <h1 className="text-4xl font-extrabold text-white md:text-6xl lg:text-8xl sm:py-4 drop-shadow-lg">
-        {img.tagline}
+      <h1 className="text-4xl font-extrabold tracking-wide text-white md:text-6xl lg:text-8xl sm:py-4 drop-shadow-lg">
+        {img.tagline.split(" ").map((word, index) => (
+          <span key={index} className="inline-block mr-2 sm:mr-5">
+            {index % 2 === 0 ? (
+              <span className="text-white">{word}</span>
+            ) : (
+              <span className="text-yellow-500">{word}</span>
+            )}
+          </span>
+        ))}
       </h1>
-      <div className="sm:hidden block">
-        <p className="text-2xl font-bold md:text-3xl text-white md:font-bold text-left max-w-[20rem] md:max-w-3xl">
+      <div className="">
+        <p className="text-2xl font-bold md:text-4xl text-white md:font-bold text-left max-w-[20rem] md:max-w-3xl">
           {img.highlights[0]}
         </p>
       </div>

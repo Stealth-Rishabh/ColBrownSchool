@@ -12,7 +12,8 @@ import medical from "../../assets/boarding-life/medical2.webp";
 import hostel from "../../assets/boarding-life/Hostel-Banner.webp";
 import library from "../../assets/boarding-life/Library-Banner.webp";
 import dining from "../../assets/boarding-life/Dinning (3).webp";
-
+import Athlete from "../../assets/beyond-classroom/Athlete.webp";
+import softSkills1 from "../../assets/beyond-classroom/clubs/soft-skills/soft-skills (1).webp";
 const infrastructureData = [
   {
     id: 1,
@@ -72,8 +73,7 @@ const infrastructureData = [
           description: "Professional support for emotional well-being.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+      imageSrc: Athlete,
       imageAlt: "Col Brown School Sports Complex",
     },
     link: "/boarding-life/sports-at-cbs",
@@ -136,8 +136,7 @@ const infrastructureData = [
           description: "Space for projects and experimental learning.",
         },
       ],
-      imageSrc:
-        "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_8.jpg",
+      imageSrc: softSkills1,
       imageAlt: "Col Brown School Cultural Spaces",
     },
     link: "/beyond-classroom/clubs-at-cbs",
