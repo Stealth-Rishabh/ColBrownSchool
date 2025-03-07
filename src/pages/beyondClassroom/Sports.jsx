@@ -81,29 +81,29 @@ const features = [
     link: "/boarding-life/sports-at-cbs/basketball",
   },
 
-  {
-    title: "Hockey",
-    description:
-      "Our hockey program emphasizes both individual skills and team tactics, with regular practice sessions and competitive matches on our full-size football field.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_23.jpg",
-    link: "/boarding-life/sports-at-cbs/hockey",
-  },
-  {
-    title: "Volleyball",
-    description:
-      "Our temperature-controlled volleyball court hosts year-round training programs for all skill levels, from beginners to competitive players.",
-    image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
-    link: "/boarding-life/sports-at-cbs/volleyball",
-  },
+  // {
+  //   title: "Hockey",
+  //   description:
+  //     "Our hockey program emphasizes both individual skills and team tactics, with regular practice sessions and competitive matches on our full-size football field.",
+  //   image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_23.jpg",
+  //   link: "/boarding-life/sports-at-cbs/hockey",
+  // },
+  // {
+  //   title: "Volleyball",
+  //   description:
+  //     "Our temperature-controlled volleyball court hosts year-round training programs for all skill levels, from beginners to competitive players.",
+  //   image: "https://cbs.edustoke.com/wp-content/uploads/2024/11/572x400_10.jpg",
+  //   link: "/boarding-life/sports-at-cbs/volleyball",
+  // },
 
-  {
-    title: "Football",
-    description:
-      "Students participate in track and field events on our 400-meter track, developing speed, strength and endurance through structured training programs.",
-    image:
-      "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-14.jpg",
-    link: "/boarding-life/sports-at-cbs/football",
-  },
+  // {
+  //   title: "Football",
+  //   description:
+  //     "Students participate in track and field events on our 400-meter track, developing speed, strength and endurance through structured training programs.",
+  //   image:
+  //     "https://cbs.edustoke.com/wp-content/uploads/2024/11/sports-quiz-2019-14.jpg",
+  //   link: "/boarding-life/sports-at-cbs/football",
+  // },
   {
     title: "Indoor Sports",
     description:
