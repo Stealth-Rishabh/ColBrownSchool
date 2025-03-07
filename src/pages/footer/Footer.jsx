@@ -13,7 +13,7 @@ export default function Footer() {
     "Quick Links": [
       { name: "About CBS", href: "/about/legacy-of-cbs" },
       { name: "Admissions", href: "/admissions/admission-procedure" },
-      { name: "Blog", href: "/blog" },
+      // { name: "Blog", href: "/blog" },
       { name: "Alumni Registration", href: "/alma-mater" },
       {
         name: "View Result",
