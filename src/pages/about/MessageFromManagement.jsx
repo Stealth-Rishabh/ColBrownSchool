@@ -17,8 +17,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import indubala from "../../assets/about/management/rani-indubala-singh.jpg";
-import sktyagi from "../../assets/about/management/sk-tyagi.jpg";
+import indubala from "../../assets/about/management/rani-indubala-singh.webp";
+import sktyagi from "../../assets/about/management/sk-tyagi.webp";
 const MessageFromManagement = () => {
   const breadcrumbItems = [
     { href: "/", label: "Home" },

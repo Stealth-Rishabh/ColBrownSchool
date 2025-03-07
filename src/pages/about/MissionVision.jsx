@@ -18,9 +18,9 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import donald from "../../assets/about/management/dr-t-f-o-donnell.jpg";
-import narendra from "../../assets/about/management/narender-singh.jpg";
-import abhai from "../../assets/about/management/abhy-singh.jpg";
+import donald from "../../assets/about/management/dr-t-f-o-donnell.webp";
+import narendra from "../../assets/about/management/narender-singh.webp";
+import abhai from "../../assets/about/management/abhy-singh.webp";
 // import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 const MissionVision = () => {
   // const breadcrumbItems = [

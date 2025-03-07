@@ -455,14 +455,14 @@ export default function App() {
                       </MetaWrapper>
                     }
                   />
-                  <Route
+                  {/* <Route
                     path="/blog"
                     element={
                       <MetaWrapper pathname="/blog">
                         <Blog />
                       </MetaWrapper>
                     }
-                  />
+                  /> */}
                   <Route
                     path="/notices"
                     element={

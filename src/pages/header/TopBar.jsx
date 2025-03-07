@@ -35,9 +35,9 @@ export default function TopBar() {
           <Link to="/notices" className="hover:text-yellow-400">
             Notice(s)
           </Link>
-          <Link to="/blog" className="hover:text-yellow-400">
+          {/* <Link to="/blog" className="hover:text-yellow-400">
             Blog
-          </Link>
+          </Link> */}
           <div className="grid grid-cols-2 gap-2 w-full sm:w-auto mt-2 sm:mt-0 sm:flex sm:space-x-4">
             <Link
               to="/contact-us"
